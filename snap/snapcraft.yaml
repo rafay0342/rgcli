@@ -1,0 +1,28 @@
+name: rgcli
+base: core22
+version: '1.0.0'
+summary: RafayGen - The Ultimate Agentic Coding CLI
+description: |
+  RafayGen-CLI (rgcli) brings the power of agentic coding to your terminal.
+  It reads, writes, edits, and executes code right on your local machine.
+  Includes neat interactive boxes, diffs, and deep AI integration.
+
+grade: stable
+confinement: strict
+
+apps:
+  rgcli:
+    command: bin/rgcli
+    plugs: [network, home, removable-media]
+
+parts:
+  rgcli:
+    plugin: nodejs
+    nodejs-version: '22.11.0'
+    source: .
+    build-packages:
+      - npm
+    override-build: |
+      npm install
+      npm run build || true
+      snapcraftctl build

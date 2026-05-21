@@ -1,0 +1,7 @@
+Package: rgcli
+Version: 1.0.0
+Architecture: amd64
+Maintainer: RafayGen <rafaygen@example.com>
+Description: RafayGen - The Ultimate Agentic Coding CLI
+ Brings the power of agentic coding to your terminal.
+ Reads, writes, edits, and executes code right on your local machine.

@@ -1,0 +1,9 @@
+node_modules
+binaries
+dist
+*.deb
+*.snap
+*.zip
+*.tar.gz
+deploy.js
+deploy_tap.js
