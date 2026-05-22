@@ -4,7 +4,7 @@ TERMUX_PKG_LICENSE="ISC"
 TERMUX_PKG_MAINTAINER="RafayGen"
 TERMUX_PKG_VERSION=1.0.0
 # Once published to NPM, this URL will fetch the public tarball
-TERMUX_PKG_SRCURL=https://registry.npmjs.org/rgcli/-/rgcli-${TERMUX_PKG_VERSION}.tgz
+TERMUX_PKG_SRCURL=https://registry.npmjs.org/rafaygen-cli/-/rafaygen-cli-${TERMUX_PKG_VERSION}.tgz
 # You will need to replace this SHA256 when you publish to NPM
 TERMUX_PKG_SHA256=0000000000000000000000000000000000000000000000000000000000000000
 TERMUX_PKG_DEPENDS="nodejs"

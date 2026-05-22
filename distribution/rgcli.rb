@@ -4,7 +4,7 @@ class Rgcli < Formula
   desc "RafayGen - The Ultimate Agentic Coding CLI"
   homepage "https://github.com/RafayGen/rgcli"
   # Once published to NPM, this URL will fetch the public tarball
-  url "https://registry.npmjs.org/rgcli/-/rgcli-1.0.0.tgz"
+  url "https://registry.npmjs.org/rafaygen-cli/-/rafaygen-cli-1.0.0.tgz"
   # You will need to replace this SHA256 when you publish to NPM:
   # shasum -a 256 rgcli-1.0.0.tgz
   sha256 "0000000000000000000000000000000000000000000000000000000000000000"

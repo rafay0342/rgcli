@@ -7,3 +7,14 @@ dist
 *.tar.gz
 deploy.js
 deploy_tap.js
+parts/
+prime/
+stage/
+.antigravitycli/
+verify.mjs
+debug_action.js
+fetch_annotations.js
+fetch_logs.js
+.rgcli.json
+mcp.json
+

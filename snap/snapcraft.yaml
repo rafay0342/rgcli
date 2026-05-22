@@ -17,8 +17,9 @@ apps:
 
 parts:
   rgcli:
-    plugin: nodejs
-    nodejs-version: '22.11.0'
+    plugin: npm
+    npm-include-node: true
+    npm-node-version: '22.11.0'
     source: .
     build-packages:
       - npm

@@ -1,0 +1,10 @@
+node_modules
+binaries
+parts
+stage
+prime
+snap
+.github
+distribution
+build.js
+*.snap
