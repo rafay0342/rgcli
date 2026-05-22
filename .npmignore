@@ -8,3 +8,11 @@ snap
 distribution
 build.js
 *.snap
+*.deb
+deb-build/
+verify.mjs
+debug_action.js
+fetch_annotations.js
+fetch_logs.js
+*.tgz
+
