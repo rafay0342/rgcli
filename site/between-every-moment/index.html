@@ -1,0 +1,1549 @@
+<!doctype html>
+<html lang="hi-Latn">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#070707">
+    <title>Har Lamhe Ke Darmiyan — Tumhare Liye Ek Kahani</title>
+    <meta name="description" content="Ek cinematic safar un lamhon, yaadon aur ehsaason ka, jo mujhe ek sacche sawaal tak le aaye.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&amp;family=Manrope:wght@400;500;600&amp;display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+    <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
+  </head>
+
+  <body class="min-h-screen overflow-x-hidden bg-[#070707] font-['Manrope'] text-[#f8f4ee] antialiased selection:bg-[#a74a56] selection:text-white">
+    <div id="intro-loader" class="fixed inset-0 z-[200] flex items-center justify-center overflow-hidden bg-[#070707] transition-opacity duration-1000" aria-label="Kahani shuru ho rahi hai">
+      <div class="absolute inset-0">
+        <div class="absolute left-1/2 top-1/2 h-[32rem] w-[32rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#7e2936]/20 blur-3xl"></div>
+      </div>
+
+      <div class="relative flex flex-col items-center px-6 text-center">
+        <div id="loader-mark" class="relative grid h-24 w-24 scale-75 place-items-center rounded-full border border-white/15 opacity-0">
+          <div class="absolute inset-2 rounded-full border border-[#d9a6aa]/20"></div>
+          <iconify-icon icon="solar:heart-linear" stroke-width="1.5" class="text-3xl text-[#e5bec1]"></iconify-icon>
+        </div>
+
+        <p id="loader-copy" class="mt-8 translate-y-4 text-xs font-medium uppercase tracking-[0.28rem] text-white/45 opacity-0">
+          Ek kahani jo lamhon mein basi hai
+        </p>
+
+        <div class="mt-6 h-px w-44 overflow-hidden bg-white/10">
+          <div id="loader-line" class="h-full w-0 bg-gradient-to-r from-[#8b3540] to-[#e4b6ba]"></div>
+        </div>
+      </div>
+    </div>
+
+    <canvas id="world" class="pointer-events-none fixed inset-0 z-0 h-full w-full" aria-hidden="true"></canvas>
+
+    <div class="pointer-events-none fixed inset-0 z-[1] bg-[radial-gradient(circle_at_center,transparent_20%,rgba(0,0,0,0.5)_100%)]" aria-hidden="true"></div>
+
+    <div id="film-grain" class="pointer-events-none fixed inset-0 z-[70] opacity-[0.045] mix-blend-screen" style="background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 180 180%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22n%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.85%22 numOctaves=%224%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23n)%22 opacity=%221%22/%3E%3C/svg%3E');" aria-hidden="true"></div>
+
+    <div id="cinematic-top" class="pointer-events-none fixed inset-x-0 top-0 z-[65] h-0 bg-black transition-all duration-700" aria-hidden="true"></div>
+    <div id="cinematic-bottom" class="pointer-events-none fixed inset-x-0 bottom-0 z-[65] h-0 bg-black transition-all duration-700" aria-hidden="true"></div>
+
+    <div id="scene-flash" class="pointer-events-none fixed inset-0 z-[60] bg-[#e7d7cc] opacity-0" aria-hidden="true"></div>
+
+    <div class="fixed left-0 top-0 z-[80] h-px w-full bg-white/10" aria-hidden="true">
+      <div id="progress-line" class="h-full w-0 bg-gradient-to-r from-[#8e3541] via-[#d4939a] to-[#f2d8cc]"></div>
+    </div>
+
+    <a href="#story" class="fixed left-4 top-4 z-[100] -translate-y-24 rounded-full bg-white px-5 py-3 text-xs font-medium text-black transition focus:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d49ba0]">
+      Introduction skip karo
+    </a>
+
+    <header id="header" class="fixed inset-x-0 top-0 z-50 transition-all duration-500">
+      <div class="mx-auto flex h-20 max-w-[96rem] items-center justify-between px-5 sm:px-8 lg:px-12">
+        <a href="#opening" class="group flex items-center gap-3 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d49ba0]" aria-label="Shuruaat par wapas jao">
+          <span class="grid h-9 w-9 place-items-center rounded-full border border-white/20 bg-black/10 backdrop-blur-md transition group-hover:border-white/45">
+            <iconify-icon icon="solar:heart-linear" stroke-width="1.5" class="text-lg"></iconify-icon>
+          </span>
+          <span class="font-['Cormorant_Garamond'] text-xl font-medium tracking-wide">
+            J &amp; A
+          </span>
+        </a>
+
+        <div class="hidden items-center gap-3 rounded-full border border-white/10 bg-black/20 px-4 py-2.5 backdrop-blur-xl sm:flex">
+          <span id="scene-dot" class="h-1.5 w-1.5 rounded-full bg-[#e4a9ae] shadow-[0_0_1rem_rgba(228,169,174,0.8)]"></span>
+          <span id="scene-label" class="text-xs font-medium uppercase tracking-[0.18rem] text-white/55">
+            Aagaaz
+          </span>
+        </div>
+
+        <button id="sound-toggle" type="button" class="flex h-10 items-center gap-2 rounded-full border border-white/15 bg-black/15 px-4 text-xs font-medium text-white/70 backdrop-blur-xl transition hover:border-white/35 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d49ba0]" aria-pressed="false">
+          <iconify-icon id="sound-icon" icon="solar:volume-cross-linear" stroke-width="1.5" class="text-base"></iconify-icon>
+          <span class="hidden sm:inline">Mahaul</span>
+        </button>
+      </div>
+    </header>
+
+    <aside class="fixed right-5 top-1/2 z-40 hidden -translate-y-1/2 flex-col items-center gap-3 lg:flex" aria-label="Chapters">
+      <a href="#opening" data-nav-dot="" class="group flex items-center gap-3" aria-label="Aagaaz">
+        <span class="pointer-events-none translate-x-2 text-xs uppercase tracking-[0.15rem] text-white/0 transition group-hover:translate-x-0 group-hover:text-white/55">
+          Aagaaz
+        </span>
+        <span class="h-1.5 w-1.5 rounded-full bg-white/70 transition"></span>
+      </a>
+      <a href="#arrival" data-nav-dot="" class="group flex items-center gap-3" aria-label="Aamad">
+        <span class="pointer-events-none translate-x-2 text-xs uppercase tracking-[0.15rem] text-white/0 transition group-hover:translate-x-0 group-hover:text-white/55">
+          Aamad
+        </span>
+        <span class="h-1.5 w-1.5 rounded-full bg-white/20 transition"></span>
+      </a>
+      <a href="#gravity" data-nav-dot="" class="group flex items-center gap-3" aria-label="Kashish">
+        <span class="pointer-events-none translate-x-2 text-xs uppercase tracking-[0.15rem] text-white/0 transition group-hover:translate-x-0 group-hover:text-white/55">
+          Kashish
+        </span>
+        <span class="h-1.5 w-1.5 rounded-full bg-white/20 transition"></span>
+      </a>
+      <a href="#memories" data-nav-dot="" class="group flex items-center gap-3" aria-label="Yaadein">
+        <span class="pointer-events-none translate-x-2 text-xs uppercase tracking-[0.15rem] text-white/0 transition group-hover:translate-x-0 group-hover:text-white/55">
+          Yaadein
+        </span>
+        <span class="h-1.5 w-1.5 rounded-full bg-white/20 transition"></span>
+      </a>
+      <a href="#details" data-nav-dot="" class="group flex items-center gap-3" aria-label="Choti Baatein">
+        <span class="pointer-events-none translate-x-2 text-xs uppercase tracking-[0.15rem] text-white/0 transition group-hover:translate-x-0 group-hover:text-white/55">
+          Choti Baatein
+        </span>
+        <span class="h-1.5 w-1.5 rounded-full bg-white/20 transition"></span>
+      </a>
+      <a href="#future" data-nav-dot="" class="group flex items-center gap-3" aria-label="Imkaan">
+        <span class="pointer-events-none translate-x-2 text-xs uppercase tracking-[0.15rem] text-white/0 transition group-hover:translate-x-0 group-hover:text-white/55">
+          Imkaan
+        </span>
+        <span class="h-1.5 w-1.5 rounded-full bg-white/20 transition"></span>
+      </a>
+      <a href="#question" data-nav-dot="" class="group flex items-center gap-3" aria-label="Sawaal">
+        <span class="pointer-events-none translate-x-2 text-xs uppercase tracking-[0.15rem] text-white/0 transition group-hover:translate-x-0 group-hover:text-white/55">
+          Sawaal
+        </span>
+        <span class="h-1.5 w-1.5 rounded-full bg-white/20 transition"></span>
+      </a>
+    </aside>
+
+    <main id="story" class="relative z-10">
+      <section id="opening" data-scene="Aagaaz" data-theme="dark" class="relative flex min-h-screen items-center overflow-hidden px-5 pb-16 pt-28 sm:px-8 lg:px-12">
+        <div class="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/70 via-black/15 to-black/30"></div>
+
+        <div class="relative mx-auto grid w-full max-w-[96rem] gap-12 lg:grid-cols-12 lg:items-end">
+          <div class="lg:col-span-9">
+            <div data-reveal="" class="mb-8 flex translate-y-8 items-center gap-4 opacity-0">
+              <span class="h-px w-10 bg-[#d9a0a6]"></span>
+              <p class="text-xs font-medium uppercase tracking-[0.26rem] text-white/55">
+                Yeh sirf ek sawaal nahi hai
+              </p>
+            </div>
+
+            <h1 data-depth="0.08" data-reveal="" class="max-w-6xl translate-y-12 font-['Cormorant_Garamond'] text-6xl font-medium leading-[0.82] tracking-tight opacity-0 sm:text-7xl md:text-8xl lg:text-9xl">
+              Yeh har woh lamha
+              <span class="block bg-gradient-to-r from-[#f8e6dc] via-[#e0a8ac] to-[#a74a56] bg-clip-text italic text-transparent">
+                jo mujhe yahan laya.
+              </span>
+            </h1>
+          </div>
+
+          <div data-reveal="" class="translate-y-8 opacity-0 lg:col-span-3 lg:pb-3">
+            <p class="max-w-sm text-sm leading-7 text-white/55 sm:text-base">
+              Aaram se. Jaldi mat karna. Kuch hai jo kaafi waqt se dil mein
+              hai.
+            </p>
+
+            <a href="#arrival" class="group mt-8 inline-flex items-center gap-4 text-xs font-medium uppercase tracking-[0.18rem] text-white/80">
+              Kahani mein chalo
+              <span class="grid h-12 w-12 place-items-center rounded-full border border-white/20 bg-white/5 backdrop-blur-md transition duration-500 group-hover:scale-110 group-hover:bg-white group-hover:text-black">
+                <iconify-icon icon="solar:arrow-down-linear" stroke-width="1.5" class="text-lg"></iconify-icon>
+              </span>
+            </a>
+          </div>
+        </div>
+
+        <div class="absolute bottom-7 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-3 md:flex">
+          <span class="text-xs uppercase tracking-[0.2rem] text-white/25">
+            Safar ke liye scroll karo
+          </span>
+          <span class="relative h-10 w-px overflow-hidden bg-white/10">
+            <span id="scroll-pulse" class="absolute left-0 top-0 h-4 w-px bg-white/70"></span>
+          </span>
+        </div>
+      </section>
+
+      <section id="arrival" data-scene="Aamad" data-theme="warm" class="relative flex min-h-[130vh] items-center overflow-hidden px-5 py-28 sm:px-8 lg:px-12">
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-[#321b1e]/15 to-transparent"></div>
+
+        <div class="relative mx-auto grid w-full max-w-[90rem] gap-14 lg:grid-cols-12 lg:items-center">
+          <div class="lg:col-span-5">
+            <p data-reveal="" class="translate-y-8 text-xs font-medium uppercase tracking-[0.25rem] text-[#e3aeb2] opacity-0">
+              Chapter I · Aamad
+            </p>
+
+            <h2 data-reveal="" class="mt-6 translate-y-10 font-['Cormorant_Garamond'] text-5xl font-medium leading-[0.9] tracking-tight opacity-0 sm:text-6xl lg:text-7xl">
+              Tumhara aana
+              <span class="block italic text-[#d8979d]">
+                aur bina kahe sab badal gaya.
+              </span>
+            </h2>
+
+            <p data-reveal="" class="mt-8 max-w-xl translate-y-8 text-sm leading-7 text-white/50 opacity-0 sm:text-base">
+              Koi dramatic shuruaat nahi thi. Koi perfect timing nahi. Bas
+              tumhari aamad hui — apni garmahat, apni sacchai, aur aam si
+              cheezon ko zinda kar dene ke apne andaaz ke saath.
+            </p>
+
+            <div data-reveal="" class="mt-10 flex translate-y-8 items-center gap-5 opacity-0">
+              <span class="grid h-11 w-11 place-items-center rounded-full border border-[#d8979d]/25 bg-[#d8979d]/10">
+                <iconify-icon icon="solar:stars-linear" stroke-width="1.5" class="text-xl text-[#e5afb4]"></iconify-icon>
+              </span>
+              <p class="font-['Cormorant_Garamond'] text-2xl italic text-white/75">
+                Aur phir poora mahaul badal gaya.
+              </p>
+            </div>
+          </div>
+
+          <div class="relative min-h-[34rem] lg:col-span-6 lg:col-start-7">
+            <div data-card="" data-reveal="" class="absolute left-0 top-8 w-3/4 translate-y-12 overflow-hidden rounded-sm border border-white/10 bg-white/5 p-2 opacity-0 shadow-2xl backdrop-blur-sm">
+              <div class="aspect-[4/5] overflow-hidden">
+                <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/b58fa1f9-d200-41b2-90ac-c2e8c79e01fa_3840w.png" alt="Saath bitaya ek kareeb, khamosh lamha" class="h-full w-full object-cover grayscale-[30%] transition duration-1000 hover:scale-105" data-element-src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/b58fa1f9-d200-41b2-90ac-c2e8c79e01fa_3840w.png">
+              </div>
+            </div>
+
+            <div data-card="" data-reveal="" class="absolute bottom-3 right-0 w-1/2 translate-y-12 border border-white/10 bg-[#14100f]/80 p-5 opacity-0 shadow-2xl backdrop-blur-xl sm:p-7">
+              <p class="text-xs font-medium uppercase tracking-[0.2rem] text-[#d89da3]">
+                Pehla ehsaas
+              </p>
+              <p class="mt-4 font-['Cormorant_Garamond'] text-2xl font-medium leading-snug sm:text-3xl">
+                Dil chahta tha ki har baat thodi aur lambi chale.
+              </p>
+              <div class="mt-6 flex items-center gap-3">
+                <span class="h-px flex-1 bg-white/10"></span>
+                <span class="text-xs text-white/30">01</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="gravity" data-scene="Kashish" data-theme="deep" class="relative flex min-h-[140vh] items-center overflow-hidden px-5 py-28 sm:px-8 lg:px-12">
+        <div class="absolute inset-0 bg-gradient-to-r from-[#080808]/90 via-transparent to-[#080808]/70"></div>
+
+        <div class="relative mx-auto w-full max-w-[96rem]">
+          <div class="max-w-5xl">
+            <p data-reveal="" class="translate-y-8 text-xs font-medium uppercase tracking-[0.25rem] text-[#d7a1a6] opacity-0">
+              Chapter II · Kashish
+            </p>
+
+            <h2 data-depth="0.06" data-reveal="" class="mt-7 translate-y-12 font-['Cormorant_Garamond'] text-6xl font-medium leading-[0.84] tracking-tight opacity-0 sm:text-7xl md:text-8xl lg:text-9xl">
+              Na jaane kyun duniya
+              <span class="block italic text-[#d9a3a8]">
+                mujhe tum tak le aayi.
+              </span>
+            </h2>
+          </div>
+
+          <div class="mt-20 grid gap-6 border-t border-white/10 pt-8 md:grid-cols-3">
+            <article data-reveal="" class="group translate-y-10 border-b border-white/10 py-8 opacity-0 md:border-b-0 md:border-r md:px-8 md:first:pl-0">
+              <span class="mb-10 grid h-12 w-12 place-items-center rounded-full border border-white/10 bg-white/5 transition duration-500 group-hover:scale-110 group-hover:border-[#d89da3]/50 group-hover:bg-[#8f3742]/20">
+                <iconify-icon icon="solar:chat-round-dots-linear" stroke-width="1.5" class="text-xl text-[#dba5aa]"></iconify-icon>
+              </span>
+              <p class="text-xs uppercase tracking-[0.2rem] text-white/30">
+                Woh baatein
+              </p>
+              <h3 class="mt-4 font-['Cormorant_Garamond'] text-3xl font-medium leading-tight sm:text-4xl">
+                Jinmein waqt ka pata hi nahi chalta tha.
+              </h3>
+            </article>
+
+            <article data-reveal="" class="group translate-y-10 border-b border-white/10 py-8 opacity-0 md:border-b-0 md:border-r md:px-8">
+              <span class="mb-10 grid h-12 w-12 place-items-center rounded-full border border-white/10 bg-white/5 transition duration-500 group-hover:scale-110 group-hover:border-[#d89da3]/50 group-hover:bg-[#8f3742]/20">
+                <iconify-icon icon="solar:smile-circle-linear" stroke-width="1.5" class="text-xl text-[#dba5aa]"></iconify-icon>
+              </span>
+              <p class="text-xs uppercase tracking-[0.2rem] text-white/30">
+                Woh hansi
+              </p>
+              <h3 class="mt-4 font-['Cormorant_Garamond'] text-3xl font-medium leading-tight sm:text-4xl">
+                Woh aawaz jise sunne ka intezaar rehne laga.
+              </h3>
+            </article>
+
+            <article data-reveal="" class="group translate-y-10 py-8 opacity-0 md:px-8 md:last:pr-0">
+              <span class="mb-10 grid h-12 w-12 place-items-center rounded-full border border-white/10 bg-white/5 transition duration-500 group-hover:scale-110 group-hover:border-[#d89da3]/50 group-hover:bg-[#8f3742]/20">
+                <iconify-icon icon="solar:eye-linear" stroke-width="1.5" class="text-xl text-[#dba5aa]"></iconify-icon>
+              </span>
+              <p class="text-xs uppercase tracking-[0.2rem] text-white/30">
+                Woh khamoshi
+              </p>
+              <h3 class="mt-4 font-['Cormorant_Garamond'] text-3xl font-medium leading-tight sm:text-4xl">
+                Bas tumhare paas hone ka sukoon.
+              </h3>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="memories" data-scene="Yaadein" data-theme="light" class="relative min-h-[160vh] overflow-hidden bg-[#e9e0d7] px-5 py-28 text-[#211b18] sm:px-8 lg:px-12">
+        <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_70%_20%,rgba(148,62,73,0.13),transparent_35%)]"></div>
+
+        <div class="relative mx-auto max-w-[90rem]">
+          <div class="grid gap-12 lg:grid-cols-12 lg:items-end">
+            <div class="lg:col-span-8">
+              <p data-reveal="" class="translate-y-8 text-xs font-medium uppercase tracking-[0.25rem] text-[#873541] opacity-0">
+                Chapter III · Yaadein
+              </p>
+              <h2 data-reveal="" class="mt-6 translate-y-10 font-['Cormorant_Garamond'] text-6xl font-medium leading-[0.87] tracking-tight opacity-0 sm:text-7xl md:text-8xl">
+                Maine woh lamhe rakhe
+                <span class="block italic text-[#8d3a45]">
+                  jo tumhe yaad bhi na hon.
+                </span>
+              </h2>
+            </div>
+
+            <p data-reveal="" class="translate-y-8 text-sm leading-7 text-[#5c524c] opacity-0 sm:text-base lg:col-span-3 lg:col-start-10">
+              Isliye nahi ki woh bade the, balki isliye ki woh humare
+              the—chahe sirf kuch second ke liye.
+            </p>
+          </div>
+
+          <div id="memory-track" class="mt-20 grid gap-8 md:grid-cols-2 lg:grid-cols-12">
+            <figure data-photo="" data-reveal="" class="group translate-y-14 opacity-0 lg:col-span-5">
+              <div class="relative aspect-[4/5] overflow-hidden bg-[#c8bbb0] shadow-[0_2rem_5rem_rgba(48,30,25,0.16)]">
+                <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/16faecf3-6bc0-4114-aed9-f49135b78b48_3840w.png" alt="Ek sukoon bhari dopahar, khule mein" class="h-full w-full object-cover grayscale-[20%] transition duration-1000 group-hover:scale-105" data-element-src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/16faecf3-6bc0-4114-aed9-f49135b78b48_3840w.png">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent"></div>
+                <p class="absolute bottom-6 left-6 font-['Cormorant_Garamond'] text-3xl font-medium italic text-white">
+                  Dopahar ki roshni
+                </p>
+              </div>
+              <figcaption class="mt-5 flex items-center justify-between border-b border-black/15 pb-5">
+                <span class="text-xs font-medium uppercase tracking-[0.18rem] text-[#6e625b]">
+                  Yaad 01
+                </span>
+                <span class="text-xs text-[#8d3a45]">Dil ke kareeb</span>
+              </figcaption>
+            </figure>
+
+            <figure data-photo="" data-reveal="" class="group translate-y-14 opacity-0 md:mt-32 lg:col-span-3 lg:col-start-7">
+              <div class="relative aspect-[3/4] overflow-hidden bg-[#c8bbb0] shadow-[0_2rem_5rem_rgba(48,30,25,0.16)]">
+                <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/e3ad2b7f-d3d2-4edd-83af-004d6dd2ba7d_1600w.png" alt="Dhalte suraj mein saath chalna" class="h-full w-full object-cover grayscale-[20%] transition duration-1000 group-hover:scale-105" data-element-src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/e3ad2b7f-d3d2-4edd-83af-004d6dd2ba7d_1600w.png">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent"></div>
+              </div>
+              <figcaption class="mt-5">
+                <span class="text-xs font-medium uppercase tracking-[0.18rem] text-[#6e625b]">
+                  Woh walk jo bahut jaldi khatam ho gayi
+                </span>
+              </figcaption>
+            </figure>
+
+            <figure data-photo="" data-reveal="" class="group translate-y-14 opacity-0 lg:col-span-3 lg:col-start-10 lg:mt-10">
+              <div class="relative aspect-square overflow-hidden bg-[#c8bbb0] shadow-[0_2rem_5rem_rgba(48,30,25,0.16)]">
+                <video src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/generated-videos/e323288a-a16b-4b65-b642-4a012af80f1c/1787617415090-cec536ec-aee6-4121-9d4c-5b0c4977cbeb.mp4" poster="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/116a8c77-06dc-4a46-b127-5ff9119d641b_3840w.png" data-aura-generated-video="true" data-aura-video-preset="loop-in-view" muted="" playsinline="" preload="metadata" loop="" aria-label="Halki roshni mein gehre laal phool" class="h-full w-full object-cover grayscale-[10%] transition duration-1000 group-hover:scale-105"></video>
+              </div>
+              <figcaption class="mt-5">
+                <span class="text-xs font-medium uppercase tracking-[0.18rem] text-[#6e625b]">
+                  Woh rang jo mujhe tumhari yaad dilata hai
+                </span>
+              </figcaption>
+            </figure>
+
+            <div data-reveal="" class="translate-y-12 border-l border-[#8d3a45]/30 pl-7 opacity-0 md:col-span-2 lg:col-span-5 lg:col-start-2 lg:mt-10">
+              <blockquote class="font-['Cormorant_Garamond'] text-3xl font-medium italic leading-snug text-[#342a26] sm:text-4xl">
+                “Sabse chhote lamhe bhi khaas ban gaye, sirf isliye ki
+                unmein tum the.”
+              </blockquote>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="details" data-scene="Choti Baatein" data-theme="dark" class="relative min-h-[150vh] overflow-hidden bg-[#0a0909]/70 px-5 py-28 sm:px-8 lg:px-12">
+        <div class="relative mx-auto max-w-[90rem]">
+          <div class="mx-auto max-w-4xl text-center">
+            <p data-reveal="" class="translate-y-8 text-xs font-medium uppercase tracking-[0.25rem] text-[#dda7ac] opacity-0">
+              Chapter IV · Choti Baatein
+            </p>
+
+            <h2 data-reveal="" class="mt-6 translate-y-10 font-['Cormorant_Garamond'] text-6xl font-medium leading-[0.88] tracking-tight opacity-0 sm:text-7xl md:text-8xl">
+              Pyaar un cheezon se hua
+              <span class="block italic text-[#d99ea4]">
+                jo tumne dikhayi hi nahi.
+              </span>
+            </h2>
+          </div>
+
+          <div class="mt-20 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+            <article data-tilt="" data-reveal="" class="group relative min-h-[28rem] translate-y-12 overflow-hidden border border-white/10 bg-white/[0.04] p-7 opacity-0 backdrop-blur-md">
+              <span class="absolute -right-12 -top-12 h-40 w-40 rounded-full bg-[#9d3f4b]/20 blur-3xl transition duration-700 group-hover:bg-[#b6505c]/35"></span>
+              <div class="relative flex h-full flex-col">
+                <span class="grid h-12 w-12 place-items-center rounded-full border border-white/10 bg-white/5">
+                  <iconify-icon icon="solar:hand-heart-linear" stroke-width="1.5" class="text-xl text-[#dda4aa]"></iconify-icon>
+                </span>
+                <div class="mt-auto">
+                  <p class="text-xs uppercase tracking-[0.18rem] text-white/30">
+                    01 · Narmi
+                  </p>
+                  <h3 class="mt-4 font-['Cormorant_Garamond'] text-4xl font-medium leading-none">
+                    Jab koi nahi dekh raha hota, tab bhi tumhara khayal
+                    rakhna.
+                  </h3>
+                  <p class="mt-5 text-sm leading-7 text-white/45">
+                    Yeh sahaj hai, khamosh hai, aur kabhi dikhawe ke liye
+                    nahi.
+                  </p>
+                </div>
+              </div>
+            </article>
+
+            <article data-tilt="" data-reveal="" class="group relative min-h-[28rem] translate-y-12 overflow-hidden border border-white/10 bg-white/[0.04] p-7 opacity-0 backdrop-blur-md md:translate-y-20">
+              <span class="absolute -right-12 -top-12 h-40 w-40 rounded-full bg-[#9d3f4b]/20 blur-3xl transition duration-700 group-hover:bg-[#b6505c]/35"></span>
+              <div class="relative flex h-full flex-col">
+                <span class="grid h-12 w-12 place-items-center rounded-full border border-white/10 bg-white/5">
+                  <iconify-icon icon="solar:eye-closed-linear" stroke-width="1.5" class="text-xl text-[#dda4aa]"></iconify-icon>
+                </span>
+                <div class="mt-auto">
+                  <p class="text-xs uppercase tracking-[0.18rem] text-white/30">
+                    02 · Sukoon
+                  </p>
+                  <h3 class="mt-4 font-['Cormorant_Garamond'] text-4xl font-medium leading-none">
+                    Tumhare saath khamoshi bhi aasan lagti hai.
+                  </h3>
+                  <p class="mt-5 text-sm leading-7 text-white/45">
+                    Har second ko bharne ki zaroorat nahi, jab tumhara hona
+                    hi kaafi hai.
+                  </p>
+                </div>
+              </div>
+            </article>
+
+            <article data-tilt="" data-reveal="" class="group relative min-h-[28rem] translate-y-12 overflow-hidden border border-white/10 bg-white/[0.04] p-7 opacity-0 backdrop-blur-md">
+              <span class="absolute -right-12 -top-12 h-40 w-40 rounded-full bg-[#9d3f4b]/20 blur-3xl transition duration-700 group-hover:bg-[#b6505c]/35"></span>
+              <div class="relative flex h-full flex-col">
+                <span class="grid h-12 w-12 place-items-center rounded-full border border-white/10 bg-white/5">
+                  <iconify-icon icon="solar:sun-2-linear" stroke-width="1.5" class="text-xl text-[#dda4aa]"></iconify-icon>
+                </span>
+                <div class="mt-auto">
+                  <p class="text-xs uppercase tracking-[0.18rem] text-white/30">
+                    03 · Roshni
+                  </p>
+                  <h3 class="mt-4 font-['Cormorant_Garamond'] text-4xl font-medium leading-none">
+                    Tumhari muskurahat poore kamre ko badal deti hai.
+                  </h3>
+                  <p class="mt-5 text-sm leading-7 text-white/45">
+                    Woh logon tak pahunch jaati hai, isse pehle ki tumhe
+                    pata chale ki tumne kya diya.
+                  </p>
+                </div>
+              </div>
+            </article>
+
+            <article data-tilt="" data-reveal="" class="group relative min-h-[28rem] translate-y-12 overflow-hidden border border-white/10 bg-white/[0.04] p-7 opacity-0 backdrop-blur-md md:translate-y-20">
+              <span class="absolute -right-12 -top-12 h-40 w-40 rounded-full bg-[#9d3f4b]/20 blur-3xl transition duration-700 group-hover:bg-[#b6505c]/35"></span>
+              <div class="relative flex h-full flex-col">
+                <span class="grid h-12 w-12 place-items-center rounded-full border border-white/10 bg-white/5">
+                  <iconify-icon icon="solar:shield-star-linear" stroke-width="1.5" class="text-xl text-[#dda4aa]"></iconify-icon>
+                </span>
+                <div class="mt-auto">
+                  <p class="text-xs uppercase tracking-[0.18rem] text-white/30">
+                    04 · Sacchai
+                  </p>
+                  <h3 class="mt-4 font-['Cormorant_Garamond'] text-4xl font-medium leading-none">
+                    Tumhare saath sab kuch sacha lagta hai.
+                  </h3>
+                  <p class="mt-5 text-sm leading-7 text-white/45">
+                    Na koi game, na koi dikhawa—bas kuch sacha aur bahut kam
+                    milne wala.
+                  </p>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="future" data-scene="Imkaan" data-theme="dawn" class="relative flex min-h-[150vh] items-center overflow-hidden px-5 py-28 sm:px-8 lg:px-12">
+        <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-[#2b171a]/25 to-black/40"></div>
+
+        <div class="relative mx-auto grid w-full max-w-[90rem] gap-14 lg:grid-cols-12 lg:items-center">
+          <div class="lg:col-span-5">
+            <div data-reveal="" class="relative translate-y-14 opacity-0">
+              <div class="absolute -inset-5 border border-[#d59ba1]/15"></div>
+              <div class="relative aspect-[3/4] overflow-hidden bg-[#23191a] shadow-[0_3rem_8rem_rgba(0,0,0,0.45)]">
+                <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/6d3445fa-4070-4509-beaa-55f7adf60108_1600w.png" alt="Door tak phaile manzar ko dekhta ek joda" class="h-full w-full object-cover opacity-80 grayscale-[35%]" data-element-src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/6d3445fa-4070-4509-beaa-55f7adf60108_1600w.png">
+                <div class="absolute inset-0 bg-gradient-to-t from-[#160e0f]/80 via-transparent to-transparent"></div>
+                <div class="absolute bottom-7 left-7 right-7">
+                  <p class="font-['Cormorant_Garamond'] text-3xl font-medium italic">
+                    Yaqeen nahi. Imkaan.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-6 lg:col-start-7">
+            <p data-reveal="" class="translate-y-8 text-xs font-medium uppercase tracking-[0.25rem] text-[#dca4aa] opacity-0">
+              Chapter V · Imkaan
+            </p>
+
+            <h2 data-reveal="" class="mt-6 translate-y-10 font-['Cormorant_Garamond'] text-6xl font-medium leading-[0.88] tracking-tight opacity-0 sm:text-7xl lg:text-8xl">
+              Nahi chahiye
+              <span class="block italic text-[#d99ea4]">perfect future.</span>
+            </h2>
+
+            <p data-reveal="" class="mt-8 max-w-xl translate-y-8 text-sm leading-7 text-white/50 opacity-0 sm:text-base">
+              Mujhe bas ek mauka chahiye yeh jaanne ka ki kya ho sakta hai —
+              agar hum ek dusre ko chunein, sabr ke saath, sacchai ke saath,
+              aur shuru karne ki himmat ke saath.
+            </p>
+
+            <div data-reveal="" class="mt-12 translate-y-8 space-y-5 opacity-0">
+              <div class="group flex items-center gap-5 border-t border-white/10 py-5">
+                <span class="font-['Cormorant_Garamond'] text-2xl italic text-[#d99ea4]">
+                  01
+                </span>
+                <p class="text-sm text-white/65">
+                  Sust subahein aur bina jaldi ki baatein.
+                </p>
+                <iconify-icon icon="solar:arrow-right-linear" stroke-width="1.5" class="ml-auto text-lg text-white/25 transition group-hover:translate-x-1 group-hover:text-white"></iconify-icon>
+              </div>
+              <div class="group flex items-center gap-5 border-t border-white/10 py-5">
+                <span class="font-['Cormorant_Garamond'] text-2xl italic text-[#d99ea4]">
+                  02
+                </span>
+                <p class="text-sm text-white/65">
+                  Nayi jagahein, purane jokes, aur woh yaadein jo abhi likhi
+                  hi nahi gayin.
+                </p>
+                <iconify-icon icon="solar:arrow-right-linear" stroke-width="1.5" class="ml-auto text-lg text-white/25 transition group-hover:translate-x-1 group-hover:text-white"></iconify-icon>
+              </div>
+              <div class="group flex items-center gap-5 border-y border-white/10 py-5">
+                <span class="font-['Cormorant_Garamond'] text-2xl italic text-[#d99ea4]">
+                  03
+                </span>
+                <p class="text-sm text-white/65">
+                  Ek kahani jo sachi lage, kyunki hum use saath likhein.
+                </p>
+                <iconify-icon icon="solar:arrow-right-linear" stroke-width="1.5" class="ml-auto text-lg text-white/25 transition group-hover:translate-x-1 group-hover:text-white"></iconify-icon>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="question" data-scene="Sawaal" data-theme="final" class="relative flex min-h-[130vh] items-center justify-center overflow-hidden px-5 py-28 text-center sm:px-8 lg:px-12">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(121,42,52,0.2),rgba(5,5,5,0.86)_58%)]"></div>
+
+        <div class="relative mx-auto max-w-5xl">
+          <div data-reveal="" class="mx-auto grid h-16 w-16 translate-y-8 place-items-center rounded-full border border-[#d8a0a6]/25 bg-[#9a3b47]/10 opacity-0 backdrop-blur-xl">
+            <iconify-icon icon="solar:heart-angle-linear" stroke-width="1.5" class="text-2xl text-[#e2aeb3]"></iconify-icon>
+          </div>
+
+          <p data-reveal="" class="mt-8 translate-y-8 text-xs font-medium uppercase tracking-[0.28rem] text-[#dba4aa] opacity-0">
+            Yeh sab kuch jiske liye hai
+          </p>
+
+          <h2 data-reveal="" class="mt-7 translate-y-12 font-['Cormorant_Garamond'] text-6xl font-medium leading-[0.84] tracking-tight opacity-0 sm:text-7xl md:text-8xl lg:text-9xl">
+            Kya hum shuru karein
+            <span class="block bg-gradient-to-r from-[#f4dcd5] via-[#dba4aa] to-[#a94955] bg-clip-text italic text-transparent">
+              yeh agla chapter, saath?
+            </span>
+          </h2>
+
+          <p data-reveal="" class="mx-auto mt-9 max-w-xl translate-y-8 text-sm leading-7 text-white/50 opacity-0 sm:text-base">
+            Koi namumkin waade nahi. Bas ek asli pehli date, ek khula dil,
+            aur yeh umeed ki yeh kuch khoobsurat ban sake.
+          </p>
+
+          <div data-reveal="" class="mt-11 flex translate-y-8 flex-col justify-center gap-4 opacity-0 sm:flex-row">
+            <button id="yes-button" type="button" class="group inline-flex h-14 items-center justify-center gap-3 rounded-full bg-[#f4e9e1] px-8 text-sm font-medium text-[#24191a] shadow-[0_1rem_4rem_rgba(201,117,126,0.25)] transition duration-500 hover:scale-105 hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#dfa7ac] focus-visible:ring-offset-4 focus-visible:ring-offset-black">
+              Haan, shuru karte hain
+              <iconify-icon icon="solar:arrow-right-up-linear" stroke-width="1.5" class="text-lg transition duration-500 group-hover:translate-x-1 group-hover:-translate-y-1"></iconify-icon>
+            </button>
+
+            <button id="talk-button" type="button" class="inline-flex h-14 items-center justify-center gap-3 rounded-full border border-white/20 bg-white/5 px-8 text-sm font-medium text-white/70 backdrop-blur-xl transition duration-500 hover:border-white/45 hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#dfa7ac]">
+              Pehle baat karte hain
+              <iconify-icon icon="solar:chat-round-linear" stroke-width="1.5" class="text-lg"></iconify-icon>
+            </button>
+          </div>
+
+          <div data-reveal="" class="mx-auto mt-20 grid max-w-3xl translate-y-8 border-y border-white/10 py-7 opacity-0 sm:grid-cols-3">
+            <div class="py-4 sm:border-r sm:border-white/10">
+              <p class="text-xs uppercase tracking-[0.18rem] text-white/25">
+                Kab
+              </p>
+              <p class="mt-3 font-['Cormorant_Garamond'] text-2xl">
+                Friday shaam
+              </p>
+            </div>
+            <div class="py-4 sm:border-r sm:border-white/10">
+              <p class="text-xs uppercase tracking-[0.18rem] text-white/25">
+                Kahan
+              </p>
+              <p class="mt-3 font-['Cormorant_Garamond'] text-2xl">
+                Kahin koi khoobsurat jagah
+              </p>
+            </div>
+            <div class="py-4">
+              <p class="text-xs uppercase tracking-[0.18rem] text-white/25">
+                Plan
+              </p>
+              <p class="mt-3 font-['Cormorant_Garamond'] text-2xl">
+                Dinner, phir ek walk
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="relative z-10 bg-[#050505] px-5 pb-10 pt-20 sm:px-8 lg:px-12">
+      <div class="mx-auto flex max-w-[90rem] flex-col gap-8 border-t border-white/10 pt-8 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <p class="font-['Cormorant_Garamond'] text-2xl font-medium italic text-white/70">
+            Jawaab jo bhi ho, aakhir tak saath rehne ke liye shukriya.
+          </p>
+          <p class="mt-2 text-xs uppercase tracking-[0.18rem] text-white/25">
+            Poori sacchai ke saath · J &amp; A
+          </p>
+        </div>
+
+        <a href="#opening" class="group inline-flex items-center gap-3 text-xs font-medium uppercase tracking-[0.18rem] text-white/45 transition hover:text-white">
+          Ise phir se dekho
+          <span class="grid h-10 w-10 place-items-center rounded-full border border-white/15 transition group-hover:border-white/40">
+            <iconify-icon icon="solar:arrow-up-linear" stroke-width="1.5" class="text-base"></iconify-icon>
+          </span>
+        </a>
+      </div>
+    </footer>
+
+    <div id="answer-modal" class="fixed inset-0 z-[120] hidden items-center justify-center bg-black/85 p-5 opacity-0 backdrop-blur-xl" role="dialog" aria-modal="true" aria-labelledby="answer-title" aria-hidden="true">
+      <div id="answer-panel" class="relative w-full max-w-2xl scale-90 overflow-hidden border border-white/10 bg-[#100d0d] p-8 text-center opacity-0 shadow-[0_3rem_10rem_rgba(0,0,0,0.8)] sm:p-14" tabindex="-1">
+        <div class="absolute left-1/2 top-0 h-56 w-56 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#a4424e]/25 blur-3xl"></div>
+
+        <button id="close-modal" type="button" class="absolute right-5 top-5 z-10 grid h-10 w-10 place-items-center rounded-full border border-white/10 text-white/50 transition hover:border-white/35 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#dda4aa]" aria-label="Message band karo">
+          <iconify-icon icon="solar:close-circle-linear" stroke-width="1.5" class="text-xl"></iconify-icon>
+        </button>
+
+        <div class="relative mx-auto grid h-16 w-16 place-items-center rounded-full border border-[#d69aa0]/30 bg-[#9b3e49]/15">
+          <iconify-icon icon="solar:heart-shine-linear" stroke-width="1.5" class="text-2xl text-[#e0a8ad]"></iconify-icon>
+        </div>
+
+        <p class="relative mt-8 text-xs font-medium uppercase tracking-[0.25rem] text-[#dca4aa]">
+          Shuruaat
+        </p>
+
+        <h2 id="answer-title" class="relative mt-5 font-['Cormorant_Garamond'] text-5xl font-medium leading-[0.9] tracking-tight sm:text-7xl">
+          Toh bas yahin se
+          <span class="block italic text-[#dca4aa]">
+            humara agla chapter shuru.
+          </span>
+        </h2>
+
+        <p class="relative mx-auto mt-7 max-w-md text-sm leading-7 text-white/50">
+          Baaki sab mere zimme. Bas khud ko le aana. Tumse milne ka besabri
+          se intezaar hai.
+        </p>
+
+        <button id="confirm-close" type="button" class="relative mt-9 inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[#f1e2da] px-7 text-sm font-medium text-[#24191a] transition hover:scale-105 hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#dca4aa]">
+          Is lamhe ko sambhaal lo
+          <iconify-icon icon="solar:bookmark-linear" stroke-width="1.5" class="text-lg"></iconify-icon>
+        </button>
+      </div>
+    </div>
+
+    <div id="talk-message" class="fixed bottom-6 left-1/2 z-[110] hidden w-[calc(100%-2.5rem)] max-w-lg -translate-x-1/2 translate-y-8 items-center gap-4 rounded-full border border-white/10 bg-[#151111]/95 px-6 py-4 text-sm text-white/70 opacity-0 shadow-2xl backdrop-blur-xl" role="status" aria-live="polite">
+      <span class="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-[#9d3f4b]/20">
+        <iconify-icon icon="solar:chat-round-linear" stroke-width="1.5" class="text-lg text-[#dda4aa]"></iconify-icon>
+      </span>
+      <span>Bilkul. Koi pressure nahi, koi jaldi nahi—tumhari sacchai sabse zyada maayne rakhti hai.</span>
+    </div>
+
+    <script>
+      (function () {
+        const OriginalExtrudeGeometry = THREE.ExtrudeGeometry;
+
+        function RefinedHeartGeometry(shape, settings) {
+          const heart = new THREE.Shape();
+          heart.moveTo(0, 2.7);
+          heart.bezierCurveTo(-1.15, 1.75, -3, 0.35, -3, -1.35);
+          heart.bezierCurveTo(-3, -2.9, -1.35, -3.55, 0, -2.05);
+          heart.bezierCurveTo(1.35, -3.55, 3, -2.9, 3, -1.35);
+          heart.bezierCurveTo(3, 0.35, 1.15, 1.75, 0, 2.7);
+          return new OriginalExtrudeGeometry(heart, settings);
+        }
+
+        RefinedHeartGeometry.prototype = OriginalExtrudeGeometry.prototype;
+        THREE.ExtrudeGeometry = RefinedHeartGeometry;
+      })();
+    </script>
+    <script>
+      (() => {
+        const reducedMotion = window.matchMedia(
+          "(prefers-reduced-motion: reduce)"
+        ).matches;
+
+        const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
+        const lerp = (start, end, amount) => start + (end - start) * amount;
+
+        document.documentElement.style.scrollBehavior = reducedMotion
+          ? "auto"
+          : "smooth";
+
+        const loader = document.getElementById("intro-loader");
+        const loaderMark = document.getElementById("loader-mark");
+        const loaderCopy = document.getElementById("loader-copy");
+        const loaderLine = document.getElementById("loader-line");
+
+        if (reducedMotion) {
+          loader.remove();
+        } else {
+          loaderMark.animate(
+            [
+              { opacity: 0, transform: "scale(0.75) rotate(-20deg)" },
+              { opacity: 1, transform: "scale(1) rotate(0deg)" }
+            ],
+            {
+              duration: 900,
+              easing: "cubic-bezier(0.22, 1, 0.36, 1)",
+              fill: "forwards"
+            }
+          );
+
+          loaderCopy.animate(
+            [
+              { opacity: 0, transform: "translateY(1rem)" },
+              { opacity: 1, transform: "translateY(0)" }
+            ],
+            {
+              delay: 300,
+              duration: 700,
+              fill: "forwards"
+            }
+          );
+
+          loaderLine.animate(
+            [{ width: "0%" }, { width: "100%" }],
+            {
+              delay: 250,
+              duration: 1800,
+              easing: "cubic-bezier(0.65, 0, 0.35, 1)",
+              fill: "forwards"
+            }
+          );
+
+          window.setTimeout(() => {
+            loader.style.opacity = "0";
+            window.setTimeout(() => loader.remove(), 1000);
+          }, 2200);
+        }
+
+        const canvas = document.getElementById("world");
+        const renderer = new THREE.WebGLRenderer({
+          canvas,
+          alpha: true,
+          antialias: window.devicePixelRatio < 2
+        });
+
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.8));
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.outputColorSpace = THREE.SRGBColorSpace;
+        renderer.toneMapping = THREE.ACESFilmicToneMapping;
+        renderer.toneMappingExposure = 1.05;
+        renderer.shadowMap.enabled = true;
+        renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+
+        const scene = new THREE.Scene();
+        scene.fog = new THREE.FogExp2(0x090707, 0.042);
+
+        const camera = new THREE.PerspectiveCamera(
+          42,
+          window.innerWidth / window.innerHeight,
+          0.1,
+          100
+        );
+        camera.position.set(0, 0, 13);
+
+        const world = new THREE.Group();
+        scene.add(world);
+
+        const heartShape = new THREE.Shape();
+        heartShape.moveTo(0, 0.5);
+        heartShape.bezierCurveTo(0, 0.5, -2.2, -1.1, -2.2, 1.1);
+        heartShape.bezierCurveTo(-2.2, 2.6, -0.5, 3.2, 0, 2);
+        heartShape.bezierCurveTo(0.5, 3.2, 2.2, 2.6, 2.2, 1.1);
+        heartShape.bezierCurveTo(2.2, -1.1, 0, 0.5, 0, 0.5);
+
+        const heartGeometry = new THREE.ExtrudeGeometry(heartShape, {
+          depth: 0.7,
+          bevelEnabled: true,
+          bevelSegments: 8,
+          steps: 2,
+          bevelSize: 0.18,
+          bevelThickness: 0.18,
+          curveSegments: 32
+        });
+        heartGeometry.center();
+
+        const heartMaterial = new THREE.MeshPhysicalMaterial({
+          color: 0x7f2633,
+          metalness: 0.35,
+          roughness: 0.2,
+          clearcoat: 1,
+          clearcoatRoughness: 0.12,
+          transmission: 0.04,
+          emissive: 0x27070c,
+          emissiveIntensity: 0.35
+        });
+
+        const heart = new THREE.Mesh(heartGeometry, heartMaterial);
+        heart.rotation.x = 0;
+        heart.rotation.z = Math.PI;
+        heart.scale.setScalar(0.88);
+        heart.castShadow = true;
+        world.add(heart);
+
+        const ringMaterial = new THREE.MeshPhysicalMaterial({
+          color: 0xd5a08b,
+          metalness: 0.92,
+          roughness: 0.17,
+          clearcoat: 0.7
+        });
+
+        const ringOne = new THREE.Mesh(
+          new THREE.TorusGeometry(3.5, 0.025, 12, 160),
+          ringMaterial
+        );
+        ringOne.rotation.x = 1.15;
+        ringOne.rotation.y = 0.4;
+        world.add(ringOne);
+
+        const ringTwo = new THREE.Mesh(
+          new THREE.TorusGeometry(4.2, 0.012, 10, 180),
+          new THREE.MeshBasicMaterial({
+            color: 0xb96a73,
+            transparent: true,
+            opacity: 0.38
+          })
+        );
+        ringTwo.rotation.x = 0.55;
+        ringTwo.rotation.y = 1.2;
+        world.add(ringTwo);
+
+        const particleCount = window.innerWidth < 768 ? 450 : 900;
+        const positions = new Float32Array(particleCount * 3);
+        const scales = new Float32Array(particleCount);
+
+        for (let i = 0; i < particleCount; i++) {
+          const radius = 4 + Math.random() * 18;
+          const angle = Math.random() * Math.PI * 2;
+          positions[i * 3] = Math.cos(angle) * radius;
+          positions[i * 3 + 1] = (Math.random() - 0.5) * 18;
+          positions[i * 3 + 2] = Math.sin(angle) * radius - 5;
+          scales[i] = Math.random();
+        }
+
+        const particleGeometry = new THREE.BufferGeometry();
+        particleGeometry.setAttribute(
+          "position",
+          new THREE.BufferAttribute(positions, 3)
+        );
+
+        const particleMaterial = new THREE.PointsMaterial({
+          color: 0xe4b9ae,
+          size: 0.035,
+          transparent: true,
+          opacity: 0.55,
+          depthWrite: false,
+          blending: THREE.AdditiveBlending
+        });
+
+        const particles = new THREE.Points(
+          particleGeometry,
+          particleMaterial
+        );
+        world.add(particles);
+
+        const petalGeometry = new THREE.SphereGeometry(0.06, 8, 6);
+        const petalMaterial = new THREE.MeshStandardMaterial({
+          color: 0xa94955,
+          roughness: 0.55
+        });
+        const petals = new THREE.InstancedMesh(
+          petalGeometry,
+          petalMaterial,
+          70
+        );
+        const dummy = new THREE.Object3D();
+        const petalData = [];
+
+        for (let i = 0; i < 70; i++) {
+          const data = {
+            x: (Math.random() - 0.5) * 18,
+            y: (Math.random() - 0.5) * 15,
+            z: (Math.random() - 0.5) * 14,
+            speed: 0.15 + Math.random() * 0.35,
+            drift: Math.random() * Math.PI * 2,
+            scale: 0.4 + Math.random() * 1.2
+          };
+          petalData.push(data);
+          dummy.position.set(data.x, data.y, data.z);
+          dummy.scale.set(data.scale * 1.5, data.scale * 0.45, data.scale);
+          dummy.rotation.set(Math.random(), Math.random(), Math.random());
+          dummy.updateMatrix();
+          petals.setMatrixAt(i, dummy.matrix);
+        }
+        world.add(petals);
+
+        const ambient = new THREE.AmbientLight(0x5f3440, 1.25);
+        scene.add(ambient);
+
+        const keyLight = new THREE.SpotLight(
+          0xffd8c7,
+          90,
+          35,
+          Math.PI / 5,
+          0.8,
+          1.4
+        );
+        keyLight.position.set(5, 7, 10);
+        keyLight.castShadow = true;
+        scene.add(keyLight);
+
+        const rimLight = new THREE.PointLight(0xb52f4a, 55, 25, 1.8);
+        rimLight.position.set(-7, 1, 4);
+        scene.add(rimLight);
+
+        const fillLight = new THREE.PointLight(0x7766aa, 30, 22, 2);
+        fillLight.position.set(5, -5, -2);
+        scene.add(fillLight);
+
+        let mouseX = 0;
+        let mouseY = 0;
+        let smoothMouseX = 0;
+        let smoothMouseY = 0;
+        let smoothScroll = window.scrollY;
+        let currentSceneIndex = 0;
+
+        window.addEventListener(
+          "pointermove",
+          (event) => {
+            mouseX = event.clientX / window.innerWidth - 0.5;
+            mouseY = event.clientY / window.innerHeight - 0.5;
+          },
+          { passive: true }
+        );
+
+        const sections = [...document.querySelectorAll("[data-scene]")];
+        const sceneLabel = document.getElementById("scene-label");
+        const sceneFlash = document.getElementById("scene-flash");
+        const cinematicTop = document.getElementById("cinematic-top");
+        const cinematicBottom = document.getElementById("cinematic-bottom");
+        const progressLine = document.getElementById("progress-line");
+        const navDots = [...document.querySelectorAll("[data-nav-dot]")];
+        const header = document.getElementById("header");
+
+        const sceneCamera = [
+          { x: 0, y: 0, z: 13, rx: 0, ry: 0, scale: 0.88 },
+          { x: 2.8, y: 0.4, z: 10, rx: 0.08, ry: -0.3, scale: 0.72 },
+          { x: -2.4, y: -0.2, z: 8, rx: -0.1, ry: 0.5, scale: 1.05 },
+          { x: 1.4, y: 1, z: 15, rx: 0.15, ry: -0.55, scale: 0.62 },
+          { x: -1, y: -0.8, z: 9, rx: -0.12, ry: 0.25, scale: 0.92 },
+          { x: 2.5, y: 0.6, z: 11, rx: 0.08, ry: -0.4, scale: 0.78 },
+          { x: 0, y: 0, z: 8.5, rx: 0, ry: 0, scale: 1.12 }
+        ];
+
+        const revealElements = [...document.querySelectorAll("[data-reveal]")];
+        const revealObserver = new IntersectionObserver(
+          (entries, observer) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) return;
+
+              const element = entry.target;
+              const siblings = element.parentElement
+                ? [...element.parentElement.querySelectorAll(":scope > [data-reveal]")]
+                : [];
+              const siblingIndex = Math.max(0, siblings.indexOf(element));
+
+              if (reducedMotion) {
+                element.style.opacity = "1";
+                element.style.transform = "none";
+              } else {
+                element.animate(
+                  [
+                    {
+                      opacity: 0,
+                      transform: getComputedStyle(element).transform
+                    },
+                    {
+                      opacity: 1,
+                      transform: "translate3d(0, 0, 0)"
+                    }
+                  ],
+                  {
+                    duration: 1050,
+                    delay: Math.min(siblingIndex * 100, 450),
+                    easing: "cubic-bezier(0.22, 1, 0.36, 1)",
+                    fill: "forwards"
+                  }
+                );
+              }
+
+              observer.unobserve(element);
+            });
+          },
+          {
+            threshold: 0.14,
+            rootMargin: "0px 0px -8% 0px"
+          }
+        );
+
+        revealElements.forEach((element) => revealObserver.observe(element));
+
+        const setActiveScene = (index) => {
+          if (index === currentSceneIndex && sceneLabel.textContent !== "Aagaaz") {
+            return;
+          }
+
+          const previousIndex = currentSceneIndex;
+          currentSceneIndex = index;
+          const section = sections[index];
+          const theme = section.dataset.theme;
+
+          sceneLabel.textContent = section.dataset.scene;
+
+          navDots.forEach((dot, dotIndex) => {
+            const marker = dot.lastElementChild;
+            marker.classList.toggle("bg-white/70", dotIndex === index);
+            marker.classList.toggle("bg-white/20", dotIndex !== index);
+            marker.style.transform = dotIndex === index ? "scale(1.7)" : "scale(1)";
+            marker.style.boxShadow =
+              dotIndex === index
+                ? "0 0 1rem rgba(228,169,174,0.7)"
+                : "none";
+          });
+
+          const isLight = theme === "light";
+          header.style.color = isLight ? "#211b18" : "#f8f4ee";
+          header.style.textShadow = isLight
+            ? "0 1px 1rem rgba(255,255,255,0.55)"
+            : "none";
+
+          canvas.style.opacity = isLight ? "0.28" : "1";
+          scene.fog.color.set(isLight ? 0xd9cdc2 : 0x090707);
+          heartMaterial.color.set(
+            theme === "dawn" || theme === "final" ? 0xa23d4b : 0x7f2633
+          );
+          particleMaterial.color.set(isLight ? 0x8d3a45 : 0xe4b9ae);
+
+          const barsVisible = index === sections.length - 1;
+          cinematicTop.style.height = barsVisible ? "2.5vh" : "0";
+          cinematicBottom.style.height = barsVisible ? "2.5vh" : "0";
+
+          if (
+            !reducedMotion &&
+            previousIndex !== index &&
+            Math.abs(previousIndex - index) <= 2
+          ) {
+            sceneFlash.animate(
+              [
+                { opacity: 0 },
+                { opacity: isLight ? 0.17 : 0.08 },
+                { opacity: 0 }
+              ],
+              {
+                duration: 750,
+                easing: "ease-out"
+              }
+            );
+          }
+        };
+
+        const updatePageState = () => {
+          const scrollTop = window.scrollY;
+          const scrollRange =
+            document.documentElement.scrollHeight - window.innerHeight;
+          const progress = scrollRange > 0 ? scrollTop / scrollRange : 0;
+          progressLine.style.width = `${progress * 100}%`;
+
+          header.style.background =
+            scrollTop > 80 ? "rgba(7,7,7,0.16)" : "transparent";
+          header.style.backdropFilter =
+            scrollTop > 80 ? "blur(14px)" : "none";
+
+          const viewportFocus = scrollTop + window.innerHeight * 0.48;
+          let closestIndex = 0;
+          let closestDistance = Infinity;
+
+          sections.forEach((section, index) => {
+            const center = section.offsetTop + section.offsetHeight / 2;
+            const distance = Math.abs(center - viewportFocus);
+            if (distance < closestDistance) {
+              closestDistance = distance;
+              closestIndex = index;
+            }
+          });
+
+          setActiveScene(closestIndex);
+        };
+
+        window.addEventListener("scroll", updatePageState, { passive: true });
+        updatePageState();
+
+        const depthElements = [...document.querySelectorAll("[data-depth]")];
+
+        document.querySelectorAll("[data-tilt]").forEach((card) => {
+          if (reducedMotion) return;
+
+          card.addEventListener("pointermove", (event) => {
+            const rect = card.getBoundingClientRect();
+            const x = (event.clientX - rect.left) / rect.width - 0.5;
+            const y = (event.clientY - rect.top) / rect.height - 0.5;
+            card.style.transform = `perspective(900px) rotateX(${
+              y * -5
+            }deg) rotateY(${x * 6}deg) translateY(0)`;
+            card.style.transition = "transform 120ms ease-out";
+          });
+
+          card.addEventListener("pointerleave", () => {
+            card.style.transform =
+              "perspective(900px) rotateX(0deg) rotateY(0deg) translateY(0)";
+            card.style.transition =
+              "transform 700ms cubic-bezier(0.22, 1, 0.36, 1)";
+          });
+        });
+
+        let lastTime = performance.now();
+
+        const render = (time) => {
+          const delta = Math.min((time - lastTime) / 1000, 0.05);
+          lastTime = time;
+
+          smoothMouseX = lerp(smoothMouseX, mouseX, reducedMotion ? 1 : 0.045);
+          smoothMouseY = lerp(smoothMouseY, mouseY, reducedMotion ? 1 : 0.045);
+          smoothScroll = lerp(
+            smoothScroll,
+            window.scrollY,
+            reducedMotion ? 1 : 0.065
+          );
+
+          const target = sceneCamera[currentSceneIndex];
+          camera.position.x = lerp(
+            camera.position.x,
+            target.x + smoothMouseX * 0.8,
+            reducedMotion ? 1 : 0.025
+          );
+          camera.position.y = lerp(
+            camera.position.y,
+            target.y - smoothMouseY * 0.55,
+            reducedMotion ? 1 : 0.025
+          );
+          camera.position.z = lerp(
+            camera.position.z,
+            target.z,
+            reducedMotion ? 1 : 0.025
+          );
+
+          world.rotation.x = lerp(
+            world.rotation.x,
+            target.rx + smoothMouseY * 0.14,
+            reducedMotion ? 1 : 0.025
+          );
+          world.rotation.y = lerp(
+            world.rotation.y,
+            target.ry + smoothMouseX * 0.2,
+            reducedMotion ? 1 : 0.025
+          );
+
+          const currentScale = world.scale.x;
+          const nextScale = lerp(
+            currentScale,
+            target.scale,
+            reducedMotion ? 1 : 0.025
+          );
+          world.scale.setScalar(nextScale);
+
+          if (!reducedMotion) {
+            const elapsed = time * 0.001;
+            heart.rotation.y = elapsed * 0.16;
+            heart.rotation.x = Math.sin(elapsed * 0.45) * 0.08;
+            heart.position.y = Math.sin(elapsed * 0.7) * 0.18;
+            ringOne.rotation.z = elapsed * 0.08;
+            ringTwo.rotation.z = -elapsed * 0.055;
+            particles.rotation.y = elapsed * 0.008;
+            particles.rotation.x = Math.sin(elapsed * 0.08) * 0.03;
+
+            petalData.forEach((data, index) => {
+              data.y -= data.speed * delta;
+              data.x += Math.sin(elapsed * 0.5 + data.drift) * delta * 0.08;
+
+              if (data.y < -8) {
+                data.y = 8;
+                data.x = (Math.random() - 0.5) * 18;
+              }
+
+              dummy.position.set(data.x, data.y, data.z);
+              dummy.scale.set(
+                data.scale * 1.5,
+                data.scale * 0.45,
+                data.scale
+              );
+              dummy.rotation.set(
+                elapsed * data.speed + data.drift,
+                elapsed * data.speed * 0.7,
+                data.drift
+              );
+              dummy.updateMatrix();
+              petals.setMatrixAt(index, dummy.matrix);
+            });
+            petals.instanceMatrix.needsUpdate = true;
+
+            depthElements.forEach((element) => {
+              const rect = element.getBoundingClientRect();
+              if (
+                rect.bottom < -100 ||
+                rect.top > window.innerHeight + 100
+              ) {
+                return;
+              }
+
+              const depth = Number(element.dataset.depth || 0);
+              const offset =
+                (rect.top + rect.height / 2 - window.innerHeight / 2) * depth;
+              element.style.transform = `translate3d(0, ${offset}px, 0)`;
+            });
+
+            const pulse = document.getElementById("scroll-pulse");
+            if (pulse) {
+              pulse.style.transform = `translateY(${
+                (elapsed * 22) % 40
+              }px)`;
+            }
+          }
+
+          camera.lookAt(0, 0, 0);
+          renderer.render(scene, camera);
+          requestAnimationFrame(render);
+        };
+
+        requestAnimationFrame(render);
+
+        window.addEventListener("resize", () => {
+          camera.aspect = window.innerWidth / window.innerHeight;
+          camera.updateProjectionMatrix();
+          renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.8));
+          renderer.setSize(window.innerWidth, window.innerHeight);
+          updatePageState();
+        });
+
+        let audioContext;
+        let atmosphereGain;
+        let atmosphereNodes = [];
+        let soundEnabled = false;
+        const soundToggle = document.getElementById("sound-toggle");
+        const soundIcon = document.getElementById("sound-icon");
+
+        const buildAtmosphere = () => {
+          audioContext =
+            audioContext ||
+            new (window.AudioContext || window.webkitAudioContext)();
+
+          atmosphereGain = audioContext.createGain();
+          atmosphereGain.gain.setValueAtTime(0, audioContext.currentTime);
+          atmosphereGain.connect(audioContext.destination);
+
+          [110, 164.81, 220].forEach((frequency, index) => {
+            const oscillator = audioContext.createOscillator();
+            const gain = audioContext.createGain();
+            const filter = audioContext.createBiquadFilter();
+
+            oscillator.type = index === 0 ? "sine" : "triangle";
+            oscillator.frequency.value = frequency;
+            oscillator.detune.value = index * 3 - 2;
+            gain.gain.value = index === 0 ? 0.14 : 0.035;
+            filter.type = "lowpass";
+            filter.frequency.value = 520;
+            filter.Q.value = 0.7;
+
+            oscillator.connect(filter);
+            filter.connect(gain);
+            gain.connect(atmosphereGain);
+            oscillator.start();
+
+            atmosphereNodes.push(oscillator, gain, filter);
+          });
+        };
+
+        soundToggle.addEventListener("click", async () => {
+          if (!audioContext) buildAtmosphere();
+          if (audioContext.state === "suspended") await audioContext.resume();
+
+          soundEnabled = !soundEnabled;
+          const now = audioContext.currentTime;
+          atmosphereGain.gain.cancelScheduledValues(now);
+          atmosphereGain.gain.setValueAtTime(
+            atmosphereGain.gain.value,
+            now
+          );
+          atmosphereGain.gain.linearRampToValueAtTime(
+            soundEnabled ? 0.12 : 0,
+            now + 1.1
+          );
+
+          soundToggle.setAttribute("aria-pressed", String(soundEnabled));
+          soundIcon.setAttribute(
+            "icon",
+            soundEnabled
+              ? "solar:volume-loud-linear"
+              : "solar:volume-cross-linear"
+          );
+        });
+
+        const modal = document.getElementById("answer-modal");
+        const answerPanel = document.getElementById("answer-panel");
+        const yesButton = document.getElementById("yes-button");
+        const closeModalButton = document.getElementById("close-modal");
+        const confirmClose = document.getElementById("confirm-close");
+        const talkButton = document.getElementById("talk-button");
+        const talkMessage = document.getElementById("talk-message");
+        let previousFocus = null;
+        let talkTimer;
+
+        const openModal = () => {
+          previousFocus = document.activeElement;
+          modal.classList.remove("hidden");
+          modal.classList.add("flex");
+          modal.setAttribute("aria-hidden", "false");
+          document.body.style.overflow = "hidden";
+
+          if (reducedMotion) {
+            modal.style.opacity = "1";
+            answerPanel.style.opacity = "1";
+            answerPanel.style.transform = "scale(1)";
+          } else {
+            modal.animate(
+              [{ opacity: 0 }, { opacity: 1 }],
+              {
+                duration: 500,
+                fill: "forwards"
+              }
+            );
+            answerPanel.animate(
+              [
+                { opacity: 0, transform: "scale(0.9) translateY(2rem)" },
+                { opacity: 1, transform: "scale(1) translateY(0)" }
+              ],
+              {
+                duration: 800,
+                easing: "cubic-bezier(0.22, 1, 0.36, 1)",
+                fill: "forwards"
+              }
+            );
+          }
+
+          window.setTimeout(() => answerPanel.focus(), reducedMotion ? 0 : 300);
+        };
+
+        const closeModal = () => {
+          const finish = () => {
+            modal.classList.add("hidden");
+            modal.classList.remove("flex");
+            modal.setAttribute("aria-hidden", "true");
+            modal.style.opacity = "0";
+            document.body.style.overflow = "";
+            previousFocus?.focus();
+          };
+
+          if (reducedMotion) {
+            finish();
+          } else {
+            const animation = modal.animate(
+              [{ opacity: 1 }, { opacity: 0 }],
+              {
+                duration: 350,
+                easing: "ease-in",
+                fill: "forwards"
+              }
+            );
+            animation.onfinish = finish;
+          }
+        };
+
+        yesButton.addEventListener("click", openModal);
+        closeModalButton.addEventListener("click", closeModal);
+        confirmClose.addEventListener("click", closeModal);
+
+        modal.addEventListener("click", (event) => {
+          if (event.target === modal) closeModal();
+        });
+
+        modal.addEventListener("keydown", (event) => {
+          if (event.key === "Escape") {
+            closeModal();
+            return;
+          }
+
+          if (event.key !== "Tab") return;
+          const focusable = [
+            ...modal.querySelectorAll(
+              'button, [href], [tabindex]:not([tabindex="-1"])'
+            )
+          ].filter((element) => !element.disabled);
+
+          if (!focusable.length) return;
+          const first = focusable[0];
+          const last = focusable[focusable.length - 1];
+
+          if (event.shiftKey && document.activeElement === first) {
+            event.preventDefault();
+            last.focus();
+          } else if (!event.shiftKey && document.activeElement === last) {
+            event.preventDefault();
+            first.focus();
+          }
+        });
+
+        talkButton.addEventListener("click", () => {
+          window.clearTimeout(talkTimer);
+          talkMessage.classList.remove("hidden");
+          talkMessage.classList.add("flex");
+
+          if (reducedMotion) {
+            talkMessage.style.opacity = "1";
+            talkMessage.style.transform = "translate(-50%, 0)";
+          } else {
+            talkMessage.animate(
+              [
+                {
+                  opacity: 0,
+                  transform: "translate(-50%, 2rem)"
+                },
+                {
+                  opacity: 1,
+                  transform: "translate(-50%, 0)"
+                }
+              ],
+              {
+                duration: 550,
+                easing: "cubic-bezier(0.22, 1, 0.36, 1)",
+                fill: "forwards"
+              }
+            );
+          }
+
+          talkTimer = window.setTimeout(() => {
+            const finish = () => {
+              talkMessage.classList.add("hidden");
+              talkMessage.classList.remove("flex");
+            };
+
+            if (reducedMotion) {
+              finish();
+            } else {
+              const animation = talkMessage.animate(
+                [
+                  {
+                    opacity: 1,
+                    transform: "translate(-50%, 0)"
+                  },
+                  {
+                    opacity: 0,
+                    transform: "translate(-50%, 1rem)"
+                  }
+                ],
+                {
+                  duration: 400,
+                  fill: "forwards"
+                }
+              );
+              animation.onfinish = finish;
+            }
+          }, 5000);
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach((link) => {
+          link.addEventListener("click", (event) => {
+            const target = document.querySelector(link.getAttribute("href"));
+            if (!target) return;
+
+            event.preventDefault();
+            target.scrollIntoView({
+              behavior: reducedMotion ? "auto" : "smooth",
+              block: "start"
+            });
+          });
+        });
+      })();
+    </script>
+
+    <script data-aura-video-controller="true">
+      (function () {
+        function playVideo(video) {
+          var promise = video.play();
+          if (promise && typeof promise.catch === "function") {
+            promise.catch(function () {});
+          }
+        }
+
+        function setupVideo(video) {
+          if (video.__auraVideoReady === true) return;
+          video.__auraVideoReady = true;
+          video.removeAttribute("data-aura-video-ready");
+          video.removeAttribute("data-aura-video-played");
+          video.muted = true;
+          video.playsInline = true;
+
+          var preset = video.dataset.auraVideoPreset || "loop-in-view";
+          if (preset === "hover") {
+            video.addEventListener("mouseenter", function () {
+              playVideo(video);
+            });
+            video.addEventListener("mouseleave", function () {
+              video.pause();
+              video.currentTime = 0;
+            });
+            return;
+          }
+
+          if (!("IntersectionObserver" in window)) {
+            playVideo(video);
+            return;
+          }
+
+          var observer = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting) {
+                if (preset === "play-once" && video.__auraVideoPlayed === true) {
+                  return;
+                }
+                playVideo(video);
+              } else {
+                video.pause();
+              }
+            });
+          }, { threshold: 0.35 });
+
+          if (preset === "play-once") {
+            video.addEventListener("ended", function () {
+              video.__auraVideoPlayed = true;
+            }, { once: true });
+          }
+
+          observer.observe(video);
+        }
+
+        function setupVideos() {
+          document
+            .querySelectorAll("video[data-aura-video-preset]")
+            .forEach(setupVideo);
+        }
+
+        if (document.readyState === "loading") {
+          document.addEventListener("DOMContentLoaded", setupVideos);
+        } else {
+          setupVideos();
+        }
+      })();
+    </script>
+  </body>
+</html>
