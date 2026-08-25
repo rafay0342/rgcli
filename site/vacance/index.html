@@ -806,6 +806,19 @@
         }
       }
 
+      /* ── "Find my window" ──
+         The close panel is clipped to circle(0%) until the drift timeline has
+         run, so a plain #book jump lands mid-pin on a blank screen. Send the
+         links to the end of the document, where that timeline is complete. */
+      function initBookLinks() {
+        qa('a[href="#book"]').forEach(a => a.addEventListener('click', e => {
+          e.preventDefault();
+          const y = document.documentElement.scrollHeight - innerHeight;
+          if (lenis) lenis.scrollTo(y);
+          else scrollTo({ top: y, behavior: reduced ? 'auto' : 'smooth' });
+        }));
+      }
+
       /* ── the scroll rail, and the paper/ink palette shifts ── */
       function initChrome() {
         gsap.to('[data-progress]', {
@@ -827,6 +840,7 @@
       initNight();
       initWindow(initShores());
       initDrift();
+      initBookLinks();
       initChrome();
       initLoader();
 
