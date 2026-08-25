@@ -1,9 +1,12 @@
 # Between Every Moment
 
-A single-file, scroll-driven story page. Seven chapters (Prologue → The
-question) scroll over a persistent WebGL background — an extruded heart, two
-orbiting rings, a particle field, and falling petals — with the camera framing,
-fog, and palette re-keyed per chapter.
+All on-page copy is Hinglish written in Roman script (`lang="hi-Latn"`); this
+README stays in English as developer documentation.
+
+A single-file, scroll-driven story page. Seven chapters (Aagaaz → Sawaal)
+scroll over a persistent WebGL background — an extruded heart, two orbiting
+rings, a particle field, and falling petals — with the camera framing, fog, and
+palette re-keyed per chapter.
 
 ## Running it
 
@@ -38,7 +41,9 @@ Vendoring the four scripts locally is the fix if that matters.
 - **Chapters** — each `<section data-scene data-theme>` drives the header label,
   the right-hand chapter dots, fog color, heart color, and the camera target in
   the `sceneCamera` table. The array is index-matched to the sections, so adding
-  a section means adding a row.
+  a section means adding a row. `setActiveScene` also compares the header label
+  against a hard-coded first-chapter name, so renaming chapter one means updating
+  that literal too.
 - **Reveals** — `[data-reveal]` elements animate in once via IntersectionObserver;
   `[data-depth]` gets a parallax offset; `[data-tilt]` cards tilt on pointer move.
 - **Interactions** — "Yes, let's begin" opens a focus-trapped modal (Escape and
