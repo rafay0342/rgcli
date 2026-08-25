@@ -1,17 +1,28 @@
-# Vacance
+# Laiba
 
-A single-page, scroll-driven site for a fictional agency that sells the hour a
-shore belongs to nobody. Five movements, each pinned and scrubbed by scroll:
+A single-page, scroll-driven proposal — from Rafay, for Laiba. All on-page copy
+is Roman Urdu (`lang="ur-Latn"`); this README stays in English as developer
+documentation.
 
-1. **The opening** — a 193-frame aerial film over an emptying sandbar, with the
-   headline, four "nobody on the…" beats and a closing passage layered over it.
-2. **Before the boats** — a second 193-frame film of the tide falling, under a
-   counter that walks a beach from 0 people at first light to 340 at peak.
-3. **The window** — a statement that an aperture opens over, revealing four
-   shore clips you can step through.
-4. **The drift** — five shores surveyed sideways, ending full-bleed on a third
-   193-frame film.
-5. **The close** — a circle opening onto paper, and the CTA.
+Five movements, each pinned and scrubbed by scroll:
+
+1. **Zindagi bhar tumhare saath** — a 193-frame aerial film over an emptying
+   sandbar, with the opening line, four beats about where she already is in his
+   day, and a closing passage layered over it.
+2. **Ek din ki ginti** — a second 193-frame film of the tide falling, under a
+   counter that walks one day from a single first thought at 06:12 up to 340 at
+   its highest and back down to one at 23:40.
+3. **Kahan le chaloon** — a statement that an aperture opens over, revealing
+   four shore clips she can step through.
+4. **Kahin bhi, bas saath** — five shores surveyed sideways, ending full-bleed
+   on a third 193-frame film.
+5. **Ek sawaal, ek jawab** — a circle opening onto paper, the question, and the
+   "Haan" button.
+
+The folder is still named `vacance/` (and the deployed app is still
+`vacance-5h490l`) because only the copy changed — every frame, clip, still and
+line of choreography is the same build. The earlier travel-agency version of the
+copy is in git history.
 
 ## Running it
 
@@ -139,6 +150,7 @@ system fallback. Subsetting locally is what keeps the arrow in IBM Plex Mono.
 ## Deployed
 
 Live at <https://vacance-5h490l.v2.appdeploy.ai/> (AppDeploy app `vacance-5h490l`).
+**The live copy is one version behind this folder** until the next deploy.
 
 The deploy tree wraps this folder in the `html-static` template: `index.html` at
 the root with its asset references rewritten to `/assets/...`, and `assets/`
@@ -152,9 +164,23 @@ merged deploys: the shell (libraries, fonts, stills, clips, and the three
 frame stills the HTML references directly), then one deploy per 193-frame
 sequence.
 
+## Copy notes
+
+The numbers are feeling, not telemetry: the loader counts 340 names down to one,
+and the day counter's 1 / 6 / 84 / 340 / 96 / 1 arc is written to start and end
+on the same single thought. No real dates, places or events are asserted
+anywhere, so nothing in the copy can be wrong about them.
+
+The close heading carries its own type scale — `clamp(2.4rem, 1rem + 4.6vw,
+5.4rem)` rather than the `6.6rem` the other display lines use. It is the only
+heading capped by a `46rem` parent, so at the shared scale it broke to four
+lines above 1400px wide and pushed the button into the footer.
+
+`mailto:rafay@example.com` in the close is a **placeholder** — swap it for
+Rafay's real address (or a `wa.me` link) before the page is sent.
+
 ## Provenance
 
-The agency is fictional and the readings — crowd indices, window times, "four
-hundred harbour cameras" — are copy, not data. The four shore clips are credited
-in the footer to Benlisquare / Wikimedia Commons (CC BY-SA 4.0); the rest of the
-film and stills were generated for this build.
+The four shore clips are credited in the footer to Benlisquare / Wikimedia
+Commons (CC BY-SA 4.0); the rest of the film and stills were generated for this
+build.
