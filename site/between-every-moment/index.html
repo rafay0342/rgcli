@@ -792,7 +792,7 @@
         });
 
         const heart = new THREE.Mesh(heartGeometry, heartMaterial);
-        heart.rotation.x = Math.PI;
+        heart.rotation.x = 0;
         heart.rotation.z = Math.PI;
         heart.scale.setScalar(0.88);
         heart.castShadow = true;
@@ -1161,7 +1161,7 @@
           if (!reducedMotion) {
             const elapsed = time * 0.001;
             heart.rotation.y = elapsed * 0.16;
-            heart.rotation.x = Math.PI + Math.sin(elapsed * 0.45) * 0.08;
+            heart.rotation.x = Math.sin(elapsed * 0.45) * 0.08;
             heart.position.y = Math.sin(elapsed * 0.7) * 0.18;
             ringOne.rotation.z = elapsed * 0.08;
             ringTwo.rotation.z = -elapsed * 0.055;
