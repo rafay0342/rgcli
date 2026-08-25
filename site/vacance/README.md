@@ -68,6 +68,10 @@ re-encoding them; a lighter page would mean a shorter film, not a better codec.
   drives from its ScrollTrigger callbacks).
 - **Chrome** — a 2px scroll rail replaces the hidden native scrollbar, and each
   `[data-bg]` section retints `document.body` as it becomes active.
+- **"Find my window"** — the close panel is clipped to `circle(0%)` until the
+  drift timeline has run, so a plain `#book` jump lands mid-pin on a blank
+  screen. `initBookLinks()` sends those links to the end of the document
+  instead, where that timeline is complete and the panel is open.
 
 ### Motion and input preferences
 
@@ -131,6 +135,22 @@ python3 -m fontTools.subset "Archivo[wdth,wght].ttf" \
 Note the `→` in "window 06:12 → 07:50": U+2192 sits outside Google Fonts' `latin`
 subset, so serving these faces from the CDN would drop that one glyph to a
 system fallback. Subsetting locally is what keeps the arrow in IBM Plex Mono.
+
+## Deployed
+
+Live at <https://vacance-5h490l.v2.appdeploy.ai/> (AppDeploy app `vacance-5h490l`).
+
+The deploy tree wraps this folder in the `html-static` template: `index.html` at
+the root with its asset references rewritten to `/assets/...`, and `assets/`
+moved under the Vite `publicDir` so all 602 files are copied verbatim rather
+than passed through the bundler — the 579 scroll frames are fetched by string
+path at runtime, so nothing would otherwise pull them into the build. Vite's own
+`assetsDir` is moved to `_vite/` so it cannot collide with `assets/`.
+
+AppDeploy caps a single upload at 200 binary parts, so the assets ship as four
+merged deploys: the shell (libraries, fonts, stills, clips, and the three
+frame stills the HTML references directly), then one deploy per 193-frame
+sequence.
 
 ## Provenance
 
