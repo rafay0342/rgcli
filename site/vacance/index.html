@@ -1,0 +1,836 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0B2030">
+    <title>VACANCE — Ninety minutes of nobody.</title>
+    <meta name="description" content="An AI that reads tides, ferries and harbour cameras to find the hour when a shore belongs to no one — then books you into it.">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='34' fill='%23C64A32'/%3E%3C/svg%3E">
+
+    <link rel="preload" as="font" type="font/woff2" href="assets/fonts/archivo-variable.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="assets/fonts/ibm-plex-mono-400.woff2" crossorigin>
+    <link rel="stylesheet" href="assets/styles.css">
+
+    <style>
+      /* Page-specific chrome. Everything else lives in assets/styles.css. */
+      html{scrollbar-width:none}body{-ms-overflow-style:none}::-webkit-scrollbar{width:0;height:0;display:none}
+      ::selection{background:#C64A32;color:#F5EDE2}
+      :focus-visible{outline:2px solid #E2705A;outline-offset:3px;border-radius:3px;box-shadow:0 0 0 5px rgba(7,20,31,.35)}
+      /* The ring cursor hides the native one, but only once JS has actually put a ring on screen. */
+      body.has-ring-cursor,body.has-ring-cursor *{cursor:none}
+    </style>
+
+    <noscript>
+      <style>
+        /* Without JS none of the scroll choreography runs, so the page is flattened
+           into a plain vertical read: stills instead of canvases, every scroll-revealed
+           element already revealed, and the sideways drift dropped in favour of the close. */
+        [data-loader],[data-cursor],[data-grain]{display:none!important}
+        [data-opening-canvas],[data-night-canvas],[data-film-canvas]{display:none!important}
+        [data-opening-fallback],[data-night-fallback],[data-film-fallback]{display:block!important}
+        [data-reveal],[data-count-group],[data-shores],[data-close-el]{opacity:1!important;transform:none!important}
+        [data-night]{margin-top:0!important}
+        [data-cap]{opacity:0!important}
+        [data-cap]:first-child{opacity:1!important}
+        [data-window-stage]{height:auto!important;padding:16vh 0 10vh}
+        [data-statement]{position:static!important;opacity:1!important}
+        [data-portal]{position:relative!important;clip-path:none!important;margin:6vh auto 0!important;top:auto!important;bottom:auto!important}
+        [data-glass]{position:absolute!important;visibility:visible!important}
+        [data-glass] [data-scene]{width:100%!important;height:100%!important}
+        [data-shores]{position:static!important;margin-top:4vh!important}
+        [data-drift-track],[data-drift-label]{display:none!important}
+        [data-close]{clip-path:none!important}
+      </style>
+    </noscript>
+  </head>
+
+  <body style="--sand:#F0E5D4;--sand2:#E6D8C3;--deep:#0B2030;--ink:#33291E;--coral:#C64A32;--coral-deep:#A83D28;--coral-soft:#E2705A;--cream:#F5EDE2;background:#0B2030;color:#33291E;font-family:'Archivo',system-ui,sans-serif;line-height:1.55;overflow-x:clip;-webkit-font-smoothing:antialiased;margin:0">
+    <!-- ══ ATMOSPHERE ══ -->
+    <div data-grain="" class="fixed inset-0 pointer-events-none" style="z-index:9990;opacity:.05;mix-blend-mode:overlay"></div>
+    <div data-cursor="" class="fixed top-0 left-0 rounded-full pointer-events-none" style="z-index:9995;width:26px;height:26px;margin:-13px 0 0 -13px;border:1px solid #E2705A"></div>
+
+    <!-- ══ SCROLL PROGRESS — replaces the native scrollbar ══ -->
+    <div class="fixed top-0 right-0 bottom-0 pointer-events-none" style="width:2px;z-index:9100;background:rgba(198,74,50,.16)">
+      <i data-progress="" class="absolute inset-0 block" style="background:#E2705A;box-shadow:0 0 10px rgba(226,112,90,.55);transform:scaleY(0);transform-origin:top center"></i>
+    </div>
+
+    <!-- ══ LOADER — the machine empties the beach ══ -->
+    <div data-loader="" class="fixed inset-0 grid place-items-center" style="z-index:10000;background:#0B2030;color:#F5EDE2">
+      <div data-loader-stack="" class="flex flex-col items-center" style="gap:clamp(1.6rem,3.4vh,2.6rem);margin-bottom:7vh">
+        <p data-loader-mark="" style="font-weight:500;font-stretch:118%;font-size:clamp(1.5rem,3.6vw,2.9rem);text-transform:uppercase;letter-spacing:0.16em;text-indent:0.16em;white-space:nowrap;opacity:0;margin:0">
+          Vacance
+        </p>
+        <div data-loader-barwrap="" style="width:min(340px,46vw);height:1px;background:rgba(245,237,226,.14);opacity:0">
+          <i data-loader-bar="" class="block h-full" style="background:rgba(245,237,226,.5);transform-origin:center;transform:scaleX(1)"></i>
+        </div>
+        <p data-loader-line="" class="flex flex-col items-center" style="gap:.85rem;color:rgba(245,237,226,.55);opacity:0;margin:0">
+          <span data-count="" style="font-family:'IBM Plex Mono',monospace;min-width:4ch;text-align:center;font-variant-numeric:tabular-nums;font-size:clamp(1.5rem,3vw,2.1rem);letter-spacing:.04em;color:#F5EDE2">
+            340
+          </span>
+          <span class="text-xs uppercase" style="font-family:'IBM Plex Mono',monospace;letter-spacing:.3em;color:rgba(245,237,226,.55)">
+            people on this beach right now
+          </span>
+        </p>
+      </div>
+    </div>
+
+    <!-- ══ NAV ══ -->
+    <nav class="fixed top-0 left-0 right-0 flex justify-between items-center" style="z-index:9000;padding:1.6rem 3.4vw;mix-blend-mode:difference;color:#F5EDE2">
+      <a href="#top" class="inline-flex items-center uppercase" style="font-weight:600;font-stretch:125%;font-size:1.05rem;letter-spacing:.34em;min-height:44px;text-decoration:none;color:inherit">
+        Vacance
+      </a>
+      <a href="#book" data-magnetic="" class="inline-flex items-center text-xs uppercase" style="font-weight:600;letter-spacing:.26em;padding:.85rem 1.5rem;border:1px solid rgba(245,237,226,.45);border-radius:100px;min-height:44px;text-decoration:none;color:inherit;will-change:transform">
+        Find my window
+      </a>
+    </nav>
+
+    <!-- ══ 1 · THE OPENING — 193 frames, one camera move, pinned ══ -->
+    <header id="top" data-bg="#0B2030" class="relative" style="color:#F5EDE2;z-index:2">
+      <div data-opening-stage="" class="relative overflow-hidden" style="height:100vh;height:100svh">
+        <canvas data-opening-canvas="" class="absolute inset-0 w-full h-full" style="filter:saturate(.82) contrast(1.04) brightness(.97)" aria-label="One continuous aerial film: a dark glassy lagoon at blue hour, the sun breaking, the camera rising over an empty sandbar"></canvas>
+        <img data-opening-fallback="" class="absolute inset-0 w-full h-full object-cover hidden" src="assets/opening/f_193.jpg" alt="An empty sandbar in low golden light, crossed by long palm shadows">
+        <div class="absolute inset-0 pointer-events-none" style="z-index:1;mix-blend-mode:soft-light;background:linear-gradient(160deg,rgba(11,32,48,.5),rgba(198,74,50,.26) 78%)"></div>
+
+        <div data-shade="" class="absolute inset-0 pointer-events-none" style="z-index:1;background:linear-gradient(to top,rgba(7,20,31,.72) 0%,rgba(7,20,31,.24) 40%,rgba(7,20,31,.06) 62%,rgba(7,20,31,.34) 100%)"></div>
+        <div data-openinggrade="" class="absolute inset-0 pointer-events-none" style="z-index:2;opacity:0;background:linear-gradient(to top,rgba(7,20,31,.62) 0%,rgba(7,20,31,.34) 16%,rgba(7,20,31,.1) 34%,transparent 48%)"></div>
+
+        <div data-title="" class="absolute inset-0 grid items-end" style="z-index:3">
+          <div class="relative" style="padding:0 3.4vw 16vh">
+            <p data-reveal="" class="uppercase text-xs" style="font-weight:600;letter-spacing:.32em;color:#E2705A;margin:0 0 1.6rem;text-shadow:0 1px 14px rgba(7,20,31,.9),0 0 3px rgba(7,20,31,.75);opacity:0;transform:translateY(34px)">
+              The solitude engine — one window per shore
+            </p>
+            <h1 data-hero-title="" style="margin:0;font-weight:600;font-stretch:125%;letter-spacing:-.025em;font-size:clamp(2.6rem,1rem + 5.8vw,6.6rem);line-height:1.14;max-width:14ch">
+              <span class="block" data-hero-words="">Ninety minutes</span>
+              <span class="block" data-hero-breath="" style="will-change:opacity,filter,transform">
+                of
+                <em style="font-style:italic;color:#E2705A">nobody.</em>
+              </span>
+            </h1>
+            <p data-reveal="" style="margin:1.8rem 0 0;max-width:46ch;color:rgba(245,237,226,.55);text-shadow:0 1px 12px rgba(7,20,31,.8);opacity:0;transform:translateY(34px)">
+              Vacance reads tides, ferry manifests, flight loads and four
+              hundred harbour cameras to find the hour a shore belongs to no one
+              — then books you into it.
+            </p>
+          </div>
+          <p data-reveal="" class="absolute text-xs uppercase" style="bottom:2.2rem;left:3.4vw;z-index:5;font-family:'IBM Plex Mono',monospace;letter-spacing:.08em;color:rgba(245,237,226,.55);text-shadow:0 1px 10px rgba(7,20,31,.85);opacity:0;transform:translateY(34px);margin:0">
+            Crowd index 0.02 — recomputed every 40 seconds
+          </p>
+          <p data-reveal="" class="absolute text-xs uppercase hidden md:block text-right" style="bottom:2.2rem;right:3.4vw;z-index:5;font-family:'IBM Plex Mono',monospace;letter-spacing:.08em;color:rgba(245,237,226,.55);text-shadow:0 1px 10px rgba(7,20,31,.85);opacity:0;transform:translateY(34px);margin:0">
+            Cala Ausente — window 06:12 → 07:50
+          </p>
+        </div>
+
+        <p data-reveal="" data-scroll-hint="" class="absolute uppercase text-xs hidden md:block" style="bottom:2.2rem;left:50%;transform:translateX(-50%) translateY(34px);z-index:4;letter-spacing:.3em;color:rgba(245,237,226,.55);text-shadow:0 1px 10px rgba(7,20,31,.85);opacity:0;margin:0">
+          Scroll — the boats are still asleep
+        </p>
+
+        <!-- ── THE ABSENCES ── -->
+        <div data-absences="" class="absolute left-0 right-0 bottom-0 flex flex-col items-center pointer-events-none" style="z-index:4;padding:0 3.4vw 2.4rem;gap:clamp(2rem,5vh,3.4rem);opacity:0">
+          <div class="relative grid place-items-center" style="width:min(46rem,90vw);min-height:5.4em">
+            <p data-beat="" class="text-center" style="grid-area:1/1;opacity:0;margin:0">
+              <span class="block" style="font-weight:600;font-stretch:118%;font-size:clamp(1.5rem,3vw,2.7rem);line-height:1.12;letter-spacing:-.02em;color:#F5EDE2;text-shadow:0 1px 3px rgba(7,20,31,.72),0 4px 26px rgba(7,20,31,.5)">
+                Nobody on the sand.
+              </span>
+              <span data-beat-sub="" class="block" style="margin:.9rem auto 0;max-width:34rem;font-size:clamp(.92rem,1.15vw,1.04rem);line-height:1.5;color:rgba(245,237,226,.55);text-shadow:0 1px 3px rgba(7,20,31,.8),0 2px 16px rgba(7,20,31,.55)">
+                The tide went out at 05:20 and took every footprint with it.
+              </span>
+            </p>
+            <p data-beat="" class="text-center" style="grid-area:1/1;opacity:0;margin:0">
+              <span class="block" style="font-weight:600;font-stretch:118%;font-size:clamp(1.5rem,3vw,2.7rem);line-height:1.12;letter-spacing:-.02em;color:#F5EDE2;text-shadow:0 1px 3px rgba(7,20,31,.72),0 4px 26px rgba(7,20,31,.5)">
+                Nobody on the water.
+              </span>
+              <span data-beat-sub="" class="block" style="margin:.9rem auto 0;max-width:34rem;font-size:clamp(.92rem,1.15vw,1.04rem);line-height:1.5;color:rgba(245,237,226,.55);text-shadow:0 1px 3px rgba(7,20,31,.8),0 2px 16px rgba(7,20,31,.55)">
+                Flat water, no wake, nothing anchored between here and the
+                point.
+              </span>
+            </p>
+            <p data-beat="" class="text-center" style="grid-area:1/1;opacity:0;margin:0">
+              <span class="block" style="font-weight:600;font-stretch:118%;font-size:clamp(1.5rem,3vw,2.7rem);line-height:1.12;letter-spacing:-.02em;color:#F5EDE2;text-shadow:0 1px 3px rgba(7,20,31,.72),0 4px 26px rgba(7,20,31,.5)">
+                Nobody for four kilometres.
+              </span>
+              <span data-beat-sub="" class="block" style="margin:.9rem auto 0;max-width:34rem;font-size:clamp(.92rem,1.15vw,1.04rem);line-height:1.5;color:rgba(245,237,226,.55);text-shadow:0 1px 3px rgba(7,20,31,.8),0 2px 16px rgba(7,20,31,.55)">
+                One person, 4.2 km south, in a cove you cannot see from here.
+              </span>
+            </p>
+            <p data-beat="" class="text-center" style="grid-area:1/1;opacity:0;margin:0">
+              <span class="block" style="font-weight:600;font-stretch:118%;font-size:clamp(1.5rem,3vw,2.7rem);line-height:1.12;letter-spacing:-.02em;color:#F5EDE2;text-shadow:0 1px 3px rgba(7,20,31,.72),0 4px 26px rgba(7,20,31,.5)">
+                You have
+                <em style="font-style:italic;color:#E2705A">ninety minutes.</em>
+              </span>
+              <span data-beat-sub="" class="block" style="margin:.9rem auto 0;max-width:34rem;font-size:clamp(.92rem,1.15vw,1.04rem);line-height:1.5;color:rgba(245,237,226,.55);text-shadow:0 1px 3px rgba(7,20,31,.8),0 2px 16px rgba(7,20,31,.55)">
+                At 07:50 the first boat rounds the point. Until then, all of it
+                is yours.
+              </span>
+            </p>
+          </div>
+
+          <ul class="flex justify-center items-start flex-wrap" style="list-style:none;margin:0;padding:0;gap:clamp(1.8rem,5vw,4.4rem)">
+            <li data-cell="" class="flex flex-col items-center" style="gap:.55rem;opacity:0">
+              <span class="text-xs uppercase" style="font-family:'IBM Plex Mono',monospace;letter-spacing:.26em;color:rgba(245,237,226,.55);opacity:.8;text-shadow:0 1px 8px rgba(7,20,31,.8)">
+                People
+              </span>
+              <span data-cell-v="" style="font-family:'IBM Plex Mono',monospace;font-size:clamp(1.2rem,1.9vw,1.6rem);letter-spacing:.02em;font-variant-numeric:tabular-nums;color:#E2705A;text-shadow:0 1px 4px rgba(7,20,31,.85),0 3px 20px rgba(7,20,31,.55)">
+                0
+              </span>
+            </li>
+            <li data-cell="" class="flex flex-col items-center" style="gap:.55rem;opacity:0">
+              <span class="text-xs uppercase" style="font-family:'IBM Plex Mono',monospace;letter-spacing:.26em;color:rgba(245,237,226,.55);opacity:.8;text-shadow:0 1px 8px rgba(7,20,31,.8)">
+                Boats
+              </span>
+              <span data-cell-v="" style="font-family:'IBM Plex Mono',monospace;font-size:clamp(1.2rem,1.9vw,1.6rem);letter-spacing:.02em;font-variant-numeric:tabular-nums;color:#E2705A;text-shadow:0 1px 4px rgba(7,20,31,.85),0 3px 20px rgba(7,20,31,.55)">
+                0
+              </span>
+            </li>
+            <li data-cell="" class="flex flex-col items-center" style="gap:.55rem;opacity:0">
+              <span class="text-xs uppercase" style="font-family:'IBM Plex Mono',monospace;letter-spacing:.26em;color:rgba(245,237,226,.55);opacity:.8;text-shadow:0 1px 8px rgba(7,20,31,.8)">
+                Nearest person
+              </span>
+              <span data-cell-v="" style="font-family:'IBM Plex Mono',monospace;font-size:clamp(1.2rem,1.9vw,1.6rem);letter-spacing:.02em;font-variant-numeric:tabular-nums;color:#E2705A;text-shadow:0 1px 4px rgba(7,20,31,.85),0 3px 20px rgba(7,20,31,.55)">
+                4.2 km
+              </span>
+            </li>
+            <li data-cell="" class="flex flex-col items-center" style="gap:.55rem;opacity:0">
+              <span class="text-xs uppercase" style="font-family:'IBM Plex Mono',monospace;letter-spacing:.26em;color:rgba(245,237,226,.55);opacity:.8;text-shadow:0 1px 8px rgba(7,20,31,.8)">
+                Window closes
+              </span>
+              <span data-cell-v="" style="font-family:'IBM Plex Mono',monospace;font-size:clamp(1.2rem,1.9vw,1.6rem);letter-spacing:.02em;font-variant-numeric:tabular-nums;color:#E2705A;text-shadow:0 1px 4px rgba(7,20,31,.85),0 3px 20px rgba(7,20,31,.55)">
+                07:50
+              </span>
+            </li>
+          </ul>
+          <div class="absolute" style="left:3.4vw;right:3.4vw;bottom:1.2rem;height:1px;background:rgba(245,237,226,.12)"></div>
+        </div>
+
+        <!-- ── 01 · A CASE FOR ABSENCE ── -->
+        <div data-passage="" class="absolute inset-0 flex flex-col items-center justify-center text-center pointer-events-none" style="z-index:5;opacity:0;padding:0 3.4vw;color:#F5EDE2;background:radial-gradient(ellipse 74% 72% at 50% 50%,rgba(7,20,31,.54),rgba(7,20,31,.35) 54%,rgba(7,20,31,.12) 80%,transparent 100%)">
+          <p class="uppercase text-xs" style="font-weight:600;letter-spacing:.32em;color:#F5EDE2;opacity:.86;margin:0;text-shadow:0 1px 10px rgba(7,20,31,.9),0 0 3px rgba(7,20,31,.7)" data-passage-label="">
+            <span style="margin-right:1.1em;opacity:.62">01</span>
+            A case for absence
+          </p>
+          <div data-passage-rule="" aria-hidden="true" style="width:min(320px,40vw);height:1px;margin:2.2rem 0 3rem;background:rgba(245,237,226,.42);transform:scaleX(0);transform-origin:center"></div>
+          <p data-passage-lines="" style="margin:0;font-weight:500;font-stretch:112%;font-size:clamp(1.45rem,.95rem + 2vw,2.6rem);line-height:1.42;max-width:min(56rem,92vw);letter-spacing:-.01em;text-shadow:0 1px 3px rgba(7,20,31,.85),0 3px 22px rgba(7,20,31,.5)">
+            Luxury used to mean more.
+            <br>
+            More rooms, more courses.
+            <br>
+            More coastline.
+            <br>
+            It now means fewer.
+            <br>
+            Fewer boats, fewer towels, fewer voices.
+            <br>
+            <em style="font-style:italic;color:#E2705A">
+              The rarest thing on any shore
+              <br>
+              is nobody at all.
+            </em>
+          </p>
+        </div>
+      </div>
+    </header>
+
+    <!-- ══ 2 · BEFORE THE BOATS — 193 frames, the counter, the tide ══ -->
+    <section data-night="" data-bg="#0B2030" class="relative" style="color:#F5EDE2;margin-top:-100vh;z-index:1">
+      <div data-night-stage="" class="relative overflow-hidden" style="height:100vh;height:100svh">
+        <canvas data-night-canvas="" class="absolute inset-0 w-full h-full" style="opacity:0;filter:saturate(.7) contrast(1.06) brightness(.86)" aria-label="A second film: the tide falling off a pale sandbar as the sky goes from dusk to first light, scrubbed by scroll"></canvas>
+        <img data-night-fallback="" class="absolute inset-0 w-full h-full object-cover hidden" src="assets/tide/f_193.jpg" alt="An empty sandbar curving into still turquoise water under a dawn sky">
+        <div class="absolute inset-0 pointer-events-none" style="z-index:1;mix-blend-mode:soft-light;background:linear-gradient(160deg,rgba(11,32,48,.5),rgba(198,74,50,.26) 78%)"></div>
+
+        <div class="absolute inset-0 pointer-events-none" style="z-index:1;background:linear-gradient(to top,rgba(7,20,31,.72) 0%,rgba(7,20,31,.45) 22%,rgba(7,20,31,.12) 48%,transparent 66%)"></div>
+        <div data-count-ground="" class="absolute inset-0 pointer-events-none" style="z-index:1;opacity:0;background:radial-gradient(ellipse 64% 48% at 50% 44%,rgba(7,20,31,.34) 0%,rgba(7,20,31,.3) 54%,rgba(7,20,31,.14) 78%,transparent 100%),linear-gradient(to top,rgba(7,20,31,.5) 0%,rgba(7,20,31,.45) 26%,rgba(7,20,31,.35) 48%,rgba(7,20,31,.18) 72%,transparent 90%)"></div>
+
+        <div data-tide="" class="absolute left-0 right-0 bottom-0 pointer-events-none" style="height:0;z-index:2;background:linear-gradient(to top,rgba(7,20,31,.52) 0%,rgba(198,74,50,.18) 58%,rgba(198,74,50,.12) 100%);border-top:2px solid #E2705A;box-shadow:0 -1px 0 rgba(226,112,90,.5),0 -10px 44px rgba(198,74,50,.3)"></div>
+        <div data-night-wash="" class="absolute inset-0 pointer-events-none" style="z-index:6;background:#F0E5D4;opacity:0"></div>
+
+        <!-- Scrim for the copy column, anchored to the stage so it does not follow the column's flow. -->
+        <div class="absolute left-0 right-0 pointer-events-none" style="z-index:3;top:0;height:76vh;background:radial-gradient(ellipse 52% 40% at 50% 34%,rgba(7,20,31,.48) 0%,rgba(7,20,31,.44) 55%,rgba(7,20,31,.22) 78%,transparent 100%),linear-gradient(to bottom,rgba(7,20,31,.6) 0%,rgba(7,20,31,.57) 22%,rgba(7,20,31,.5) 44%,rgba(7,20,31,.24) 68%,transparent 100%)"></div>
+
+        <!-- Heading and counter share one centred column: the counter is tall enough
+             that positioning the two independently collided on every laptop height. -->
+        <div class="absolute inset-0 flex flex-col items-center justify-center text-center" style="z-index:4;padding:13vh 3.4vw 7vh">
+          <div data-night-head="" class="relative" style="width:100%">
+          <p class="uppercase text-xs" style="font-weight:600;letter-spacing:.32em;color:#E2705A;margin:0 0 1.6rem">
+            <span style="margin-right:1.1em;opacity:.62">02</span>
+            Before the boats
+          </p>
+          <h2 style="margin:0 auto;font-weight:600;font-stretch:118%;letter-spacing:-.02em;font-size:clamp(1.7rem,1.2rem + 2.3vw,3.2rem);max-width:18ch;line-height:1.14;text-shadow:0 1px 4px rgba(7,20,31,.8),0 3px 26px rgba(7,20,31,.7)">
+            Every shore has
+            <br>
+            <em style="font-style:italic;color:#E2705A">one hour.</em>
+          </h2>
+          </div>
+
+          <div data-count-group="" style="width:100%;margin-top:clamp(1.4rem,4vh,3rem);opacity:0">
+          <p data-count-time="" style="margin:0;font-family:'IBM Plex Mono',monospace;font-size:clamp(1.18rem,1.4vw,1.34rem);letter-spacing:.34em;color:#F5EDE2;opacity:.92;text-shadow:0 1px 3px rgba(7,20,31,.9),0 2px 16px rgba(7,20,31,.6)">
+            05:40
+          </p>
+          <p data-count-n="" style="margin:.5rem 0 .4rem;font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:min(clamp(5rem,2rem + 13vw,14rem),24vh);line-height:.92;letter-spacing:-.02em;font-variant-numeric:tabular-nums;color:#F5EDE2;text-shadow:0 1px 4px rgba(7,20,31,.9),0 3px 18px rgba(7,20,31,.75),0 8px 54px rgba(7,20,31,.5)">
+            0
+          </p>
+          <p class="text-xs uppercase" style="margin:0;font-family:'IBM Plex Mono',monospace;letter-spacing:.32em;color:#F5EDE2;opacity:.82;text-shadow:0 1px 3px rgba(7,20,31,.9),0 2px 14px rgba(7,20,31,.6)">
+            people on the sand
+          </p>
+          <div style="width:88px;height:1px;margin:2.2rem auto 0;background:rgba(245,237,226,.3)"></div>
+
+          <ol data-caps="" class="relative grid" style="list-style:none;margin:2.6rem 0 0;padding:0;min-height:6.5rem;place-items:start center">
+            <li data-cap="" data-crowd="0" data-time="05:40" style="grid-area:1/1;opacity:0;width:min(38rem,90vw)">
+              <p data-cap-name="" style="margin:0;font-weight:600;font-stretch:118%;font-size:clamp(1.15rem,1rem + .6vw,1.6rem);line-height:1.14;color:#F5EDE2;text-shadow:0 1px 3px rgba(7,20,31,.9),0 3px 22px rgba(7,20,31,.6)">
+                First light
+              </p>
+              <p style="margin:.6rem 0 0;color:#F5EDE2;opacity:.82;font-size:1.05rem;line-height:1.5;text-shadow:0 1px 3px rgba(7,20,31,.9),0 2px 16px rgba(7,20,31,.6)">
+                Zero people. The sand is still unmarked.
+              </p>
+            </li>
+            <li data-cap="" data-crowd="0" data-time="06:12" style="grid-area:1/1;opacity:0;width:min(38rem,90vw)">
+              <p data-cap-name="" style="margin:0;font-weight:600;font-stretch:118%;font-size:clamp(1.15rem,1rem + .6vw,1.6rem);line-height:1.14;color:#F5EDE2;text-shadow:0 1px 3px rgba(7,20,31,.9),0 3px 22px rgba(7,20,31,.6)">
+                Your window opens
+              </p>
+              <p style="margin:.6rem 0 0;color:#F5EDE2;opacity:.82;font-size:1.05rem;line-height:1.5;text-shadow:0 1px 3px rgba(7,20,31,.9),0 2px 16px rgba(7,20,31,.6)">
+                Nobody within four kilometres. The engine holds the door.
+              </p>
+            </li>
+            <li data-cap="" data-crowd="6" data-time="07:50" style="grid-area:1/1;opacity:0;width:min(38rem,90vw)">
+              <p data-cap-name="" style="margin:0;font-weight:600;font-stretch:118%;font-size:clamp(1.15rem,1rem + .6vw,1.6rem);line-height:1.14;color:#F5EDE2;text-shadow:0 1px 3px rgba(7,20,31,.9),0 3px 22px rgba(7,20,31,.6)">
+                The first boat
+              </p>
+              <p style="margin:.6rem 0 0;color:#F5EDE2;opacity:.82;font-size:1.05rem;line-height:1.5;text-shadow:0 1px 3px rgba(7,20,31,.9),0 2px 16px rgba(7,20,31,.6)">
+                A fishing boat rounds the point. You are already in the water.
+              </p>
+            </li>
+            <li data-cap="" data-crowd="84" data-time="09:30" style="grid-area:1/1;opacity:0;width:min(38rem,90vw)">
+              <p data-cap-name="" style="margin:0;font-weight:600;font-stretch:118%;font-size:clamp(1.15rem,1rem + .6vw,1.6rem);line-height:1.14;color:#F5EDE2;text-shadow:0 1px 3px rgba(7,20,31,.9),0 3px 22px rgba(7,20,31,.6)">
+                The morning fills
+              </p>
+              <p style="margin:.6rem 0 0;color:#F5EDE2;opacity:.82;font-size:1.05rem;line-height:1.5;text-shadow:0 1px 3px rgba(7,20,31,.9),0 2px 16px rgba(7,20,31,.6)">
+                Deck chairs, engines, voices. It stops being a beach and starts
+                being a queue.
+              </p>
+            </li>
+            <li data-cap="" data-crowd="340" data-time="11:00" style="grid-area:1/1;opacity:0;width:min(38rem,90vw)">
+              <p data-cap-name="" style="margin:0;font-weight:600;font-stretch:118%;font-size:clamp(1.15rem,1rem + .6vw,1.6rem);line-height:1.14;color:#F5EDE2;text-shadow:0 1px 3px rgba(7,20,31,.9),0 3px 22px rgba(7,20,31,.6)">
+                Peak
+              </p>
+              <p style="margin:.6rem 0 0;color:#F5EDE2;opacity:.82;font-size:1.05rem;line-height:1.5;text-shadow:0 1px 3px rgba(7,20,31,.9),0 2px 16px rgba(7,20,31,.6)">
+                Every chair taken, every engine running, and not one of them can
+                be sent home.
+              </p>
+            </li>
+            <li data-cap="" data-crowd="96" data-time="17:20" style="grid-area:1/1;opacity:0;width:min(38rem,90vw)">
+              <p data-cap-name="" style="margin:0;font-weight:600;font-stretch:118%;font-size:clamp(1.15rem,1rem + .6vw,1.6rem);line-height:1.14;color:#F5EDE2;text-shadow:0 1px 3px rgba(7,20,31,.9),0 3px 22px rgba(7,20,31,.6)">
+                No second chance
+              </p>
+              <p style="margin:.6rem 0 0;color:#F5EDE2;opacity:.82;font-size:1.05rem;line-height:1.5;text-shadow:0 1px 3px rgba(7,20,31,.9),0 2px 16px rgba(7,20,31,.6)">
+                It never empties again until dark, and by then the light has
+                gone.
+              </p>
+            </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ 3 · THE WINDOW — a statement, then an aperture that takes it ══ -->
+    <section data-windowsec="" data-bg="#F0E5D4" class="relative" style="color:#33291E;background:#F0E5D4">
+      <div data-window-stage="" class="relative" style="z-index:1;height:100vh;height:100svh">
+        <div data-statement="" class="fixed inset-0 flex flex-col items-center justify-center text-center pointer-events-none" style="z-index:1;padding:0 3.4vw;opacity:0">
+          <p data-statement-label="" class="uppercase text-xs" style="font-weight:600;letter-spacing:.32em;color:#A83D28;margin:0 0 2.4rem">
+            <span style="margin-right:1.1em;opacity:.62">03</span>
+            The window
+          </p>
+          <h2 data-statement-lines="" style="margin:0;font-weight:600;font-stretch:125%;letter-spacing:-.025em;font-size:clamp(2.6rem,1rem + 5.8vw,6.6rem);max-width:16ch;line-height:1.14">
+            Four shores.
+            <br>
+            <em style="font-style:italic;color:#C64A32">One</em>
+            is yours.
+          </h2>
+          <p data-statement-sub="" style="margin:2.1rem 0 0;max-width:37rem;color:#33291E;opacity:.8;font-size:clamp(1.08rem,1.35vw,1.25rem);line-height:1.55">
+            06:40 local. Nobody has arrived at any of them yet. You choose which
+            hour to take.
+          </p>
+        </div>
+
+        <figure data-portal="" class="absolute" style="z-index:2;top:var(--pshift,0px);bottom:calc(-1 * var(--pshift, 0px));left:0;right:0;margin:auto;width:min(84vw,1260px);height:min(62vh,700px);clip-path:inset(34% 30% round 2px)">
+          <div data-glass="" class="fixed inset-0" style="z-index:0;visibility:hidden">
+            <video data-scene="" class="absolute inset-0 object-cover" style="width:100vw;height:100vh;opacity:1;filter:saturate(.82) contrast(1.04) brightness(.97)" muted="" playsinline="" loop="" preload="metadata" src="assets/vid/w1.mp4" poster="assets/vid/w1.jpg" data-name="Cala Ausente" data-coord="39.2841° N, 2.9012° E" data-read="0 people — window 06:12 → 07:50"></video>
+            <video data-scene="" class="absolute inset-0 object-cover" style="width:100vw;height:100vh;opacity:0;filter:saturate(.82) contrast(1.04) brightness(.97)" muted="" playsinline="" loop="" preload="metadata" src="assets/vid/w2.mp4" poster="assets/vid/w2.jpg" data-name="Anse Blanche" data-coord="4.6151° S, 55.4419° E" data-read="0 people — window 05:58 → 07:31"></video>
+            <video data-scene="" class="absolute inset-0 object-cover" style="width:100vw;height:100vh;opacity:0;filter:saturate(.82) contrast(1.04) brightness(.97)" muted="" playsinline="" loop="" preload="metadata" src="assets/vid/w3.mp4" poster="assets/vid/w3.jpg" data-name="Praia Deserta" data-coord="36.9622° N, 7.8895° W" data-read="0 people — window 06:24 → 08:05"></video>
+            <video data-scene="" class="absolute inset-0 object-cover" style="width:100vw;height:100vh;opacity:0;filter:saturate(.82) contrast(1.04) brightness(.97)" muted="" playsinline="" loop="" preload="metadata" src="assets/vid/w4.mp4" poster="assets/vid/w4.jpg" data-name="Haneji Sound" data-coord="26.6544° N, 128.0329° E" data-read="2 people — window closed 06:03"></video>
+          </div>
+          <div data-lip="" class="absolute inset-0 pointer-events-none" style="z-index:3;border-radius:10px;box-shadow:inset 0 0 0 1px rgba(245,237,226,.26),inset 0 0 14px 3px rgba(7,20,31,.6),inset 0 0 36px 8px rgba(7,20,31,.42),inset 0 0 74px 20px rgba(7,20,31,.2)"></div>
+        </figure>
+
+        <div data-shores="" class="absolute left-0 right-0 flex items-center justify-center" style="bottom:6vh;z-index:3;gap:clamp(1.4rem,4vw,3.4rem);padding:0 3.4vw;opacity:0">
+          <button type="button" data-shore-prev="" aria-label="Previous shore" class="grid place-items-center rounded-full flex-none w-11 h-11 md:w-14 md:h-14 border border-[#33291E42] hover:border-[#A83D28]" style="background:rgba(240,229,212,.6);color:#33291E;cursor:pointer;transition:background-color .5s cubic-bezier(.16,1,.3,1),border-color .5s cubic-bezier(.16,1,.3,1),transform .35s cubic-bezier(.16,1,.3,1)">
+            <svg viewBox="0 0 24 12" aria-hidden="true" style="width:22px;height:11px;fill:none;stroke:currentColor;stroke-width:1.3">
+              <path d="M23 6H1M1 6l6-5M1 6l6 5"></path>
+            </svg>
+          </button>
+          <div class="text-center" style="min-width:min(30rem,62vw)">
+            <p class="text-xs uppercase" style="margin:0;font-family:'IBM Plex Mono',monospace;color:#A83D28;letter-spacing:.28em">
+              <span data-shore-idx="">01</span>
+              / 04
+            </p>
+            <p data-shore-name="" style="margin:.5rem 0 .45rem;font-weight:600;font-stretch:118%;font-size:clamp(1.15rem,1rem + .6vw,1.6rem);line-height:1.1">
+              Cala Ausente
+            </p>
+            <p class="text-xs uppercase" style="margin:0;font-family:'IBM Plex Mono',monospace;letter-spacing:.08em;color:rgba(51,41,30,.58)">
+              <span data-shore-coord="">39.2841° N, 2.9012° E</span>
+            </p>
+            <p data-shore-read="" class="text-xs uppercase" style="margin:.3rem 0 0;font-family:'IBM Plex Mono',monospace;letter-spacing:.08em;color:#A83D28">
+              0 people — window 06:12 → 07:50
+            </p>
+          </div>
+          <button type="button" data-shore-next="" aria-label="Next shore" class="grid place-items-center rounded-full flex-none w-11 h-11 md:w-14 md:h-14 border border-[#33291E42] hover:border-[#A83D28]" style="background:rgba(240,229,212,.6);color:#33291E;cursor:pointer;transition:background-color .5s cubic-bezier(.16,1,.3,1),border-color .5s cubic-bezier(.16,1,.3,1),transform .35s cubic-bezier(.16,1,.3,1)">
+            <svg viewBox="0 0 24 12" aria-hidden="true" style="width:22px;height:11px;fill:none;stroke:currentColor;stroke-width:1.3">
+              <path d="M1 6h22M23 6l-6-5M23 6l-6 5"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ 4 · THE DRIFT — the coastline, surveyed sideways ══ -->
+    <section data-drift="" data-bg="#E6D8C3" class="relative">
+      <div data-drift-stage="" class="relative overflow-hidden" style="height:100vh;height:100svh;background:#E6D8C3">
+        <div data-drift-track="" class="flex h-full" style="will-change:transform">
+          <figure class="relative flex-none w-[86vw] md:w-[62vw] h-full pt-[9vh] md:pt-[12vh] px-[.9vw] md:px-[1.1vw] pb-[11vh] md:pb-[14vh]" style="margin:0">
+            <div class="relative w-full h-full overflow-hidden" style="border-radius:3px">
+              <img data-shore-img="" loading="lazy" src="assets/shores/s1.jpg" alt="A narrow northern beach of pale stone and flat grey-blue water, a headland under cloud beyond" class="absolute top-0 h-full object-cover" style="left:-10%;width:120%;max-width:none;will-change:transform;filter:saturate(.82) contrast(1.04) brightness(.97)">
+              <div class="absolute inset-0 pointer-events-none" style="mix-blend-mode:soft-light;background:linear-gradient(160deg,rgba(11,32,48,.5),rgba(198,74,50,.26) 78%)"></div>
+              <div class="absolute inset-0 pointer-events-none" style="background:linear-gradient(to top,rgba(7,20,31,.66) 0%,rgba(7,20,31,.34) 16%,rgba(7,20,31,.08) 34%,transparent 52%)"></div>
+            </div>
+            <figcaption data-shore-stamp="" class="absolute bottom-[13vh] md:bottom-[16vh]" style="left:2.4vw;right:2.4vw;z-index:2;color:#F5EDE2">
+              <span class="block" style="font-weight:600;font-stretch:118%;font-size:clamp(1.1rem,1.7vw,1.55rem);line-height:1.14;letter-spacing:-.01em;text-shadow:0 1px 3px rgba(7,20,31,.9),0 3px 20px rgba(7,20,31,.6)">
+                Skjærvika
+              </span>
+              <span class="block text-xs uppercase" style="margin-top:.55rem;font-family:'IBM Plex Mono',monospace;letter-spacing:.2em;opacity:.8;text-shadow:0 1px 3px rgba(7,20,31,.9)">
+                Norway · 05:12 → 06:40 · index 0.06
+              </span>
+            </figcaption>
+          </figure>
+
+          <figure class="relative flex-none w-[86vw] md:w-[62vw] h-full pt-[9vh] md:pt-[12vh] px-[.9vw] md:px-[1.1vw] pb-[11vh] md:pb-[14vh]" style="margin:0">
+            <div class="relative w-full h-full overflow-hidden" style="border-radius:3px">
+              <img data-shore-img="" loading="lazy" src="assets/shores/s2.jpg" alt="Dark volcanic sand meeting clear shallow water below a bare cinder cone" class="absolute top-0 h-full object-cover" style="left:-10%;width:120%;max-width:none;will-change:transform;filter:saturate(.82) contrast(1.04) brightness(.97)">
+              <div class="absolute inset-0 pointer-events-none" style="mix-blend-mode:soft-light;background:linear-gradient(160deg,rgba(11,32,48,.5),rgba(198,74,50,.26) 78%)"></div>
+              <div class="absolute inset-0 pointer-events-none" style="background:linear-gradient(to top,rgba(7,20,31,.66) 0%,rgba(7,20,31,.34) 16%,rgba(7,20,31,.08) 34%,transparent 52%)"></div>
+            </div>
+            <figcaption data-shore-stamp="" class="absolute bottom-[13vh] md:bottom-[16vh]" style="left:2.4vw;right:2.4vw;z-index:2;color:#F5EDE2">
+              <span class="block" style="font-weight:600;font-stretch:118%;font-size:clamp(1.1rem,1.7vw,1.55rem);line-height:1.14;letter-spacing:-.01em;text-shadow:0 1px 3px rgba(7,20,31,.9),0 3px 20px rgba(7,20,31,.6)">
+                Playa Quemada
+              </span>
+              <span class="block text-xs uppercase" style="margin-top:.55rem;font-family:'IBM Plex Mono',monospace;letter-spacing:.2em;opacity:.8;text-shadow:0 1px 3px rgba(7,20,31,.9)">
+                Lanzarote · 06:02 → 07:15 · index 0.31
+              </span>
+            </figcaption>
+          </figure>
+
+          <figure class="relative flex-none w-[86vw] md:w-[62vw] h-full pt-[9vh] md:pt-[12vh] px-[.9vw] md:px-[1.1vw] pb-[11vh] md:pb-[14vh]" style="margin:0">
+            <div class="relative w-full h-full overflow-hidden" style="border-radius:3px">
+              <img data-shore-img="" loading="lazy" src="assets/shores/s3.jpg" alt="A thin white sandbar curving out into turquoise shallows at dusk" class="absolute top-0 h-full object-cover" style="left:-10%;width:120%;max-width:none;will-change:transform;filter:saturate(.82) contrast(1.04) brightness(.97)">
+              <div class="absolute inset-0 pointer-events-none" style="mix-blend-mode:soft-light;background:linear-gradient(160deg,rgba(11,32,48,.5),rgba(198,74,50,.26) 78%)"></div>
+              <div class="absolute inset-0 pointer-events-none" style="background:linear-gradient(to top,rgba(7,20,31,.66) 0%,rgba(7,20,31,.34) 16%,rgba(7,20,31,.08) 34%,transparent 52%)"></div>
+            </div>
+            <figcaption data-shore-stamp="" class="absolute bottom-[13vh] md:bottom-[16vh]" style="left:2.4vw;right:2.4vw;z-index:2;color:#F5EDE2">
+              <span class="block" style="font-weight:600;font-stretch:118%;font-size:clamp(1.1rem,1.7vw,1.55rem);line-height:1.14;letter-spacing:-.01em;text-shadow:0 1px 3px rgba(7,20,31,.9),0 3px 20px rgba(7,20,31,.6)">
+                Kalanggaman Spit
+              </span>
+              <span class="block text-xs uppercase" style="margin-top:.55rem;font-family:'IBM Plex Mono',monospace;letter-spacing:.2em;opacity:.8;text-shadow:0 1px 3px rgba(7,20,31,.9)">
+                Philippines · 05:41 → 07:02 · index 0.04
+              </span>
+            </figcaption>
+          </figure>
+
+          <figure class="relative flex-none w-[86vw] md:w-[62vw] h-full pt-[9vh] md:pt-[12vh] px-[.9vw] md:px-[1.1vw] pb-[11vh] md:pb-[14vh]" style="margin:0">
+            <div class="relative w-full h-full overflow-hidden" style="border-radius:3px">
+              <img data-shore-img="" loading="lazy" src="assets/shores/s4.jpg" alt="Pastel dusk light over calm water and low grass-topped dunes" class="absolute top-0 h-full object-cover" style="left:-10%;width:120%;max-width:none;will-change:transform;filter:saturate(.82) contrast(1.04) brightness(.97)">
+              <div class="absolute inset-0 pointer-events-none" style="mix-blend-mode:soft-light;background:linear-gradient(160deg,rgba(11,32,48,.5),rgba(198,74,50,.26) 78%)"></div>
+              <div class="absolute inset-0 pointer-events-none" style="background:linear-gradient(to top,rgba(7,20,31,.66) 0%,rgba(7,20,31,.34) 16%,rgba(7,20,31,.08) 34%,transparent 52%)"></div>
+            </div>
+            <figcaption data-shore-stamp="" class="absolute bottom-[13vh] md:bottom-[16vh]" style="left:2.4vw;right:2.4vw;z-index:2;color:#F5EDE2">
+              <span class="block" style="font-weight:600;font-stretch:118%;font-size:clamp(1.1rem,1.7vw,1.55rem);line-height:1.14;letter-spacing:-.01em;text-shadow:0 1px 3px rgba(7,20,31,.9),0 3px 20px rgba(7,20,31,.6)">
+                Praia Deserta
+              </span>
+              <span class="block text-xs uppercase" style="margin-top:.55rem;font-family:'IBM Plex Mono',monospace;letter-spacing:.2em;opacity:.8;text-shadow:0 1px 3px rgba(7,20,31,.9)">
+                Portugal · 06:24 → 08:05 · index 0.01
+              </span>
+            </figcaption>
+          </figure>
+
+          <figure class="relative flex-none w-[86vw] md:w-[62vw] h-full pt-[9vh] md:pt-[12vh] px-[.9vw] md:px-[1.1vw] pb-[11vh] md:pb-[14vh]" style="margin:0">
+            <div class="relative w-full h-full overflow-hidden" style="border-radius:3px">
+              <img data-shore-img="" loading="lazy" src="assets/shores/s5.jpg" alt="A granite-backed cove of pale sand and clear turquoise water at sunset" class="absolute top-0 h-full object-cover" style="left:-10%;width:120%;max-width:none;will-change:transform;filter:saturate(.82) contrast(1.04) brightness(.97)">
+              <div class="absolute inset-0 pointer-events-none" style="mix-blend-mode:soft-light;background:linear-gradient(160deg,rgba(11,32,48,.5),rgba(198,74,50,.26) 78%)"></div>
+              <div class="absolute inset-0 pointer-events-none" style="background:linear-gradient(to top,rgba(7,20,31,.66) 0%,rgba(7,20,31,.34) 16%,rgba(7,20,31,.08) 34%,transparent 52%)"></div>
+            </div>
+            <figcaption data-shore-stamp="" class="absolute bottom-[13vh] md:bottom-[16vh]" style="left:2.4vw;right:2.4vw;z-index:2;color:#F5EDE2">
+              <span class="block" style="font-weight:600;font-stretch:118%;font-size:clamp(1.1rem,1.7vw,1.55rem);line-height:1.14;letter-spacing:-.01em;text-shadow:0 1px 3px rgba(7,20,31,.9),0 3px 20px rgba(7,20,31,.6)">
+                Anse Blanche
+              </span>
+              <span class="block text-xs uppercase" style="margin-top:.55rem;font-family:'IBM Plex Mono',monospace;letter-spacing:.2em;opacity:.8;text-shadow:0 1px 3px rgba(7,20,31,.9)">
+                Seychelles · 05:58 → 07:31 · index 0.04
+              </span>
+            </figcaption>
+          </figure>
+
+          <!-- THE SURVIVOR — full bleed, and it is a film -->
+          <figure data-shore-last="" class="relative flex-none h-full" style="width:100vw;padding:0;margin:0">
+            <div data-film-stage="" class="relative w-full h-full overflow-hidden">
+              <canvas data-film-canvas="" class="absolute inset-0 w-full h-full" style="filter:saturate(.82) contrast(1.04) brightness(.97)" aria-label="The camera pulls back from the waterline to an empty bay at sunset"></canvas>
+              <img data-film-fallback="" loading="lazy" src="assets/unwind/f_193.jpg" alt="An empty shoreline at golden hour, surf running up pale sand" class="absolute inset-0 w-full h-full object-cover hidden">
+              <div class="absolute inset-0 pointer-events-none" style="mix-blend-mode:soft-light;background:linear-gradient(160deg,rgba(11,32,48,.5),rgba(198,74,50,.26) 78%)"></div>
+              <div class="absolute inset-0 pointer-events-none" style="background:radial-gradient(ellipse 74% 60% at 50% 56%,rgba(7,20,31,.6) 0%,rgba(7,20,31,.48) 44%,rgba(7,20,31,.22) 72%,rgba(7,20,31,.06) 100%)"></div>
+            </div>
+            <figcaption class="absolute left-0 right-0 text-center" style="top:50%;transform:translateY(-50%);z-index:2;padding:0 3.4vw;color:#F5EDE2">
+              <span class="block text-xs uppercase" style="margin:0 0 1.6rem;font-family:'IBM Plex Mono',monospace;letter-spacing:.2em;opacity:.8;text-shadow:0 1px 3px rgba(7,20,31,.9)">
+                Cala Ausente · Mallorca · 06:12 → 07:50 · index 0.02
+              </span>
+              <p data-drift-line="" style="margin:0 auto;font-weight:600;font-stretch:125%;letter-spacing:-.025em;font-size:clamp(2.6rem,1rem + 5.8vw,6.6rem);max-width:14ch;line-height:1.14;color:#F5EDE2;text-shadow:0 1px 4px rgba(7,20,31,.85),0 3px 26px rgba(7,20,31,.65);opacity:0">
+                You arrive
+                <em style="font-style:italic;color:#E2705A">alone.</em>
+              </p>
+              <p data-drift-coda="" style="margin:2.2rem auto 0;max-width:38rem;font-size:clamp(1rem,1.25vw,1.15rem);line-height:1.55;color:#F5EDE2;opacity:0;text-shadow:0 1px 3px rgba(7,20,31,.9),0 2px 18px rgba(7,20,31,.6)">
+                Ninety minutes later the first boat rounds the point. The bay
+                becomes somebody else's.
+              </p>
+            </figcaption>
+          </figure>
+        </div>
+
+        <p data-drift-label="" class="absolute uppercase text-xs" style="top:6vh;left:3.4vw;z-index:3;font-weight:600;letter-spacing:.32em;color:#A83D28;margin:0">
+          <span style="margin-right:1.1em;opacity:.62">04</span>
+          Six shores, one window
+        </p>
+        <div class="absolute" style="left:3.4vw;right:3.4vw;bottom:5vh;z-index:3;height:1px;background:rgba(51,41,30,.18)">
+          <i data-drift-bar="" class="block h-full" style="background:#C64A32;transform:scaleX(0);transform-origin:left center"></i>
+        </div>
+
+        <!-- ══ 5 · THE CLOSE — a circle opens onto paper ══ -->
+        <footer id="book" data-close="" class="absolute inset-0 grid place-items-center text-center" style="z-index:10;background:#F0E5D4;color:#33291E;padding:12vh 3.4vw 10vh;clip-path:circle(0% at 50% 50%);will-change:clip-path">
+          <div style="max-width:46rem">
+            <p data-close-el="" class="uppercase text-xs" style="font-weight:600;letter-spacing:.32em;color:#A83D28;margin:0 0 2.2rem;opacity:0">
+              Computed hourly, sold rarely
+            </p>
+            <h2 data-close-el="" style="margin:0 auto;font-weight:600;font-stretch:125%;letter-spacing:-.025em;font-size:clamp(2.6rem,1rem + 5.8vw,6.6rem);max-width:14ch;line-height:1.14;opacity:0">
+              The sea,
+              <br>
+              <em style="font-style:italic;color:#C64A32">to yourself.</em>
+            </h2>
+            <p data-close-el="" style="margin:2.4rem auto 0;max-width:34rem;font-size:clamp(1.05rem,1.3vw,1.2rem);line-height:1.6;color:#33291E;opacity:0">
+              We hold one window per shore, and we only sell it once. Tell us
+              which coast, and the engine will watch it for you.
+            </p>
+            <p data-close-el="" class="text-xs uppercase" style="margin:3.2rem 0 0;font-family:'IBM Plex Mono',monospace;letter-spacing:.22em;color:#A83D28;opacity:0">
+              Next window · Cala Ausente · 06:12 → 07:50 · index 0.02
+            </p>
+            <a data-close-el="" data-magnetic="" href="mailto:hello@vacance.co?subject=Find%20my%20window" class="inline-flex items-center justify-center" style="margin-top:1.6rem;min-height:56px;padding:1rem 2.6rem;background:#C64A32;color:#F5EDE2;border-radius:999px;font-weight:600;font-stretch:112%;font-size:clamp(1.18rem,1.4vw,1.3rem);letter-spacing:.01em;text-decoration:none;opacity:0;will-change:transform;transition:background .4s cubic-bezier(.16,1,.3,1)">
+              Find my window
+            </a>
+            <p data-close-el="" style="margin:1.4rem 0 0;font-size:.9rem;color:#33291E;opacity:0">
+              or write to
+              <a href="mailto:hello@vacance.co" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(51,41,30,.3);padding-bottom:1px">
+                hello@vacance.co
+              </a>
+            </p>
+          </div>
+          <p class="absolute text-xs" style="bottom:2.2rem;left:50%;transform:translateX(-50%);max-width:92vw;color:rgba(51,41,30,.58);font-family:'IBM Plex Mono',monospace;letter-spacing:.06em;margin:0">
+            © 2026 Vacance, a fictional agency · Window footage: Benlisquare,
+            Wikimedia Commons (CC BY-SA 4.0) · All other film and stills
+            generated for this build
+          </p>
+        </footer>
+      </div>
+    </section>
+
+    <script src="assets/gsap.js"></script>
+    <script src="assets/scrolltrigger.js"></script>
+    <script src="assets/splittext.js"></script>
+    <script src="assets/lenis.js"></script>
+    <script>
+      /* ════════════════════════════════════════════════════════════
+         VACANCE — scroll choreography. One personality: slow expo.out,
+         heavy Lenis scroll, every frame bound to scroll position.
+         ════════════════════════════════════════════════════════════ */
+      const ASSETS = 'assets/';
+      gsap.registerPlugin(ScrollTrigger, SplitText);
+
+      const EASE = 'expo.out', REVEAL = 1.2, CROWD_START = 340;
+      const staticMode = new URLSearchParams(location.search).has('static');
+      const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches || staticMode;
+      const q = (s, r) => (r || document).querySelector(s);
+      const qa = (s, r) => Array.from((r || document).querySelectorAll(s));
+
+      /* grain, painted in JS so no stylesheet is needed */
+      const GRAIN = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E";
+      q('[data-grain]').style.backgroundImage = 'url("' + GRAIN + '")';
+
+      /* ── Lenis ↔ ScrollTrigger: one shared scroll position ── */
+      let lenis;
+      if (!reduced) {
+        lenis = new Lenis({ duration: 1.45, easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)), smoothWheel: true });
+        lenis.on('scroll', ScrollTrigger.update);
+        gsap.ticker.add(t => lenis.raf(t * 1000));
+        gsap.ticker.lagSmoothing(0);
+        ScrollTrigger.addEventListener('refresh', () => lenis.resize());
+        lenis.stop();
+        window.lenis = lenis;
+      }
+
+      /* ── custom cursor: 26px ring → 54px on hover ── */
+      function initCursor() {
+        const cur = q('[data-cursor]');
+        if (!cur) return;
+        if (reduced || !matchMedia('(pointer: fine)').matches) { cur.style.display = 'none'; return; }
+        /* Only now is there a ring to replace the native pointer with. */
+        document.body.classList.add('has-ring-cursor');
+        let mx = innerWidth / 2, my = innerHeight / 2, cx = mx, cy = my;
+        addEventListener('pointermove', e => { mx = e.clientX; my = e.clientY; });
+        gsap.ticker.add(() => {
+          cx += (mx - cx) * 0.16; cy += (my - cy) * 0.16;
+          cur.style.transform = 'translate(' + cx + 'px, ' + cy + 'px)';
+        });
+        const enter = () => gsap.to(cur, { width: 54, height: 54, margin: '-27px 0 0 -27px', backgroundColor: 'rgba(226,112,90,.18)', duration: .35, ease: EASE });
+        const leave = () => gsap.to(cur, { width: 26, height: 26, margin: '-13px 0 0 -13px', backgroundColor: 'rgba(226,112,90,0)', duration: .35, ease: EASE });
+        qa('a, button, [data-magnetic]').forEach(el => { el.addEventListener('pointerenter', enter); el.addEventListener('pointerleave', leave); });
+      }
+
+      /* ── magnetic buttons ── */
+      function initMagnetic() {
+        if (reduced || !matchMedia('(pointer: fine)').matches) return;
+        qa('[data-magnetic]').forEach(el => {
+          el.addEventListener('pointermove', e => {
+            const r = el.getBoundingClientRect();
+            gsap.to(el, { x: (e.clientX - r.left - r.width / 2) * .28, y: (e.clientY - r.top - r.height / 2) * .38, duration: .6, ease: EASE });
+          });
+          el.addEventListener('pointerleave', () => gsap.to(el, { x: 0, y: 0, duration: .9, ease: EASE }));
+        });
+      }
+
+      /* ── hero title: line one built word by word, line two breathed in ── */
+      const titleTweens = [];
+      function initHeroTitle() {
+        const words = q('[data-hero-words]'), breath = q('[data-hero-breath]');
+        if (!words || !breath) return;
+        let parts = [words];
+        try { parts = new SplitText(words, { type: 'words' }).words; } catch (e) { parts = [words]; }
+        gsap.set(parts, { yPercent: 116, opacity: 0 });
+        gsap.set(breath, { opacity: 0, filter: 'blur(16px)', y: 26 });
+        titleTweens.push(gsap.to(parts, { yPercent: 0, opacity: 1, duration: 1.5, ease: EASE, stagger: .1, paused: true }));
+        titleTweens.push(gsap.to(breath, { opacity: 1, filter: 'blur(0px)', y: 0, duration: 1.9, ease: EASE, delay: .55, paused: true }));
+      }
+
+      function playHero() {
+        titleTweens.forEach(t => t.play());
+        gsap.to('[data-reveal]', { opacity: 1, y: 0, duration: REVEAL, ease: EASE, stagger: .12, delay: .3 });
+      }
+
+      /* ── loader: the machine empties the beach ── */
+      function initLoader() {
+        const loader = q('[data-loader]');
+        if (!loader) { if (lenis) lenis.start(); playHero(); return; }
+        const mark = q('[data-loader-mark]'), wrap = q('[data-loader-barwrap]'),
+              bar = q('[data-loader-bar]'), line = q('[data-loader-line]'), count = q('[data-count]');
+        const n = { v: CROWD_START };
+        const tl = gsap.timeline({
+          onComplete() { if (lenis) lenis.start(); playHero(); ScrollTrigger.refresh(); }
+        });
+        tl.to([mark, wrap, line], { opacity: 1, duration: .9, ease: EASE, stagger: .12 })
+          .to(n, { v: 0, duration: reduced ? .4 : 2.4, ease: 'expo.inOut', onUpdate() { count.textContent = Math.round(n.v); } }, '<0.2')
+          .to(bar, { scaleX: 0, duration: reduced ? .4 : 2.4, ease: 'expo.inOut' }, '<')
+          .to(loader, { opacity: 0, duration: 1.1, ease: EASE, onComplete() { loader.style.display = 'none'; } }, '+=0.35');
+      }
+
+      /* ── scroll-scrubbed frame sequences, with a still fallback ── */
+      function sequence(canvas, fallback, dir, total) {
+        if (!canvas || !fallback) return null;
+        const ctx = canvas.getContext('2d');
+        const images = []; let ready = false, frame = 0;
+        const url = i => ASSETS + dir + '/f_' + String(i).padStart(3, '0') + '.jpg';
+        function draw() {
+          const img = images[frame];
+          if (!img || !img.complete || !img.naturalWidth) return;
+          const cw = canvas.width, ch = canvas.height;
+          const r = Math.max(cw / img.naturalWidth, ch / img.naturalHeight);
+          const w = img.naturalWidth * r, h = img.naturalHeight * r;
+          ctx.clearRect(0, 0, cw, ch);
+          ctx.drawImage(img, (cw - w) / 2, (ch - h) / 2, w, h);
+        }
+        function size() {
+          const d = Math.min(devicePixelRatio || 1, 2);
+          canvas.width = Math.max(1, canvas.clientWidth * d);
+          canvas.height = Math.max(1, canvas.clientHeight * d);
+          draw();
+        }
+        const probe = new Image();
+        probe.onload = () => {
+          ready = true; images[0] = probe;
+          for (let i = 2; i <= total; i++) { const im = new Image(); im.src = url(i); images[i - 1] = im; }
+          size();
+        };
+        probe.onerror = () => { canvas.style.display = 'none'; fallback.classList.remove('hidden'); };
+        probe.src = url(1);
+        addEventListener('resize', size);
+        return { set(p) { if (!ready) return; const f = Math.round(Math.max(0, Math.min(1, p)) * (total - 1)); if (f === frame) return; frame = f; draw(); } };
+      }
+
+      /* ── 1 · the opening ── */
+      function initOpening() {
+        const stage = q('[data-opening-stage]');
+        if (!stage) return;
+        const seq = sequence(q('[data-opening-canvas]'), q('[data-opening-fallback]'), 'opening', 193);
+        const beats = qa('[data-beat]'), cells = qa('[data-cell]'), prox = { p: 0 };
+        const tl = gsap.timeline({
+          scrollTrigger: { trigger: stage, start: 'top top', end: '+=4200', pin: true, scrub: 1, anticipatePin: 1 }
+        });
+        tl.to(prox, { p: 1, ease: 'none', duration: 10, onUpdate() { if (seq) seq.set(prox.p); } }, 0);
+        tl.to('[data-scroll-hint]', { opacity: 0, duration: .4 }, 0)
+          .to('[data-title]', { opacity: 0, y: -60, duration: 1 }, .5)
+          .to('[data-openinggrade]', { opacity: 1, duration: 1 }, '<')
+          .to('[data-absences]', { opacity: 1, duration: .6 }, '<0.3')
+          .to(cells, { opacity: 1, duration: .5, stagger: .08 }, '<');
+        beats.forEach((b, i) => {
+          tl.to(b, { opacity: 1, duration: .5 }, '>')
+            .to(b, { opacity: 0, duration: .5 }, i === beats.length - 1 ? '+=1.4' : '+=0.9');
+        });
+        tl.to('[data-absences]', { opacity: 0, duration: .6 }, '>-0.3')
+          .to('[data-passage]', { opacity: 1, duration: .8 }, '<')
+          .to('[data-passage-rule]', { scaleX: 1, duration: 1 }, '<0.2')
+          .to('[data-passage]', { opacity: 0, duration: .8 }, '+=1.8');
+      }
+
+      /* ── 2 · before the boats ── */
+      function initNight() {
+        const stage = q('[data-night-stage]');
+        if (!stage) return;
+        const seq = sequence(q('[data-night-canvas]'), q('[data-night-fallback]'), 'tide', 193);
+        const caps = qa('[data-cap]'), num = q('[data-count-n]'), time = q('[data-count-time]'), prox = { p: 0 };
+        const tl = gsap.timeline({
+          scrollTrigger: { trigger: stage, start: 'top top', end: '+=4600', pin: true, scrub: 1, anticipatePin: 1 }
+        });
+        tl.to(prox, { p: 1, ease: 'none', duration: 12, onUpdate() { if (seq) seq.set(prox.p); } }, 0);
+        tl.to('[data-night-canvas]', { opacity: 1, duration: .8 }, 0)
+          .to('[data-count-ground]', { opacity: 1, duration: .8 }, '<')
+          .to('[data-count-group]', { opacity: 1, duration: .6 }, '<0.2')
+          .to('[data-tide]', { height: '46%', ease: 'none', duration: 10 }, 0);
+        caps.forEach((cap, i) => {
+          const target = Number(cap.dataset.crowd) || 0;
+          const from = i ? (Number(caps[i - 1].dataset.crowd) || 0) : 0;
+          const o = { v: from };
+          const stamp = cap.dataset.time;
+          tl.call(() => { if (time) time.textContent = stamp; }, null, '>')
+            .to(cap, { opacity: 1, duration: .45 }, '<')
+            .to(o, { v: target, duration: .9, ease: 'none', onUpdate() { if (num) num.textContent = Math.round(o.v); } }, '<')
+            .to(cap, { opacity: 0, duration: .45 }, i === caps.length - 1 ? '+=1.2' : '+=0.9');
+        });
+        tl.to('[data-count-group]', { opacity: 0, duration: .6 }, '>-0.2')
+          .to('[data-night-wash]', { opacity: 1, duration: 1 }, '<');
+      }
+
+      /* ── 3 · the window ── */
+      function initWindow(shores) {
+        const stage = q('[data-window-stage]'), portal = q('[data-portal]'), glass = q('[data-glass]');
+        if (!stage || !portal) return;
+        const live = on => { if (shores) shores.setLive(on); };
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: stage, start: 'top top', end: '+=3800', pin: true, scrub: 1, anticipatePin: 1,
+            onEnter: () => { if (glass) glass.style.visibility = 'visible'; live(true); },
+            onEnterBack: () => { if (glass) glass.style.visibility = 'visible'; live(true); },
+            onLeave: () => live(false),
+            onLeaveBack: () => { if (glass) glass.style.visibility = 'hidden'; live(false); }
+          }
+        });
+        tl.to('[data-statement]', { opacity: 1, duration: .8 }, 0)
+          .to('[data-statement]', { opacity: 0, duration: .8 }, 2)
+          .fromTo(portal, { clipPath: 'inset(34% 30% round 2px)' }, { clipPath: 'inset(0% 0% round 0px)', duration: 2, ease: 'none' }, 2)
+          .to('[data-shores]', { opacity: 1, duration: .8 }, '>-0.4')
+          .to({}, { duration: 1.6 });
+      }
+
+      /* ── the four shores ── */
+      function initShores() {
+        const scenes = qa('[data-scene]');
+        if (!scenes.length) return null;
+        const name = q('[data-shore-name]'), coord = q('[data-shore-coord]'),
+              read = q('[data-shore-read]'), idx = q('[data-shore-idx]');
+        let i = 0, playing = false;
+        /* Only the scene in the aperture decodes, and only while the aperture is on screen. */
+        function sync() {
+          scenes.forEach((v, k) => {
+            if (playing && k === i) { const p = v.play(); if (p && p.catch) p.catch(() => {}); }
+            else v.pause();
+          });
+        }
+        function show(n) {
+          i = (n + scenes.length) % scenes.length;
+          scenes.forEach((v, k) => gsap.to(v, { opacity: k === i ? 1 : 0, duration: 1, ease: EASE }));
+          sync();
+          const s = scenes[i];
+          if (name) name.textContent = s.dataset.name;
+          if (coord) coord.textContent = s.dataset.coord;
+          if (read) read.textContent = s.dataset.read;
+          if (idx) idx.textContent = String(i + 1).padStart(2, '0');
+        }
+        const prev = q('[data-shore-prev]'), next = q('[data-shore-next]');
+        if (prev) prev.addEventListener('click', () => show(i - 1));
+        if (next) next.addEventListener('click', () => show(i + 1));
+        show(0);
+        return { setLive(on) { playing = on; sync(); } };
+      }
+
+      /* ── 4 · the drift, and 5 · the close ── */
+      function initDrift() {
+        const stage = q('[data-drift-stage]'), track = q('[data-drift-track]');
+        if (!stage || !track) return;
+        const dist = () => Math.max(0, track.scrollWidth - innerWidth);
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: stage, start: 'top top', end: () => '+=' + (dist() + innerHeight * 2.2),
+            pin: true, scrub: 1, anticipatePin: 1, invalidateOnRefresh: true
+          }
+        });
+        tl.to(track, { x: () => -dist(), ease: 'none', duration: 6 }, 0)
+          .to('[data-drift-bar]', { scaleX: 1, ease: 'none', duration: 6 }, 0)
+          .to(qa('[data-shore-img]'), { xPercent: 6, ease: 'none', duration: 6 }, 0)
+          .to('[data-drift-line]', { opacity: 1, duration: .9 }, '>-1.2')
+          .to('[data-drift-coda]', { opacity: 1, duration: .9 }, '>-0.5')
+          .to('[data-drift-label]', { opacity: 0, duration: .5 }, '<')
+          .to('[data-close]', { clipPath: 'circle(78% at 50% 50%)', duration: 1.8, ease: 'none' }, '>')
+          .to('[data-close-el]', { opacity: 1, duration: .8, stagger: .1 }, '>-0.8');
+        const seq = sequence(q('[data-film-canvas]'), q('[data-film-fallback]'), 'unwind', 193);
+        if (seq) {
+          const prox = { p: 0 };
+          tl.to(prox, { p: 1, ease: 'none', duration: 6, onUpdate() { seq.set(prox.p); } }, 0);
+        }
+      }
+
+      /* ── the scroll rail, and the paper/ink palette shifts ── */
+      function initChrome() {
+        gsap.to('[data-progress]', {
+          scaleY: 1, ease: 'none',
+          scrollTrigger: { start: 0, end: 'max', scrub: .3 }
+        });
+        qa('[data-bg]').forEach(el => {
+          ScrollTrigger.create({
+            trigger: el, start: 'top 60%', end: 'bottom 40%',
+            onToggle: self => { if (self.isActive) gsap.to(document.body, { backgroundColor: el.dataset.bg, duration: .9, ease: EASE }); }
+          });
+        });
+      }
+
+      initCursor();
+      initMagnetic();
+      initHeroTitle();
+      initOpening();
+      initNight();
+      initWindow(initShores());
+      initDrift();
+      initChrome();
+      initLoader();
+
+      addEventListener('load', () => ScrollTrigger.refresh());
+    </script>
+  </body>
+</html>
