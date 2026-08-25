@@ -1,51 +1,25 @@
-<!doctype html>
-<html lang="ur-Latn">
-  <head>
+<html lang="ur-Latn"><head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#0B2030">
     <title>Laiba — ek sawaal, Rafay ki taraf se.</title>
     <meta name="description" content="Rafay ki taraf se Laiba ke liye — ek sawaal jo aaj tak zabaan par nahi aaya tha.">
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 84C22 64 10 48 10 34a20 20 0 0 1 40-6 20 20 0 0 1 40 6c0 14-12 30-40 50z' fill='%23C64A32'/%3E%3C/svg%3E">
-
-    <link rel="preload" as="font" type="font/woff2" href="assets/fonts/archivo-variable.woff2" crossorigin>
-    <link rel="preload" as="font" type="font/woff2" href="assets/fonts/ibm-plex-mono-400.woff2" crossorigin>
-    <link rel="stylesheet" href="assets/styles.css">
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,300..800;1,62..125,300..800&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
     <style>
-      /* Page-specific chrome. Everything else lives in assets/styles.css. */
       html{scrollbar-width:none}body{-ms-overflow-style:none}::-webkit-scrollbar{width:0;height:0;display:none}
       ::selection{background:#C64A32;color:#F5EDE2}
       :focus-visible{outline:2px solid #E2705A;outline-offset:3px;border-radius:3px;box-shadow:0 0 0 5px rgba(7,20,31,.35)}
-      /* The ring cursor hides the native one, but only once JS has actually put a ring on screen. */
-      body.has-ring-cursor,body.has-ring-cursor *{cursor:none}
     </style>
-
-    <noscript>
-      <style>
-        /* Without JS none of the scroll choreography runs, so the page is flattened
-           into a plain vertical read: stills instead of canvases, every scroll-revealed
-           element already revealed, and the sideways drift dropped in favour of the close. */
-        [data-loader],[data-cursor],[data-grain]{display:none!important}
-        [data-opening-canvas],[data-night-canvas],[data-film-canvas]{display:none!important}
-        [data-opening-fallback],[data-night-fallback],[data-film-fallback]{display:block!important}
-        [data-reveal],[data-count-group],[data-shores],[data-close-el]{opacity:1!important;transform:none!important}
-        [data-night]{margin-top:0!important}
-        [data-cap]{opacity:0!important}
-        [data-cap]:first-child{opacity:1!important}
-        [data-window-stage]{height:auto!important;padding:16vh 0 10vh}
-        [data-statement]{position:static!important;opacity:1!important}
-        [data-portal]{position:relative!important;clip-path:none!important;margin:6vh auto 0!important;top:auto!important;bottom:auto!important}
-        [data-glass]{position:absolute!important;visibility:visible!important}
-        [data-glass] [data-scene]{width:100%!important;height:100%!important}
-        [data-shores]{position:static!important;margin-top:4vh!important}
-        [data-drift-track],[data-drift-label]{display:none!important}
-        [data-close]{clip-path:none!important}
-      </style>
-    </noscript>
   </head>
 
-  <body style="--sand:#F0E5D4;--sand2:#E6D8C3;--deep:#0B2030;--ink:#33291E;--coral:#C64A32;--coral-deep:#A83D28;--coral-soft:#E2705A;--cream:#F5EDE2;background:#0B2030;color:#33291E;font-family:'Archivo',system-ui,sans-serif;line-height:1.55;overflow-x:clip;-webkit-font-smoothing:antialiased;margin:0">
+  <body style="--sand:#F0E5D4;--sand2:#E6D8C3;--deep:#0B2030;--ink:#33291E;--coral:#C64A32;--coral-deep:#A83D28;--coral-soft:#E2705A;--cream:#F5EDE2;background:#0B2030;color:#33291E;font-family:'Archivo',system-ui,sans-serif;line-height:1.55;overflow-x:clip;cursor:none;-webkit-font-smoothing:antialiased;margin:0">
     <!-- ══ ATMOSPHERE ══ -->
     <div data-grain="" class="fixed inset-0 pointer-events-none" style="z-index:9990;opacity:.05;mix-blend-mode:overlay"></div>
     <div data-cursor="" class="fixed top-0 left-0 rounded-full pointer-events-none" style="z-index:9995;width:26px;height:26px;margin:-13px 0 0 -13px;border:1px solid #E2705A"></div>
@@ -69,7 +43,7 @@
             340
           </span>
           <span class="text-xs uppercase" style="font-family:'IBM Plex Mono',monospace;letter-spacing:.3em;color:rgba(245,237,226,.55)">
-            naam — aur un mein se ek tum
+            naam sochay, aur un sab mein se ek tum nikli
           </span>
         </p>
       </div>
@@ -89,7 +63,7 @@
     <header id="top" data-bg="#0B2030" class="relative" style="color:#F5EDE2;z-index:2">
       <div data-opening-stage="" class="relative overflow-hidden" style="height:100vh;height:100svh">
         <canvas data-opening-canvas="" class="absolute inset-0 w-full h-full" style="filter:saturate(.82) contrast(1.04) brightness(.97)" aria-label="One continuous aerial film: a dark glassy lagoon at blue hour, the sun breaking, the camera rising over an empty sandbar"></canvas>
-        <img data-opening-fallback="" class="absolute inset-0 w-full h-full object-cover hidden" src="assets/opening/f_193.jpg" alt="An empty sandbar in low golden light, crossed by long palm shadows">
+        <img data-opening-fallback="" class="absolute inset-0 w-full h-full object-cover hidden" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/b4615ed6-88f2-4a17-bf10-144db7680a28_3840w.png" alt="An empty sandbar in low golden light, crossed by long palm shadows" data-element-src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/b4615ed6-88f2-4a17-bf10-144db7680a28_3840w.png">
         <div class="absolute inset-0 pointer-events-none" style="z-index:1;mix-blend-mode:soft-light;background:linear-gradient(160deg,rgba(11,32,48,.5),rgba(198,74,50,.26) 78%)"></div>
 
         <div data-shade="" class="absolute inset-0 pointer-events-none" style="z-index:1;background:linear-gradient(to top,rgba(7,20,31,.72) 0%,rgba(7,20,31,.24) 40%,rgba(7,20,31,.06) 62%,rgba(7,20,31,.34) 100%)"></div>
@@ -218,7 +192,7 @@
             <br>
             Ab uska matlab kam hai.
             <br>
-            Kam shor, kam bhaag-daud, kam naam.
+            Kam shor, kam sawaal, kam naam.
             <br>
             <em style="font-style:italic;color:#E2705A">
               Aakhir mein sirf ek naam bacha —
@@ -230,11 +204,11 @@
       </div>
     </header>
 
-    <!-- ══ 2 · BEFORE THE BOATS — 193 frames, the counter, the tide ══ -->
+    <!-- ══ 2 · BEFORE THE BOATS — 150 frames, the counter, the tide ══ -->
     <section data-night="" data-bg="#0B2030" class="relative" style="color:#F5EDE2;margin-top:-100vh;z-index:1">
       <div data-night-stage="" class="relative overflow-hidden" style="height:100vh;height:100svh">
-        <canvas data-night-canvas="" class="absolute inset-0 w-full h-full" style="opacity:0;filter:saturate(.7) contrast(1.06) brightness(.86)" aria-label="A second film: the tide falling off a pale sandbar as the sky goes from dusk to first light, scrubbed by scroll"></canvas>
-        <img data-night-fallback="" class="absolute inset-0 w-full h-full object-cover hidden" src="assets/tide/f_193.jpg" alt="An empty sandbar curving into still turquoise water under a dawn sky">
+        <canvas data-night-canvas="" class="absolute inset-0 w-full h-full" style="opacity:0;filter:saturate(.7) contrast(1.06) brightness(.86)" aria-label="A second film: out from deep shade under palms onto an empty cove at dusk, scrubbed by scroll"></canvas>
+        <img data-night-fallback="" class="absolute inset-0 w-full h-full object-cover hidden" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/69f3035b-97b2-4103-abbb-82e80d0737fd_3840w.png" alt="An empty cove at dusk seen from the shade of palms" data-element-src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/69f3035b-97b2-4103-abbb-82e80d0737fd_3840w.png">
         <div class="absolute inset-0 pointer-events-none" style="z-index:1;mix-blend-mode:soft-light;background:linear-gradient(160deg,rgba(11,32,48,.5),rgba(198,74,50,.26) 78%)"></div>
 
         <div class="absolute inset-0 pointer-events-none" style="z-index:1;background:linear-gradient(to top,rgba(7,20,31,.72) 0%,rgba(7,20,31,.45) 22%,rgba(7,20,31,.12) 48%,transparent 66%)"></div>
@@ -243,13 +217,8 @@
         <div data-tide="" class="absolute left-0 right-0 bottom-0 pointer-events-none" style="height:0;z-index:2;background:linear-gradient(to top,rgba(7,20,31,.52) 0%,rgba(198,74,50,.18) 58%,rgba(198,74,50,.12) 100%);border-top:2px solid #E2705A;box-shadow:0 -1px 0 rgba(226,112,90,.5),0 -10px 44px rgba(198,74,50,.3)"></div>
         <div data-night-wash="" class="absolute inset-0 pointer-events-none" style="z-index:6;background:#F0E5D4;opacity:0"></div>
 
-        <!-- Scrim for the copy column, anchored to the stage so it does not follow the column's flow. -->
-        <div class="absolute left-0 right-0 pointer-events-none" style="z-index:3;top:0;height:76vh;background:radial-gradient(ellipse 52% 40% at 50% 34%,rgba(7,20,31,.48) 0%,rgba(7,20,31,.44) 55%,rgba(7,20,31,.22) 78%,transparent 100%),linear-gradient(to bottom,rgba(7,20,31,.6) 0%,rgba(7,20,31,.57) 22%,rgba(7,20,31,.5) 44%,rgba(7,20,31,.24) 68%,transparent 100%)"></div>
-
-        <!-- Heading and counter share one centred column: the counter is tall enough
-             that positioning the two independently collided on every laptop height. -->
-        <div class="absolute inset-0 flex flex-col items-center justify-center text-center" style="z-index:4;padding:13vh 3.4vw 7vh">
-          <div data-night-head="" class="relative" style="width:100%">
+        <div data-night-head="" class="absolute left-0 right-0 text-center" style="z-index:4;top:20vh;padding:0 3.4vw">
+          <div class="absolute pointer-events-none" style="z-index:-1;left:0;right:0;top:-20vh;height:76vh;background:radial-gradient(ellipse 52% 40% at 50% 34%,rgba(7,20,31,.48) 0%,rgba(7,20,31,.44) 55%,rgba(7,20,31,.22) 78%,transparent 100%),linear-gradient(to bottom,rgba(7,20,31,.6) 0%,rgba(7,20,31,.57) 22%,rgba(7,20,31,.5) 44%,rgba(7,20,31,.24) 68%,transparent 100%)"></div>
           <p class="uppercase text-xs" style="font-weight:600;letter-spacing:.32em;color:#E2705A;margin:0 0 1.6rem">
             <span style="margin-right:1.1em;opacity:.62">02</span>
             Ek din ki ginti
@@ -259,13 +228,13 @@
             <br>
             <em style="font-style:italic;color:#E2705A">ek hi hisaab.</em>
           </h2>
-          </div>
+        </div>
 
-          <div data-count-group="" style="width:100%;margin-top:clamp(1.4rem,4vh,3rem);opacity:0">
+        <div data-count-group="" class="absolute left-0 right-0 text-center" style="z-index:4;top:50%;transform:translateY(-50%);padding:0 3.4vw;opacity:0">
           <p data-count-time="" style="margin:0;font-family:'IBM Plex Mono',monospace;font-size:clamp(1.18rem,1.4vw,1.34rem);letter-spacing:.34em;color:#F5EDE2;opacity:.92;text-shadow:0 1px 3px rgba(7,20,31,.9),0 2px 16px rgba(7,20,31,.6)">
             06:12
           </p>
-          <p data-count-n="" style="margin:.5rem 0 .4rem;font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:min(clamp(5rem,2rem + 13vw,14rem),24vh);line-height:.92;letter-spacing:-.02em;font-variant-numeric:tabular-nums;color:#F5EDE2;text-shadow:0 1px 4px rgba(7,20,31,.9),0 3px 18px rgba(7,20,31,.75),0 8px 54px rgba(7,20,31,.5)">
+          <p data-count-n="" style="margin:.5rem 0 .4rem;font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:clamp(5rem,2rem + 13vw,14rem);line-height:.92;letter-spacing:-.02em;font-variant-numeric:tabular-nums;color:#F5EDE2;text-shadow:0 1px 4px rgba(7,20,31,.9),0 3px 18px rgba(7,20,31,.75),0 8px 54px rgba(7,20,31,.5)">
             0
           </p>
           <p class="text-xs uppercase" style="margin:0;font-family:'IBM Plex Mono',monospace;letter-spacing:.32em;color:#F5EDE2;opacity:.82;text-shadow:0 1px 3px rgba(7,20,31,.9),0 2px 14px rgba(7,20,31,.6)">
@@ -275,6 +244,9 @@
 
           <ol data-caps="" class="relative grid" style="list-style:none;margin:2.6rem 0 0;padding:0;min-height:6.5rem;place-items:start center">
             <li data-cap="" data-crowd="1" data-time="06:12" style="grid-area:1/1;opacity:0;width:min(38rem,90vw)">
+              <span data-cap-stamp="" class="text-xs uppercase hidden" style="font-family:'IBM Plex Mono',monospace;letter-spacing:.08em;color:#E2705A;margin-bottom:.6rem">
+                06:12 — pehla khayal
+              </span>
               <p data-cap-name="" style="margin:0;font-weight:600;font-stretch:118%;font-size:clamp(1.15rem,1rem + .6vw,1.6rem);line-height:1.14;color:#F5EDE2;text-shadow:0 1px 3px rgba(7,20,31,.9),0 3px 22px rgba(7,20,31,.6)">
                 Pehla khayal
               </p>
@@ -283,6 +255,9 @@
               </p>
             </li>
             <li data-cap="" data-crowd="6" data-time="08:05" style="grid-area:1/1;opacity:0;width:min(38rem,90vw)">
+              <span data-cap-stamp="" class="text-xs uppercase hidden" style="font-family:'IBM Plex Mono',monospace;letter-spacing:.08em;color:#E2705A;margin-bottom:.6rem">
+                08:05 — 6 baar
+              </span>
               <p data-cap-name="" style="margin:0;font-weight:600;font-stretch:118%;font-size:clamp(1.15rem,1rem + .6vw,1.6rem);line-height:1.14;color:#F5EDE2;text-shadow:0 1px 3px rgba(7,20,31,.9),0 3px 22px rgba(7,20,31,.6)">
                 Chai ke saath
               </p>
@@ -291,6 +266,9 @@
               </p>
             </li>
             <li data-cap="" data-crowd="84" data-time="11:00" style="grid-area:1/1;opacity:0;width:min(38rem,90vw)">
+              <span data-cap-stamp="" class="text-xs uppercase hidden" style="font-family:'IBM Plex Mono',monospace;letter-spacing:.08em;color:#E2705A;margin-bottom:.6rem">
+                11:00 — 84 baar
+              </span>
               <p data-cap-name="" style="margin:0;font-weight:600;font-stretch:118%;font-size:clamp(1.15rem,1rem + .6vw,1.6rem);line-height:1.14;color:#F5EDE2;text-shadow:0 1px 3px rgba(7,20,31,.9),0 3px 22px rgba(7,20,31,.6)">
                 Kaam ke darmiyan
               </p>
@@ -299,6 +277,9 @@
               </p>
             </li>
             <li data-cap="" data-crowd="340" data-time="16:30" style="grid-area:1/1;opacity:0;width:min(38rem,90vw)">
+              <span data-cap-stamp="" class="text-xs uppercase hidden" style="font-family:'IBM Plex Mono',monospace;letter-spacing:.08em;color:#E2705A;margin-bottom:.6rem">
+                16:30 — 340 baar
+              </span>
               <p data-cap-name="" style="margin:0;font-weight:600;font-stretch:118%;font-size:clamp(1.15rem,1rem + .6vw,1.6rem);line-height:1.14;color:#F5EDE2;text-shadow:0 1px 3px rgba(7,20,31,.9),0 3px 22px rgba(7,20,31,.6)">
                 Din ka sab se ooncha
               </p>
@@ -308,6 +289,9 @@
               </p>
             </li>
             <li data-cap="" data-crowd="96" data-time="21:15" style="grid-area:1/1;opacity:0;width:min(38rem,90vw)">
+              <span data-cap-stamp="" class="text-xs uppercase hidden" style="font-family:'IBM Plex Mono',monospace;letter-spacing:.08em;color:#E2705A;margin-bottom:.6rem">
+                21:15 — 96 baar
+              </span>
               <p data-cap-name="" style="margin:0;font-weight:600;font-stretch:118%;font-size:clamp(1.15rem,1rem + .6vw,1.6rem);line-height:1.14;color:#F5EDE2;text-shadow:0 1px 3px rgba(7,20,31,.9),0 3px 22px rgba(7,20,31,.6)">
                 Ghar wapas
               </p>
@@ -316,6 +300,9 @@
               </p>
             </li>
             <li data-cap="" data-crowd="1" data-time="23:40" style="grid-area:1/1;opacity:0;width:min(38rem,90vw)">
+              <span data-cap-stamp="" class="text-xs uppercase hidden" style="font-family:'IBM Plex Mono',monospace;letter-spacing:.08em;color:#E2705A;margin-bottom:.6rem">
+                23:40 — aakhri khayal
+              </span>
               <p data-cap-name="" style="margin:0;font-weight:600;font-stretch:118%;font-size:clamp(1.15rem,1rem + .6vw,1.6rem);line-height:1.14;color:#F5EDE2;text-shadow:0 1px 3px rgba(7,20,31,.9),0 3px 22px rgba(7,20,31,.6)">
                 Aakhri khayal
               </p>
@@ -323,8 +310,7 @@
                 Din shuru bhi tumse hua tha. Khatam bhi wahin hota hai.
               </p>
             </li>
-            </ol>
-          </div>
+          </ol>
         </div>
       </div>
     </section>
@@ -351,16 +337,16 @@
 
         <figure data-portal="" class="absolute" style="z-index:2;top:var(--pshift,0px);bottom:calc(-1 * var(--pshift, 0px));left:0;right:0;margin:auto;width:min(84vw,1260px);height:min(62vh,700px);clip-path:inset(34% 30% round 2px)">
           <div data-glass="" class="fixed inset-0" style="z-index:0;visibility:hidden">
-            <video data-scene="" class="absolute inset-0 object-cover" style="width:100vw;height:100vh;opacity:1;filter:saturate(.82) contrast(1.04) brightness(.97)" muted="" playsinline="" loop="" preload="metadata" src="assets/vid/w1.mp4" poster="assets/vid/w1.jpg" data-name="Cala Ausente" data-coord="39.2841° N, 2.9012° E" data-read="Mallorca — subah 06:12, aur sirf hum do"></video>
-            <video data-scene="" class="absolute inset-0 object-cover" style="width:100vw;height:100vh;opacity:0;filter:saturate(.82) contrast(1.04) brightness(.97)" muted="" playsinline="" loop="" preload="metadata" src="assets/vid/w2.mp4" poster="assets/vid/w2.jpg" data-name="Anse Blanche" data-coord="4.6151° S, 55.4419° E" data-read="Seychelles — jahan waqt ruk sa jata hai"></video>
-            <video data-scene="" class="absolute inset-0 object-cover" style="width:100vw;height:100vh;opacity:0;filter:saturate(.82) contrast(1.04) brightness(.97)" muted="" playsinline="" loop="" preload="metadata" src="assets/vid/w3.mp4" poster="assets/vid/w3.jpg" data-name="Praia Deserta" data-coord="36.9622° N, 7.8895° W" data-read="Portugal — naam ka matlab: khali. hamare liye."></video>
-            <video data-scene="" class="absolute inset-0 object-cover" style="width:100vw;height:100vh;opacity:0;filter:saturate(.82) contrast(1.04) brightness(.97)" muted="" playsinline="" loop="" preload="metadata" src="assets/vid/w4.mp4" poster="assets/vid/w4.jpg" data-name="Haneji Sound" data-coord="26.6544° N, 128.0329° E" data-read="Okinawa — bas tum, main, aur samundar"></video>
+            <video data-scene="" class="absolute inset-0 object-cover" style="width:100vw;height:100vh;opacity:1;filter:saturate(.82) contrast(1.04) brightness(.97)" muted="" playsinline="" preload="metadata" src="https://cdn.jsdelivr.net/gh/Sam1983Aing/aura-assets@1.0.0/vacance/vid/w1.mp4" poster="https://cdn.jsdelivr.net/gh/Sam1983Aing/aura-assets@1.0.0/vacance/vid/w1.jpg" data-name="Cala Ausente" data-coord="39.2841° N, 2.9012° E" data-read="Mallorca — subah 06:12, aur sirf hum do"></video>
+            <video data-scene="" class="absolute inset-0 object-cover" style="width:100vw;height:100vh;opacity:0;filter:saturate(.82) contrast(1.04) brightness(.97)" muted="" playsinline="" preload="metadata" src="https://cdn.jsdelivr.net/gh/Sam1983Aing/aura-assets@1.0.0/vacance/vid/w2.mp4" poster="https://cdn.jsdelivr.net/gh/Sam1983Aing/aura-assets@1.0.0/vacance/vid/w2.jpg" data-name="Anse Blanche" data-coord="4.6151° S, 55.4419° E" data-read="Seychelles — jahan waqt ruk sa jata hai"></video>
+            <video data-scene="" class="absolute inset-0 object-cover" style="width:100vw;height:100vh;opacity:0;filter:saturate(.82) contrast(1.04) brightness(.97)" muted="" playsinline="" preload="metadata" src="https://cdn.jsdelivr.net/gh/Sam1983Aing/aura-assets@1.0.0/vacance/vid/w3.mp4" poster="https://cdn.jsdelivr.net/gh/Sam1983Aing/aura-assets@1.0.0/vacance/vid/w3.jpg" data-name="Praia Deserta" data-coord="36.9622° N, 7.8895° W" data-read="Portugal — naam ka matlab: khali. hamare liye."></video>
+            <video data-scene="" class="absolute inset-0 object-cover" style="width:100vw;height:100vh;opacity:0;filter:saturate(.82) contrast(1.04) brightness(.97)" muted="" playsinline="" preload="metadata" src="https://cdn.jsdelivr.net/gh/Sam1983Aing/aura-assets@1.0.0/vacance/vid/w4.mp4" poster="https://cdn.jsdelivr.net/gh/Sam1983Aing/aura-assets@1.0.0/vacance/vid/w4.jpg" data-name="Haneji Sound" data-coord="26.6544° N, 128.0329° E" data-read="Okinawa — bas tum, main, aur samundar"></video>
           </div>
           <div data-lip="" class="absolute inset-0 pointer-events-none" style="z-index:3;border-radius:10px;box-shadow:inset 0 0 0 1px rgba(245,237,226,.26),inset 0 0 14px 3px rgba(7,20,31,.6),inset 0 0 36px 8px rgba(7,20,31,.42),inset 0 0 74px 20px rgba(7,20,31,.2)"></div>
         </figure>
 
         <div data-shores="" class="absolute left-0 right-0 flex items-center justify-center" style="bottom:6vh;z-index:3;gap:clamp(1.4rem,4vw,3.4rem);padding:0 3.4vw;opacity:0">
-          <button type="button" data-shore-prev="" aria-label="Pichhla kinara" class="grid place-items-center rounded-full flex-none w-11 h-11 md:w-14 md:h-14 border border-[#33291E42] hover:border-[#A83D28]" style="background:rgba(240,229,212,.6);color:#33291E;cursor:pointer;transition:background-color .5s cubic-bezier(.16,1,.3,1),border-color .5s cubic-bezier(.16,1,.3,1),transform .35s cubic-bezier(.16,1,.3,1)">
+          <button type="button" data-shore-prev="" aria-label="Pichhla kinara" class="grid place-items-center rounded-full flex-none w-11 h-11 md:w-14 md:h-14 hover:border-[#A83D28]" style="border:1px solid rgba(51,41,30,.26);background:rgba(240,229,212,.6);color:#33291E;cursor:none;transition:background-color .5s cubic-bezier(.16,1,.3,1),border-color .5s cubic-bezier(.16,1,.3,1),transform .35s cubic-bezier(.16,1,.3,1)">
             <svg viewBox="0 0 24 12" aria-hidden="true" style="width:22px;height:11px;fill:none;stroke:currentColor;stroke-width:1.3">
               <path d="M23 6H1M1 6l6-5M1 6l6 5"></path>
             </svg>
@@ -380,7 +366,7 @@
               Mallorca — subah 06:12, aur sirf hum do
             </p>
           </div>
-          <button type="button" data-shore-next="" aria-label="Agla kinara" class="grid place-items-center rounded-full flex-none w-11 h-11 md:w-14 md:h-14 border border-[#33291E42] hover:border-[#A83D28]" style="background:rgba(240,229,212,.6);color:#33291E;cursor:pointer;transition:background-color .5s cubic-bezier(.16,1,.3,1),border-color .5s cubic-bezier(.16,1,.3,1),transform .35s cubic-bezier(.16,1,.3,1)">
+          <button type="button" data-shore-next="" aria-label="Agla kinara" class="grid place-items-center rounded-full flex-none w-11 h-11 md:w-14 md:h-14 hover:border-[#A83D28]" style="border:1px solid rgba(51,41,30,.26);background:rgba(240,229,212,.6);color:#33291E;cursor:none;transition:background-color .5s cubic-bezier(.16,1,.3,1),border-color .5s cubic-bezier(.16,1,.3,1),transform .35s cubic-bezier(.16,1,.3,1)">
             <svg viewBox="0 0 24 12" aria-hidden="true" style="width:22px;height:11px;fill:none;stroke:currentColor;stroke-width:1.3">
               <path d="M1 6h22M23 6l-6-5M23 6l-6 5"></path>
             </svg>
@@ -395,7 +381,7 @@
         <div data-drift-track="" class="flex h-full" style="will-change:transform">
           <figure class="relative flex-none w-[86vw] md:w-[62vw] h-full pt-[9vh] md:pt-[12vh] px-[.9vw] md:px-[1.1vw] pb-[11vh] md:pb-[14vh]" style="margin:0">
             <div class="relative w-full h-full overflow-hidden" style="border-radius:3px">
-              <img data-shore-img="" loading="lazy" src="assets/shores/s1.jpg" alt="A narrow northern beach of pale stone and flat grey-blue water, a headland under cloud beyond" class="absolute top-0 h-full object-cover" style="left:-10%;width:120%;max-width:none;will-change:transform;filter:saturate(.82) contrast(1.04) brightness(.97)">
+              <img data-shore-img="" loading="lazy" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/3328627a-1585-47fa-a400-e6f88b2a078c_3840w.png" alt="A narrow northern beach of pale stone and flat grey-blue water" class="absolute top-0 h-full object-cover" style="left:-10%;width:120%;max-width:none;will-change:transform;filter:saturate(.82) contrast(1.04) brightness(.97)" data-element-src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/3328627a-1585-47fa-a400-e6f88b2a078c_3840w.png">
               <div class="absolute inset-0 pointer-events-none" style="mix-blend-mode:soft-light;background:linear-gradient(160deg,rgba(11,32,48,.5),rgba(198,74,50,.26) 78%)"></div>
               <div class="absolute inset-0 pointer-events-none" style="background:linear-gradient(to top,rgba(7,20,31,.66) 0%,rgba(7,20,31,.34) 16%,rgba(7,20,31,.08) 34%,transparent 52%)"></div>
             </div>
@@ -411,7 +397,7 @@
 
           <figure class="relative flex-none w-[86vw] md:w-[62vw] h-full pt-[9vh] md:pt-[12vh] px-[.9vw] md:px-[1.1vw] pb-[11vh] md:pb-[14vh]" style="margin:0">
             <div class="relative w-full h-full overflow-hidden" style="border-radius:3px">
-              <img data-shore-img="" loading="lazy" src="assets/shores/s2.jpg" alt="Dark volcanic sand meeting clear shallow water below a bare cinder cone" class="absolute top-0 h-full object-cover" style="left:-10%;width:120%;max-width:none;will-change:transform;filter:saturate(.82) contrast(1.04) brightness(.97)">
+              <img data-shore-img="" loading="lazy" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/e9820a4e-8b06-405d-a170-9266b1f32993_3840w.png" alt="Dark volcanic sand meeting clear shallow water" class="absolute top-0 h-full object-cover" style="left:-10%;width:120%;max-width:none;will-change:transform;filter:saturate(.82) contrast(1.04) brightness(.97)" data-element-src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/e9820a4e-8b06-405d-a170-9266b1f32993_3840w.png">
               <div class="absolute inset-0 pointer-events-none" style="mix-blend-mode:soft-light;background:linear-gradient(160deg,rgba(11,32,48,.5),rgba(198,74,50,.26) 78%)"></div>
               <div class="absolute inset-0 pointer-events-none" style="background:linear-gradient(to top,rgba(7,20,31,.66) 0%,rgba(7,20,31,.34) 16%,rgba(7,20,31,.08) 34%,transparent 52%)"></div>
             </div>
@@ -427,7 +413,7 @@
 
           <figure class="relative flex-none w-[86vw] md:w-[62vw] h-full pt-[9vh] md:pt-[12vh] px-[.9vw] md:px-[1.1vw] pb-[11vh] md:pb-[14vh]" style="margin:0">
             <div class="relative w-full h-full overflow-hidden" style="border-radius:3px">
-              <img data-shore-img="" loading="lazy" src="assets/shores/s3.jpg" alt="A thin white sandbar curving out into turquoise shallows at dusk" class="absolute top-0 h-full object-cover" style="left:-10%;width:120%;max-width:none;will-change:transform;filter:saturate(.82) contrast(1.04) brightness(.97)">
+              <img data-shore-img="" loading="lazy" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/45187373-d6be-442d-b7d4-0c91f2ce7a95_3840w.png" alt="A thin white sandbar running out into turquoise shallows" class="absolute top-0 h-full object-cover" style="left:-10%;width:120%;max-width:none;will-change:transform;filter:saturate(.82) contrast(1.04) brightness(.97)" data-element-src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/45187373-d6be-442d-b7d4-0c91f2ce7a95_3840w.png">
               <div class="absolute inset-0 pointer-events-none" style="mix-blend-mode:soft-light;background:linear-gradient(160deg,rgba(11,32,48,.5),rgba(198,74,50,.26) 78%)"></div>
               <div class="absolute inset-0 pointer-events-none" style="background:linear-gradient(to top,rgba(7,20,31,.66) 0%,rgba(7,20,31,.34) 16%,rgba(7,20,31,.08) 34%,transparent 52%)"></div>
             </div>
@@ -443,7 +429,7 @@
 
           <figure class="relative flex-none w-[86vw] md:w-[62vw] h-full pt-[9vh] md:pt-[12vh] px-[.9vw] md:px-[1.1vw] pb-[11vh] md:pb-[14vh]" style="margin:0">
             <div class="relative w-full h-full overflow-hidden" style="border-radius:3px">
-              <img data-shore-img="" loading="lazy" src="assets/shores/s4.jpg" alt="Pastel dusk light over calm water and low grass-topped dunes" class="absolute top-0 h-full object-cover" style="left:-10%;width:120%;max-width:none;will-change:transform;filter:saturate(.82) contrast(1.04) brightness(.97)">
+              <img data-shore-img="" loading="lazy" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/952f1203-ec3a-4acc-b77a-2061d5725841_3840w.png" alt="Pastel dusk light over calm water and low dunes" class="absolute top-0 h-full object-cover" style="left:-10%;width:120%;max-width:none;will-change:transform;filter:saturate(.82) contrast(1.04) brightness(.97)" data-element-src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/952f1203-ec3a-4acc-b77a-2061d5725841_3840w.png">
               <div class="absolute inset-0 pointer-events-none" style="mix-blend-mode:soft-light;background:linear-gradient(160deg,rgba(11,32,48,.5),rgba(198,74,50,.26) 78%)"></div>
               <div class="absolute inset-0 pointer-events-none" style="background:linear-gradient(to top,rgba(7,20,31,.66) 0%,rgba(7,20,31,.34) 16%,rgba(7,20,31,.08) 34%,transparent 52%)"></div>
             </div>
@@ -459,7 +445,7 @@
 
           <figure class="relative flex-none w-[86vw] md:w-[62vw] h-full pt-[9vh] md:pt-[12vh] px-[.9vw] md:px-[1.1vw] pb-[11vh] md:pb-[14vh]" style="margin:0">
             <div class="relative w-full h-full overflow-hidden" style="border-radius:3px">
-              <img data-shore-img="" loading="lazy" src="assets/shores/s5.jpg" alt="A granite-backed cove of pale sand and clear turquoise water at sunset" class="absolute top-0 h-full object-cover" style="left:-10%;width:120%;max-width:none;will-change:transform;filter:saturate(.82) contrast(1.04) brightness(.97)">
+              <img data-shore-img="" loading="lazy" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/cc3c18d2-5398-4484-8b3d-675840e74f21_3840w.png" alt="A turquoise lagoon with a single green islet" class="absolute top-0 h-full object-cover" style="left:-10%;width:120%;max-width:none;will-change:transform;filter:saturate(.82) contrast(1.04) brightness(.97)" data-element-src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/cc3c18d2-5398-4484-8b3d-675840e74f21_3840w.png">
               <div class="absolute inset-0 pointer-events-none" style="mix-blend-mode:soft-light;background:linear-gradient(160deg,rgba(11,32,48,.5),rgba(198,74,50,.26) 78%)"></div>
               <div class="absolute inset-0 pointer-events-none" style="background:linear-gradient(to top,rgba(7,20,31,.66) 0%,rgba(7,20,31,.34) 16%,rgba(7,20,31,.08) 34%,transparent 52%)"></div>
             </div>
@@ -477,7 +463,7 @@
           <figure data-shore-last="" class="relative flex-none h-full" style="width:100vw;padding:0;margin:0">
             <div data-film-stage="" class="relative w-full h-full overflow-hidden">
               <canvas data-film-canvas="" class="absolute inset-0 w-full h-full" style="filter:saturate(.82) contrast(1.04) brightness(.97)" aria-label="The camera pulls back from the waterline to an empty bay at sunset"></canvas>
-              <img data-film-fallback="" loading="lazy" src="assets/unwind/f_193.jpg" alt="An empty shoreline at golden hour, surf running up pale sand" class="absolute inset-0 w-full h-full object-cover hidden">
+              <img data-film-fallback="" loading="lazy" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/f3f8fc2c-5249-4569-b23b-fb20d1010693_3840w.png" alt="An empty shoreline at golden hour, surf running up pale sand" class="absolute inset-0 w-full h-full object-cover hidden" data-element-src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/f3f8fc2c-5249-4569-b23b-fb20d1010693_3840w.png">
               <div class="absolute inset-0 pointer-events-none" style="mix-blend-mode:soft-light;background:linear-gradient(160deg,rgba(11,32,48,.5),rgba(198,74,50,.26) 78%)"></div>
               <div class="absolute inset-0 pointer-events-none" style="background:radial-gradient(ellipse 74% 60% at 50% 56%,rgba(7,20,31,.6) 0%,rgba(7,20,31,.48) 44%,rgba(7,20,31,.22) 72%,rgba(7,20,31,.06) 100%)"></div>
             </div>
@@ -511,7 +497,7 @@
             <p data-close-el="" class="uppercase text-xs" style="font-weight:600;letter-spacing:.32em;color:#A83D28;margin:0 0 2.2rem;opacity:0">
               Ek sawaal, ek jawab
             </p>
-            <h2 data-close-el="" style="margin:0 auto;font-weight:600;font-stretch:125%;letter-spacing:-.025em;font-size:clamp(2.4rem,1rem + 4.6vw,5.4rem);max-width:14ch;line-height:1.14;opacity:0">
+            <h2 data-close-el="" style="margin:0 auto;font-weight:600;font-stretch:125%;letter-spacing:-.025em;font-size:clamp(2.6rem,1rem + 5.8vw,6.6rem);max-width:14ch;line-height:1.14;opacity:0">
               Laiba, kya tum
               <br>
               <em style="font-style:italic;color:#C64A32">meri ho jaogi?</em>
@@ -543,16 +529,12 @@
       </div>
     </section>
 
-    <script src="assets/gsap.js"></script>
-    <script src="assets/scrolltrigger.js"></script>
-    <script src="assets/splittext.js"></script>
-    <script src="assets/lenis.js"></script>
     <script>
       /* ════════════════════════════════════════════════════════════
          VACANCE — scroll choreography. One personality: slow expo.out,
          heavy Lenis scroll, every frame bound to scroll position.
          ════════════════════════════════════════════════════════════ */
-      const ASSETS = 'assets/';
+      const ASSETS = 'https://cdn.jsdelivr.net/gh/Sam1983Aing/aura-assets@1.0.0/vacance/';
       gsap.registerPlugin(ScrollTrigger, SplitText);
 
       const EASE = 'expo.out', REVEAL = 1.2, CROWD_START = 340, CROWD_END = 1;
@@ -581,9 +563,9 @@
       function initCursor() {
         const cur = q('[data-cursor]');
         if (!cur) return;
-        if (reduced || !matchMedia('(pointer: fine)').matches) { cur.style.display = 'none'; return; }
-        /* Only now is there a ring to replace the native pointer with. */
-        document.body.classList.add('has-ring-cursor');
+        if (reduced || !matchMedia('(pointer: fine)').matches) {
+          cur.style.display = 'none'; document.body.style.cursor = 'auto'; return;
+        }
         let mx = innerWidth / 2, my = innerHeight / 2, cx = mx, cy = my;
         addEventListener('pointermove', e => { mx = e.clientX; my = e.clientY; });
         gsap.ticker.add(() => {
@@ -646,7 +628,7 @@
         if (!canvas || !fallback) return null;
         const ctx = canvas.getContext('2d');
         const images = []; let ready = false, frame = 0;
-        const url = i => ASSETS + dir + '/f_' + String(i).padStart(3, '0') + '.jpg';
+        const url = i => ASSETS + dir + '/' + String(i).padStart(4, '0') + '.jpg';
         function draw() {
           const img = images[frame];
           if (!img || !img.complete || !img.naturalWidth) return;
@@ -678,7 +660,7 @@
       function initOpening() {
         const stage = q('[data-opening-stage]');
         if (!stage) return;
-        const seq = sequence(q('[data-opening-canvas]'), q('[data-opening-fallback]'), 'opening', 193);
+        const seq = sequence(q('[data-opening-canvas]'), q('[data-opening-fallback]'), 'open', 193);
         const beats = qa('[data-beat]'), cells = qa('[data-cell]'), prox = { p: 0 };
         const tl = gsap.timeline({
           scrollTrigger: { trigger: stage, start: 'top top', end: '+=4200', pin: true, scrub: 1, anticipatePin: 1 }
@@ -703,7 +685,7 @@
       function initNight() {
         const stage = q('[data-night-stage]');
         if (!stage) return;
-        const seq = sequence(q('[data-night-canvas]'), q('[data-night-fallback]'), 'tide', 193);
+        const seq = sequence(q('[data-night-canvas]'), q('[data-night-fallback]'), 'night', 150);
         const caps = qa('[data-cap]'), num = q('[data-count-n]'), time = q('[data-count-time]'), prox = { p: 0 };
         const tl = gsap.timeline({
           scrollTrigger: { trigger: stage, start: 'top top', end: '+=4600', pin: true, scrub: 1, anticipatePin: 1 }
@@ -728,17 +710,15 @@
       }
 
       /* ── 3 · the window ── */
-      function initWindow(shores) {
+      function initWindow() {
         const stage = q('[data-window-stage]'), portal = q('[data-portal]'), glass = q('[data-glass]');
         if (!stage || !portal) return;
-        const live = on => { if (shores) shores.setLive(on); };
         const tl = gsap.timeline({
           scrollTrigger: {
             trigger: stage, start: 'top top', end: '+=3800', pin: true, scrub: 1, anticipatePin: 1,
-            onEnter: () => { if (glass) glass.style.visibility = 'visible'; live(true); },
-            onEnterBack: () => { if (glass) glass.style.visibility = 'visible'; live(true); },
-            onLeave: () => live(false),
-            onLeaveBack: () => { if (glass) glass.style.visibility = 'hidden'; live(false); }
+            onEnter: () => { if (glass) glass.style.visibility = 'visible'; },
+            onEnterBack: () => { if (glass) glass.style.visibility = 'visible'; },
+            onLeaveBack: () => { if (glass) glass.style.visibility = 'hidden'; }
           }
         });
         tl.to('[data-statement]', { opacity: 1, duration: .8 }, 0)
@@ -751,21 +731,16 @@
       /* ── the four shores ── */
       function initShores() {
         const scenes = qa('[data-scene]');
-        if (!scenes.length) return null;
+        if (!scenes.length) return;
         const name = q('[data-shore-name]'), coord = q('[data-shore-coord]'),
               read = q('[data-shore-read]'), idx = q('[data-shore-idx]');
-        let i = 0, playing = false;
-        /* Only the scene in the aperture decodes, and only while the aperture is on screen. */
-        function sync() {
-          scenes.forEach((v, k) => {
-            if (playing && k === i) { const p = v.play(); if (p && p.catch) p.catch(() => {}); }
-            else v.pause();
-          });
-        }
+        let i = 0;
         function show(n) {
           i = (n + scenes.length) % scenes.length;
-          scenes.forEach((v, k) => gsap.to(v, { opacity: k === i ? 1 : 0, duration: 1, ease: EASE }));
-          sync();
+          scenes.forEach((v, k) => {
+            gsap.to(v, { opacity: k === i ? 1 : 0, duration: 1, ease: EASE });
+            if (k === i) { const p = v.play(); if (p && p.catch) p.catch(() => {}); } else { v.pause(); }
+          });
           const s = scenes[i];
           if (name) name.textContent = s.dataset.name;
           if (coord) coord.textContent = s.dataset.coord;
@@ -776,7 +751,6 @@
         if (prev) prev.addEventListener('click', () => show(i - 1));
         if (next) next.addEventListener('click', () => show(i + 1));
         show(0);
-        return { setLive(on) { playing = on; sync(); } };
       }
 
       /* ── 4 · the drift, and 5 · the close ── */
@@ -798,24 +772,11 @@
           .to('[data-drift-label]', { opacity: 0, duration: .5 }, '<')
           .to('[data-close]', { clipPath: 'circle(78% at 50% 50%)', duration: 1.8, ease: 'none' }, '>')
           .to('[data-close-el]', { opacity: 1, duration: .8, stagger: .1 }, '>-0.8');
-        const seq = sequence(q('[data-film-canvas]'), q('[data-film-fallback]'), 'unwind', 193);
+        const seq = sequence(q('[data-film-canvas]'), q('[data-film-fallback]'), 'film', 120);
         if (seq) {
           const prox = { p: 0 };
           tl.to(prox, { p: 1, ease: 'none', duration: 6, onUpdate() { seq.set(prox.p); } }, 0);
         }
-      }
-
-      /* ── "Find my window" ──
-         The close panel is clipped to circle(0%) until the drift timeline has
-         run, so a plain #book jump lands mid-pin on a blank screen. Send the
-         links to the end of the document, where that timeline is complete. */
-      function initBookLinks() {
-        qa('a[href="#book"]').forEach(a => a.addEventListener('click', e => {
-          e.preventDefault();
-          const y = document.documentElement.scrollHeight - innerHeight;
-          if (lenis) lenis.scrollTo(y);
-          else scrollTo({ top: y, behavior: reduced ? 'auto' : 'smooth' });
-        }));
       }
 
       /* ── the scroll rail, and the paper/ink palette shifts ── */
@@ -837,13 +798,13 @@
       initHeroTitle();
       initOpening();
       initNight();
-      initWindow(initShores());
+      initWindow();
+      initShores();
       initDrift();
-      initBookLinks();
       initChrome();
       initLoader();
 
       addEventListener('load', () => ScrollTrigger.refresh());
     </script>
-  </body>
-</html>
+
+</body></html>

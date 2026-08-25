@@ -20,14 +20,39 @@ Five movements, each pinned and scrubbed by scroll:
    "Haan" button.
 
 The folder is still named `vacance/` (and the deployed app is still
-`vacance-5h490l`) because only the copy changed — every frame, clip, still and
-line of choreography is the same build. The earlier travel-agency version of the
-copy is in git history.
+`vacance-5h490l`) because only the copy is ours — the markup, styles and
+choreography are exactly the file that was handed over.
+
+## The page is the original build, unmodified
+
+Only text nodes, the six caption `data-crowd`/`data-time` pairs and the loader's
+count target differ from the source that was shared. Nothing about the layout,
+the motion, the cursor, the controls or the asset wiring was touched, by
+explicit instruction. Two consequences are inherited from that source and are
+**not** bugs introduced here:
+
+- **The three scroll films do not load.** `sequence()` builds its URLs as
+  `open/0001.jpg`, `night/0001.jpg` and `film/0001.jpg` against
+  `cdn.jsdelivr.net/gh/Sam1983Aing/aura-assets@1.0.0/vacance/`, where the real
+  directories are `opening/`, `tide/` and `unwind/` with an `f_001.jpg` pattern
+  and 193 frames each. All three probes 404, so each canvas hides itself and
+  the still `<img>` beside it is shown instead. The page reads as three
+  photographs rather than three scrubbed films.
+- **Two headings overlap their neighbours.** In movement 2 the heading and the
+  counter are positioned independently, so they collide by 12px at 390px wide
+  and 60-124px across desktop sizes. In the close, the heading shares a
+  `clamp(2.6rem, 1rem + 5.8vw, 6.6rem)` scale with the other display lines but
+  is the only one capped by a `46rem` parent, so above 1400px it breaks to four
+  lines and pushes the button onto the footer credit.
+
+`assets/` is still checked in — 602 vendored frames, clips, stills, fonts and
+libraries — but `index.html` does not reference it any more. It is kept so the
+self-contained path is one edit away rather than one 41MB download away.
 
 ## Running it
 
-`index.html` plus the `assets/` folder, no build step and no network. Open it
-directly, or serve the folder:
+`index.html` on its own, no build step. It needs a network connection — see
+"What it loads" below. Open it directly, or serve the folder:
 
 ```sh
 python3 -m http.server --directory site/vacance 8000
@@ -36,26 +61,16 @@ python3 -m http.server --directory site/vacance 8000
 
 `?static` on the URL forces the reduced-motion path (see below).
 
-## Self-contained by design
+## What it loads
 
-The page makes **zero external requests**. Everything it needs is in `assets/`:
+The page fetches from five external origins, exactly as the source did:
 
-| Asset | What it is | Size |
-| --- | --- | --- |
-| `opening/f_001…193.jpg` | Movement 1's film, one JPEG per frame, 1280×720 | 11 MB |
-| `tide/f_001…193.jpg` | Movement 2's film | 10 MB |
-| `unwind/f_001…193.jpg` | Movement 4's closing film | 13 MB |
-| `vid/w1…w4.mp4` + `.jpg` | The four shore clips behind the aperture, and their posters | 6.2 MB |
-| `shores/s1…s5.jpg` | The five stills in the sideways drift | 808 KB |
-| `styles.css` | `@font-face` rules + Tailwind compiled down to only the classes this page uses | 9 KB |
-| `fonts/*.woff2` | Archivo (variable, roman + italic) and IBM Plex Mono 400/500, subset | 164 KB |
-| `gsap.js`, `scrolltrigger.js`, `splittext.js` | GSAP 3.13.0 and the two plugins the page registers | 124 KB |
-| `lenis.js` | Lenis 1.1.14, the smooth-scroll driver ScrollTrigger reads from | 13 KB |
-
-The three frame sequences are the whole substance of the page and account for
-34 MB of the 41 MB. They are already JPEG at 1280×720, so nothing is gained by
-re-encoding them; a lighter page would mean a shorter film, not a better codec.
-`site/` is listed in `.npmignore`, so none of this ships in the npm package.
+| Origin | What comes from it |
+| --- | --- |
+| `cdn.jsdelivr.net` | GSAP 3.13.0 + ScrollTrigger + SplitText, Lenis 1.1.14, the four shore clips, and the (404ing) frame sequences |
+| `cdn.tailwindcss.com` | Tailwind's in-browser JIT runtime |
+| `fonts.googleapis.com` / `fonts.gstatic.com` | Archivo and IBM Plex Mono |
+| `hoirqrkdgbmvpwutwuwj.supabase.co` | the three fallback stills and the five drift photos |
 
 ## Structure
 
@@ -152,17 +167,15 @@ system fallback. Subsetting locally is what keeps the arrow in IBM Plex Mono.
 Live at <https://vacance-5h490l.v2.appdeploy.ai/> (AppDeploy app `vacance-5h490l`).
 **The live copy is one version behind this folder** until the next deploy.
 
-The deploy tree wraps this folder in the `html-static` template: `index.html` at
-the root with its asset references rewritten to `/assets/...`, and `assets/`
-moved under the Vite `publicDir` so all 602 files are copied verbatim rather
-than passed through the bundler — the 579 scroll frames are fetched by string
-path at runtime, so nothing would otherwise pull them into the build. Vite's own
-`assetsDir` is moved to `_vite/` so it cannot collide with `assets/`.
+The deploy tree wraps this folder in the `html-static` template. Since
+`index.html` now loads everything from external origins, the deploy is just that
+one file; the `assets/` copy in the AppDeploy snapshot is left in place, unused.
 
-AppDeploy caps a single upload at 200 binary parts, so the assets ship as four
-merged deploys: the shell (libraries, fonts, stills, clips, and the three
-frame stills the HTML references directly), then one deploy per 193-frame
-sequence.
+If the vendored, self-contained wiring is ever wanted back, the shape is
+recorded in git (see the first three commits touching this folder): `assets/`
+moves under the Vite `publicDir`, `assetsDir` moves to `_vite/` so it cannot
+collide, and — because AppDeploy caps a single upload at 200 binary parts — the
+602 files ship as four merged deploys rather than one.
 
 ## Copy notes
 
@@ -170,11 +183,6 @@ The numbers are feeling, not telemetry: the loader counts 340 names down to one,
 and the day counter's 1 / 6 / 84 / 340 / 96 / 1 arc is written to start and end
 on the same single thought. No real dates, places or events are asserted
 anywhere, so nothing in the copy can be wrong about them.
-
-The close heading carries its own type scale — `clamp(2.4rem, 1rem + 4.6vw,
-5.4rem)` rather than the `6.6rem` the other display lines use. It is the only
-heading capped by a `46rem` parent, so at the shared scale it broke to four
-lines above 1400px wide and pushed the button into the footer.
 
 `mailto:rafay@example.com` in the close is a **placeholder** — swap it for
 Rafay's real address (or a `wa.me` link) before the page is sent.
