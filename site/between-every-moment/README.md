@@ -6,7 +6,8 @@ README stays in English as developer documentation.
 A single-file, scroll-driven story page. Seven chapters (Aagaaz → Sawaal)
 scroll over a persistent WebGL background — an extruded heart, two orbiting
 rings, a particle field, and falling petals — with the camera framing, fog, and
-palette re-keyed per chapter.
+palette re-keyed per chapter. Five of the seven chapters close on a couplet by
+Mirza Ghalib, set in Nastaliq.
 
 ## Running it
 
@@ -27,6 +28,7 @@ The page makes **zero external requests**. Everything it needs is in `assets/`:
 | `styles.css` | `@font-face` rules + Tailwind compiled down to only the classes this page uses |
 | `three.js` | three.js r160, tree-shaken to the 26 classes the scene touches |
 | `fonts/*.woff2` | Cormorant Garamond 400/500 (roman + italic), Manrope 400/500 — latin subset |
+| `fonts/noto-nastaliq-urdu-400.woff2` | Noto Nastaliq Urdu, subset to the glyphs the couplets use |
 | `*-{w}.avif` / `*-{w}.webp` | Each photo at two widths, picked by `srcset`/`sizes` |
 | `memory-flowers.mp4` | The flower clip, `preload="none"` so it costs nothing until scrolled to |
 
@@ -52,6 +54,32 @@ fetches each glyph from an API at runtime.
 `prefers-reduced-motion: reduce` is honored throughout: the loader is removed,
 reveals snap to their final state, parallax and petals stop, and smooth scrolling
 is disabled.
+
+### The couplets
+
+Five chapters close on a sher by Mirza Ghalib (1797-1869, public domain), each
+chosen to answer that chapter's own line:
+
+| Chapter | Opening words |
+| --- | --- |
+| Aamad | dil se teri nigaah jigar tak utar gayi |
+| Kashish | ishq par zor nahin hai ye wo aatish 'Ghalib' |
+| Yaadein | muddat hui hai yaar ko mehmaan kiye hue |
+| Imkaan | aah ko chahiye ik umr asar hote tak |
+| Sawaal | hazaaron khwahishen aisi ki har khwahish pe dam nikle |
+
+Every line was checked against rekhta.org's Urdu-script pages rather than typed
+from memory - the Imkaan couplet in particular carries the diwan radif
+`hote tak`, not the `hone tak` of the popular sung version.
+
+Each block is `lang="ur" dir="rtl"`, with a Roman transliteration underneath so
+the page stays readable for anyone who does not read Nastaliq. A misra must
+never wrap - a couplet broken mid-line reads as a mistake - so the Urdu is sized
+with `clamp(15px, calc(6.2vw - 2.8px), 30px)`, derived from the widest line's
+measured width against the space the block actually gets. Verified unbroken from
+320px to 1920px. Note that Tailwind's `text-*` utilities also set a line-height,
+so the size is written as `text-[length:...]` and paired with an explicit
+`leading-[2.4]`; Nastaliq needs roughly that much leading to breathe.
 
 ### The 3D layer is optional
 
@@ -87,3 +115,15 @@ Fonts are the `latin` subset `@font-face` blocks from the Google Fonts CSS for
 the six family/weight/style pairs the page actually renders, with the woff2
 files downloaded alongside. The latin range covers every character used here
 (the only non-ASCII ones are `·`, `—`, `“` and `”`).
+
+Noto Nastaliq Urdu is subset to the couplets' own text. Nastaliq shaping leans
+heavily on contextual substitution, so the subsetter has to keep the layout
+tables and their glyph closure:
+
+```sh
+python3 -m fontTools.subset NotoNastaliqUrdu-arabic.woff2 \
+  --text-file=couplets.txt --layout-features='*' --flavor=woff2
+```
+
+That is 159KB down to 86KB, and the result renders pixel-identically to the full
+face — worth re-checking with a screenshot diff if the couplets ever change.
