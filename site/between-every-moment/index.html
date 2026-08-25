@@ -7,13 +7,12 @@
     <title>Har Lamhe Ke Darmiyan — Tumhare Liye Ek Kahani</title>
     <meta name="description" content="Ek cinematic safar un lamhon, yaadon aur ehsaason ka, jo mujhe ek sacche sawaal tak le aaye.">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&amp;family=Manrope:wght@400;500;600&amp;display=swap" rel="stylesheet">
+    <link rel="preload" as="font" type="font/woff2" href="assets/fonts/cormorant-garamond-500.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="assets/fonts/manrope-400.woff2" crossorigin>
+    <link rel="stylesheet" href="assets/styles.css">
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
-    <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
+    <!-- Deferred: the page is fully usable before the 3D layer arrives. -->
+    <script src="assets/three.js" defer></script>
   </head>
 
   <body class="min-h-screen overflow-x-hidden bg-[#070707] font-['Manrope'] text-[#f8f4ee] antialiased selection:bg-[#a74a56] selection:text-white">
@@ -25,7 +24,7 @@
       <div class="relative flex flex-col items-center px-6 text-center">
         <div id="loader-mark" class="relative grid h-24 w-24 scale-75 place-items-center rounded-full border border-white/15 opacity-0">
           <div class="absolute inset-2 rounded-full border border-[#d9a6aa]/20"></div>
-          <iconify-icon icon="solar:heart-linear" stroke-width="1.5" class="text-3xl text-[#e5bec1]"></iconify-icon>
+          <svg class="text-3xl text-[#e5bec1]" viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="1.5" d="M2 9.1371C2 14 6.01943 16.5914 8.96173 18.9109C10 19.7294 11 20.5 12 20.5C13 20.5 14 19.7294 15.0383 18.9109C17.9806 16.5914 22 14 22 9.1371C22 4.27416 16.4998 0.825464 12 5.50063C7.50016 0.825464 2 4.27416 2 9.1371Z"/></svg>
         </div>
 
         <p id="loader-copy" class="mt-8 translate-y-4 text-xs font-medium uppercase tracking-[0.28rem] text-white/45 opacity-0">
@@ -61,7 +60,7 @@
       <div class="mx-auto flex h-20 max-w-[96rem] items-center justify-between px-5 sm:px-8 lg:px-12">
         <a href="#opening" class="group flex items-center gap-3 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d49ba0]" aria-label="Shuruaat par wapas jao">
           <span class="grid h-9 w-9 place-items-center rounded-full border border-white/20 bg-black/10 backdrop-blur-md transition group-hover:border-white/45">
-            <iconify-icon icon="solar:heart-linear" stroke-width="1.5" class="text-lg"></iconify-icon>
+            <svg class="text-lg" viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="1.5" d="M2 9.1371C2 14 6.01943 16.5914 8.96173 18.9109C10 19.7294 11 20.5 12 20.5C13 20.5 14 19.7294 15.0383 18.9109C17.9806 16.5914 22 14 22 9.1371C22 4.27416 16.4998 0.825464 12 5.50063C7.50016 0.825464 2 4.27416 2 9.1371Z"/></svg>
           </span>
           <span class="font-['Cormorant_Garamond'] text-xl font-medium tracking-wide">
             J &amp; A
@@ -76,7 +75,7 @@
         </div>
 
         <button id="sound-toggle" type="button" class="flex h-10 items-center gap-2 rounded-full border border-white/15 bg-black/15 px-4 text-xs font-medium text-white/70 backdrop-blur-xl transition hover:border-white/35 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d49ba0]" aria-pressed="false">
-          <iconify-icon id="sound-icon" icon="solar:volume-cross-linear" stroke-width="1.5" class="text-base"></iconify-icon>
+          <svg id="sound-icon" class="text-base" viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"><path d="M15.5 11.9998C15.5 12.5317 15.4646 13.4879 15.4127 14.6052C15.2725 17.6226 15.2024 19.1313 14.2797 19.7797C14.1028 19.9041 13.9047 20.0049 13.7001 20.0747C12.7327 20.4048 11.5975 19.747 9.5 18.3725M7.0162 17.0417C6.76819 16.9998 6.51215 16.9998 6.00008 16.9998C4.62617 16.9998 3.93921 16.9998 3.33988 16.7225C2.7923 16.4692 2.24473 15.9539 1.95854 15.4228C1.64531 14.8414 1.60847 14.237 1.53479 13.0282C1.51299 12.6706 1.5 12.3222 1.5 11.9998C1.5 11.6774 1.51299 11.329 1.53479 10.9714C1.60847 9.76255 1.64531 9.15814 1.95854 8.57679C2.24473 8.04563 2.7923 7.53042 3.33988 7.27707C3.93921 6.99979 4.62617 6.99979 6.00008 6.99979C6.51215 6.99979 6.76819 6.99979 7.0162 6.95791C7.26138 6.9165 7.50046 6.84478 7.72795 6.74438C7.95806 6.64283 8.17181 6.50189 8.59932 6.22002L8.81825 6.07566C11.3612 4.39898 12.6327 3.56063 13.7001 3.92487C13.9047 3.9947 14.1028 4.09551 14.2797 4.21984C15.115 4.80685 15.2516 6.09882 15.374 8.57679"/><path d="M20 18C20 18 21.5 16.2 21.5 12C21.5 9.56658 20.9965 7.93882 20.5729 7"/><path d="M18 15C18 15 18.5 14.1 18.5 12C18.5 11.1381 18.4158 10.4784 18.3165 10"/><path d="M22 2L2 22"/></g></svg>
           <span class="hidden sm:inline">Mahaul</span>
         </button>
       </div>
@@ -157,7 +156,7 @@
             <a href="#arrival" class="group mt-8 inline-flex items-center gap-4 text-xs font-medium uppercase tracking-[0.18rem] text-white/80">
               Kahani mein chalo
               <span class="grid h-12 w-12 place-items-center rounded-full border border-white/20 bg-white/5 backdrop-blur-md transition duration-500 group-hover:scale-110 group-hover:bg-white group-hover:text-black">
-                <iconify-icon icon="solar:arrow-down-linear" stroke-width="1.5" class="text-lg"></iconify-icon>
+                <svg class="text-lg" viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4L12 20M6 14L12 20L18 14"/></svg>
               </span>
             </a>
           </div>
@@ -197,7 +196,7 @@
 
             <div data-reveal="" class="mt-10 flex translate-y-8 items-center gap-5 opacity-0">
               <span class="grid h-11 w-11 place-items-center rounded-full border border-[#d8979d]/25 bg-[#d8979d]/10">
-                <iconify-icon icon="solar:stars-linear" stroke-width="1.5" class="text-xl text-[#e5afb4]"></iconify-icon>
+                <svg class="text-xl text-[#e5afb4]" viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8.03339 3.65784C8.37932 2.78072 9.62068 2.78072 9.96661 3.65785L11.0386 6.37599C11.1442 6.64378 11.3562 6.85576 11.624 6.96137L14.3422 8.03339C15.2193 8.37932 15.2193 9.62068 14.3422 9.96661L11.624 11.0386C11.3562 11.1442 11.1442 11.3562 11.0386 11.624L9.96661 14.3422C9.62067 15.2193 8.37932 15.2193 8.03339 14.3422L6.96137 11.624C6.85575 11.3562 6.64378 11.1442 6.37599 11.0386L3.65784 9.96661C2.78072 9.62067 2.78072 8.37932 3.65785 8.03339L6.37599 6.96137C6.64378 6.85575 6.85576 6.64378 6.96137 6.37599L8.03339 3.65784Z"/><path d="M16.4885 13.3481C16.6715 12.884 17.3285 12.884 17.5115 13.3481L18.3121 15.3781C18.368 15.5198 18.4802 15.632 18.6219 15.6879L20.6519 16.4885C21.116 16.6715 21.116 17.3285 20.6519 17.5115L18.6219 18.3121C18.4802 18.368 18.368 18.4802 18.3121 18.6219L17.5115 20.6519C17.3285 21.116 16.6715 21.116 16.4885 20.6519L15.6879 18.6219C15.632 18.4802 15.5198 18.368 15.3781 18.3121L13.3481 17.5115C12.884 17.3285 12.884 16.6715 13.3481 16.4885L15.3781 15.6879C15.5198 15.632 15.632 15.5198 15.6879 15.3781L16.4885 13.3481Z"/></g></svg>
               </span>
               <p class="font-['Cormorant_Garamond'] text-2xl italic text-white/75">
                 Aur phir poora mahaul badal gaya.
@@ -208,7 +207,12 @@
           <div class="relative min-h-[34rem] lg:col-span-6 lg:col-start-7">
             <div data-card="" data-reveal="" class="absolute left-0 top-8 w-3/4 translate-y-12 overflow-hidden rounded-sm border border-white/10 bg-white/5 p-2 opacity-0 shadow-2xl backdrop-blur-sm">
               <div class="aspect-[4/5] overflow-hidden">
-                <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/b58fa1f9-d200-41b2-90ac-c2e8c79e01fa_3840w.png" alt="Saath bitaya ek kareeb, khamosh lamha" class="h-full w-full object-cover grayscale-[30%] transition duration-1000 hover:scale-105" data-element-src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/b58fa1f9-d200-41b2-90ac-c2e8c79e01fa_3840w.png">
+                <picture class="contents">
+                  <source type="image/avif" srcset="assets/arrival-closeness-520.avif 520w, assets/arrival-closeness-1040.avif 1040w" sizes="(min-width: 1440px) 500px, (min-width: 1024px) 32vw, (min-width: 768px) 66vw, 63vw">
+                  <img src="assets/arrival-closeness-1040.webp" srcset="assets/arrival-closeness-520.webp 520w, assets/arrival-closeness-1040.webp 1040w" sizes="(min-width: 1440px) 500px, (min-width: 1024px) 32vw, (min-width: 768px) 66vw, 63vw"
+                       width="1040" height="1292" loading="lazy" decoding="async"
+                       alt="Saath bitaya ek kareeb, khamosh lamha" class="h-full w-full object-cover grayscale-[30%] transition duration-1000 hover:scale-105">
+                </picture>
               </div>
             </div>
 
@@ -248,7 +252,7 @@
           <div class="mt-20 grid gap-6 border-t border-white/10 pt-8 md:grid-cols-3">
             <article data-reveal="" class="group translate-y-10 border-b border-white/10 py-8 opacity-0 md:border-b-0 md:border-r md:px-8 md:first:pl-0">
               <span class="mb-10 grid h-12 w-12 place-items-center rounded-full border border-white/10 bg-white/5 transition duration-500 group-hover:scale-110 group-hover:border-[#d89da3]/50 group-hover:bg-[#8f3742]/20">
-                <iconify-icon icon="solar:chat-round-dots-linear" stroke-width="1.5" class="text-xl text-[#dba5aa]"></iconify-icon>
+                <svg class="text-xl text-[#dba5aa]" viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 13.5997 2.37562 15.1116 3.04346 16.4525C3.22094 16.8088 3.28001 17.2161 3.17712 17.6006L2.58151 19.8267C2.32295 20.793 3.20701 21.677 4.17335 21.4185L6.39939 20.8229C6.78393 20.72 7.19121 20.7791 7.54753 20.9565C8.88837 21.6244 10.4003 22 12 22Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M8 12H8.009M11.991 12H12M15.991 12H16"/></g></svg>
               </span>
               <p class="text-xs uppercase tracking-[0.2rem] text-white/30">
                 Woh baatein
@@ -260,7 +264,7 @@
 
             <article data-reveal="" class="group translate-y-10 border-b border-white/10 py-8 opacity-0 md:border-b-0 md:border-r md:px-8">
               <span class="mb-10 grid h-12 w-12 place-items-center rounded-full border border-white/10 bg-white/5 transition duration-500 group-hover:scale-110 group-hover:border-[#d89da3]/50 group-hover:bg-[#8f3742]/20">
-                <iconify-icon icon="solar:smile-circle-linear" stroke-width="1.5" class="text-xl text-[#dba5aa]"></iconify-icon>
+                <svg class="text-xl text-[#dba5aa]" viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10" stroke-width="1.5"/><path stroke-linecap="round" stroke-width="1.5" d="M9 16C9.85038 16.6303 10.8846 17 12 17C13.1154 17 14.1496 16.6303 15 16"/><path d="M15.5 10.5C15.5 11.0523 15.2761 11.5 15 11.5C14.7239 11.5 14.5 11.0523 14.5 10.5C14.5 9.94772 14.7239 9.5 15 9.5C15.2761 9.5 15.5 9.94772 15.5 10.5Z"/><ellipse cx="9" cy="10.5" rx=".5" ry="1"/></g></svg>
               </span>
               <p class="text-xs uppercase tracking-[0.2rem] text-white/30">
                 Woh hansi
@@ -272,7 +276,7 @@
 
             <article data-reveal="" class="group translate-y-10 py-8 opacity-0 md:px-8 md:last:pr-0">
               <span class="mb-10 grid h-12 w-12 place-items-center rounded-full border border-white/10 bg-white/5 transition duration-500 group-hover:scale-110 group-hover:border-[#d89da3]/50 group-hover:bg-[#8f3742]/20">
-                <iconify-icon icon="solar:eye-linear" stroke-width="1.5" class="text-xl text-[#dba5aa]"></iconify-icon>
+                <svg class="text-xl text-[#dba5aa]" viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3.27489 15.2957C2.42496 14.1915 2 13.6394 2 12C2 10.3606 2.42496 9.80853 3.27489 8.70433C4.97196 6.49956 7.81811 4 12 4C16.1819 4 19.028 6.49956 20.7251 8.70433C21.575 9.80853 22 10.3606 22 12C22 13.6394 21.575 14.1915 20.7251 15.2957C19.028 17.5004 16.1819 20 12 20C7.81811 20 4.97196 17.5004 3.27489 15.2957Z"/><path d="M15 12C15 13.6569 13.6569 15 12 15C10.3431 15 9 13.6569 9 12C9 10.3431 10.3431 9 12 9C13.6569 9 15 10.3431 15 12Z"/></g></svg>
               </span>
               <p class="text-xs uppercase tracking-[0.2rem] text-white/30">
                 Woh khamoshi
@@ -311,7 +315,12 @@
           <div id="memory-track" class="mt-20 grid gap-8 md:grid-cols-2 lg:grid-cols-12">
             <figure data-photo="" data-reveal="" class="group translate-y-14 opacity-0 lg:col-span-5">
               <div class="relative aspect-[4/5] overflow-hidden bg-[#c8bbb0] shadow-[0_2rem_5rem_rgba(48,30,25,0.16)]">
-                <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/16faecf3-6bc0-4114-aed9-f49135b78b48_3840w.png" alt="Ek sukoon bhari dopahar, khule mein" class="h-full w-full object-cover grayscale-[20%] transition duration-1000 group-hover:scale-105" data-element-src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/16faecf3-6bc0-4114-aed9-f49135b78b48_3840w.png">
+                <picture class="contents">
+                  <source type="image/avif" srcset="assets/memory-afternoon-600.avif 600w, assets/memory-afternoon-1200.avif 1200w" sizes="(min-width: 1440px) 580px, (min-width: 1024px) 38vw, (min-width: 768px) 44vw, 90vw">
+                  <img src="assets/memory-afternoon-1200.webp" srcset="assets/memory-afternoon-600.webp 600w, assets/memory-afternoon-1200.webp 1200w" sizes="(min-width: 1440px) 580px, (min-width: 1024px) 38vw, (min-width: 768px) 44vw, 90vw"
+                       width="1200" height="1506" loading="lazy" decoding="async"
+                       alt="Ek sukoon bhari dopahar, khule mein" class="h-full w-full object-cover grayscale-[20%] transition duration-1000 group-hover:scale-105">
+                </picture>
                 <div class="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent"></div>
                 <p class="absolute bottom-6 left-6 font-['Cormorant_Garamond'] text-3xl font-medium italic text-white">
                   Dopahar ki roshni
@@ -327,7 +336,12 @@
 
             <figure data-photo="" data-reveal="" class="group translate-y-14 opacity-0 md:mt-32 lg:col-span-3 lg:col-start-7">
               <div class="relative aspect-[3/4] overflow-hidden bg-[#c8bbb0] shadow-[0_2rem_5rem_rgba(48,30,25,0.16)]">
-                <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/e3ad2b7f-d3d2-4edd-83af-004d6dd2ba7d_1600w.png" alt="Dhalte suraj mein saath chalna" class="h-full w-full object-cover grayscale-[20%] transition duration-1000 group-hover:scale-105" data-element-src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/e3ad2b7f-d3d2-4edd-83af-004d6dd2ba7d_1600w.png">
+                <picture class="contents">
+                  <source type="image/avif" srcset="assets/memory-sunset-walk-360.avif 360w, assets/memory-sunset-walk-720.avif 720w" sizes="(min-width: 1024px) 340px, (min-width: 768px) 44vw, 90vw">
+                  <img src="assets/memory-sunset-walk-720.webp" srcset="assets/memory-sunset-walk-360.webp 360w, assets/memory-sunset-walk-720.webp 720w" sizes="(min-width: 1024px) 340px, (min-width: 768px) 44vw, 90vw"
+                       width="720" height="960" loading="lazy" decoding="async"
+                       alt="Dhalte suraj mein saath chalna" class="h-full w-full object-cover grayscale-[20%] transition duration-1000 group-hover:scale-105">
+                </picture>
                 <div class="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent"></div>
               </div>
               <figcaption class="mt-5">
@@ -339,7 +353,7 @@
 
             <figure data-photo="" data-reveal="" class="group translate-y-14 opacity-0 lg:col-span-3 lg:col-start-10 lg:mt-10">
               <div class="relative aspect-square overflow-hidden bg-[#c8bbb0] shadow-[0_2rem_5rem_rgba(48,30,25,0.16)]">
-                <video src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/generated-videos/e323288a-a16b-4b65-b642-4a012af80f1c/1787617415090-cec536ec-aee6-4121-9d4c-5b0c4977cbeb.mp4" poster="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/116a8c77-06dc-4a46-b127-5ff9119d641b_3840w.png" data-aura-generated-video="true" data-aura-video-preset="loop-in-view" muted="" playsinline="" preload="metadata" loop="" aria-label="Halki roshni mein gehre laal phool" class="h-full w-full object-cover grayscale-[10%] transition duration-1000 group-hover:scale-105"></video>
+                <video src="assets/memory-flowers.mp4" poster="assets/memory-flowers-poster-720.webp" data-aura-generated-video="true" data-aura-video-preset="loop-in-view" muted="" playsinline="" preload="none" loop="" aria-label="Halki roshni mein gehre laal phool" class="h-full w-full object-cover grayscale-[10%] transition duration-1000 group-hover:scale-105"></video>
               </div>
               <figcaption class="mt-5">
                 <span class="text-xs font-medium uppercase tracking-[0.18rem] text-[#6e625b]">
@@ -378,7 +392,7 @@
               <span class="absolute -right-12 -top-12 h-40 w-40 rounded-full bg-[#9d3f4b]/20 blur-3xl transition duration-700 group-hover:bg-[#b6505c]/35"></span>
               <div class="relative flex h-full flex-col">
                 <span class="grid h-12 w-12 place-items-center rounded-full border border-white/10 bg-white/5">
-                  <iconify-icon icon="solar:hand-heart-linear" stroke-width="1.5" class="text-xl text-[#dda4aa]"></iconify-icon>
+                  <svg class="text-xl text-[#dda4aa]" viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linejoin="round" d="M7 4.71476C7 6.19986 8.72593 7.76428 10.1497 8.80219C10.9489 9.38471 11.3484 9.67598 12 9.67598C12.6516 9.67598 13.0512 9.38472 13.8503 8.8022C15.2741 7.7643 17 6.19988 17 4.71475C17 2.03759 14.2499 1.03807 12 3.10615C9.75008 1.03807 7 2.03759 7 4.71476Z"/><path stroke-linecap="round" d="M12.7518 17.5326C13.4312 17.5968 14.0435 17.5829 14.5668 17.5292C14.6038 17.5254 14.6403 17.5214 14.6764 17.5172M14.6764 17.5172C14.6399 17.525 14.6033 17.5292 14.5668 17.5292M14.6764 17.5172C14.7962 17.5033 14.911 17.4874 15.0206 17.4699C15.932 17.3245 16.697 16.8375 17.3974 16.3084L19.2046 14.9433C19.8417 14.462 20.7873 14.4619 21.4245 14.943C21.9982 15.3762 22.1736 16.0894 21.8109 16.6707C21.388 17.3487 20.7921 18.216 20.2199 18.7459C19.6469 19.2766 18.7939 19.7504 18.0975 20.0865C17.326 20.4589 16.4738 20.6734 15.6069 20.8138C13.8488 21.0983 12.0166 21.0549 10.2763 20.6964C9.29253 20.4937 8.27079 20.3884 7.25993 20.3884H5M14.6764 17.5172C14.8222 17.486 14.9669 17.396 15.1028 17.2775C15.746 16.7161 15.7866 15.77 15.2285 15.1431C15.0991 14.9977 14.9475 14.8764 14.7791 14.7759C11.9817 13.1074 7.62942 14.3782 5 16.2429"/><rect width="3" height="8" x="2" y="14" rx="1.5"/></g></svg>
                 </span>
                 <div class="mt-auto">
                   <p class="text-xs uppercase tracking-[0.18rem] text-white/30">
@@ -400,7 +414,7 @@
               <span class="absolute -right-12 -top-12 h-40 w-40 rounded-full bg-[#9d3f4b]/20 blur-3xl transition duration-700 group-hover:bg-[#b6505c]/35"></span>
               <div class="relative flex h-full flex-col">
                 <span class="grid h-12 w-12 place-items-center rounded-full border border-white/10 bg-white/5">
-                  <iconify-icon icon="solar:eye-closed-linear" stroke-width="1.5" class="text-xl text-[#dda4aa]"></iconify-icon>
+                  <svg class="text-xl text-[#dda4aa]" viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5" d="M12 14C5 14 2 7 2 7M22 7C22 7 21.0586 9.19661 19 11.1288C18.0872 11.9856 16.9547 12.7904 15.5872 13.3287C14.5334 13.7435 13.34 14 12 14M12 14V16.5M15.5872 13.3287L17 15.5M19 11.1288L20.5 12.6288M8.41281 13.3287L7 15.5M5 11.1288L3.5 12.6288"/></svg>
                 </span>
                 <div class="mt-auto">
                   <p class="text-xs uppercase tracking-[0.18rem] text-white/30">
@@ -421,7 +435,7 @@
               <span class="absolute -right-12 -top-12 h-40 w-40 rounded-full bg-[#9d3f4b]/20 blur-3xl transition duration-700 group-hover:bg-[#b6505c]/35"></span>
               <div class="relative flex h-full flex-col">
                 <span class="grid h-12 w-12 place-items-center rounded-full border border-white/10 bg-white/5">
-                  <iconify-icon icon="solar:sun-2-linear" stroke-width="1.5" class="text-xl text-[#dda4aa]"></iconify-icon>
+                  <svg class="text-xl text-[#dda4aa]" viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="5"/><path stroke-linecap="round" d="M12 2V4"/><path stroke-linecap="round" d="M12 20V22"/><path stroke-linecap="round" d="M4 12L2 12"/><path stroke-linecap="round" d="M22 12L20 12"/><path stroke-linecap="round" d="M19.7778 4.22266L17.5558 6.25424"/><path stroke-linecap="round" d="M4.22217 4.22266L6.44418 6.25424"/><path stroke-linecap="round" d="M6.44434 17.5557L4.22211 19.7779"/><path stroke-linecap="round" d="M19.7778 19.7773L17.5558 17.5551"/></g></svg>
                 </span>
                 <div class="mt-auto">
                   <p class="text-xs uppercase tracking-[0.18rem] text-white/30">
@@ -442,7 +456,7 @@
               <span class="absolute -right-12 -top-12 h-40 w-40 rounded-full bg-[#9d3f4b]/20 blur-3xl transition duration-700 group-hover:bg-[#b6505c]/35"></span>
               <div class="relative flex h-full flex-col">
                 <span class="grid h-12 w-12 place-items-center rounded-full border border-white/10 bg-white/5">
-                  <iconify-icon icon="solar:shield-star-linear" stroke-width="1.5" class="text-xl text-[#dda4aa]"></iconify-icon>
+                  <svg class="text-xl text-[#dda4aa]" viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 10.4167C3 7.21907 3 5.62028 3.37752 5.08241C3.75503 4.54454 5.25832 4.02996 8.26491 3.00079L8.83772 2.80472C10.405 2.26824 11.1886 2 12 2C12.8114 2 13.595 2.26824 15.1623 2.80472L15.7351 3.00079C18.7417 4.02996 20.245 4.54454 20.6225 5.08241C21 5.62028 21 7.21907 21 10.4167C21 10.8996 21 11.4234 21 11.9914C21 17.6294 16.761 20.3655 14.1014 21.5273C13.38 21.8424 13.0193 22 12 22C10.9807 22 10.62 21.8424 9.89856 21.5273C7.23896 20.3655 3 17.6294 3 11.9914C3 11.4234 3 10.8996 3 10.4167Z"/><path d="M10.8613 8.36335C11.3679 7.45445 11.6213 7 12 7C12.3787 7 12.6321 7.45445 13.1387 8.36335L13.2698 8.59849C13.4138 8.85677 13.4858 8.98591 13.598 9.07112C13.7103 9.15633 13.8501 9.18796 14.1296 9.25122L14.3842 9.30881C15.3681 9.53142 15.86 9.64273 15.977 10.0191C16.0941 10.3955 15.7587 10.7876 15.088 11.572L14.9144 11.7749C14.7238 11.9978 14.6285 12.1092 14.5857 12.2471C14.5428 12.385 14.5572 12.5336 14.586 12.831L14.6122 13.1018C14.7136 14.1482 14.7644 14.6715 14.4579 14.9041C14.1515 15.1367 13.6909 14.9246 12.7697 14.5005L12.5314 14.3907C12.2696 14.2702 12.1387 14.2099 12 14.2099C11.8613 14.2099 11.7304 14.2702 11.4686 14.3907L11.2303 14.5005C10.3091 14.9246 9.84847 15.1367 9.54206 14.9041C9.23565 14.6715 9.28635 14.1482 9.38776 13.1018L9.41399 12.831C9.44281 12.5336 9.45722 12.385 9.41435 12.2471C9.37147 12.1092 9.27617 11.9978 9.08557 11.7749L8.91204 11.572C8.2413 10.7876 7.90593 10.3955 8.02297 10.0191C8.14001 9.64273 8.63194 9.53142 9.61581 9.30881L9.87035 9.25122C10.1499 9.18796 10.2897 9.15633 10.402 9.07112C10.5142 8.98591 10.5862 8.85677 10.7302 8.59849L10.8613 8.36335Z"/></g></svg>
                 </span>
                 <div class="mt-auto">
                   <p class="text-xs uppercase tracking-[0.18rem] text-white/30">
@@ -470,7 +484,12 @@
             <div data-reveal="" class="relative translate-y-14 opacity-0">
               <div class="absolute -inset-5 border border-[#d59ba1]/15"></div>
               <div class="relative aspect-[3/4] overflow-hidden bg-[#23191a] shadow-[0_3rem_8rem_rgba(0,0,0,0.45)]">
-                <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/6d3445fa-4070-4509-beaa-55f7adf60108_1600w.png" alt="Door tak phaile manzar ko dekhta ek joda" class="h-full w-full object-cover opacity-80 grayscale-[35%]" data-element-src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/6d3445fa-4070-4509-beaa-55f7adf60108_1600w.png">
+                <picture class="contents">
+                  <source type="image/avif" srcset="assets/future-horizon-720.avif 720w, assets/future-horizon-1440.avif 1440w" sizes="(min-width: 1440px) 570px, (min-width: 1024px) 35vw, (min-width: 768px) 92vw, 90vw">
+                  <img src="assets/future-horizon-1440.webp" srcset="assets/future-horizon-720.webp 720w, assets/future-horizon-1440.webp 1440w" sizes="(min-width: 1440px) 570px, (min-width: 1024px) 35vw, (min-width: 768px) 92vw, 90vw"
+                       width="1440" height="1920" loading="lazy" decoding="async"
+                       alt="Door tak phaile manzar ko dekhta ek joda" class="h-full w-full object-cover opacity-80 grayscale-[35%]">
+                </picture>
                 <div class="absolute inset-0 bg-gradient-to-t from-[#160e0f]/80 via-transparent to-transparent"></div>
                 <div class="absolute bottom-7 left-7 right-7">
                   <p class="font-['Cormorant_Garamond'] text-3xl font-medium italic">
@@ -505,7 +524,7 @@
                 <p class="text-sm text-white/65">
                   Sust subahein aur bina jaldi ki baatein.
                 </p>
-                <iconify-icon icon="solar:arrow-right-linear" stroke-width="1.5" class="ml-auto text-lg text-white/25 transition group-hover:translate-x-1 group-hover:text-white"></iconify-icon>
+                <svg class="ml-auto text-lg text-white/25 transition group-hover:translate-x-1 group-hover:text-white" viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 12H20M14 18L20 12L14 6"/></svg>
               </div>
               <div class="group flex items-center gap-5 border-t border-white/10 py-5">
                 <span class="font-['Cormorant_Garamond'] text-2xl italic text-[#d99ea4]">
@@ -515,7 +534,7 @@
                   Nayi jagahein, purane jokes, aur woh yaadein jo abhi likhi
                   hi nahi gayin.
                 </p>
-                <iconify-icon icon="solar:arrow-right-linear" stroke-width="1.5" class="ml-auto text-lg text-white/25 transition group-hover:translate-x-1 group-hover:text-white"></iconify-icon>
+                <svg class="ml-auto text-lg text-white/25 transition group-hover:translate-x-1 group-hover:text-white" viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 12H20M14 18L20 12L14 6"/></svg>
               </div>
               <div class="group flex items-center gap-5 border-y border-white/10 py-5">
                 <span class="font-['Cormorant_Garamond'] text-2xl italic text-[#d99ea4]">
@@ -524,7 +543,7 @@
                 <p class="text-sm text-white/65">
                   Ek kahani jo sachi lage, kyunki hum use saath likhein.
                 </p>
-                <iconify-icon icon="solar:arrow-right-linear" stroke-width="1.5" class="ml-auto text-lg text-white/25 transition group-hover:translate-x-1 group-hover:text-white"></iconify-icon>
+                <svg class="ml-auto text-lg text-white/25 transition group-hover:translate-x-1 group-hover:text-white" viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 12H20M14 18L20 12L14 6"/></svg>
               </div>
             </div>
           </div>
@@ -536,7 +555,7 @@
 
         <div class="relative mx-auto max-w-5xl">
           <div data-reveal="" class="mx-auto grid h-16 w-16 translate-y-8 place-items-center rounded-full border border-[#d8a0a6]/25 bg-[#9a3b47]/10 opacity-0 backdrop-blur-xl">
-            <iconify-icon icon="solar:heart-angle-linear" stroke-width="1.5" class="text-2xl text-[#e2aeb3]"></iconify-icon>
+            <svg class="text-2xl text-[#e2aeb3]" viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="1.5" d="M12 5.50063C7.50016 0.825464 2 4.27416 2 9.1371C2 14 6.01943 16.5914 8.96173 18.9109C10 19.7294 11 20.5 12 20.5C13 20.5 14 19.7294 15.0383 18.9109C17.9806 16.5914 22 14 22 9.1371C22 4.27416 16.4998 0.825464 12 5.50063ZM12 5.50063L14 7.49991"/></svg>
           </div>
 
           <p data-reveal="" class="mt-8 translate-y-8 text-xs font-medium uppercase tracking-[0.28rem] text-[#dba4aa] opacity-0">
@@ -558,12 +577,12 @@
           <div data-reveal="" class="mt-11 flex translate-y-8 flex-col justify-center gap-4 opacity-0 sm:flex-row">
             <button id="yes-button" type="button" class="group inline-flex h-14 items-center justify-center gap-3 rounded-full bg-[#f4e9e1] px-8 text-sm font-medium text-[#24191a] shadow-[0_1rem_4rem_rgba(201,117,126,0.25)] transition duration-500 hover:scale-105 hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#dfa7ac] focus-visible:ring-offset-4 focus-visible:ring-offset-black">
               Haan, shuru karte hain
-              <iconify-icon icon="solar:arrow-right-up-linear" stroke-width="1.5" class="text-lg transition duration-500 group-hover:translate-x-1 group-hover:-translate-y-1"></iconify-icon>
+              <svg class="text-lg transition duration-500 group-hover:translate-x-1 group-hover:-translate-y-1" viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M18 15V6H9"/></svg>
             </button>
 
             <button id="talk-button" type="button" class="inline-flex h-14 items-center justify-center gap-3 rounded-full border border-white/20 bg-white/5 px-8 text-sm font-medium text-white/70 backdrop-blur-xl transition duration-500 hover:border-white/45 hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#dfa7ac]">
               Pehle baat karte hain
-              <iconify-icon icon="solar:chat-round-linear" stroke-width="1.5" class="text-lg"></iconify-icon>
+              <svg class="text-lg" viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="1.5" d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 13.5997 2.37562 15.1116 3.04346 16.4525C3.22094 16.8088 3.28001 17.2161 3.17712 17.6006L2.58151 19.8267C2.32295 20.793 3.20701 21.677 4.17335 21.4185L6.39939 20.8229C6.78393 20.72 7.19121 20.7791 7.54753 20.9565C8.88837 21.6244 10.4003 22 12 22Z"/></svg>
             </button>
           </div>
 
@@ -611,7 +630,7 @@
         <a href="#opening" class="group inline-flex items-center gap-3 text-xs font-medium uppercase tracking-[0.18rem] text-white/45 transition hover:text-white">
           Ise phir se dekho
           <span class="grid h-10 w-10 place-items-center rounded-full border border-white/15 transition group-hover:border-white/40">
-            <iconify-icon icon="solar:arrow-up-linear" stroke-width="1.5" class="text-base"></iconify-icon>
+            <svg class="text-base" viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 20L12 4M6 10L12 4L18 10"/></svg>
           </span>
         </a>
       </div>
@@ -622,11 +641,11 @@
         <div class="absolute left-1/2 top-0 h-56 w-56 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#a4424e]/25 blur-3xl"></div>
 
         <button id="close-modal" type="button" class="absolute right-5 top-5 z-10 grid h-10 w-10 place-items-center rounded-full border border-white/10 text-white/50 transition hover:border-white/35 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#dda4aa]" aria-label="Message band karo">
-          <iconify-icon icon="solar:close-circle-linear" stroke-width="1.5" class="text-xl"></iconify-icon>
+          <svg class="text-xl" viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path stroke-linecap="round" d="M14.5 9.50002L9.5 14.5M9.49998 9.5L14.5 14.5"/></g></svg>
         </button>
 
         <div class="relative mx-auto grid h-16 w-16 place-items-center rounded-full border border-[#d69aa0]/30 bg-[#9b3e49]/15">
-          <iconify-icon icon="solar:heart-shine-linear" stroke-width="1.5" class="text-2xl text-[#e0a8ad]"></iconify-icon>
+          <svg class="text-2xl text-[#e0a8ad]" viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linejoin="round" d="M8 11.3796C8 13.357 9.60777 14.4107 10.7847 15.3538C11.2 15.6866 11.6 16 12 16C12.4 16 12.8 15.6866 13.2153 15.3538C14.3922 14.4107 16 13.357 16 11.3796C16 9.40225 13.7999 7.99994 12 9.90096C10.2001 7.99994 8 9.40225 8 11.3796Z"/><path stroke-linecap="round" d="M12 2V4"/><path stroke-linecap="round" d="M12 20V22"/><path stroke-linecap="round" d="M2 12L4 12"/><path stroke-linecap="round" d="M20 12L22 12"/><path stroke-linecap="round" d="M6 18L6.34305 17.657"/><path stroke-linecap="round" d="M17.6567 6.34326L18 6"/><path stroke-linecap="round" d="M18 18L17.657 17.657"/><path stroke-linecap="round" d="M6.34326 6.34326L6 6"/></g></svg>
         </div>
 
         <p class="relative mt-8 text-xs font-medium uppercase tracking-[0.25rem] text-[#dca4aa]">
@@ -647,36 +666,18 @@
 
         <button id="confirm-close" type="button" class="relative mt-9 inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[#f1e2da] px-7 text-sm font-medium text-[#24191a] transition hover:scale-105 hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#dca4aa]">
           Is lamhe ko sambhaal lo
-          <iconify-icon icon="solar:bookmark-linear" stroke-width="1.5" class="text-lg"></iconify-icon>
+          <svg class="text-lg" viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 16.0909V11.0975C21 6.80891 21 4.6646 19.682 3.3323C18.364 2 16.2426 2 12 2C7.75736 2 5.63604 2 4.31802 3.3323C3 4.6646 3 6.80891 3 11.0975V16.0909C3 19.1875 3 20.7358 3.73411 21.4123C4.08421 21.735 4.52615 21.9377 4.99692 21.9915C5.98402 22.1045 7.13673 21.0849 9.44216 19.0458C10.4612 18.1445 10.9708 17.6938 11.5603 17.5751C11.8506 17.5166 12.1494 17.5166 12.4397 17.5751C13.0292 17.6938 13.5388 18.1445 14.5578 19.0458C16.8633 21.0849 18.016 22.1045 19.0031 21.9915C19.4739 21.9377 19.9158 21.735 20.2659 21.4123C21 20.7358 21 19.1875 21 16.0909Z"/><path stroke-linecap="round" d="M15 6H9"/></g></svg>
         </button>
       </div>
     </div>
 
     <div id="talk-message" class="fixed bottom-6 left-1/2 z-[110] hidden w-[calc(100%-2.5rem)] max-w-lg -translate-x-1/2 translate-y-8 items-center gap-4 rounded-full border border-white/10 bg-[#151111]/95 px-6 py-4 text-sm text-white/70 opacity-0 shadow-2xl backdrop-blur-xl" role="status" aria-live="polite">
       <span class="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-[#9d3f4b]/20">
-        <iconify-icon icon="solar:chat-round-linear" stroke-width="1.5" class="text-lg text-[#dda4aa]"></iconify-icon>
+        <svg class="text-lg text-[#dda4aa]" viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="1.5" d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 13.5997 2.37562 15.1116 3.04346 16.4525C3.22094 16.8088 3.28001 17.2161 3.17712 17.6006L2.58151 19.8267C2.32295 20.793 3.20701 21.677 4.17335 21.4185L6.39939 20.8229C6.78393 20.72 7.19121 20.7791 7.54753 20.9565C8.88837 21.6244 10.4003 22 12 22Z"/></svg>
       </span>
       <span>Bilkul. Koi pressure nahi, koi jaldi nahi—tumhari sacchai sabse zyada maayne rakhti hai.</span>
     </div>
 
-    <script>
-      (function () {
-        const OriginalExtrudeGeometry = THREE.ExtrudeGeometry;
-
-        function RefinedHeartGeometry(shape, settings) {
-          const heart = new THREE.Shape();
-          heart.moveTo(0, 2.7);
-          heart.bezierCurveTo(-1.15, 1.75, -3, 0.35, -3, -1.35);
-          heart.bezierCurveTo(-3, -2.9, -1.35, -3.55, 0, -2.05);
-          heart.bezierCurveTo(1.35, -3.55, 3, -2.9, 3, -1.35);
-          heart.bezierCurveTo(3, 0.35, 1.15, 1.75, 0, 2.7);
-          return new OriginalExtrudeGeometry(heart, settings);
-        }
-
-        RefinedHeartGeometry.prototype = OriginalExtrudeGeometry.prototype;
-        THREE.ExtrudeGeometry = RefinedHeartGeometry;
-      })();
-    </script>
     <script>
       (() => {
         const reducedMotion = window.matchMedia(
@@ -738,185 +739,24 @@
           }, 2200);
         }
 
+
         const canvas = document.getElementById("world");
-        const renderer = new THREE.WebGLRenderer({
-          canvas,
-          alpha: true,
-          antialias: window.devicePixelRatio < 2
-        });
 
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.8));
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.outputColorSpace = THREE.SRGBColorSpace;
-        renderer.toneMapping = THREE.ACESFilmicToneMapping;
-        renderer.toneMappingExposure = 1.05;
-        renderer.shadowMap.enabled = true;
-        renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+        // Everything below the 3D layer works without it. buildScene() fills
+        // these in once three.js has loaded; until then (or if it never does)
+        // the page still reveals, navigates, opens the modal and plays audio.
+        let scene3d = null;
+        let resizeScene = null;
 
-        const scene = new THREE.Scene();
-        scene.fog = new THREE.FogExp2(0x090707, 0.042);
-
-        const camera = new THREE.PerspectiveCamera(
-          42,
-          window.innerWidth / window.innerHeight,
-          0.1,
-          100
-        );
-        camera.position.set(0, 0, 13);
-
-        const world = new THREE.Group();
-        scene.add(world);
-
-        const heartShape = new THREE.Shape();
-        heartShape.moveTo(0, 0.5);
-        heartShape.bezierCurveTo(0, 0.5, -2.2, -1.1, -2.2, 1.1);
-        heartShape.bezierCurveTo(-2.2, 2.6, -0.5, 3.2, 0, 2);
-        heartShape.bezierCurveTo(0.5, 3.2, 2.2, 2.6, 2.2, 1.1);
-        heartShape.bezierCurveTo(2.2, -1.1, 0, 0.5, 0, 0.5);
-
-        const heartGeometry = new THREE.ExtrudeGeometry(heartShape, {
-          depth: 0.7,
-          bevelEnabled: true,
-          bevelSegments: 8,
-          steps: 2,
-          bevelSize: 0.18,
-          bevelThickness: 0.18,
-          curveSegments: 32
-        });
-        heartGeometry.center();
-
-        const heartMaterial = new THREE.MeshPhysicalMaterial({
-          color: 0x7f2633,
-          metalness: 0.35,
-          roughness: 0.2,
-          clearcoat: 1,
-          clearcoatRoughness: 0.12,
-          transmission: 0.04,
-          emissive: 0x27070c,
-          emissiveIntensity: 0.35
-        });
-
-        const heart = new THREE.Mesh(heartGeometry, heartMaterial);
-        heart.rotation.x = 0;
-        heart.rotation.z = Math.PI;
-        heart.scale.setScalar(0.88);
-        heart.castShadow = true;
-        world.add(heart);
-
-        const ringMaterial = new THREE.MeshPhysicalMaterial({
-          color: 0xd5a08b,
-          metalness: 0.92,
-          roughness: 0.17,
-          clearcoat: 0.7
-        });
-
-        const ringOne = new THREE.Mesh(
-          new THREE.TorusGeometry(3.5, 0.025, 12, 160),
-          ringMaterial
-        );
-        ringOne.rotation.x = 1.15;
-        ringOne.rotation.y = 0.4;
-        world.add(ringOne);
-
-        const ringTwo = new THREE.Mesh(
-          new THREE.TorusGeometry(4.2, 0.012, 10, 180),
-          new THREE.MeshBasicMaterial({
-            color: 0xb96a73,
-            transparent: true,
-            opacity: 0.38
-          })
-        );
-        ringTwo.rotation.x = 0.55;
-        ringTwo.rotation.y = 1.2;
-        world.add(ringTwo);
-
-        const particleCount = window.innerWidth < 768 ? 450 : 900;
-        const positions = new Float32Array(particleCount * 3);
-        const scales = new Float32Array(particleCount);
-
-        for (let i = 0; i < particleCount; i++) {
-          const radius = 4 + Math.random() * 18;
-          const angle = Math.random() * Math.PI * 2;
-          positions[i * 3] = Math.cos(angle) * radius;
-          positions[i * 3 + 1] = (Math.random() - 0.5) * 18;
-          positions[i * 3 + 2] = Math.sin(angle) * radius - 5;
-          scales[i] = Math.random();
-        }
-
-        const particleGeometry = new THREE.BufferGeometry();
-        particleGeometry.setAttribute(
-          "position",
-          new THREE.BufferAttribute(positions, 3)
-        );
-
-        const particleMaterial = new THREE.PointsMaterial({
-          color: 0xe4b9ae,
-          size: 0.035,
-          transparent: true,
-          opacity: 0.55,
-          depthWrite: false,
-          blending: THREE.AdditiveBlending
-        });
-
-        const particles = new THREE.Points(
-          particleGeometry,
-          particleMaterial
-        );
-        world.add(particles);
-
-        const petalGeometry = new THREE.SphereGeometry(0.06, 8, 6);
-        const petalMaterial = new THREE.MeshStandardMaterial({
-          color: 0xa94955,
-          roughness: 0.55
-        });
-        const petals = new THREE.InstancedMesh(
-          petalGeometry,
-          petalMaterial,
-          70
-        );
-        const dummy = new THREE.Object3D();
-        const petalData = [];
-
-        for (let i = 0; i < 70; i++) {
-          const data = {
-            x: (Math.random() - 0.5) * 18,
-            y: (Math.random() - 0.5) * 15,
-            z: (Math.random() - 0.5) * 14,
-            speed: 0.15 + Math.random() * 0.35,
-            drift: Math.random() * Math.PI * 2,
-            scale: 0.4 + Math.random() * 1.2
-          };
-          petalData.push(data);
-          dummy.position.set(data.x, data.y, data.z);
-          dummy.scale.set(data.scale * 1.5, data.scale * 0.45, data.scale);
-          dummy.rotation.set(Math.random(), Math.random(), Math.random());
-          dummy.updateMatrix();
-          petals.setMatrixAt(i, dummy.matrix);
-        }
-        world.add(petals);
-
-        const ambient = new THREE.AmbientLight(0x5f3440, 1.25);
-        scene.add(ambient);
-
-        const keyLight = new THREE.SpotLight(
-          0xffd8c7,
-          90,
-          35,
-          Math.PI / 5,
-          0.8,
-          1.4
-        );
-        keyLight.position.set(5, 7, 10);
-        keyLight.castShadow = true;
-        scene.add(keyLight);
-
-        const rimLight = new THREE.PointLight(0xb52f4a, 55, 25, 1.8);
-        rimLight.position.set(-7, 1, 4);
-        scene.add(rimLight);
-
-        const fillLight = new THREE.PointLight(0x7766aa, 30, 22, 2);
-        fillLight.position.set(5, -5, -2);
-        scene.add(fillLight);
+        const applySceneTheme = (theme, isLight) => {
+          canvas.style.opacity = isLight ? "0.28" : "1";
+          if (!scene3d) return;
+          scene3d.scene.fog.color.set(isLight ? 0xd9cdc2 : 0x090707);
+          scene3d.heartMaterial.color.set(
+            theme === "dawn" || theme === "final" ? 0xa23d4b : 0x7f2633
+          );
+          scene3d.particleMaterial.color.set(isLight ? 0x8d3a45 : 0xe4b9ae);
+        };
 
         let mouseX = 0;
         let mouseY = 0;
@@ -1029,12 +869,7 @@
             ? "0 1px 1rem rgba(255,255,255,0.55)"
             : "none";
 
-          canvas.style.opacity = isLight ? "0.28" : "1";
-          scene.fog.color.set(isLight ? 0xd9cdc2 : 0x090707);
-          heartMaterial.color.set(
-            theme === "dawn" || theme === "final" ? 0xa23d4b : 0x7f2633
-          );
-          particleMaterial.color.set(isLight ? 0x8d3a45 : 0xe4b9ae);
+          applySceneTheme(theme, isLight);
 
           const barsVisible = index === sections.length - 1;
           cinematicTop.style.height = barsVisible ? "2.5vh" : "0";
@@ -1090,6 +925,11 @@
         window.addEventListener("scroll", updatePageState, { passive: true });
         updatePageState();
 
+        window.addEventListener("resize", () => {
+          if (resizeScene) resizeScene();
+          updatePageState();
+        });
+
         const depthElements = [...document.querySelectorAll("[data-depth]")];
 
         document.querySelectorAll("[data-tilt]").forEach((card) => {
@@ -1113,133 +953,16 @@
           });
         });
 
-        let lastTime = performance.now();
 
-        const render = (time) => {
-          const delta = Math.min((time - lastTime) / 1000, 0.05);
-          lastTime = time;
-
-          smoothMouseX = lerp(smoothMouseX, mouseX, reducedMotion ? 1 : 0.045);
-          smoothMouseY = lerp(smoothMouseY, mouseY, reducedMotion ? 1 : 0.045);
-          smoothScroll = lerp(
-            smoothScroll,
-            window.scrollY,
-            reducedMotion ? 1 : 0.065
-          );
-
-          const target = sceneCamera[currentSceneIndex];
-          camera.position.x = lerp(
-            camera.position.x,
-            target.x + smoothMouseX * 0.8,
-            reducedMotion ? 1 : 0.025
-          );
-          camera.position.y = lerp(
-            camera.position.y,
-            target.y - smoothMouseY * 0.55,
-            reducedMotion ? 1 : 0.025
-          );
-          camera.position.z = lerp(
-            camera.position.z,
-            target.z,
-            reducedMotion ? 1 : 0.025
-          );
-
-          world.rotation.x = lerp(
-            world.rotation.x,
-            target.rx + smoothMouseY * 0.14,
-            reducedMotion ? 1 : 0.025
-          );
-          world.rotation.y = lerp(
-            world.rotation.y,
-            target.ry + smoothMouseX * 0.2,
-            reducedMotion ? 1 : 0.025
-          );
-
-          const currentScale = world.scale.x;
-          const nextScale = lerp(
-            currentScale,
-            target.scale,
-            reducedMotion ? 1 : 0.025
-          );
-          world.scale.setScalar(nextScale);
-
-          if (!reducedMotion) {
-            const elapsed = time * 0.001;
-            heart.rotation.y = elapsed * 0.16;
-            heart.rotation.x = Math.sin(elapsed * 0.45) * 0.08;
-            heart.position.y = Math.sin(elapsed * 0.7) * 0.18;
-            ringOne.rotation.z = elapsed * 0.08;
-            ringTwo.rotation.z = -elapsed * 0.055;
-            particles.rotation.y = elapsed * 0.008;
-            particles.rotation.x = Math.sin(elapsed * 0.08) * 0.03;
-
-            petalData.forEach((data, index) => {
-              data.y -= data.speed * delta;
-              data.x += Math.sin(elapsed * 0.5 + data.drift) * delta * 0.08;
-
-              if (data.y < -8) {
-                data.y = 8;
-                data.x = (Math.random() - 0.5) * 18;
-              }
-
-              dummy.position.set(data.x, data.y, data.z);
-              dummy.scale.set(
-                data.scale * 1.5,
-                data.scale * 0.45,
-                data.scale
-              );
-              dummy.rotation.set(
-                elapsed * data.speed + data.drift,
-                elapsed * data.speed * 0.7,
-                data.drift
-              );
-              dummy.updateMatrix();
-              petals.setMatrixAt(index, dummy.matrix);
-            });
-            petals.instanceMatrix.needsUpdate = true;
-
-            depthElements.forEach((element) => {
-              const rect = element.getBoundingClientRect();
-              if (
-                rect.bottom < -100 ||
-                rect.top > window.innerHeight + 100
-              ) {
-                return;
-              }
-
-              const depth = Number(element.dataset.depth || 0);
-              const offset =
-                (rect.top + rect.height / 2 - window.innerHeight / 2) * depth;
-              element.style.transform = `translate3d(0, ${offset}px, 0)`;
-            });
-
-            const pulse = document.getElementById("scroll-pulse");
-            if (pulse) {
-              pulse.style.transform = `translateY(${
-                (elapsed * 22) % 40
-              }px)`;
-            }
-          }
-
-          camera.lookAt(0, 0, 0);
-          renderer.render(scene, camera);
-          requestAnimationFrame(render);
-        };
-
-        requestAnimationFrame(render);
-
-        window.addEventListener("resize", () => {
-          camera.aspect = window.innerWidth / window.innerHeight;
-          camera.updateProjectionMatrix();
-          renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.8));
-          renderer.setSize(window.innerWidth, window.innerHeight);
-          updatePageState();
-        });
 
         let audioContext;
         let atmosphereGain;
         let atmosphereNodes = [];
         let soundEnabled = false;
+        // Bodies for the two states of the atmosphere button's icon.
+        const VOLUME_OFF = "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-width=\"1.5\"><path d=\"M15.5 11.9998C15.5 12.5317 15.4646 13.4879 15.4127 14.6052C15.2725 17.6226 15.2024 19.1313 14.2797 19.7797C14.1028 19.9041 13.9047 20.0049 13.7001 20.0747C12.7327 20.4048 11.5975 19.747 9.5 18.3725M7.0162 17.0417C6.76819 16.9998 6.51215 16.9998 6.00008 16.9998C4.62617 16.9998 3.93921 16.9998 3.33988 16.7225C2.7923 16.4692 2.24473 15.9539 1.95854 15.4228C1.64531 14.8414 1.60847 14.237 1.53479 13.0282C1.51299 12.6706 1.5 12.3222 1.5 11.9998C1.5 11.6774 1.51299 11.329 1.53479 10.9714C1.60847 9.76255 1.64531 9.15814 1.95854 8.57679C2.24473 8.04563 2.7923 7.53042 3.33988 7.27707C3.93921 6.99979 4.62617 6.99979 6.00008 6.99979C6.51215 6.99979 6.76819 6.99979 7.0162 6.95791C7.26138 6.9165 7.50046 6.84478 7.72795 6.74438C7.95806 6.64283 8.17181 6.50189 8.59932 6.22002L8.81825 6.07566C11.3612 4.39898 12.6327 3.56063 13.7001 3.92487C13.9047 3.9947 14.1028 4.09551 14.2797 4.21984C15.115 4.80685 15.2516 6.09882 15.374 8.57679\"/><path d=\"M20 18C20 18 21.5 16.2 21.5 12C21.5 9.56658 20.9965 7.93882 20.5729 7\"/><path d=\"M18 15C18 15 18.5 14.1 18.5 12C18.5 11.1381 18.4158 10.4784 18.3165 10\"/><path d=\"M22 2L2 22\"/></g>";
+        const VOLUME_ON = "<g fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"><path d=\"M1.53479 10.9714C1.60847 9.76255 1.64531 9.15814 1.95854 8.57679C2.24473 8.04563 2.7923 7.53042 3.33988 7.27707C3.93921 6.99979 4.62617 6.99979 6.00008 6.99979C6.51215 6.99979 6.76819 6.99979 7.0162 6.95791C7.26138 6.9165 7.50046 6.84478 7.72795 6.74438C7.95806 6.64283 8.17181 6.50189 8.59932 6.22002L8.81825 6.07566C11.3612 4.39898 12.6327 3.56063 13.7001 3.92487C13.9047 3.9947 14.1028 4.09551 14.2797 4.21984C15.2024 4.86829 15.2725 6.37699 15.4127 9.3944C15.4646 10.5117 15.5 11.4679 15.5 11.9998C15.5 12.5317 15.4646 13.4879 15.4127 14.6052C15.2725 17.6226 15.2024 19.1313 14.2797 19.7797C14.1028 19.9041 13.9047 20.0049 13.7001 20.0747C12.6327 20.4389 11.3612 19.6006 8.81825 17.9239L8.59932 17.7796C8.17181 17.4977 7.95806 17.3567 7.72795 17.2552C7.50046 17.1548 7.26138 17.0831 7.0162 17.0417C6.76819 16.9998 6.51215 16.9998 6.00008 16.9998C4.62617 16.9998 3.93921 16.9998 3.33988 16.7225C2.7923 16.4692 2.24473 15.9539 1.95854 15.4228C1.64531 14.8414 1.60847 14.237 1.53479 13.0282C1.51299 12.6706 1.5 12.3222 1.5 11.9998C1.5 11.6774 1.51299 11.329 1.53479 10.9714Z\"/><path stroke-linecap=\"round\" d=\"M20 6C20 6 21.5 7.8 21.5 12C21.5 16.2 20 18 20 18\"/><path stroke-linecap=\"round\" d=\"M18 9C18 9 18.5 9.9 18.5 12C18.5 14.1 18 15 18 15\"/></g>";
+
         const soundToggle = document.getElementById("sound-toggle");
         const soundIcon = document.getElementById("sound-icon");
 
@@ -1291,13 +1014,349 @@
           );
 
           soundToggle.setAttribute("aria-pressed", String(soundEnabled));
-          soundIcon.setAttribute(
-            "icon",
-            soundEnabled
-              ? "solar:volume-loud-linear"
-              : "solar:volume-cross-linear"
-          );
+          soundIcon.innerHTML = soundEnabled ? VOLUME_ON : VOLUME_OFF;
         });
+
+        const buildScene = () => {
+          if (typeof THREE === "undefined") return;
+
+          const OriginalExtrudeGeometry = THREE.ExtrudeGeometry;
+
+                  function RefinedHeartGeometry(shape, settings) {
+                    const heart = new THREE.Shape();
+                    heart.moveTo(0, 2.7);
+                    heart.bezierCurveTo(-1.15, 1.75, -3, 0.35, -3, -1.35);
+                    heart.bezierCurveTo(-3, -2.9, -1.35, -3.55, 0, -2.05);
+                    heart.bezierCurveTo(1.35, -3.55, 3, -2.9, 3, -1.35);
+                    heart.bezierCurveTo(3, 0.35, 1.15, 1.75, 0, 2.7);
+                    return new OriginalExtrudeGeometry(heart, settings);
+                  }
+
+                  RefinedHeartGeometry.prototype = OriginalExtrudeGeometry.prototype;
+                  THREE.ExtrudeGeometry = RefinedHeartGeometry;
+
+          const renderer = new THREE.WebGLRenderer({
+            canvas,
+            alpha: true,
+            antialias: window.devicePixelRatio < 2
+          });
+
+          renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.8));
+          renderer.setSize(window.innerWidth, window.innerHeight);
+          renderer.outputColorSpace = THREE.SRGBColorSpace;
+          renderer.toneMapping = THREE.ACESFilmicToneMapping;
+          renderer.toneMappingExposure = 1.05;
+          renderer.shadowMap.enabled = true;
+          renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+
+          const scene = new THREE.Scene();
+          scene.fog = new THREE.FogExp2(0x090707, 0.042);
+
+          const camera = new THREE.PerspectiveCamera(
+            42,
+            window.innerWidth / window.innerHeight,
+            0.1,
+            100
+          );
+          camera.position.set(0, 0, 13);
+
+          const world = new THREE.Group();
+          scene.add(world);
+
+          const heartShape = new THREE.Shape();
+          heartShape.moveTo(0, 0.5);
+          heartShape.bezierCurveTo(0, 0.5, -2.2, -1.1, -2.2, 1.1);
+          heartShape.bezierCurveTo(-2.2, 2.6, -0.5, 3.2, 0, 2);
+          heartShape.bezierCurveTo(0.5, 3.2, 2.2, 2.6, 2.2, 1.1);
+          heartShape.bezierCurveTo(2.2, -1.1, 0, 0.5, 0, 0.5);
+
+          const heartGeometry = new THREE.ExtrudeGeometry(heartShape, {
+            depth: 0.7,
+            bevelEnabled: true,
+            bevelSegments: 8,
+            steps: 2,
+            bevelSize: 0.18,
+            bevelThickness: 0.18,
+            curveSegments: 32
+          });
+          heartGeometry.center();
+
+          const heartMaterial = new THREE.MeshPhysicalMaterial({
+            color: 0x7f2633,
+            metalness: 0.35,
+            roughness: 0.2,
+            clearcoat: 1,
+            clearcoatRoughness: 0.12,
+            transmission: 0.04,
+            emissive: 0x27070c,
+            emissiveIntensity: 0.35
+          });
+
+          const heart = new THREE.Mesh(heartGeometry, heartMaterial);
+          heart.rotation.x = 0;
+          heart.rotation.z = Math.PI;
+          heart.scale.setScalar(0.88);
+          heart.castShadow = true;
+          world.add(heart);
+
+          const ringMaterial = new THREE.MeshPhysicalMaterial({
+            color: 0xd5a08b,
+            metalness: 0.92,
+            roughness: 0.17,
+            clearcoat: 0.7
+          });
+
+          const ringOne = new THREE.Mesh(
+            new THREE.TorusGeometry(3.5, 0.025, 12, 160),
+            ringMaterial
+          );
+          ringOne.rotation.x = 1.15;
+          ringOne.rotation.y = 0.4;
+          world.add(ringOne);
+
+          const ringTwo = new THREE.Mesh(
+            new THREE.TorusGeometry(4.2, 0.012, 10, 180),
+            new THREE.MeshBasicMaterial({
+              color: 0xb96a73,
+              transparent: true,
+              opacity: 0.38
+            })
+          );
+          ringTwo.rotation.x = 0.55;
+          ringTwo.rotation.y = 1.2;
+          world.add(ringTwo);
+
+          const particleCount = window.innerWidth < 768 ? 450 : 900;
+          const positions = new Float32Array(particleCount * 3);
+          const scales = new Float32Array(particleCount);
+
+          for (let i = 0; i < particleCount; i++) {
+            const radius = 4 + Math.random() * 18;
+            const angle = Math.random() * Math.PI * 2;
+            positions[i * 3] = Math.cos(angle) * radius;
+            positions[i * 3 + 1] = (Math.random() - 0.5) * 18;
+            positions[i * 3 + 2] = Math.sin(angle) * radius - 5;
+            scales[i] = Math.random();
+          }
+
+          const particleGeometry = new THREE.BufferGeometry();
+          particleGeometry.setAttribute(
+            "position",
+            new THREE.BufferAttribute(positions, 3)
+          );
+
+          const particleMaterial = new THREE.PointsMaterial({
+            color: 0xe4b9ae,
+            size: 0.035,
+            transparent: true,
+            opacity: 0.55,
+            depthWrite: false,
+            blending: THREE.AdditiveBlending
+          });
+
+          const particles = new THREE.Points(
+            particleGeometry,
+            particleMaterial
+          );
+          world.add(particles);
+
+          const petalGeometry = new THREE.SphereGeometry(0.06, 8, 6);
+          const petalMaterial = new THREE.MeshStandardMaterial({
+            color: 0xa94955,
+            roughness: 0.55
+          });
+          const petals = new THREE.InstancedMesh(
+            petalGeometry,
+            petalMaterial,
+            70
+          );
+          const dummy = new THREE.Object3D();
+          const petalData = [];
+
+          for (let i = 0; i < 70; i++) {
+            const data = {
+              x: (Math.random() - 0.5) * 18,
+              y: (Math.random() - 0.5) * 15,
+              z: (Math.random() - 0.5) * 14,
+              speed: 0.15 + Math.random() * 0.35,
+              drift: Math.random() * Math.PI * 2,
+              scale: 0.4 + Math.random() * 1.2
+            };
+            petalData.push(data);
+            dummy.position.set(data.x, data.y, data.z);
+            dummy.scale.set(data.scale * 1.5, data.scale * 0.45, data.scale);
+            dummy.rotation.set(Math.random(), Math.random(), Math.random());
+            dummy.updateMatrix();
+            petals.setMatrixAt(i, dummy.matrix);
+          }
+          world.add(petals);
+
+          const ambient = new THREE.AmbientLight(0x5f3440, 1.25);
+          scene.add(ambient);
+
+          const keyLight = new THREE.SpotLight(
+            0xffd8c7,
+            90,
+            35,
+            Math.PI / 5,
+            0.8,
+            1.4
+          );
+          keyLight.position.set(5, 7, 10);
+          keyLight.castShadow = true;
+          scene.add(keyLight);
+
+          const rimLight = new THREE.PointLight(0xb52f4a, 55, 25, 1.8);
+          rimLight.position.set(-7, 1, 4);
+          scene.add(rimLight);
+
+          const fillLight = new THREE.PointLight(0x7766aa, 30, 22, 2);
+          fillLight.position.set(5, -5, -2);
+          scene.add(fillLight);
+
+          let lastTime = performance.now();
+
+          const render = (time) => {
+            const delta = Math.min((time - lastTime) / 1000, 0.05);
+            lastTime = time;
+
+            smoothMouseX = lerp(smoothMouseX, mouseX, reducedMotion ? 1 : 0.045);
+            smoothMouseY = lerp(smoothMouseY, mouseY, reducedMotion ? 1 : 0.045);
+            smoothScroll = lerp(
+              smoothScroll,
+              window.scrollY,
+              reducedMotion ? 1 : 0.065
+            );
+
+            const target = sceneCamera[currentSceneIndex];
+            camera.position.x = lerp(
+              camera.position.x,
+              target.x + smoothMouseX * 0.8,
+              reducedMotion ? 1 : 0.025
+            );
+            camera.position.y = lerp(
+              camera.position.y,
+              target.y - smoothMouseY * 0.55,
+              reducedMotion ? 1 : 0.025
+            );
+            camera.position.z = lerp(
+              camera.position.z,
+              target.z,
+              reducedMotion ? 1 : 0.025
+            );
+
+            world.rotation.x = lerp(
+              world.rotation.x,
+              target.rx + smoothMouseY * 0.14,
+              reducedMotion ? 1 : 0.025
+            );
+            world.rotation.y = lerp(
+              world.rotation.y,
+              target.ry + smoothMouseX * 0.2,
+              reducedMotion ? 1 : 0.025
+            );
+
+            const currentScale = world.scale.x;
+            const nextScale = lerp(
+              currentScale,
+              target.scale,
+              reducedMotion ? 1 : 0.025
+            );
+            world.scale.setScalar(nextScale);
+
+            if (!reducedMotion) {
+              const elapsed = time * 0.001;
+              heart.rotation.y = elapsed * 0.16;
+              heart.rotation.x = Math.sin(elapsed * 0.45) * 0.08;
+              heart.position.y = Math.sin(elapsed * 0.7) * 0.18;
+              ringOne.rotation.z = elapsed * 0.08;
+              ringTwo.rotation.z = -elapsed * 0.055;
+              particles.rotation.y = elapsed * 0.008;
+              particles.rotation.x = Math.sin(elapsed * 0.08) * 0.03;
+
+              petalData.forEach((data, index) => {
+                data.y -= data.speed * delta;
+                data.x += Math.sin(elapsed * 0.5 + data.drift) * delta * 0.08;
+
+                if (data.y < -8) {
+                  data.y = 8;
+                  data.x = (Math.random() - 0.5) * 18;
+                }
+
+                dummy.position.set(data.x, data.y, data.z);
+                dummy.scale.set(
+                  data.scale * 1.5,
+                  data.scale * 0.45,
+                  data.scale
+                );
+                dummy.rotation.set(
+                  elapsed * data.speed + data.drift,
+                  elapsed * data.speed * 0.7,
+                  data.drift
+                );
+                dummy.updateMatrix();
+                petals.setMatrixAt(index, dummy.matrix);
+              });
+              petals.instanceMatrix.needsUpdate = true;
+
+              depthElements.forEach((element) => {
+                const rect = element.getBoundingClientRect();
+                if (
+                  rect.bottom < -100 ||
+                  rect.top > window.innerHeight + 100
+                ) {
+                  return;
+                }
+
+                const depth = Number(element.dataset.depth || 0);
+                const offset =
+                  (rect.top + rect.height / 2 - window.innerHeight / 2) * depth;
+                element.style.transform = `translate3d(0, ${offset}px, 0)`;
+              });
+
+              const pulse = document.getElementById("scroll-pulse");
+              if (pulse) {
+                pulse.style.transform = `translateY(${
+                  (elapsed * 22) % 40
+                }px)`;
+              }
+            }
+
+            camera.lookAt(0, 0, 0);
+            renderer.render(scene, camera);
+            requestAnimationFrame(render);
+          };
+
+          requestAnimationFrame(render);
+
+          scene3d = { scene, heartMaterial, particleMaterial };
+          resizeScene = () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.8));
+            renderer.setSize(window.innerWidth, window.innerHeight);
+          };
+
+          // The scene is built after the first setActiveScene call, so re-apply
+          // whatever chapter the reader is already on.
+          const current = sections[currentSceneIndex];
+          applySceneTheme(current.dataset.theme, current.dataset.theme === "light");
+        };
+
+        // three.js is deferred, so it is guaranteed to have run by DOMContentLoaded.
+        const startScene = () => {
+          try {
+            buildScene();
+          } catch (error) {
+            console.warn("Background scene unavailable:", error);
+          }
+        };
+
+        if (document.readyState === "loading") {
+          document.addEventListener("DOMContentLoaded", startScene, { once: true });
+        } else {
+          startScene();
+        }
 
         const modal = document.getElementById("answer-modal");
         const answerPanel = document.getElementById("answer-panel");
