@@ -508,6 +508,7 @@
       const EASE = 'expo.out', REVEAL = 1.2, CROWD_START = 340, CROWD_END = 1;
       const staticMode = new URLSearchParams(location.search).has('static');
       const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches || staticMode;
+      const prefersStill = matchMedia('(prefers-reduced-motion: reduce)').matches;
       const q = (s, r) => (r || document).querySelector(s);
       const qa = (s, r) => Array.from((r || document).querySelectorAll(s));
 
@@ -596,7 +597,7 @@
          bottom, .5 = the centre a landscape film wants. These clips are 9:16
          phone video with her at a different height in each, so each names its
          own; measured against frames 1, 100 and 193 of every sequence. */
-      function sequence(canvas, fallback, dir, total, face = .5) {
+      function sequence(canvas, fallback, dir, total, face = .5, fps = 0) {
         if (!canvas || !fallback) return null;
         const ctx = canvas.getContext('2d');
         const images = []; let ready = false, frame = 0;
@@ -625,19 +626,38 @@
         probe.onerror = () => { canvas.style.display = 'none'; fallback.classList.remove('hidden'); };
         probe.src = url(1);
         addEventListener('resize', size);
-        return { set(p) { if (!ready) return; const f = Math.round(Math.max(0, Math.min(1, p)) * (total - 1)); if (f === frame) return; frame = f; draw(); } };
+        /* Play on arrival rather than only under the scroll. fps is the
+           clip's own rate — 193 frames over its original running time — so the
+           motion reads at the speed it was filmed at, and it loops. */
+        let running = false, carry = 0;
+        function tick(time, delta) {
+          if (!ready) return;
+          carry += delta / 1000;
+          const step = 1 / fps;
+          if (carry < step) return;
+          const n = Math.floor(carry / step);
+          carry -= n * step;
+          frame = (frame + n) % total;
+          draw();
+        }
+        return {
+          set(p) { if (!ready) return; const f = Math.round(Math.max(0, Math.min(1, p)) * (total - 1)); if (f === frame) return; frame = f; draw(); },
+          play() { if (running || !fps || prefersStill) return; running = true; carry = 0; gsap.ticker.add(tick); },
+          stop() { if (!running) return; running = false; gsap.ticker.remove(tick); }
+        };
       }
 
       /* ── 1 · the opening ── */
       function initOpening() {
         const stage = q('[data-opening-stage]');
         if (!stage) return;
-        const seq = sequence(q('[data-opening-canvas]'), q('[data-opening-fallback]'), 'opening', 193, .6);
+        const seq = sequence(q('[data-opening-canvas]'), q('[data-opening-fallback]'), 'opening', 193, .6, 13.14);
         const beats = qa('[data-beat]'), cells = qa('[data-cell]'), prox = { p: 0 };
         const tl = gsap.timeline({
-          scrollTrigger: { trigger: stage, start: 'top top', end: '+=4200', pin: true, scrub: 1, anticipatePin: 1 }
+          scrollTrigger: { trigger: stage, start: 'top top', end: '+=4200', pin: true, scrub: 1, anticipatePin: 1,
+            onToggle: self => self.isActive ? seq.play() : seq.stop() }
         });
-        tl.to(prox, { p: 1, ease: 'none', duration: 10, onUpdate() { if (seq) seq.set(prox.p); } }, 0);
+        tl.to(prox, { p: 1, ease: 'none', duration: 10 }, 0);   /* holds the film's slot in the timeline; the film runs on its own clock */
         tl.to('[data-scroll-hint]', { opacity: 0, duration: .4 }, 0)
           .to('[data-title]', { opacity: 0, y: -60, duration: 1 }, .5)
           .to('[data-openinggrade]', { opacity: 1, duration: 1 }, '<')
@@ -657,12 +677,13 @@
       function initNight() {
         const stage = q('[data-night-stage]');
         if (!stage) return;
-        const seq = sequence(q('[data-night-canvas]'), q('[data-night-fallback]'), 'tide', 193, .6);
+        const seq = sequence(q('[data-night-canvas]'), q('[data-night-fallback]'), 'tide', 193, .6, 12.76);
         const caps = qa('[data-cap]'), num = q('[data-count-n]'), time = q('[data-count-time]'), prox = { p: 0 };
         const tl = gsap.timeline({
-          scrollTrigger: { trigger: stage, start: 'top top', end: '+=4600', pin: true, scrub: 1, anticipatePin: 1 }
+          scrollTrigger: { trigger: stage, start: 'top top', end: '+=4600', pin: true, scrub: 1, anticipatePin: 1,
+            onToggle: self => self.isActive ? seq.play() : seq.stop() }
         });
-        tl.to(prox, { p: 1, ease: 'none', duration: 12, onUpdate() { if (seq) seq.set(prox.p); } }, 0);
+        tl.to(prox, { p: 1, ease: 'none', duration: 12 }, 0);   /* holds the film's slot in the timeline; the film runs on its own clock */
         tl.to('[data-night-canvas]', { opacity: 1, duration: .8 }, 0)
           .to('[data-count-ground]', { opacity: 1, duration: .8 }, '<')
           .to('[data-count-group]', { opacity: 1, duration: .6 }, '<0.2')
@@ -730,10 +751,12 @@
         const stage = q('[data-drift-stage]'), track = q('[data-drift-track]');
         if (!stage || !track) return;
         const dist = () => Math.max(0, track.scrollWidth - innerWidth);
+        const seq = sequence(q('[data-film-canvas]'), q('[data-film-fallback]'), 'unwind', 193, .3, 22.26);
         const tl = gsap.timeline({
           scrollTrigger: {
             trigger: stage, start: 'top top', end: () => '+=' + (dist() + innerHeight * 2.2),
-            pin: true, scrub: 1, anticipatePin: 1, invalidateOnRefresh: true
+            pin: true, scrub: 1, anticipatePin: 1, invalidateOnRefresh: true,
+            onToggle: self => self.isActive ? seq.play() : seq.stop()
           }
         });
         tl.to(track, { x: () => -dist(), ease: 'none', duration: 6 }, 0)
@@ -744,10 +767,9 @@
           .to({}, { duration: .5 }, '<')   /* was the drift label fade */
           .to('[data-close]', { clipPath: 'circle(78% at 50% 50%)', duration: 1.8, ease: 'none' }, '>')
           .to('[data-close-el]', { opacity: 1, duration: .8, stagger: .1 }, '>-0.8');
-        const seq = sequence(q('[data-film-canvas]'), q('[data-film-fallback]'), 'unwind', 193, .3);
         if (seq) {
           const prox = { p: 0 };
-          tl.to(prox, { p: 1, ease: 'none', duration: 6, onUpdate() { seq.set(prox.p); } }, 0);
+          tl.to(prox, { p: 1, ease: 'none', duration: 6 }, 0);   /* holds the film's slot in the timeline */
         }
       }
 
