@@ -6,82 +6,113 @@ documentation.
 
 Five movements, each pinned and scrubbed by scroll:
 
-1. **Zindagi bhar tumhare saath** — a 193-frame aerial film over an emptying
-   sandbar, with the opening line, four beats about where she already is in his
-   day, and a closing passage layered over it.
-2. **Ek din ki ginti** — a second 193-frame film of the tide falling, under a
-   counter that walks one day from a single first thought at 06:12 up to 340 at
-   its highest and back down to one at 23:40.
-3. **Kahan le chaloon** — a statement that an aperture opens over, revealing
-   four shore clips she can step through.
-4. **Kahin bhi, bas saath** — five shores surveyed sideways, ending full-bleed
+1. **Zindagi bhar tumhare saath** — a 193-frame film, with the opening line,
+   four beats about where she already is in his day, and a closing passage
+   layered over it.
+2. **Ek din ki ginti** — a second 193-frame film under a counter that walks one
+   day from a single first thought at 06:12 up to 340 at its highest and back
+   down to one at 23:40.
+3. **Gyarah chhoti clips** — a statement that an aperture opens over, revealing
+   eleven clips she can step through.
+4. **Kuch tasveerein** — eleven photographs surveyed sideways, ending full-bleed
    on a third 193-frame film.
 5. **Ek sawaal, ek jawab** — a circle opening onto paper, the question, and the
    "Haan" button.
 
 The folder is still named `vacance/` (and the deployed app is still
-`vacance-5h490l`) because only the copy is ours — the markup, styles and
-choreography are exactly the file that was handed over.
+`vacance-5h490l`) after the file this was built from.
 
-## The page is the original build, unmodified
+## Everything on the page is Laiba's own media
 
-Only text nodes, the six caption `data-crowd`/`data-time` pairs and the loader's
-count target differ from the source that was shared. Nothing about the layout,
-the motion, the cursor, the controls or the asset wiring was touched, by
-explicit instruction. Two consequences are inherited from that source and are
-**not** bugs introduced here:
+The stock beach footage the source shipped with is gone. Every frame, clip and
+photograph now under `assets/laiba/` came from the eleven videos and eleven
+photos that were handed over. Nothing is licensed stock, and nothing is generated.
 
-- **The three scroll films do not load.** `sequence()` builds its URLs as
-  `open/0001.jpg`, `night/0001.jpg` and `film/0001.jpg` against
-  `cdn.jsdelivr.net/gh/Sam1983Aing/aura-assets@1.0.0/vacance/`, where the real
-  directories are `opening/`, `tide/` and `unwind/` with an `f_001.jpg` pattern
-  and 193 frames each. All three probes 404, so each canvas hides itself and
-  the still `<img>` beside it is shown instead. The page reads as three
-  photographs rather than three scrubbed films.
-- **Two headings overlap their neighbours.** In movement 2 the heading and the
-  counter are positioned independently, so they collide by 12px at 390px wide
-  and 60-124px across desktop sizes. In the close, the heading shares a
-  `clamp(2.6rem, 1rem + 5.8vw, 6.6rem)` scale with the other display lines but
-  is the only one capped by a `46rem` parent, so above 1400px it breaks to four
-  lines and pushes the button onto the footer credit.
+All of it is 9:16 phone media, and the source was built for landscape plates, so
+two things were reshaped to fit it — and these are the **only** deviations from
+the original build:
 
-`assets/` is still checked in — 602 vendored frames, clips, stills, fonts and
-libraries — but `index.html` does not reference it any more. It is kept so the
-self-contained path is one edit away rather than one 41MB download away.
+- **The canvases letterbox.** `draw()` paints a blurred, dimmed, 20%-oversized
+  cover copy of the frame to fill the plate, then draws the whole frame sharp
+  inside it, with both vertical edges feathered into that backdrop. On a plate
+  wider than 1.25:1 the sharp frame sits at 61.5% across rather than centred, so
+  the left-aligned hero copy and the centred manifesto keep their own room and
+  no line crosses her face. On phones the plate is already portrait, the frame
+  fills it, and the backdrop is never seen.
+- **The window clips letterbox the same way.** The three `<video>` elements are
+  `object-contain` over a pre-blurred still of their own first frame
+  (`vid/wN-bg.jpg`, 240x430, scaled to cover). The aperture's own geometry —
+  `min(84vw, 1260px)` by `min(62vh, 700px)`, opening from `inset(34% 30%)` — is
+  the original's, untouched.
+
+Motion, timing, pinning, scrub rates and choreography are all unchanged. Two
+counts follow from the media rather than the design, and neither costs
+anything structurally.
+
+Movement 3 steps through eleven clips where the source had four. It is a
+prev/next stepper — `initShores()` cycles `scenes.length` and only the selected
+clip plays — so the count is a `/ 11` label and nothing else; page length does
+not move.
+
+Movement 4 carries eleven photographs where the source had five. The drift
+measures its own `track.scrollWidth` and refreshes on resize, so extra cards
+only lengthen the horizontal run. The copy names no number in either place.
+
+**The fourth clip has a second person in it.** Laiba is not alone in it — she is
+laughing with someone. That person did not agree to appear anywhere, and this
+page is headed for a public URL. Using it is a deliberate choice; dropping it is
+one `<video>` element and four caption counts.
+
+## Otherwise the page is the original build
+
+Beyond the copy, the media wiring and the two letterbox changes above, nothing
+about the layout, the motion, the cursor or the controls was touched, by
+explicit instruction. Two overlaps are inherited from the source and are **not**
+bugs introduced here:
+
+- In movement 2 the heading and the counter are positioned independently, so
+  they collide by 12px at 390px wide and 60-124px across desktop sizes.
+- In the close, the heading shares a `clamp(2.6rem, 1rem + 5.8vw, 6.6rem)` scale
+  with the other display lines but is the only one capped by a `46rem` parent,
+  so above 1400px it breaks to four lines and pushes the "Haan" button down onto
+  the footer credit.
+
+The 602 vendored beach files from the earlier build are still checked in under
+`assets/` (41MB) and are no longer referenced by anything. They can be deleted.
 
 ## Running it
 
-`index.html` on its own, no build step. It needs a network connection — see
-"What it loads" below. Open it directly, or serve the folder:
+`index.html` on its own, no build step. It still needs a network connection for
+the libraries and fonts — see "What it loads". Serve the folder:
 
 ```sh
 python3 -m http.server --directory site/vacance 8000
 # then open http://localhost:8000
 ```
 
-`?static` on the URL forces the reduced-motion path (see below).
+`?static` on the URL forces the reduced-motion path: Lenis is dropped so
+scrolling is native, the ring cursor is hidden and the magnetic buttons are off.
+The scrubbed sequences stay — they are bound to scroll position rather than
+self-animating, and without them there is no page.
 
 ## What it loads
 
-The page fetches from five external origins, exactly as the source did:
-
 | Origin | What comes from it |
 | --- | --- |
-| `cdn.jsdelivr.net` | GSAP 3.13.0 + ScrollTrigger + SplitText, Lenis 1.1.14, the four shore clips, and the (404ing) frame sequences |
+| `assets/laiba/` (local) | all three frame sequences, the eleven clips and their posters, the eleven drift photographs |
+| `cdn.jsdelivr.net` | GSAP 3.13.0 + ScrollTrigger + SplitText, Lenis 1.1.14 |
 | `cdn.tailwindcss.com` | Tailwind's in-browser JIT runtime |
 | `fonts.googleapis.com` / `fonts.gstatic.com` | Archivo and IBM Plex Mono |
-| `hoirqrkdgbmvpwutwuwj.supabase.co` | the three fallback stills and the five drift photos |
 
 ## Structure
 
-- **Loader** — counts 340 people down to 0, then hands scroll control to Lenis
-  and plays the hero reveal. It removes itself from the layout when done.
+- **Loader** — counts down to one name, then hands scroll control to Lenis and
+  plays the hero reveal. It removes itself from the layout when done.
 - **Frame sequences** — `sequence(canvas, fallback, dir, total)` preloads every
-  frame into an array and draws one to a canvas per scroll tick, cover-fitted.
-  If frame 1 fails to load, the canvas is hidden and the still `<img>` beside it
-  is unhidden, so each movement degrades to a photograph rather than a blank.
-  The three are constructed in document order, which is also the order the
-  browser will service them — the opening's frames are queued first.
+  frame into an array and draws one to a canvas per scroll tick. If frame 1
+  fails to load, the canvas is hidden and the still `<img>` beside it is
+  unhidden, so each movement degrades to a photograph rather than a blank. Those
+  three stills are each sequence's own frame 193.
 - **Pinning** — every movement is a `100svh` stage pinned by ScrollTrigger with
   `scrub: 1`. Movement 2 carries `margin-top: -100vh` so it begins exactly where
   movement 1 unpins.
@@ -89,106 +120,59 @@ The page fetches from five external origins, exactly as the source did:
   `inset(34% 30%)` to `inset(0%)`. The videos inside are `position: fixed` and
   full-viewport; the ancestor `clip-path` both clips them and gives them their
   containing block, so the effect is a window widening onto a still camera.
-- **Shore clips** — only the selected clip plays, and only while the window
-  section is on screen (`initShores()` returns a `setLive` that `initWindow`
-  drives from its ScrollTrigger callbacks).
 - **Chrome** — a 2px scroll rail replaces the hidden native scrollbar, and each
   `[data-bg]` section retints `document.body` as it becomes active.
-- **"Find my window"** — the close panel is clipped to `circle(0%)` until the
-  drift timeline has run, so a plain `#book` jump lands mid-pin on a blank
-  screen. `initBookLinks()` sends those links to the end of the document
-  instead, where that timeline is complete and the panel is open.
 
-### Motion and input preferences
+## How the media was prepared
 
-`prefers-reduced-motion: reduce` (or `?static`) drops Lenis so scrolling is
-native, hides the ring cursor and disables the magnetic buttons. The scrubbed
-sequences themselves stay — they are bound to scroll position rather than
-self-animating, and without them there is no page. Anyone who needs a fully
-still read should use the no-JS path below.
-
-The ring cursor only hides the native pointer once it has actually been put on
-screen: `body.has-ring-cursor` is added from JS, so a failed script or a coarse
-pointer leaves the normal cursor alone.
-
-### Without JavaScript
-
-A `<noscript>` block flattens the page into a plain vertical read: the loader is
-hidden, the canvases are swapped for their stills, everything scroll-revealed is
-already revealed, the window section becomes a stacked block, and the sideways
-drift is dropped in favour of the close. Nothing animates, but every line of
-copy and the CTA are reachable.
-
-## Regenerating the vendored assets
-
-The films, clips and stills come from
-[`Sam1983Aing/aura-assets@1.0.0`](https://github.com/Sam1983Aing/aura-assets)
-under `vacance/`, copied verbatim:
+Eleven portrait videos and eleven portrait photos in, 623 files out. The first
+three videos do double duty — each drives a scroll sequence as well as a clip;
+the other eight are clips only.
 
 ```sh
-BASE=https://cdn.jsdelivr.net/gh/Sam1983Aing/aura-assets@1.0.0/vacance
-for d in opening tide unwind; do
-  for i in $(seq -w 1 193); do curl -sSfLo "assets/$d/f_$i.jpg" "$BASE/$d/f_$i.jpg"; done
-done
-for i in 1 2 3 4; do curl -sSfLo "assets/vid/w$i.mp4" "$BASE/vid/w$i.mp4"; done
+# 193 frames per clip, matched to the clip's own length, cropped to 480x864
+ffmpeg -i clip.mp4 -vf "fps=193/$DURATION,scale=480:864:force_original_aspect_ratio=increase,crop=480:864" \
+       -q:v 4 assets/laiba/opening/f_%03d.jpg
+
+# the same three clips as web video: h264, audio stripped, faststart
+ffmpeg -i clip.mp4 -an -c:v libx264 -crf 26 -movflags +faststart assets/laiba/vid/w1.mp4
+
+# the blurred backdrop each clip letterboxes over: poster -> 48x86 -> 240x430,
+# gaussian blur 9, saturation 0.75, brightness 0.46
 ```
 
-Upstream also ships `shores/s6.jpg`; it duplicates the first frame of `unwind/`,
-so the page uses `unwind/f_193.jpg` as that movement's still and s6 is not
-vendored.
+The eleven drift photographs are cover-cropped to 810x1440 with the crop biased
+32% from the top, so a face near the top of a 9:16 frame is never cut. Any solid
+black band the phone baked into a frame is trimmed before that crop — without
+the trim, `s1` shipped with a 79px bar along its bottom edge.
 
-`styles.css` is `@font-face` blocks followed by Tailwind's preflight and only
-the utilities `index.html` uses. Regenerate it after editing the markup:
+Three of the fourteen photographs handed over are not used: one is the same
+rooftop photograph as `s1` in a worse crop, and the other two are weaker frames
+from shoots already represented.
 
-```sh
-npx tailwindcss@3.4.19 -i tailwind.css -o out.css --minify --content index.html
-# tailwind.css is just @tailwind base; @tailwind components; @tailwind utilities;
-# then re-prepend the @font-face block (urls relative to assets/)
-```
+Card order is by palette, not by filename — the two blue-green outfits (`s9`,
+`s7`) sat next to each other on the first pass and read as one photograph shown
+twice, so they are four cards apart now.
 
-Fonts are subset from the upstream Google Fonts sources to the glyphs the page
-renders. Archivo has to stay variable: the page sets `font-stretch` to 112%,
-118% and 125%, which needs the `wdth` axis, and a static instance would collapse
-all three to one width.
-
-```sh
-# charset: printable ASCII plus © ° · æ Æ – — ‘ ’ “ ” … →
-python3 -m fontTools.subset "Archivo[wdth,wght].ttf" \
-  --text-file=charset.txt --layout-features='*' --flavor=woff2 \
-  --output-file=assets/fonts/archivo-variable.woff2
-```
-
-Note the `→` in "window 06:12 → 07:50": U+2192 sits outside Google Fonts' `latin`
-subset, so serving these faces from the CDN would drop that one glyph to a
-system fallback. Subsetting locally is what keeps the arrow in IBM Plex Mono.
+`styles.css` and `assets/fonts/` are left over from the earlier self-contained
+build and are not loaded by `index.html`.
 
 ## Deployed
 
 Live at <https://vacance-5h490l.v2.appdeploy.ai/> (AppDeploy app `vacance-5h490l`).
-**The live copy is one version behind this folder** until the next deploy.
+**The live copy is several versions behind this folder** — it still serves the
+build with the stock beach media. Redeploying will publish Laiba's media to a
+public URL.
 
-The deploy tree wraps this folder in the `html-static` template. Since
-`index.html` now loads everything from external origins, the deploy is just that
-one file; the `assets/` copy in the AppDeploy snapshot is left in place, unused.
-
-If the vendored, self-contained wiring is ever wanted back, the shape is
-recorded in git (see the first three commits touching this folder): `assets/`
-moves under the Vite `publicDir`, `assetsDir` moves to `_vite/` so it cannot
-collide, and — because AppDeploy caps a single upload at 200 binary parts — the
-602 files ship as four merged deploys rather than one.
+Because AppDeploy caps a single upload at 200 binary parts, the 623 media files
+have to ship as four merged deploys rather than one.
 
 ## Copy notes
 
-The numbers are feeling, not telemetry: the loader counts 340 names down to one,
-and the day counter's 1 / 6 / 84 / 340 / 96 / 1 arc is written to start and end
-on the same single thought. No real dates, places or events are asserted
-anywhere, so nothing in the copy can be wrong about them.
+The numbers are feeling, not telemetry: the day counter's 1 / 6 / 84 / 340 / 96
+/ 1 arc is written to start and end on the same single thought. No real dates,
+places or events are asserted anywhere. The drift captions describe only what is
+visible in each photograph.
 
 `mailto:rafay@example.com` in the close is a **placeholder** — swap it for
 Rafay's real address (or a `wa.me` link) before the page is sent.
-
-## Provenance
-
-The four shore clips are credited in the footer to Benlisquare / Wikimedia
-Commons (CC BY-SA 4.0); the rest of the film and stills were generated for this
-build.
