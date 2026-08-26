@@ -14,7 +14,7 @@ Five movements, each pinned and scrubbed by scroll:
    down to one at 23:40.
 3. **Chaar chhoti clips** — a statement that an aperture opens over, revealing
    four clips she can step through.
-4. **Kuch tasveerein** — eight photographs surveyed sideways, ending full-bleed
+4. **Kuch tasveerein** — eleven photographs surveyed sideways, ending full-bleed
    on a third 193-frame film.
 5. **Ek sawaal, ek jawab** — a circle opening onto paper, the question, and the
    "Haan" button.
@@ -25,8 +25,8 @@ The folder is still named `vacance/` (and the deployed app is still
 ## Everything on the page is Laiba's own media
 
 The stock beach footage the source shipped with is gone. Every frame, clip and
-photograph now under `assets/laiba/` came from the four videos and eight photos
-that were handed over. Nothing is licensed stock, and nothing is generated.
+photograph now under `assets/laiba/` came from the four videos and eleven
+photos that were handed over. Nothing is licensed stock, and nothing is generated.
 
 All of it is 9:16 phone media, and the source was built for landscape plates, so
 two things were reshaped to fit it — and these are the **only** deviations from
@@ -48,7 +48,7 @@ the original build:
 Motion, timing, pinning, scrub rates and choreography are all unchanged. Two
 counts follow from the media rather than the design. Movement 3 carries four
 clips and reads `/ 04`, which is the source's own count. Movement 4 carries
-eight photographs where the source had five — the drift measures its own
+eleven photographs where the source had five — the drift measures its own
 `track.scrollWidth` and refreshes on resize, so extra cards only lengthen the
 horizontal run, and the copy names no number.
 
@@ -93,7 +93,7 @@ self-animating, and without them there is no page.
 
 | Origin | What comes from it |
 | --- | --- |
-| `assets/laiba/` (local) | all three frame sequences, the four clips and their posters, the eight drift photographs |
+| `assets/laiba/` (local) | all three frame sequences, the four clips and their posters, the eleven drift photographs |
 | `cdn.jsdelivr.net` | GSAP 3.13.0 + ScrollTrigger + SplitText, Lenis 1.1.14 |
 | `cdn.tailwindcss.com` | Tailwind's in-browser JIT runtime |
 | `fonts.googleapis.com` / `fonts.gstatic.com` | Archivo and IBM Plex Mono |
@@ -119,7 +119,7 @@ self-animating, and without them there is no page.
 
 ## How the media was prepared
 
-Four portrait videos and eight portrait photos in, 599 files out. The three
+Four portrait videos and eleven portrait photos in, 602 files out. The three
 frame sequences come from the first three videos; the fourth is a clip only.
 
 ```sh
@@ -134,14 +134,18 @@ ffmpeg -i clip.mp4 -an -c:v libx264 -crf 26 -movflags +faststart assets/laiba/vi
 # gaussian blur 9, saturation 0.75, brightness 0.46
 ```
 
-The eight drift photographs are cover-cropped to 810x1440 with the crop biased
+The eleven drift photographs are cover-cropped to 810x1440 with the crop biased
 32% from the top, so a face near the top of a 9:16 frame is never cut. Any solid
 black band the phone baked into a frame is trimmed before that crop — without
 the trim, `s1` shipped with a 79px bar along its bottom edge.
 
-Three of the eleven photographs handed over are not used: one is the same
+Three of the fourteen photographs handed over are not used: one is the same
 rooftop photograph as `s1` in a worse crop, and the other two are weaker frames
 from shoots already represented.
+
+Card order is by palette, not by filename — the two blue-green outfits (`s9`,
+`s7`) sat next to each other on the first pass and read as one photograph shown
+twice, so they are four cards apart now.
 
 `styles.css` and `assets/fonts/` are left over from the earlier self-contained
 build and are not loaded by `index.html`.
@@ -153,7 +157,7 @@ Live at <https://vacance-5h490l.v2.appdeploy.ai/> (AppDeploy app `vacance-5h490l
 build with the stock beach media. Redeploying will publish Laiba's media to a
 public URL.
 
-Because AppDeploy caps a single upload at 200 binary parts, the 599 media files
+Because AppDeploy caps a single upload at 200 binary parts, the 602 media files
 have to ship as four merged deploys rather than one.
 
 ## Copy notes
