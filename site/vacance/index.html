@@ -793,6 +793,16 @@
         }
       }
 
+      /* ── "Sawaal tak jao" ── */
+      function initSawaalLinks() {
+        qa('a[href="#book"]').forEach(a => a.addEventListener('click', e => {
+          e.preventDefault();
+          const end = () => Math.max(0, document.documentElement.scrollHeight - innerHeight);
+          if (lenis) lenis.scrollTo(end(), { duration: reduced ? 0 : 2.4 });
+          else scrollTo({ top: end(), behavior: reduced ? 'auto' : 'smooth' });
+        }));
+      }
+
       /* ── the scroll rail, and the paper/ink palette shifts ── */
       function initChrome() {
         gsap.to('[data-progress]', {
@@ -816,6 +826,7 @@
       initShores();
       initDrift();
       initChrome();
+      initSawaalLinks();
       initLoader();
 
       addEventListener('load', () => ScrollTrigger.refresh());
