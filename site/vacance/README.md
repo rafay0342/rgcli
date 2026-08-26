@@ -174,5 +174,25 @@ The numbers are feeling, not telemetry: the day counter's 1 / 6 / 84 / 340 / 96
 places or events are asserted anywhere. The drift captions describe only what is
 visible in each photograph.
 
-`mailto:rafay@example.com` in the close is a **placeholder** — swap it for
-Rafay's real address (or a `wa.me` link) before the page is sent.
+## The "Haan" button
+
+The close's CTA points at **`/haan`**, a path on the deployed app, not at a
+destination of its own. The deployed app answers that path with a 302 to
+`https://wa.me/<number>?text=Haan`, and the number is read from an encrypted
+AppDeploy app secret.
+
+**The number is not in this repository and is not in the page source.** That is
+the point of the indirection: this repo is public, and a phone number committed
+to git is there permanently. It does become visible in the address bar the
+moment the button is tapped — a redirect cannot prevent that, and does not need
+to: the only person who taps it already has the number.
+
+Two consequences worth knowing:
+
+- Opening `index.html` from disk, or serving this folder on its own, leaves the
+  button dead — nothing answers `/haan`. The deployed app is the artifact.
+- The secret has to exist before a deploy, or the route has nothing to redirect
+  to.
+
+The old `mailto:` came from the source: it was a holiday-booking page whose CTA
+emailed a booking request. Only its label had been changed.
