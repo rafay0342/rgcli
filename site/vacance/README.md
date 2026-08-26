@@ -12,8 +12,8 @@ Five movements, each pinned and scrubbed by scroll:
 2. **Ek din ki ginti** — a second 193-frame film under a counter that walks one
    day from a single first thought at 06:12 up to 340 at its highest and back
    down to one at 23:40.
-3. **Chaar chhoti clips** — a statement that an aperture opens over, revealing
-   four clips she can step through.
+3. **Gyarah chhoti clips** — a statement that an aperture opens over, revealing
+   eleven clips she can step through.
 4. **Kuch tasveerein** — eleven photographs surveyed sideways, ending full-bleed
    on a third 193-frame film.
 5. **Ek sawaal, ek jawab** — a circle opening onto paper, the question, and the
@@ -25,7 +25,7 @@ The folder is still named `vacance/` (and the deployed app is still
 ## Everything on the page is Laiba's own media
 
 The stock beach footage the source shipped with is gone. Every frame, clip and
-photograph now under `assets/laiba/` came from the four videos and eleven
+photograph now under `assets/laiba/` came from the eleven videos and eleven
 photos that were handed over. Nothing is licensed stock, and nothing is generated.
 
 All of it is 9:16 phone media, and the source was built for landscape plates, so
@@ -46,11 +46,17 @@ the original build:
   the original's, untouched.
 
 Motion, timing, pinning, scrub rates and choreography are all unchanged. Two
-counts follow from the media rather than the design. Movement 3 carries four
-clips and reads `/ 04`, which is the source's own count. Movement 4 carries
-eleven photographs where the source had five — the drift measures its own
-`track.scrollWidth` and refreshes on resize, so extra cards only lengthen the
-horizontal run, and the copy names no number.
+counts follow from the media rather than the design, and neither costs
+anything structurally.
+
+Movement 3 steps through eleven clips where the source had four. It is a
+prev/next stepper — `initShores()` cycles `scenes.length` and only the selected
+clip plays — so the count is a `/ 11` label and nothing else; page length does
+not move.
+
+Movement 4 carries eleven photographs where the source had five. The drift
+measures its own `track.scrollWidth` and refreshes on resize, so extra cards
+only lengthen the horizontal run. The copy names no number in either place.
 
 **The fourth clip has a second person in it.** Laiba is not alone in it — she is
 laughing with someone. That person did not agree to appear anywhere, and this
@@ -93,7 +99,7 @@ self-animating, and without them there is no page.
 
 | Origin | What comes from it |
 | --- | --- |
-| `assets/laiba/` (local) | all three frame sequences, the four clips and their posters, the eleven drift photographs |
+| `assets/laiba/` (local) | all three frame sequences, the eleven clips and their posters, the eleven drift photographs |
 | `cdn.jsdelivr.net` | GSAP 3.13.0 + ScrollTrigger + SplitText, Lenis 1.1.14 |
 | `cdn.tailwindcss.com` | Tailwind's in-browser JIT runtime |
 | `fonts.googleapis.com` / `fonts.gstatic.com` | Archivo and IBM Plex Mono |
@@ -119,8 +125,9 @@ self-animating, and without them there is no page.
 
 ## How the media was prepared
 
-Four portrait videos and eleven portrait photos in, 602 files out. The three
-frame sequences come from the first three videos; the fourth is a clip only.
+Eleven portrait videos and eleven portrait photos in, 623 files out. The first
+three videos do double duty — each drives a scroll sequence as well as a clip;
+the other eight are clips only.
 
 ```sh
 # 193 frames per clip, matched to the clip's own length, cropped to 480x864
@@ -157,7 +164,7 @@ Live at <https://vacance-5h490l.v2.appdeploy.ai/> (AppDeploy app `vacance-5h490l
 build with the stock beach media. Redeploying will publish Laiba's media to a
 public URL.
 
-Because AppDeploy caps a single upload at 200 binary parts, the 602 media files
+Because AppDeploy caps a single upload at 200 binary parts, the 623 media files
 have to ship as four merged deploys rather than one.
 
 ## Copy notes
