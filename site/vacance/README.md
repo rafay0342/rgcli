@@ -12,9 +12,9 @@ Five movements, each pinned and scrubbed by scroll:
 2. **Ek din ki ginti** — a second 193-frame film under a counter that walks one
    day from a single first thought at 06:12 up to 340 at its highest and back
    down to one at 23:40.
-3. **Teen chhoti clips** — a statement that an aperture opens over, revealing
-   three clips she can step through.
-4. **Kuch tasveerein** — five photographs surveyed sideways, ending full-bleed
+3. **Chaar chhoti clips** — a statement that an aperture opens over, revealing
+   four clips she can step through.
+4. **Kuch tasveerein** — eight photographs surveyed sideways, ending full-bleed
    on a third 193-frame film.
 5. **Ek sawaal, ek jawab** — a circle opening onto paper, the question, and the
    "Haan" button.
@@ -25,7 +25,7 @@ The folder is still named `vacance/` (and the deployed app is still
 ## Everything on the page is Laiba's own media
 
 The stock beach footage the source shipped with is gone. Every frame, clip and
-photograph now under `assets/laiba/` came from the three videos and five photos
+photograph now under `assets/laiba/` came from the four videos and eight photos
 that were handed over. Nothing is licensed stock, and nothing is generated.
 
 All of it is 9:16 phone media, and the source was built for landscape plates, so
@@ -46,8 +46,16 @@ the original build:
   the original's, untouched.
 
 Motion, timing, pinning, scrub rates and choreography are all unchanged. Two
-counts follow from the media rather than the design: movement 3 has **three**
-clips instead of four, and its caption reads `/ 03`.
+counts follow from the media rather than the design. Movement 3 carries four
+clips and reads `/ 04`, which is the source's own count. Movement 4 carries
+eight photographs where the source had five — the drift measures its own
+`track.scrollWidth` and refreshes on resize, so extra cards only lengthen the
+horizontal run, and the copy names no number.
+
+**The fourth clip has a second person in it.** Laiba is not alone in it — she is
+laughing with someone. That person did not agree to appear anywhere, and this
+page is headed for a public URL. Using it is a deliberate choice; dropping it is
+one `<video>` element and four caption counts.
 
 ## Otherwise the page is the original build
 
@@ -85,7 +93,7 @@ self-animating, and without them there is no page.
 
 | Origin | What comes from it |
 | --- | --- |
-| `assets/laiba/` (local) | all three frame sequences, the three clips and their posters, the five drift photographs |
+| `assets/laiba/` (local) | all three frame sequences, the four clips and their posters, the eight drift photographs |
 | `cdn.jsdelivr.net` | GSAP 3.13.0 + ScrollTrigger + SplitText, Lenis 1.1.14 |
 | `cdn.tailwindcss.com` | Tailwind's in-browser JIT runtime |
 | `fonts.googleapis.com` / `fonts.gstatic.com` | Archivo and IBM Plex Mono |
@@ -111,7 +119,8 @@ self-animating, and without them there is no page.
 
 ## How the media was prepared
 
-Three portrait videos and five portrait photos in, 593 files out.
+Four portrait videos and eight portrait photos in, 599 files out. The three
+frame sequences come from the first three videos; the fourth is a clip only.
 
 ```sh
 # 193 frames per clip, matched to the clip's own length, cropped to 480x864
@@ -125,10 +134,14 @@ ffmpeg -i clip.mp4 -an -c:v libx264 -crf 26 -movflags +faststart assets/laiba/vi
 # gaussian blur 9, saturation 0.75, brightness 0.46
 ```
 
-The five drift photographs are cover-cropped to 810x1440 with the crop biased
-32% from the top, so a face near the top of a 9:16 frame is never cut. Two of
-the seven photographs handed over are not used — the drift has five slots and
-adding a sixth would change the source's layout — so they are not checked in.
+The eight drift photographs are cover-cropped to 810x1440 with the crop biased
+32% from the top, so a face near the top of a 9:16 frame is never cut. Any solid
+black band the phone baked into a frame is trimmed before that crop — without
+the trim, `s1` shipped with a 79px bar along its bottom edge.
+
+Three of the eleven photographs handed over are not used: one is the same
+rooftop photograph as `s1` in a worse crop, and the other two are weaker frames
+from shoots already represented.
 
 `styles.css` and `assets/fonts/` are left over from the earlier self-contained
 build and are not loaded by `index.html`.
@@ -140,7 +153,7 @@ Live at <https://vacance-5h490l.v2.appdeploy.ai/> (AppDeploy app `vacance-5h490l
 build with the stock beach media. Redeploying will publish Laiba's media to a
 public URL.
 
-Because AppDeploy caps a single upload at 200 binary parts, the 593 media files
+Because AppDeploy caps a single upload at 200 binary parts, the 599 media files
 have to ship as four merged deploys rather than one.
 
 ## Copy notes
