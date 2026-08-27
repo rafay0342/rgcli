@@ -578,26 +578,45 @@
           if (i + 3 < msgs.length) tl.to(m, { opacity: 0, duration: .5 }, FIRST + GAP * (i + 3));
         });
         tl.to('[data-thread-stage]', { opacity: 0, duration: .6 }, last + .6)
-          .to('[data-night-wash]', { opacity: 1, duration: 1 }, last + .6);
+          .to('[data-night-wash]', { opacity: .84, duration: 1 }, last + .6);
       }
 
       /* ── 3 · the window ── */
       function initWindow() {
         const stage = q('[data-window-stage]'), portal = q('[data-portal]'), glass = q('[data-glass]');
         if (!stage || !portal) return;
-        const tl = gsap.timeline({
+        /* the shut aperture, sized for the screen: the desktop slot is a
+           letterbox 40% x 32% of the frame, which on a phone collapses to a
+           thumbnail — narrow screens keep a readable window instead */
+        const shut = () => innerWidth < 700 ? 'inset(26% 16% round 2px)' : 'inset(34% 30% round 2px)';
+        portal.style.clipPath = shut();
+        addEventListener('resize', () => { if (!ScrollTrigger.isInViewport(stage)) portal.style.clipPath = shut(); });
+
+        /* the couplet and the shut aperture ride in with the section. Without
+           this the washed-out end of the film scrolls off against an empty
+           ground and the screen holds one flat colour for a whole viewport. */
+        gsap.fromTo('[data-statement]', { opacity: 0 }, {
+          opacity: 1, ease: 'none',
           scrollTrigger: {
-            trigger: stage, start: 'top top', end: '+=3800', pin: true, scrub: 1, anticipatePin: 1,
+            trigger: stage, start: 'top bottom+=70%', end: 'top 40%', scrub: true,
             onEnter: () => { if (glass) glass.style.visibility = 'visible'; },
             onEnterBack: () => { if (glass) glass.style.visibility = 'visible'; },
             onLeaveBack: () => { if (glass) glass.style.visibility = 'hidden'; }
           }
         });
-        tl.to('[data-statement]', { opacity: 1, duration: .8 }, 0)
-          .to('[data-statement]', { opacity: 0, duration: .8 }, 2)
-          .fromTo(portal, { clipPath: 'inset(34% 30% round 2px)' }, { clipPath: 'inset(0% 0% round 0px)', duration: 2, ease: 'none' }, 2)
-          .to('[data-shores]', { opacity: 1, duration: .8 }, '>-0.4')
-          .to({}, { duration: 1.6 });
+
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: stage, start: 'top top', end: '+=1800', pin: true, scrub: 1, anticipatePin: 1,
+            invalidateOnRefresh: true
+          }
+        });
+        /* the aperture opens from the first scroll of the pin — the original
+           held it shut for two of its five seconds, which reads as a stall */
+        tl.fromTo(portal, { clipPath: () => shut() }, { clipPath: 'inset(0% 0% round 0px)', duration: 2, ease: 'none' }, 0)
+          .to('[data-statement]', { opacity: 0, duration: .8 }, .5)
+          .to('[data-shores]', { opacity: 1, duration: .8 }, 1.6)
+          .to({}, { duration: 1.2 });
       }
 
       /* ── the four shores ── */
