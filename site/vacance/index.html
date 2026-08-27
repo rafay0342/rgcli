@@ -107,7 +107,6 @@
         <div class="absolute inset-0 pointer-events-none" style="z-index:1;background:linear-gradient(to top,rgba(28,10,20,.72) 0%,rgba(28,10,20,.45) 22%,rgba(28,10,20,.12) 48%,transparent 66%)"></div>
         <div data-count-ground="" class="absolute inset-0 pointer-events-none" style="z-index:1;opacity:0;background:radial-gradient(ellipse 64% 48% at 50% 44%,rgba(28,10,20,.34) 0%,rgba(28,10,20,.3) 54%,rgba(28,10,20,.14) 78%,transparent 100%),linear-gradient(to top,rgba(28,10,20,.5) 0%,rgba(28,10,20,.45) 26%,rgba(28,10,20,.35) 48%,rgba(28,10,20,.18) 72%,transparent 90%)"></div>
 
-        <div data-tide="" class="absolute left-0 right-0 bottom-0 pointer-events-none" style="height:0;z-index:2;background:linear-gradient(to top,rgba(28,10,20,.52) 0%,rgba(192,67,92,.18) 58%,rgba(192,67,92,.12) 100%);border-top:2px solid #E0798F;box-shadow:0 -1px 0 rgba(224,121,143,.5),0 -10px 44px rgba(192,67,92,.3)"></div>
         <div data-night-wash="" class="absolute inset-0 pointer-events-none" style="z-index:6;background:#F7E9E2;opacity:0"></div>
 
         <div data-night-head="" class="absolute left-0 right-0 text-center" style="z-index:4;top:20vh;padding:0 3.4vw">
@@ -566,8 +565,7 @@
         tl.to('[data-night-canvas]', { opacity: 1, duration: .8 }, 0)
           .to('[data-count-ground]', { opacity: 1, duration: .8 }, '<')
           .to('[data-thread-stage]', { opacity: 1, duration: .6 }, '<0.2')
-          .to('[data-night-head]', { opacity: 0, duration: .5 }, FIRST + .2)   /* the line hands the screen to the thread */
-          .to('[data-tide]', { height: '46%', ease: 'none', duration: last }, 0);
+          .to('[data-night-head]', { opacity: 0, duration: .5 }, FIRST + .2);   /* the line hands the screen to the thread */
         gsap.set(msgs, { y: 18 });
         gsap.set(thread, { y: () => centre(msgs[0]) });
         msgs.forEach((m, i) => {
