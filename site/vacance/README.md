@@ -20,7 +20,7 @@ Five movements, each pinned and scrubbed by scroll:
    "Haan" button.
 
 The folder is still named `vacance/` (and the deployed app is still
-`vacance-5h490l`) after the file this was built from.
+`laiba-1rcdeq`) after the file this was built from.
 
 ## Everything on the page is Laiba's own media
 
@@ -159,11 +159,7 @@ build and are not loaded by `index.html`.
 
 ## Deployed
 
-Live at <https://vacance-5h490l.v2.appdeploy.ai/> (AppDeploy app `vacance-5h490l`).
-**The live copy is several versions behind this folder** — it still serves the
-build with the stock beach media. Redeploying will publish Laiba's media to a
-public URL.
-
+Live at <https://laiba-1rcdeq.v2.appdeploy.ai/> (AppDeploy app `laiba-1rcdeq`).
 Because AppDeploy caps a single upload at 200 binary parts, the 623 media files
 have to ship as four merged deploys rather than one.
 
@@ -176,23 +172,44 @@ visible in each photograph.
 
 ## The "Haan" button
 
-The close's CTA points at **`/haan`**, a path on the deployed app, not at a
-destination of its own. The deployed app answers that path with a 302 to
-`https://wa.me/<number>?text=Haan`, and the number is read from an encrypted
-AppDeploy app secret.
+The close's CTA is `<a data-haan>`. It has no destination of its own: `src/main.ts`
+cancels the click, asks the backend with `api.get('/api/haan')` from
+`@appdeploy/client`, and navigates to the WhatsApp link the backend hands back.
+`deploy/backend/index.ts` builds that link from an encrypted AppDeploy app
+secret named `WHATSAPP_NUMBER`.
 
 **The number is not in this repository and is not in the page source.** That is
 the point of the indirection: this repo is public, and a phone number committed
-to git is there permanently. It does become visible in the address bar the
-moment the button is tapped — a redirect cannot prevent that, and does not need
-to: the only person who taps it already has the number.
+to git is there permanently. It does reach the browser when the button is
+pressed, and it is visible in the address bar once WhatsApp opens — no redirect
+can prevent that, and none needs to: the only person who presses it already has
+the number.
+
+The first attempt pointed the anchor straight at `/haan`, then at `/api/haan`.
+Neither works: the app origin serves the static build for every path, including
+`/api/*`, so a plain navigation never reaches the backend. The backend is only
+reachable through the `api` client, which knows its own base URL. That is why
+the button is a click handler rather than a link.
 
 Two consequences worth knowing:
 
 - Opening `index.html` from disk, or serving this folder on its own, leaves the
-  button dead — nothing answers `/haan`. The deployed app is the artifact.
-- The secret has to exist before a deploy, or the route has nothing to redirect
-  to.
+  button inert — `./src/main.ts` is a module the deploy builds, and there is no
+  backend to ask. The deployed app is the artifact.
+- The secret has to exist, or the route answers 503 and the page shows
+  "WhatsApp abhi nahi khul raha" instead of navigating.
 
 The old `mailto:` came from the source: it was a holiday-booking page whose CTA
 emailed a booking request. Only its label had been changed.
+
+## What ships to AppDeploy
+
+`deploy/backend/index.ts` is the backend entry point. `index.html`, `src/` and
+the media go up as the frontend, with the media under `public/assets/laiba/` so
+it is served at `/assets/laiba/...`, and `build.assetsDir` moved to `_vite` so
+Vite's own output cannot collide with it.
+
+The app had to be recreated: `vacance-5h490l` was made as a frontend-only
+`html-static` app, and changing `app_type` on an existing app does not
+provision a backend. The live app is now `laiba-1rcdeq`.
+
