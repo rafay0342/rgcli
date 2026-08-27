@@ -83,47 +83,6 @@
           </div>
         </div>
 
-        <!-- ── THE ABSENCES ── -->
-        <div data-absences="" class="absolute left-0 right-0 bottom-0 flex flex-col items-center pointer-events-none" style="z-index:4;padding:0 3.4vw 2.4rem;gap:clamp(2rem,5vh,3.4rem);opacity:0">
-          <div class="relative grid place-items-center" style="width:min(46rem,90vw);min-height:5.4em">
-            <p data-beat="" class="text-center" style="grid-area:1/1;opacity:0;margin:0">
-              <span class="block" style="font-weight:600;font-stretch:105%;font-size:clamp(1.5rem,3vw,2.7rem);line-height:1.12;letter-spacing:-.02em;color:#F7EEE8;text-shadow:0 1px 3px rgba(28,10,20,.72),0 4px 26px rgba(28,10,20,.5)">
-                Subah tum ho.
-              </span>
-              <span data-beat-sub="" class="block" style="margin:.9rem auto 0;max-width:34rem;font-size:clamp(.92rem,1.15vw,1.04rem);line-height:1.5;color:rgba(247,238,232,.55);text-shadow:0 1px 3px rgba(28,10,20,.8),0 2px 16px rgba(28,10,20,.55)">
-                Aankh khulte hi, pehla khayal.
-              </span>
-            </p>
-            <p data-beat="" class="text-center" style="grid-area:1/1;opacity:0;margin:0">
-              <span class="block" style="font-weight:600;font-stretch:105%;font-size:clamp(1.5rem,3vw,2.7rem);line-height:1.12;letter-spacing:-.02em;color:#F7EEE8;text-shadow:0 1px 3px rgba(28,10,20,.72),0 4px 26px rgba(28,10,20,.5)">
-                Raat bhi tum ho.
-              </span>
-              <span data-beat-sub="" class="block" style="margin:.9rem auto 0;max-width:34rem;font-size:clamp(.92rem,1.15vw,1.04rem);line-height:1.5;color:rgba(247,238,232,.55);text-shadow:0 1px 3px rgba(28,10,20,.8),0 2px 16px rgba(28,10,20,.55)">
-                Aakhri khayal bhi tumhara.
-              </span>
-            </p>
-            <p data-beat="" class="text-center" style="grid-area:1/1;opacity:0;margin:0">
-              <span class="block" style="font-weight:600;font-stretch:105%;font-size:clamp(1.5rem,3vw,2.7rem);line-height:1.12;letter-spacing:-.02em;color:#F7EEE8;text-shadow:0 1px 3px rgba(28,10,20,.72),0 4px 26px rgba(28,10,20,.5)">
-                Beech ka waqt bhi tumhara.
-              </span>
-              <span data-beat-sub="" class="block" style="margin:.9rem auto 0;max-width:34rem;font-size:clamp(.92rem,1.15vw,1.04rem);line-height:1.5;color:rgba(247,238,232,.55);text-shadow:0 1px 3px rgba(28,10,20,.8),0 2px 16px rgba(28,10,20,.55)">
-                Har kaam ke darmiyan, tum.
-              </span>
-            </p>
-            <p data-beat="" class="text-center" style="grid-area:1/1;opacity:0;margin:0">
-              <span class="block" style="font-weight:600;font-stretch:105%;font-size:clamp(1.5rem,3vw,2.7rem);line-height:1.12;letter-spacing:-.02em;color:#F7EEE8;text-shadow:0 1px 3px rgba(28,10,20,.72),0 4px 26px rgba(28,10,20,.5)">
-                Ek
-                <em style="font-style:italic;color:#E0798F">sawaal baaki hai.</em>
-              </span>
-              <span data-beat-sub="" class="block" style="margin:.9rem auto 0;max-width:34rem;font-size:clamp(.92rem,1.15vw,1.04rem);line-height:1.5;color:rgba(247,238,232,.55);text-shadow:0 1px 3px rgba(28,10,20,.8),0 2px 16px rgba(28,10,20,.55)">
-                Neeche, is page ke aakhir mein.
-              </span>
-            </p>
-          </div>
-
-          <div class="absolute" style="left:3.4vw;right:3.4vw;bottom:1.2rem;height:1px;background:rgba(247,238,232,.12)"></div>
-        </div>
-
         <!-- ── 01 · A CASE FOR ABSENCE ── -->
         <div data-passage="" class="absolute inset-0 flex flex-col items-center justify-center text-center pointer-events-none" style="z-index:5;opacity:0;padding:0 3.4vw;color:#F7EEE8;background:radial-gradient(ellipse 74% 72% at 50% 50%,rgba(28,10,20,.54),rgba(28,10,20,.35) 54%,rgba(28,10,20,.12) 80%,transparent 100%)">
           <div data-passage-rule="" aria-hidden="true" style="width:min(320px,40vw);height:1px;margin:2.2rem 0 3rem;background:rgba(247,238,232,.42);transform:scaleX(0);transform-origin:center"></div>
@@ -642,25 +601,18 @@
         const stage = q('[data-opening-stage]');
         if (!stage) return;
         const seq = sequence(q('[data-opening-canvas]'), q('[data-opening-fallback]'), 'opening', 193, .6, 13.14);
-        const beats = qa('[data-beat]'), cells = qa('[data-cell]'), prox = { p: 0 };
+        const prox = { p: 0 };
         const tl = gsap.timeline({
-          scrollTrigger: { trigger: stage, start: 'top top', end: '+=4200', pin: true, scrub: 1, anticipatePin: 1,
+          scrollTrigger: { trigger: stage, start: 'top top', end: '+=700', pin: true, scrub: 1, anticipatePin: 1,
             onToggle: self => self.isActive ? seq.play() : seq.stop() }
         });
-        tl.to(prox, { p: 1, ease: 'none', duration: 10 }, 0);   /* holds the film's slot in the timeline; the film runs on its own clock */
+        tl.to(prox, { p: 1, ease: 'none', duration: 5.4 }, 0);   /* holds the film's slot in the timeline; the film runs on its own clock */
         tl.to('[data-scroll-hint]', { opacity: 0, duration: .4 }, 0)
           .to('[data-title]', { opacity: 0, y: -60, duration: 1 }, .5)
           .to('[data-openinggrade]', { opacity: 1, duration: 1 }, '<')
-          .to('[data-absences]', { opacity: 1, duration: .6 }, '<0.3')
-          .to({}, { duration: .74 }, '<');   /* was the four-cell stagger: .5 + 3x.08 */
-        beats.forEach((b, i) => {
-          tl.to(b, { opacity: 1, duration: .5 }, '>')
-            .to(b, { opacity: 0, duration: .5 }, i === beats.length - 1 ? '+=1.4' : '+=0.9');
-        });
-        tl.to('[data-absences]', { opacity: 0, duration: .6 }, '>-0.3')
-          .to('[data-passage]', { opacity: 1, duration: .8 }, '<')
+          .to('[data-passage]', { opacity: 1, duration: .8 }, '<0.5')
           .to('[data-passage-rule]', { scaleX: 1, duration: 1 }, '<0.2')
-          .to('[data-passage]', { opacity: 0, duration: .8 }, '+=1.8');
+          .to('[data-passage]', { opacity: 0, duration: .8 }, '+=2.4');
       }
 
       /* ── 2 · before the boats ── */
