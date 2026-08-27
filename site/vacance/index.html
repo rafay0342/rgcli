@@ -31,7 +31,25 @@
 
     <!-- ══ LOADER — the machine empties the beach ══ -->
     <div data-loader="" class="fixed inset-0 grid place-items-center" style="z-index:10000;background:#1C0A14;color:#F7EEE8">
-      <div data-loader-stack="" class="flex flex-col items-center" style="gap:clamp(1.6rem,3.4vh,2.6rem);margin-bottom:7vh">
+      <div data-loader-stack="" class="flex flex-col items-center" style="gap:clamp(1.6rem,3.4vh,2.6rem);margin-bottom:4vh">
+        <div data-locket-wrap="" class="relative flex flex-col items-center" style="opacity:0">
+          <i data-locket-chain="" aria-hidden="true" style="display:block;width:1px;height:clamp(2.4rem,7vh,4.4rem);background:linear-gradient(to bottom,transparent,#C78B79);transform:scaleY(0);transform-origin:top center"></i>
+          <i aria-hidden="true" style="display:block;width:.62rem;height:.62rem;margin-bottom:-.2rem;border:1.5px solid #C78B79;border-radius:50%"></i>
+          <div data-locket="" class="relative" style="width:calc(clamp(5.2rem,20vw,7.4rem) * 2.3);height:clamp(5.2rem,20vw,7.4rem);perspective:900px">
+          <div data-leaf="" data-side="l" style="position:absolute;left:50%;top:50%;width:clamp(5.2rem,20vw,7.4rem);height:clamp(5.2rem,20vw,7.4rem);margin-top:calc(clamp(5.2rem,20vw,7.4rem) / -2);margin-left:calc(clamp(5.2rem,20vw,7.4rem) / -2);transform-style:preserve-3d">
+            <img src="assets/laiba/locket-l.jpg" alt="Laiba" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 30%;border-radius:50%;box-shadow:0 0 0 2px #C78B79,0 0 0 3px rgba(90,42,34,.55),0 10px 30px rgba(28,10,20,.55),inset 0 0 22px rgba(28,10,20,.28)">
+            <div data-lid="" style="position:absolute;inset:0;border-radius:50%;transform-origin:0% 50%;background:linear-gradient(142deg,#F7DACF 0%,#DFA294 26%,#B06B57 58%,#8E5343 74%,#EFC4B4 100%);box-shadow:0 0 0 2px #C78B79,0 0 0 3px rgba(90,42,34,.55),0 10px 30px rgba(28,10,20,.55),inset 0 2px 6px rgba(255,236,228,.55),inset 0 -6px 14px rgba(90,42,34,.4);display:grid;place-items:center">
+              <svg viewBox="0 0 24 24" aria-hidden="true" style="width:38%;height:38%;fill:rgba(107,52,42,.34);filter:drop-shadow(0 1px 0 rgba(255,232,222,.5))"><path d="M12 21.35 10.55 20.03C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+            </div>
+          </div>
+          <div data-leaf="" data-side="r" style="position:absolute;left:50%;top:50%;width:clamp(5.2rem,20vw,7.4rem);height:clamp(5.2rem,20vw,7.4rem);margin-top:calc(clamp(5.2rem,20vw,7.4rem) / -2);margin-left:calc(clamp(5.2rem,20vw,7.4rem) / -2);transform-style:preserve-3d">
+            <img src="assets/laiba/locket-r.jpg" alt="Rafay" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 26%;border-radius:50%;box-shadow:0 0 0 2px #C78B79,0 0 0 3px rgba(90,42,34,.55),0 10px 30px rgba(28,10,20,.55),inset 0 0 22px rgba(28,10,20,.28)">
+            <div data-lid="" style="position:absolute;inset:0;border-radius:50%;transform-origin:100% 50%;background:linear-gradient(142deg,#F7DACF 0%,#DFA294 26%,#B06B57 58%,#8E5343 74%,#EFC4B4 100%);box-shadow:0 0 0 2px #C78B79,0 0 0 3px rgba(90,42,34,.55),0 10px 30px rgba(28,10,20,.55),inset 0 2px 6px rgba(255,236,228,.55),inset 0 -6px 14px rgba(90,42,34,.4);display:grid;place-items:center">
+              <svg viewBox="0 0 24 24" aria-hidden="true" style="width:38%;height:38%;fill:rgba(107,52,42,.34);filter:drop-shadow(0 1px 0 rgba(255,232,222,.5))"><path d="M12 21.35 10.55 20.03C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+            </div>
+          </div>
+          </div>
+        </div>
         <p data-loader-mark="" style="font-weight:500;font-stretch:105%;font-size:clamp(1.5rem,3.6vw,2.9rem);text-transform:uppercase;letter-spacing:0.16em;text-indent:0.16em;white-space:nowrap;opacity:0;margin:0">
           Laiba
         </p>
@@ -39,11 +57,8 @@
           <i data-loader-bar="" class="block h-full" style="background:rgba(247,238,232,.5);transform-origin:center;transform:scaleX(1)"></i>
         </div>
         <p data-loader-line="" class="flex flex-col items-center" style="gap:.85rem;color:rgba(247,238,232,.55);opacity:0;margin:0">
-          <span data-count="" style="font-family:'Archivo',sans-serif;font-weight:500;min-width:4ch;text-align:center;font-variant-numeric:tabular-nums;font-size:clamp(1.5rem,3vw,2.1rem);letter-spacing:.04em;color:#F7EEE8">
-            340
-          </span>
           <span class="text-xs uppercase" style="font-family:'Archivo',sans-serif;font-weight:500;letter-spacing:.13em;color:rgba(247,238,232,.55)">
-            baar socha — har baar tum
+            tumhare liye
           </span>
         </p>
       </div>
@@ -385,7 +400,7 @@
       const ASSETS = 'assets/laiba/';
       gsap.registerPlugin(ScrollTrigger, SplitText);
 
-      const EASE = 'expo.out', REVEAL = 1.2, CROWD_START = 340, CROWD_END = 1;
+      const EASE = 'expo.out', REVEAL = 1.2;
       const staticMode = new URLSearchParams(location.search).has('static');
       const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches || staticMode;
       const prefersStill = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -461,15 +476,34 @@
         const loader = q('[data-loader]');
         if (!loader) { if (lenis) lenis.start(); playHero(); return; }
         const mark = q('[data-loader-mark]'), wrap = q('[data-loader-barwrap]'),
-              bar = q('[data-loader-bar]'), line = q('[data-loader-line]'), count = q('[data-count]');
-        const n = { v: CROWD_START };
+              bar = q('[data-loader-bar]'), line = q('[data-loader-line]');
+        const holder = q('[data-locket-wrap]'), chain = q('[data-locket-chain]'),
+              leaves = qa('[data-leaf]'), lids = qa('[data-lid]');
+        let sway;
         const tl = gsap.timeline({
-          onComplete() { if (lenis) lenis.start(); playHero(); ScrollTrigger.refresh(); }
+          onComplete() {
+            if (sway) sway.kill();
+            if (lenis) lenis.start(); playHero(); ScrollTrigger.refresh();
+          }
         });
-        tl.to([mark, wrap, line], { opacity: 1, duration: .9, ease: EASE, stagger: .12 })
-          .to(n, { v: CROWD_END, duration: reduced ? .4 : 2.4, ease: 'expo.inOut', onUpdate() { count.textContent = Math.round(n.v); } }, '<0.2')
-          .to(bar, { scaleX: 0, duration: reduced ? .4 : 2.4, ease: 'expo.inOut' }, '<')
-          .to(loader, { opacity: 0, duration: 1.1, ease: EASE, onComplete() { loader.style.display = 'none'; } }, '+=0.35');
+        /* the locket drops on its chain, then opens: each cover swings back on
+           its own outer edge while the two frames part, so the one disc you
+           first see turns out to have been holding both of you */
+        if (holder && leaves.length === 2) {
+          gsap.set(lids, { rotateY: 0 });
+          tl.to(holder, { opacity: 1, duration: .5, ease: EASE }, 0)
+            .fromTo(chain, { scaleY: 0 }, { scaleY: 1, duration: .7, ease: EASE }, 0)
+            .fromTo(holder, { y: -34, scale: .84 }, { y: 0, scale: 1, duration: 1, ease: 'back.out(1.5)' }, .1)
+            .to(leaves[0], { xPercent: -54, duration: 1.25, ease: EASE }, 1.35)
+            .to(leaves[1], { xPercent: 54, duration: 1.25, ease: EASE }, 1.35)
+            .to(lids[0], { rotateY: -122, duration: 1.3, ease: EASE }, 1.42)
+            .to(lids[1], { rotateY: 122, duration: 1.3, ease: EASE }, 1.42);
+          if (!reduced) sway = gsap.to(holder, { rotation: 2.4, duration: 2.6, repeat: -1, yoyo: true,
+                                                 ease: 'sine.inOut', transformOrigin: '50% -18%' });
+        }
+        tl.to([mark, wrap, line], { opacity: 1, duration: .8, ease: EASE, stagger: .1 }, holder ? 2 : 0)
+          .to(bar, { scaleX: 0, duration: reduced ? .4 : 1.3, ease: 'expo.inOut' }, '<0.2')
+          .to(loader, { opacity: 0, duration: 1.1, ease: EASE, onComplete() { loader.style.display = 'none'; } }, '+=0.2');
       }
 
       /* ── scroll-scrubbed frame sequences, with a still fallback ── */
