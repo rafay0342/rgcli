@@ -32,28 +32,23 @@
     <!-- ══ LOADER — the machine empties the beach ══ -->
     <div data-loader="" class="fixed inset-0 grid place-items-center" style="z-index:10000;background:#1C0A14;color:#F7EEE8;overflow:hidden">
       <div data-boot-glow="" class="absolute inset-0 pointer-events-none" style="opacity:0;background:radial-gradient(ellipse 48% 34% at 50% 42%,rgba(192,67,92,.3),rgba(192,67,92,.11) 46%,transparent 72%)"></div>
+      <div data-boot-grain="" class="absolute inset-0 pointer-events-none" style="opacity:.055;mix-blend-mode:overlay"></div>
       <i data-boot-ripple="" aria-hidden="true" style="position:fixed;left:50%;top:50%;width:18px;height:18px;margin:-9px 0 0 -9px;border-radius:50%;border:1.5px solid rgba(224,121,143,.85);opacity:0;pointer-events:none;z-index:10006"></i>
       <div data-loader-stack="" class="flex flex-col items-center" style="gap:clamp(1.6rem,3.4vh,2.6rem);margin-bottom:4vh">
         <div data-locket-wrap="" class="relative flex flex-col items-center" style="opacity:0">
           <i data-locket-chain="" aria-hidden="true" style="display:block;width:1px;height:clamp(2.4rem,7vh,4.4rem);background:linear-gradient(to bottom,transparent,#C78B79);transform:scaleY(0);transform-origin:top center"></i>
-          <i aria-hidden="true" style="display:block;width:.62rem;height:.62rem;margin-bottom:-.2rem;border:1.5px solid #C78B79;border-radius:50%"></i>
+          <i aria-hidden="true" style="position:relative;z-index:3;display:block;width:1rem;height:1rem;margin-bottom:-.48rem;border-radius:50%;background:radial-gradient(ellipse 30% 21% at 33% 25%,rgba(255,251,247,.92),rgba(255,251,247,0) 68%),conic-gradient(from 205deg at 50% 47%,#75402F 0deg,#C68D78 22deg,#F4DBCF 44deg,#CB9480 66deg,#7E4B38 96deg,#A96C56 124deg,#F0CDBE 152deg,#B4735B 182deg,#6B3A2B 214deg,#BD846D 250deg,#F2D4C5 284deg,#A0603A 318deg,#75402F 360deg),#A9664F;box-shadow:0 0 0 1px rgba(52,20,14,.75),inset 0 1px 0 rgba(255,244,238,.55),inset 0 -2px 3px rgba(52,20,14,.5)"><i style="position:absolute;left:50%;top:50%;width:.4rem;height:.4rem;margin:-.2rem 0 0 -.2rem;border-radius:50%;background:#1C0A14;box-shadow:inset 0 1px 2px rgba(0,0,0,.7)"></i></i>
           <button data-locket-btn="" type="button" aria-label="Locket kholo" style="position:relative;display:block;padding:0;border:0;background:none;cursor:none;-webkit-tap-highlight-color:transparent">
-          <i data-locket-pulse="" aria-hidden="true" style="position:absolute;left:50%;top:50%;width:clamp(5.2rem,20vw,7.4rem);height:clamp(5.2rem,20vw,7.4rem);margin-top:calc(clamp(5.2rem,20vw,7.4rem) / -2);margin-left:calc(clamp(5.2rem,20vw,7.4rem) / -2);border-radius:50%;border:1px solid rgba(224,121,143,.5);opacity:0;pointer-events:none"></i>
-          <div data-locket="" class="relative" style="width:calc(clamp(5.2rem,20vw,7.4rem) * 2.3);height:clamp(5.2rem,20vw,7.4rem);perspective:900px">
+          <i data-locket-pulse="" aria-hidden="true" style="position:absolute;left:50%;top:50%;width:clamp(5.8rem,21.5vw,8.2rem);height:clamp(5.8rem,21.5vw,8.2rem);margin-top:calc(clamp(5.8rem,21.5vw,8.2rem) / -2);margin-left:calc(clamp(5.8rem,21.5vw,8.2rem) / -2);border-radius:50%;border:1px solid rgba(224,121,143,.5);opacity:0;pointer-events:none"></i>
+          <div data-locket="" class="relative" style="width:calc(clamp(5.8rem,21.5vw,8.2rem) * 2.3);height:clamp(5.8rem,21.5vw,8.2rem);perspective:900px">
           <div data-locket-tilt="" class="absolute inset-0" style="transform-style:preserve-3d">
-          <div data-leaf="" data-side="l" style="position:absolute;left:50%;top:50%;width:clamp(5.2rem,20vw,7.4rem);height:clamp(5.2rem,20vw,7.4rem);margin-top:calc(clamp(5.2rem,20vw,7.4rem) / -2);margin-left:calc(clamp(5.2rem,20vw,7.4rem) / -2);transform-style:preserve-3d">
-            <img src="assets/laiba/locket-l.jpg" alt="Laiba" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 30%;border-radius:50%;box-shadow:0 0 0 2px #C78B79,0 0 0 3px rgba(90,42,34,.55),0 10px 30px rgba(28,10,20,.55),inset 0 0 22px rgba(28,10,20,.28)">
-            <div data-lid="" style="position:absolute;inset:0;border-radius:50%;transform-origin:0% 50%;background:linear-gradient(142deg,#F7DACF 0%,#DFA294 26%,#B06B57 58%,#8E5343 74%,#EFC4B4 100%);box-shadow:0 0 0 2px #C78B79,0 0 0 3px rgba(90,42,34,.55),0 10px 30px rgba(28,10,20,.55),inset 0 2px 6px rgba(255,236,228,.55),inset 0 -6px 14px rgba(90,42,34,.4);display:grid;place-items:center">
-              <svg viewBox="0 0 24 24" aria-hidden="true" style="width:38%;height:38%;fill:rgba(107,52,42,.34);filter:drop-shadow(0 1px 0 rgba(255,232,222,.5))"><path d="M12 21.35 10.55 20.03C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-              <i data-shine="" aria-hidden="true" style="position:absolute;inset:0;border-radius:50%;overflow:hidden;pointer-events:none"><i style="position:absolute;top:-45%;left:-70%;width:52%;height:190%;transform:rotate(19deg);background:linear-gradient(90deg,transparent,rgba(255,242,236,.6),transparent)"></i></i>
-            </div>
+          <div data-leaf="" data-side="l" style="position:absolute;left:50%;top:50%;width:clamp(5.8rem,21.5vw,8.2rem);height:clamp(5.8rem,21.5vw,8.2rem);margin-top:calc(clamp(5.8rem,21.5vw,8.2rem) / -2);margin-left:calc(clamp(5.8rem,21.5vw,8.2rem) / -2);transform-style:preserve-3d">
+            <img src="assets/laiba/locket-l.jpg" alt="Laiba" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 30%;border-radius:50%;box-shadow:0 0 0 1px rgba(255,240,232,.5),0 0 0 5px #A9664F,0 0 0 6px rgba(52,20,14,.65),0 0 0 7px rgba(255,236,228,.16),0 14px 32px rgba(28,10,20,.62),inset 0 0 26px rgba(28,10,20,.32)">
+            <div data-lid="" style="position:absolute;inset:0;border-radius:50%;transform-origin:0% 50%;background:radial-gradient(ellipse 30% 21% at 33% 25%,rgba(255,251,247,.92),rgba(255,251,247,0) 68%),conic-gradient(from 205deg at 50% 47%,#75402F 0deg,#C68D78 22deg,#F4DBCF 44deg,#CB9480 66deg,#7E4B38 96deg,#A96C56 124deg,#F0CDBE 152deg,#B4735B 182deg,#6B3A2B 214deg,#BD846D 250deg,#F2D4C5 284deg,#A0603A 318deg,#75402F 360deg),#A9664F;box-shadow:inset 0 0 0 1.5px rgba(255,241,234,.6),inset 0 0 0 3px rgba(108,52,40,.55),inset 0 0 0 4.5px rgba(255,235,226,.3),inset 0 11px 20px -7px rgba(255,242,235,.45),inset 0 -13px 22px -7px rgba(58,22,16,.62),0 0 0 1px rgba(255,236,228,.4),0 0 0 3px #8A4F3C,0 0 0 4px rgba(52,20,14,.72),0 16px 38px rgba(28,10,20,.66);display:grid;place-items:center"><i data-metal-grain="" aria-hidden="true" style="position:absolute;inset:0;border-radius:50%;opacity:.16;mix-blend-mode:overlay;pointer-events:none"></i><i aria-hidden="true" style="position:absolute;inset:13%;border-radius:50%;border:1px solid rgba(70,28,20,.34);box-shadow:0 1px 0 rgba(255,242,235,.28);pointer-events:none"></i><i aria-hidden="true" style="position:absolute;left:-4px;top:37%;width:8px;height:26%;border-radius:4px;background:radial-gradient(ellipse 30% 21% at 33% 25%,rgba(255,251,247,.92),rgba(255,251,247,0) 68%),conic-gradient(from 205deg at 50% 47%,#75402F 0deg,#C68D78 22deg,#F4DBCF 44deg,#CB9480 66deg,#7E4B38 96deg,#A96C56 124deg,#F0CDBE 152deg,#B4735B 182deg,#6B3A2B 214deg,#BD846D 250deg,#F2D4C5 284deg,#A0603A 318deg,#75402F 360deg),#A9664F;box-shadow:0 0 0 1px rgba(52,20,14,.6),inset 0 1px 0 rgba(255,242,235,.5);pointer-events:none"></i><svg viewBox="0 0 24 24" aria-hidden="true" style="position:relative;width:33%;height:33%;overflow:visible"><path d="M12 21.35 10.55 20.03C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="none" stroke="rgba(66,26,18,.5)" stroke-width="1.5" transform="translate(0,-.4)"/><path d="M12 21.35 10.55 20.03C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="none" stroke="rgba(255,242,235,.42)" stroke-width="1.5" transform="translate(0,.55)"/></svg></div>
           </div>
-          <div data-leaf="" data-side="r" style="position:absolute;left:50%;top:50%;width:clamp(5.2rem,20vw,7.4rem);height:clamp(5.2rem,20vw,7.4rem);margin-top:calc(clamp(5.2rem,20vw,7.4rem) / -2);margin-left:calc(clamp(5.2rem,20vw,7.4rem) / -2);transform-style:preserve-3d">
-            <img src="assets/laiba/locket-r.jpg" alt="Rafay" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 26%;border-radius:50%;box-shadow:0 0 0 2px #C78B79,0 0 0 3px rgba(90,42,34,.55),0 10px 30px rgba(28,10,20,.55),inset 0 0 22px rgba(28,10,20,.28)">
-            <div data-lid="" style="position:absolute;inset:0;border-radius:50%;transform-origin:100% 50%;background:linear-gradient(142deg,#F7DACF 0%,#DFA294 26%,#B06B57 58%,#8E5343 74%,#EFC4B4 100%);box-shadow:0 0 0 2px #C78B79,0 0 0 3px rgba(90,42,34,.55),0 10px 30px rgba(28,10,20,.55),inset 0 2px 6px rgba(255,236,228,.55),inset 0 -6px 14px rgba(90,42,34,.4);display:grid;place-items:center">
-              <svg viewBox="0 0 24 24" aria-hidden="true" style="width:38%;height:38%;fill:rgba(107,52,42,.34);filter:drop-shadow(0 1px 0 rgba(255,232,222,.5))"><path d="M12 21.35 10.55 20.03C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-              <i data-shine="" aria-hidden="true" style="position:absolute;inset:0;border-radius:50%;overflow:hidden;pointer-events:none"><i style="position:absolute;top:-45%;left:-70%;width:52%;height:190%;transform:rotate(19deg);background:linear-gradient(90deg,transparent,rgba(255,242,236,.6),transparent)"></i></i>
-            </div>
+          <div data-leaf="" data-side="r" style="position:absolute;left:50%;top:50%;width:clamp(5.8rem,21.5vw,8.2rem);height:clamp(5.8rem,21.5vw,8.2rem);margin-top:calc(clamp(5.8rem,21.5vw,8.2rem) / -2);margin-left:calc(clamp(5.8rem,21.5vw,8.2rem) / -2);transform-style:preserve-3d">
+            <img src="assets/laiba/locket-r.jpg" alt="Rafay" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 26%;border-radius:50%;box-shadow:0 0 0 1px rgba(255,240,232,.5),0 0 0 5px #A9664F,0 0 0 6px rgba(52,20,14,.65),0 0 0 7px rgba(255,236,228,.16),0 14px 32px rgba(28,10,20,.62),inset 0 0 26px rgba(28,10,20,.32)">
+            <div data-lid="" style="position:absolute;inset:0;border-radius:50%;transform-origin:100% 50%;background:radial-gradient(ellipse 30% 21% at 33% 25%,rgba(255,251,247,.92),rgba(255,251,247,0) 68%),conic-gradient(from 205deg at 50% 47%,#75402F 0deg,#C68D78 22deg,#F4DBCF 44deg,#CB9480 66deg,#7E4B38 96deg,#A96C56 124deg,#F0CDBE 152deg,#B4735B 182deg,#6B3A2B 214deg,#BD846D 250deg,#F2D4C5 284deg,#A0603A 318deg,#75402F 360deg),#A9664F;box-shadow:inset 0 0 0 1.5px rgba(255,241,234,.6),inset 0 0 0 3px rgba(108,52,40,.55),inset 0 0 0 4.5px rgba(255,235,226,.3),inset 0 11px 20px -7px rgba(255,242,235,.45),inset 0 -13px 22px -7px rgba(58,22,16,.62),0 0 0 1px rgba(255,236,228,.4),0 0 0 3px #8A4F3C,0 0 0 4px rgba(52,20,14,.72),0 16px 38px rgba(28,10,20,.66);display:grid;place-items:center"><i data-metal-grain="" aria-hidden="true" style="position:absolute;inset:0;border-radius:50%;opacity:.16;mix-blend-mode:overlay;pointer-events:none"></i><i aria-hidden="true" style="position:absolute;inset:13%;border-radius:50%;border:1px solid rgba(70,28,20,.34);box-shadow:0 1px 0 rgba(255,242,235,.28);pointer-events:none"></i><i aria-hidden="true" style="position:absolute;right:-4px;top:37%;width:8px;height:26%;border-radius:4px;background:radial-gradient(ellipse 30% 21% at 33% 25%,rgba(255,251,247,.92),rgba(255,251,247,0) 68%),conic-gradient(from 205deg at 50% 47%,#75402F 0deg,#C68D78 22deg,#F4DBCF 44deg,#CB9480 66deg,#7E4B38 96deg,#A96C56 124deg,#F0CDBE 152deg,#B4735B 182deg,#6B3A2B 214deg,#BD846D 250deg,#F2D4C5 284deg,#A0603A 318deg,#75402F 360deg),#A9664F;box-shadow:0 0 0 1px rgba(52,20,14,.6),inset 0 1px 0 rgba(255,242,235,.5);pointer-events:none"></i><svg viewBox="0 0 24 24" aria-hidden="true" style="position:relative;width:33%;height:33%;overflow:visible"><path d="M12 21.35 10.55 20.03C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="none" stroke="rgba(66,26,18,.5)" stroke-width="1.5" transform="translate(0,-.4)"/><path d="M12 21.35 10.55 20.03C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="none" stroke="rgba(255,242,235,.42)" stroke-width="1.5" transform="translate(0,.55)"/></svg></div>
           </div>
           </div>
           </div>
@@ -62,16 +57,13 @@
         <p data-loader-mark="" lang="ur" dir="rtl" style="font-family:'Noto Nastaliq Urdu',serif;font-weight:500;letter-spacing:normal;font-stretch:normal;line-height:1.9;font-size:clamp(2rem,1rem + 3.6vw,3.6rem);white-space:nowrap;opacity:0;margin:0;text-shadow:0 2px 26px rgba(192,67,92,.4)">
           لائبہ
         </p>
-        <div data-loader-barwrap="" style="width:min(340px,46vw);height:1px;background:rgba(247,238,232,.14);opacity:0">
-          <i data-loader-bar="" class="block h-full" style="background:rgba(247,238,232,.5);transform-origin:center;transform:scaleX(1)"></i>
-        </div>
         <p data-loader-line="" class="flex flex-col items-center" style="gap:.85rem;color:rgba(247,238,232,.55);opacity:0;margin:0">
-          <span class="text-xs uppercase" style="font-family:'Archivo',sans-serif;font-weight:500;letter-spacing:.13em;color:rgba(247,238,232,.55)">
+          <span style="font-family:'Archivo',sans-serif;font-weight:400;font-size:clamp(.86rem,1.05vw,.95rem);letter-spacing:.01em;color:rgba(247,238,232,.42)">
             tumhare liye
           </span>
         </p>
       </div>
-      <p data-boot-hint="" class="absolute text-xs uppercase" style="bottom:12vh;left:0;right:0;text-align:center;font-family:'Archivo',sans-serif;font-weight:500;letter-spacing:.24em;color:rgba(247,238,232,.5);opacity:0;margin:0">
+      <p data-boot-hint="" class="absolute" style="bottom:16vh;left:0;right:0;text-align:center;font-family:'Archivo',sans-serif;font-weight:400;font-style:italic;font-size:clamp(.86rem,1.05vw,.95rem);letter-spacing:.01em;color:rgba(247,238,232,.4);opacity:0;margin:0">
         chhoo ke kholo
       </p>
     </div>
@@ -422,6 +414,7 @@
       /* grain, painted in JS so no stylesheet is needed */
       const GRAIN = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E";
       q('[data-grain]').style.backgroundImage = 'url("' + GRAIN + '")';
+      qa('[data-metal-grain], [data-boot-grain]').forEach(el => el.style.backgroundImage = 'url("' + GRAIN + '")');
 
       /* ── Lenis ↔ ScrollTrigger: one shared scroll position ── */
       let lenis;
@@ -491,8 +484,7 @@
       function initLoader() {
         const loader = q('[data-loader]');
         if (!loader) { if (lenis) lenis.start(); playHero(); return; }
-        const mark = q('[data-loader-mark]'), wrap = q('[data-loader-barwrap]'),
-              bar = q('[data-loader-bar]'), line = q('[data-loader-line]');
+        const mark = q('[data-loader-mark]'), line = q('[data-loader-line]');
         const holder = q('[data-locket-wrap]'), chain = q('[data-locket-chain]'),
               tilt = q('[data-locket-tilt]'), btn = q('[data-locket-btn]'),
               hint = q('[data-boot-hint]'), glow = q('[data-boot-glow]'),
@@ -509,7 +501,7 @@
         }
         if (!holder || leaves.length !== 2) {   /* nothing to open — just go */
           gsap.timeline({ onComplete: done })
-            .to([mark, wrap, line], { opacity: 1, duration: .8, stagger: .1, ease: EASE })
+            .to([mark, line].filter(Boolean), { opacity: 1, duration: .8, stagger: .1, ease: EASE })
             .to(loader, { opacity: 0, duration: 1, ease: EASE, onComplete() { loader.style.display = 'none'; } }, '+=0.3');
           return;
         }
@@ -598,9 +590,8 @@
           /* her name, then the rest, then the page */
           tl.to(mark, { opacity: 1, y: 0, duration: 1, ease: EASE }, 1.35)
             .to(line, { opacity: 1, duration: .8, ease: EASE }, 1.85)
-            .to(wrap, { opacity: 1, duration: .6, ease: EASE }, 2.05)
-            .to(bar, { scaleX: 0, duration: reduced ? .4 : 1.4, ease: 'expo.inOut' }, 2.15)
-            .to(loader, { opacity: 0, duration: 1.2, ease: EASE, onComplete() { loader.style.display = 'none'; } }, '+=0.45');
+            .to({}, { duration: 1.5 }, 2.05)   /* a moment to look at it */
+            .to(loader, { opacity: 0, duration: 1.2, ease: EASE, onComplete() { loader.style.display = 'none'; } }, '+=0.3');
 
           /* while it is open, the two of you breathe */
           if (!reduced && faces.length) loose.push(gsap.to(faces, { scale: 1.035, duration: 2.4, repeat: -1,
