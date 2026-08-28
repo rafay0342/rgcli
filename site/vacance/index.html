@@ -691,9 +691,9 @@
         /* the newest message rides the centre line; the thread slides up to put
            it there, so the ones before it stay on screen and stack away above */
         const centre = m => -(m.offsetTop + m.offsetHeight / 2);
-        const GAP = .95, FIRST = 1.2, last = FIRST + GAP * (msgs.length - 1) + .5;
+        const GAP = .95, FIRST = 5.6, last = FIRST + GAP * (msgs.length - 1) + .5;
         const tl = gsap.timeline({
-          scrollTrigger: { trigger: stage, start: 'top top', end: '+=2600', pin: true, scrub: 1, anticipatePin: 1,
+          scrollTrigger: { trigger: stage, start: 'top top', end: '+=3300', pin: true, scrub: 1, anticipatePin: 1,
             invalidateOnRefresh: true,
             onToggle: self => self.isActive ? seq.play() : seq.stop() }
         });
