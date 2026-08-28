@@ -489,7 +489,7 @@
          own after a few seconds so nobody is ever stuck at a closed door. */
       function initLoader() {
         const loader = q('[data-loader]');
-        if (!loader) { if (lenis) lenis.start(); playHero(); return; }
+        if (!loader) { if (lenis) lenis.start(); playHero(); startAuto(); return; }
         const mark = q('[data-loader-mark]'), line = q('[data-loader-line]');
         const holder = q('[data-locket-wrap]'), chain = q('[data-locket-chain]'),
               tilt = q('[data-locket-tilt]'), btn = q('[data-locket-btn]'),
@@ -503,7 +503,7 @@
 
         function done() {
           loose.forEach(t => t && t.kill());
-          if (lenis) lenis.start(); playHero(); ScrollTrigger.refresh();
+          if (lenis) lenis.start(); playHero(); ScrollTrigger.refresh(); startAuto();
         }
         if (!holder || leaves.length !== 2) {   /* nothing to open — just go */
           gsap.timeline({ onComplete: done })
@@ -938,6 +938,60 @@
         }));
       }
 
+      /* ── it walks itself: one stop every five seconds ───────────────────
+         She should be able to hold the phone still and let it come to her.
+         The page steps through its own landmarks — the sher, each message,
+         each picture — and waits five seconds on every one. Touch it and it
+         stands aside for a few seconds, then picks up from wherever she is. */
+      let startAuto = () => {};
+      function initAutoScroll() {
+        const HOLD = 5000, GLIDE = 1.35, YIELD = 9000;
+        const at = s => { const e = q(s); return e ? Math.round(e.getBoundingClientRect().top + scrollY) : null; };
+        function stops() {
+          const night = at('[data-night]'), win = at('[data-windowsec]'), drift = at('[data-drift]');
+          const max = document.documentElement.scrollHeight - innerHeight;
+          if (night == null || win == null || drift == null) return [];
+          /* the pins are fixed lengths, so every offset inside a section
+             holds whatever the screen size is — only the starts move */
+          const list = [0, night - 300, night + 100, night + 750];
+          [1350, 1575, 1750, 1975, 2175, 2375, 2600, 2775, 3000, 3400, 4050]
+            .forEach(d => list.push(night + d));
+          [964, 1400, 1800].forEach(d => list.push(win + d));
+          list.push(drift - 200);
+          for (let k = 0; k < 11; k++) list.push(drift + k * 500);
+          list.push(drift + 5528, max);
+          return list.map(v => Math.max(0, Math.min(max, Math.round(v))))
+                     .filter((v, i, a) => i === 0 || v > a[i - 1] + 40);
+        }
+        let live = false, yieldTo = 0, timer = 0;
+        /* Lenis owns the wheel, but its own scrollTo is a no-op here, so the
+           glide is a plain tween on the window — Lenis picks the new position
+           up from the scroll event like any other. */
+        let ride = null;
+        const glide = y => {
+          if (ride) ride.kill();
+          const o = { v: scrollY };
+          ride = gsap.to(o, { v: y, duration: GLIDE, ease: 'power2.inOut',
+            onUpdate: () => scrollTo(0, Math.round(o.v)) });
+        };
+        function tick() {
+          if (!live) return;
+          const now = Date.now();
+          if (now < yieldTo) { timer = setTimeout(tick, yieldTo - now); return; }
+          const s = stops();
+          const next = s.find(v => v > scrollY + 40);
+          if (next === undefined) { live = false; return; }    /* she is at the end */
+          glide(next);
+          timer = setTimeout(tick, HOLD);
+        }
+        ['wheel', 'touchstart', 'pointerdown', 'keydown'].forEach(ev =>
+          addEventListener(ev, () => { yieldTo = Date.now() + YIELD; }, { passive: true }));
+        startAuto = () => {
+          if (live || reduced) return;
+          live = true; clearTimeout(timer); timer = setTimeout(tick, 1800);
+        };
+      }
+
       /* ── the scroll rail, and the paper/ink palette shifts ── */
       function initChrome() {
         gsap.to('[data-progress]', {
@@ -963,6 +1017,7 @@
       initDrift();
       initChrome();
       initSawaalLinks();
+      initAutoScroll();
       initLoader();
 
       addEventListener('load', () => ScrollTrigger.refresh());
