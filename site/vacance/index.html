@@ -3,10 +3,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Laiba — ek sawaal, Rafay ki taraf se.</title>
     <meta name="description" content="Rafay ki taraf se Laiba ke liye — ek sawaal jo aaj tak zabaan par nahi aaya tha.">
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 84C22 64 10 48 10 34a20 20 0 0 1 40-6 20 20 0 0 1 40 6c0 14-12 30-40 50z' fill='%23C0435C'/%3E%3C/svg%3E">
+    <link rel="icon" type="image/png" sizes="256x256" href="assets/laiba/logo-mark.png">
+    <link rel="apple-touch-icon" href="assets/laiba/logo-mark.png">
+    <meta name="theme-color" content="#1C0A14">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Laiba — ek sawaal, Rafay ki taraf se.">
+    <meta property="og:description" content="Rafay ki taraf se Laiba ke liye — ek sawaal jo aaj tak zabaan par nahi aaya tha.">
+    <meta property="og:image" content="https://laiba-1rcdeq.v2.appdeploy.ai/assets/laiba/logo.png">
+    <meta name="twitter:card" content="summary_large_image">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-    <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,300..800;1,62..125,300..800&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=Noto+Nastaliq+Urdu:wght@400;500;600&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,300..800;1,62..125,300..800&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=Noto+Nastaliq+Urdu:wght@400;500;600&amp;family=Great+Vibes&amp;display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
@@ -30,23 +37,42 @@
     </div>
 
     <!-- ══ LOADER — the machine empties the beach ══ -->
-    <div data-loader="" class="fixed inset-0 grid place-items-center" style="z-index:10000;background:#1C0A14;color:#F7EEE8">
-      <div data-loader-stack="" class="flex flex-col items-center" style="gap:clamp(1.6rem,3.4vh,2.6rem);margin-bottom:7vh">
-        <p data-loader-mark="" style="font-weight:500;font-stretch:105%;font-size:clamp(1.5rem,3.6vw,2.9rem);text-transform:uppercase;letter-spacing:0.16em;text-indent:0.16em;white-space:nowrap;opacity:0;margin:0">
-          Laiba
-        </p>
-        <div data-loader-barwrap="" style="width:min(340px,46vw);height:1px;background:rgba(247,238,232,.14);opacity:0">
-          <i data-loader-bar="" class="block h-full" style="background:rgba(247,238,232,.5);transform-origin:center;transform:scaleX(1)"></i>
+    <div data-loader="" class="fixed inset-0 grid place-items-center" style="z-index:10000;background:#1C0A14;color:#F7EEE8;overflow:hidden">
+      <div data-boot-glow="" class="absolute inset-0 pointer-events-none" style="opacity:0;background:radial-gradient(ellipse 48% 34% at 50% 42%,rgba(192,67,92,.3),rgba(192,67,92,.11) 46%,transparent 72%)"></div>
+      <div data-boot-grain="" class="absolute inset-0 pointer-events-none" style="opacity:.055;mix-blend-mode:overlay"></div>
+      <i data-boot-ripple="" aria-hidden="true" style="position:fixed;left:50%;top:50%;width:18px;height:18px;margin:-9px 0 0 -9px;border-radius:50%;border:1.5px solid rgba(224,121,143,.85);opacity:0;pointer-events:none;z-index:10006"></i>
+      <div data-loader-stack="" class="flex flex-col items-center" style="gap:clamp(1.6rem,3.4vh,2.6rem);margin-bottom:4vh">
+        <div data-locket-wrap="" class="relative flex flex-col items-center" style="opacity:0">
+          <i data-locket-chain="" aria-hidden="true" style="display:block;width:1px;height:clamp(2.4rem,7vh,4.4rem);background:linear-gradient(to bottom,transparent,#C78B79);transform:scaleY(0);transform-origin:top center"></i>
+          <i aria-hidden="true" style="position:relative;z-index:3;display:block;width:1rem;height:1rem;margin-bottom:-.48rem;border-radius:50%;background:radial-gradient(ellipse 30% 21% at 33% 25%,rgba(255,251,247,.92),rgba(255,251,247,0) 68%),conic-gradient(from 205deg at 50% 47%,#75402F 0deg,#C68D78 22deg,#F4DBCF 44deg,#CB9480 66deg,#7E4B38 96deg,#A96C56 124deg,#F0CDBE 152deg,#B4735B 182deg,#6B3A2B 214deg,#BD846D 250deg,#F2D4C5 284deg,#A0603A 318deg,#75402F 360deg),#A9664F;box-shadow:0 0 0 1px rgba(52,20,14,.75),inset 0 1px 0 rgba(255,244,238,.55),inset 0 -2px 3px rgba(52,20,14,.5)"><i style="position:absolute;left:50%;top:50%;width:.4rem;height:.4rem;margin:-.2rem 0 0 -.2rem;border-radius:50%;background:#1C0A14;box-shadow:inset 0 1px 2px rgba(0,0,0,.7)"></i></i>
+          <button data-locket-btn="" type="button" aria-label="Locket kholo" style="position:relative;display:block;padding:0;border:0;background:none;cursor:none;-webkit-tap-highlight-color:transparent">
+          <i data-locket-pulse="" aria-hidden="true" style="position:absolute;left:50%;top:50%;width:clamp(5.8rem,21.5vw,8.2rem);height:clamp(5.8rem,21.5vw,8.2rem);margin-top:calc(clamp(5.8rem,21.5vw,8.2rem) / -2);margin-left:calc(clamp(5.8rem,21.5vw,8.2rem) / -2);border-radius:50%;border:1px solid rgba(224,121,143,.5);opacity:0;pointer-events:none"></i>
+          <div data-locket="" class="relative" style="width:calc(clamp(5.8rem,21.5vw,8.2rem) * 2.3);height:clamp(5.8rem,21.5vw,8.2rem);perspective:900px">
+          <div data-locket-tilt="" class="absolute inset-0" style="transform-style:preserve-3d">
+          <div data-leaf="" data-side="l" style="position:absolute;left:50%;top:50%;width:clamp(5.8rem,21.5vw,8.2rem);height:clamp(5.8rem,21.5vw,8.2rem);margin-top:calc(clamp(5.8rem,21.5vw,8.2rem) / -2);margin-left:calc(clamp(5.8rem,21.5vw,8.2rem) / -2);transform-style:preserve-3d">
+            <img src="assets/laiba/locket-l.jpg" alt="Laiba" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 30%;border-radius:50%;box-shadow:0 0 0 1px rgba(255,240,232,.5),0 0 0 5px #A9664F,0 0 0 6px rgba(52,20,14,.65),0 0 0 7px rgba(255,236,228,.16),0 14px 32px rgba(28,10,20,.62),inset 0 0 26px rgba(28,10,20,.32)">
+            <div data-lid="" style="position:absolute;inset:0;border-radius:50%;transform-origin:0% 50%;background:radial-gradient(ellipse 30% 21% at 33% 25%,rgba(255,251,247,.92),rgba(255,251,247,0) 68%),conic-gradient(from 205deg at 50% 47%,#75402F 0deg,#C68D78 22deg,#F4DBCF 44deg,#CB9480 66deg,#7E4B38 96deg,#A96C56 124deg,#F0CDBE 152deg,#B4735B 182deg,#6B3A2B 214deg,#BD846D 250deg,#F2D4C5 284deg,#A0603A 318deg,#75402F 360deg),#A9664F;box-shadow:inset 0 0 0 1.5px rgba(255,241,234,.6),inset 0 0 0 3px rgba(108,52,40,.55),inset 0 0 0 4.5px rgba(255,235,226,.3),inset 0 11px 20px -7px rgba(255,242,235,.45),inset 0 -13px 22px -7px rgba(58,22,16,.62),0 0 0 1px rgba(255,236,228,.4),0 0 0 3px #8A4F3C,0 0 0 4px rgba(52,20,14,.72),0 16px 38px rgba(28,10,20,.66);display:grid;place-items:center"><i data-metal-grain="" aria-hidden="true" style="position:absolute;inset:0;border-radius:50%;opacity:.16;mix-blend-mode:overlay;pointer-events:none"></i><i aria-hidden="true" style="position:absolute;inset:13%;border-radius:50%;border:1px solid rgba(70,28,20,.34);box-shadow:0 1px 0 rgba(255,242,235,.28);pointer-events:none"></i><i aria-hidden="true" style="position:absolute;left:-4px;top:37%;width:8px;height:26%;border-radius:4px;background:radial-gradient(ellipse 30% 21% at 33% 25%,rgba(255,251,247,.92),rgba(255,251,247,0) 68%),conic-gradient(from 205deg at 50% 47%,#75402F 0deg,#C68D78 22deg,#F4DBCF 44deg,#CB9480 66deg,#7E4B38 96deg,#A96C56 124deg,#F0CDBE 152deg,#B4735B 182deg,#6B3A2B 214deg,#BD846D 250deg,#F2D4C5 284deg,#A0603A 318deg,#75402F 360deg),#A9664F;box-shadow:0 0 0 1px rgba(52,20,14,.6),inset 0 1px 0 rgba(255,242,235,.5);pointer-events:none"></i><svg viewBox="0 0 24 24" aria-hidden="true" style="position:relative;width:33%;height:33%;overflow:visible"><path d="M12 21.35 10.55 20.03C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="none" stroke="rgba(66,26,18,.5)" stroke-width="1.5" transform="translate(0,-.4)"/><path d="M12 21.35 10.55 20.03C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="none" stroke="rgba(255,242,235,.42)" stroke-width="1.5" transform="translate(0,.55)"/></svg></div>
+          </div>
+          <div data-leaf="" data-side="r" style="position:absolute;left:50%;top:50%;width:clamp(5.8rem,21.5vw,8.2rem);height:clamp(5.8rem,21.5vw,8.2rem);margin-top:calc(clamp(5.8rem,21.5vw,8.2rem) / -2);margin-left:calc(clamp(5.8rem,21.5vw,8.2rem) / -2);transform-style:preserve-3d">
+            <img src="assets/laiba/locket-r.jpg" alt="Rafay" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 26%;border-radius:50%;box-shadow:0 0 0 1px rgba(255,240,232,.5),0 0 0 5px #A9664F,0 0 0 6px rgba(52,20,14,.65),0 0 0 7px rgba(255,236,228,.16),0 14px 32px rgba(28,10,20,.62),inset 0 0 26px rgba(28,10,20,.32)">
+            <div data-lid="" style="position:absolute;inset:0;border-radius:50%;transform-origin:100% 50%;background:radial-gradient(ellipse 30% 21% at 33% 25%,rgba(255,251,247,.92),rgba(255,251,247,0) 68%),conic-gradient(from 205deg at 50% 47%,#75402F 0deg,#C68D78 22deg,#F4DBCF 44deg,#CB9480 66deg,#7E4B38 96deg,#A96C56 124deg,#F0CDBE 152deg,#B4735B 182deg,#6B3A2B 214deg,#BD846D 250deg,#F2D4C5 284deg,#A0603A 318deg,#75402F 360deg),#A9664F;box-shadow:inset 0 0 0 1.5px rgba(255,241,234,.6),inset 0 0 0 3px rgba(108,52,40,.55),inset 0 0 0 4.5px rgba(255,235,226,.3),inset 0 11px 20px -7px rgba(255,242,235,.45),inset 0 -13px 22px -7px rgba(58,22,16,.62),0 0 0 1px rgba(255,236,228,.4),0 0 0 3px #8A4F3C,0 0 0 4px rgba(52,20,14,.72),0 16px 38px rgba(28,10,20,.66);display:grid;place-items:center"><i data-metal-grain="" aria-hidden="true" style="position:absolute;inset:0;border-radius:50%;opacity:.16;mix-blend-mode:overlay;pointer-events:none"></i><i aria-hidden="true" style="position:absolute;inset:13%;border-radius:50%;border:1px solid rgba(70,28,20,.34);box-shadow:0 1px 0 rgba(255,242,235,.28);pointer-events:none"></i><i aria-hidden="true" style="position:absolute;right:-4px;top:37%;width:8px;height:26%;border-radius:4px;background:radial-gradient(ellipse 30% 21% at 33% 25%,rgba(255,251,247,.92),rgba(255,251,247,0) 68%),conic-gradient(from 205deg at 50% 47%,#75402F 0deg,#C68D78 22deg,#F4DBCF 44deg,#CB9480 66deg,#7E4B38 96deg,#A96C56 124deg,#F0CDBE 152deg,#B4735B 182deg,#6B3A2B 214deg,#BD846D 250deg,#F2D4C5 284deg,#A0603A 318deg,#75402F 360deg),#A9664F;box-shadow:0 0 0 1px rgba(52,20,14,.6),inset 0 1px 0 rgba(255,242,235,.5);pointer-events:none"></i><svg viewBox="0 0 24 24" aria-hidden="true" style="position:relative;width:33%;height:33%;overflow:visible"><path d="M12 21.35 10.55 20.03C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="none" stroke="rgba(66,26,18,.5)" stroke-width="1.5" transform="translate(0,-.4)"/><path d="M12 21.35 10.55 20.03C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="none" stroke="rgba(255,242,235,.42)" stroke-width="1.5" transform="translate(0,.55)"/></svg></div>
+          </div>
+          </div>
+          </div>
+          </button>
         </div>
+        <p data-loader-mark="" lang="ur" dir="rtl" style="font-family:'Noto Nastaliq Urdu',serif;font-weight:500;letter-spacing:normal;font-stretch:normal;line-height:1.9;font-size:clamp(2rem,1rem + 3.6vw,3.6rem);white-space:nowrap;opacity:0;margin:0;text-shadow:0 2px 26px rgba(192,67,92,.4)">
+          لائبہ
+        </p>
         <p data-loader-line="" class="flex flex-col items-center" style="gap:.85rem;color:rgba(247,238,232,.55);opacity:0;margin:0">
-          <span data-count="" style="font-family:'Archivo',sans-serif;font-weight:500;min-width:4ch;text-align:center;font-variant-numeric:tabular-nums;font-size:clamp(1.5rem,3vw,2.1rem);letter-spacing:.04em;color:#F7EEE8">
-            340
-          </span>
-          <span class="text-xs uppercase" style="font-family:'Archivo',sans-serif;font-weight:500;letter-spacing:.13em;color:rgba(247,238,232,.55)">
-            baar socha — har baar tum
+          <span style="font-family:'Archivo',sans-serif;font-weight:400;font-size:clamp(.86rem,1.05vw,.95rem);letter-spacing:.01em;color:rgba(247,238,232,.42)">
+            tumhare liye
           </span>
         </p>
       </div>
+      <p data-boot-hint="" class="absolute" style="bottom:16vh;left:0;right:0;text-align:center;font-family:'Archivo',sans-serif;font-weight:400;font-style:italic;font-size:clamp(.86rem,1.05vw,.95rem);letter-spacing:.01em;color:rgba(247,238,232,.4);opacity:0;margin:0">
+        chhoo ke kholo
+      </p>
     </div>
 
     <!-- ══ NAV ══ -->
@@ -55,7 +81,7 @@
         Laiba
       </a>
       <a href="#book" data-magnetic="" class="inline-flex items-center text-xs uppercase" style="font-weight:600;letter-spacing:.12em;padding:.85rem 1.5rem;border:1px solid rgba(247,238,232,.45);border-radius:100px;min-height:44px;text-decoration:none;color:inherit;will-change:transform">
-        Sawaal tak jao
+        Aakhir tak jao
       </a>
     </nav>
 
@@ -83,47 +109,6 @@
           </div>
         </div>
 
-        <!-- ── THE ABSENCES ── -->
-        <div data-absences="" class="absolute left-0 right-0 bottom-0 flex flex-col items-center pointer-events-none" style="z-index:4;padding:0 3.4vw 2.4rem;gap:clamp(2rem,5vh,3.4rem);opacity:0">
-          <div class="relative grid place-items-center" style="width:min(46rem,90vw);min-height:5.4em">
-            <p data-beat="" class="text-center" style="grid-area:1/1;opacity:0;margin:0">
-              <span class="block" style="font-weight:600;font-stretch:105%;font-size:clamp(1.5rem,3vw,2.7rem);line-height:1.12;letter-spacing:-.02em;color:#F7EEE8;text-shadow:0 1px 3px rgba(28,10,20,.72),0 4px 26px rgba(28,10,20,.5)">
-                Subah tum ho.
-              </span>
-              <span data-beat-sub="" class="block" style="margin:.9rem auto 0;max-width:34rem;font-size:clamp(.92rem,1.15vw,1.04rem);line-height:1.5;color:rgba(247,238,232,.55);text-shadow:0 1px 3px rgba(28,10,20,.8),0 2px 16px rgba(28,10,20,.55)">
-                Aankh khulte hi, pehla khayal.
-              </span>
-            </p>
-            <p data-beat="" class="text-center" style="grid-area:1/1;opacity:0;margin:0">
-              <span class="block" style="font-weight:600;font-stretch:105%;font-size:clamp(1.5rem,3vw,2.7rem);line-height:1.12;letter-spacing:-.02em;color:#F7EEE8;text-shadow:0 1px 3px rgba(28,10,20,.72),0 4px 26px rgba(28,10,20,.5)">
-                Raat bhi tum ho.
-              </span>
-              <span data-beat-sub="" class="block" style="margin:.9rem auto 0;max-width:34rem;font-size:clamp(.92rem,1.15vw,1.04rem);line-height:1.5;color:rgba(247,238,232,.55);text-shadow:0 1px 3px rgba(28,10,20,.8),0 2px 16px rgba(28,10,20,.55)">
-                Aakhri khayal bhi tumhara.
-              </span>
-            </p>
-            <p data-beat="" class="text-center" style="grid-area:1/1;opacity:0;margin:0">
-              <span class="block" style="font-weight:600;font-stretch:105%;font-size:clamp(1.5rem,3vw,2.7rem);line-height:1.12;letter-spacing:-.02em;color:#F7EEE8;text-shadow:0 1px 3px rgba(28,10,20,.72),0 4px 26px rgba(28,10,20,.5)">
-                Beech ka waqt bhi tumhara.
-              </span>
-              <span data-beat-sub="" class="block" style="margin:.9rem auto 0;max-width:34rem;font-size:clamp(.92rem,1.15vw,1.04rem);line-height:1.5;color:rgba(247,238,232,.55);text-shadow:0 1px 3px rgba(28,10,20,.8),0 2px 16px rgba(28,10,20,.55)">
-                Har kaam ke darmiyan, tum.
-              </span>
-            </p>
-            <p data-beat="" class="text-center" style="grid-area:1/1;opacity:0;margin:0">
-              <span class="block" style="font-weight:600;font-stretch:105%;font-size:clamp(1.5rem,3vw,2.7rem);line-height:1.12;letter-spacing:-.02em;color:#F7EEE8;text-shadow:0 1px 3px rgba(28,10,20,.72),0 4px 26px rgba(28,10,20,.5)">
-                Ek
-                <em style="font-style:italic;color:#E0798F">sawaal baaki hai.</em>
-              </span>
-              <span data-beat-sub="" class="block" style="margin:.9rem auto 0;max-width:34rem;font-size:clamp(.92rem,1.15vw,1.04rem);line-height:1.5;color:rgba(247,238,232,.55);text-shadow:0 1px 3px rgba(28,10,20,.8),0 2px 16px rgba(28,10,20,.55)">
-                Neeche, is page ke aakhir mein.
-              </span>
-            </p>
-          </div>
-
-          <div class="absolute" style="left:3.4vw;right:3.4vw;bottom:1.2rem;height:1px;background:rgba(247,238,232,.12)"></div>
-        </div>
-
         <!-- ── 01 · A CASE FOR ABSENCE ── -->
         <div data-passage="" class="absolute inset-0 flex flex-col items-center justify-center text-center pointer-events-none" style="z-index:5;opacity:0;padding:0 3.4vw;color:#F7EEE8;background:radial-gradient(ellipse 74% 72% at 50% 50%,rgba(28,10,20,.54),rgba(28,10,20,.35) 54%,rgba(28,10,20,.12) 80%,transparent 100%)">
           <div data-passage-rule="" aria-hidden="true" style="width:min(320px,40vw);height:1px;margin:2.2rem 0 3rem;background:rgba(247,238,232,.42);transform:scaleX(0);transform-origin:center"></div>
@@ -148,98 +133,29 @@
         <div class="absolute inset-0 pointer-events-none" style="z-index:1;background:linear-gradient(to top,rgba(28,10,20,.72) 0%,rgba(28,10,20,.45) 22%,rgba(28,10,20,.12) 48%,transparent 66%)"></div>
         <div data-count-ground="" class="absolute inset-0 pointer-events-none" style="z-index:1;opacity:0;background:radial-gradient(ellipse 64% 48% at 50% 44%,rgba(28,10,20,.34) 0%,rgba(28,10,20,.3) 54%,rgba(28,10,20,.14) 78%,transparent 100%),linear-gradient(to top,rgba(28,10,20,.5) 0%,rgba(28,10,20,.45) 26%,rgba(28,10,20,.35) 48%,rgba(28,10,20,.18) 72%,transparent 90%)"></div>
 
-        <div data-tide="" class="absolute left-0 right-0 bottom-0 pointer-events-none" style="height:0;z-index:2;background:linear-gradient(to top,rgba(28,10,20,.52) 0%,rgba(192,67,92,.18) 58%,rgba(192,67,92,.12) 100%);border-top:2px solid #E0798F;box-shadow:0 -1px 0 rgba(224,121,143,.5),0 -10px 44px rgba(192,67,92,.3)"></div>
         <div data-night-wash="" class="absolute inset-0 pointer-events-none" style="z-index:6;background:#F7E9E2;opacity:0"></div>
 
-        <div data-night-head="" class="absolute left-0 right-0 text-center" style="z-index:4;top:13vh;padding:0 3.4vw">
+        <div data-night-head="" class="absolute left-0 right-0 text-center" style="z-index:4;top:20vh;padding:0 3.4vw">
           <div class="absolute pointer-events-none" style="z-index:-1;left:0;right:0;top:-20vh;height:76vh;background:radial-gradient(ellipse 52% 40% at 50% 34%,rgba(28,10,20,.48) 0%,rgba(28,10,20,.44) 55%,rgba(28,10,20,.22) 78%,transparent 100%),linear-gradient(to bottom,rgba(28,10,20,.6) 0%,rgba(28,10,20,.57) 22%,rgba(28,10,20,.5) 44%,rgba(28,10,20,.24) 68%,transparent 100%)"></div>
           <h2 lang="ur" dir="rtl" style="margin:0 auto;font-family:'Noto Nastaliq Urdu',serif;font-weight:500;letter-spacing:normal;font-stretch:normal;line-height:2.05;font-size:clamp(1.05rem,.8rem + 1.2vw,1.8rem);max-width:26ch;text-shadow:0 1px 4px rgba(28,10,20,.8),0 3px 26px rgba(28,10,20,.7)">
 <em style="font-style:normal;color:#E0798F">
-              <span lang="ur" dir="rtl" class="block">گنتی چھوڑ دی — ہر بار تم ہی ہو</span>
+              <span lang="ur" dir="rtl" class="block">روز کی وہی باتیں — اور روز نئی لگتی ہیں</span>
             </em>
           </h2>
         </div>
 
-        <div data-count-group="" class="absolute left-0 right-0 text-center" style="z-index:4;top:50%;transform:translateY(-50%);padding:0 3.4vw;opacity:0">
-          <p data-count-time="" style="margin:0;font-family:'Archivo',sans-serif;font-weight:500;font-size:clamp(1.18rem,1.4vw,1.34rem);letter-spacing:.16em;color:#F7EEE8;opacity:.92;text-shadow:0 1px 3px rgba(28,10,20,.9),0 2px 16px rgba(28,10,20,.6)">
-            06:12
-          </p>
-          <p data-count-n="" style="margin:.5rem 0 .4rem;font-family:'Archivo',sans-serif;font-weight:500;font-size:clamp(5rem,2rem + 13vw,14rem);line-height:.92;letter-spacing:-.02em;font-variant-numeric:tabular-nums;color:#F7EEE8;text-shadow:0 1px 4px rgba(28,10,20,.9),0 3px 18px rgba(28,10,20,.75),0 8px 54px rgba(28,10,20,.5)">
-            0
-          </p>
-          <p class="text-xs uppercase" style="margin:0;font-family:'Archivo',sans-serif;font-weight:500;letter-spacing:.14em;color:#F7EEE8;opacity:.82;text-shadow:0 1px 3px rgba(28,10,20,.9),0 2px 14px rgba(28,10,20,.6)">
-            baar tumhara khayal aaya
-          </p>
-          <div style="width:88px;height:1px;margin:2.2rem auto 0;background:rgba(247,238,232,.3)"></div>
-
-          <ol data-caps="" class="relative grid" style="list-style:none;margin:2.6rem 0 0;padding:0;min-height:6.5rem;place-items:start center">
-            <li data-cap="" data-crowd="1" data-time="06:12" style="grid-area:1/1;opacity:0;width:min(38rem,90vw)">
-              <span data-cap-stamp="" class="text-xs uppercase hidden" style="font-family:'Archivo',sans-serif;font-weight:500;letter-spacing:.08em;color:#E0798F;margin-bottom:.6rem">
-                06:12 — pehla khayal
-              </span>
-              <p data-cap-name="" style="margin:0;font-weight:600;font-stretch:105%;font-size:clamp(1.15rem,1rem + .6vw,1.6rem);line-height:1.14;color:#F7EEE8;text-shadow:0 1px 3px rgba(28,10,20,.9),0 3px 22px rgba(28,10,20,.6)">
-                Pehla khayal
-              </p>
-              <p style="margin:.6rem 0 0;color:#F7EEE8;opacity:.82;font-size:1.05rem;line-height:1.5;text-shadow:0 1px 3px rgba(28,10,20,.9),0 2px 16px rgba(28,10,20,.6)">
-                Aankh khuli, aur tum.
-              </p>
-            </li>
-            <li data-cap="" data-crowd="6" data-time="08:05" style="grid-area:1/1;opacity:0;width:min(38rem,90vw)">
-              <span data-cap-stamp="" class="text-xs uppercase hidden" style="font-family:'Archivo',sans-serif;font-weight:500;letter-spacing:.08em;color:#E0798F;margin-bottom:.6rem">
-                08:05 — 6 baar
-              </span>
-              <p data-cap-name="" style="margin:0;font-weight:600;font-stretch:105%;font-size:clamp(1.15rem,1rem + .6vw,1.6rem);line-height:1.14;color:#F7EEE8;text-shadow:0 1px 3px rgba(28,10,20,.9),0 3px 22px rgba(28,10,20,.6)">
-                Chai ke saath
-              </p>
-              <p style="margin:.6rem 0 0;color:#F7EEE8;opacity:.82;font-size:1.05rem;line-height:1.5;text-shadow:0 1px 3px rgba(28,10,20,.9),0 2px 16px rgba(28,10,20,.6)">
-                Socha, tum uthi ya nahi.
-              </p>
-            </li>
-            <li data-cap="" data-crowd="84" data-time="11:00" style="grid-area:1/1;opacity:0;width:min(38rem,90vw)">
-              <span data-cap-stamp="" class="text-xs uppercase hidden" style="font-family:'Archivo',sans-serif;font-weight:500;letter-spacing:.08em;color:#E0798F;margin-bottom:.6rem">
-                11:00 — 84 baar
-              </span>
-              <p data-cap-name="" style="margin:0;font-weight:600;font-stretch:105%;font-size:clamp(1.15rem,1rem + .6vw,1.6rem);line-height:1.14;color:#F7EEE8;text-shadow:0 1px 3px rgba(28,10,20,.9),0 3px 22px rgba(28,10,20,.6)">
-                Kaam ke beech
-              </p>
-              <p style="margin:.6rem 0 0;color:#F7EEE8;opacity:.82;font-size:1.05rem;line-height:1.5;text-shadow:0 1px 3px rgba(28,10,20,.9),0 2px 16px rgba(28,10,20,.6)">
-                Screen par kuch aur, dil mein tum.
-              </p>
-            </li>
-            <li data-cap="" data-crowd="340" data-time="16:30" style="grid-area:1/1;opacity:0;width:min(38rem,90vw)">
-              <span data-cap-stamp="" class="text-xs uppercase hidden" style="font-family:'Archivo',sans-serif;font-weight:500;letter-spacing:.08em;color:#E0798F;margin-bottom:.6rem">
-                16:30 — 340 baar
-              </span>
-              <p data-cap-name="" style="margin:0;font-weight:600;font-stretch:105%;font-size:clamp(1.15rem,1rem + .6vw,1.6rem);line-height:1.14;color:#F7EEE8;text-shadow:0 1px 3px rgba(28,10,20,.9),0 3px 22px rgba(28,10,20,.6)">
-                Din ka sab se ooncha
-              </p>
-              <p style="margin:.6rem 0 0;color:#F7EEE8;opacity:.82;font-size:1.05rem;line-height:1.5;text-shadow:0 1px 3px rgba(28,10,20,.9),0 2px 16px rgba(28,10,20,.6)">
-                Yahan ginti chhod di.
-              </p>
-            </li>
-            <li data-cap="" data-crowd="96" data-time="21:15" style="grid-area:1/1;opacity:0;width:min(38rem,90vw)">
-              <span data-cap-stamp="" class="text-xs uppercase hidden" style="font-family:'Archivo',sans-serif;font-weight:500;letter-spacing:.08em;color:#E0798F;margin-bottom:.6rem">
-                21:15 — 96 baar
-              </span>
-              <p data-cap-name="" style="margin:0;font-weight:600;font-stretch:105%;font-size:clamp(1.15rem,1rem + .6vw,1.6rem);line-height:1.14;color:#F7EEE8;text-shadow:0 1px 3px rgba(28,10,20,.9),0 3px 22px rgba(28,10,20,.6)">
-                Ghar wapas
-              </p>
-              <p style="margin:.6rem 0 0;color:#F7EEE8;opacity:.82;font-size:1.05rem;line-height:1.5;text-shadow:0 1px 3px rgba(28,10,20,.9),0 2px 16px rgba(28,10,20,.6)">
-                Wahi rasta, wahi gaana, wahi tum.
-              </p>
-            </li>
-            <li data-cap="" data-crowd="1" data-time="23:40" style="grid-area:1/1;opacity:0;width:min(38rem,90vw)">
-              <span data-cap-stamp="" class="text-xs uppercase hidden" style="font-family:'Archivo',sans-serif;font-weight:500;letter-spacing:.08em;color:#E0798F;margin-bottom:.6rem">
-                23:40 — aakhri khayal
-              </span>
-              <p data-cap-name="" style="margin:0;font-weight:600;font-stretch:105%;font-size:clamp(1.15rem,1rem + .6vw,1.6rem);line-height:1.14;color:#F7EEE8;text-shadow:0 1px 3px rgba(28,10,20,.9),0 3px 22px rgba(28,10,20,.6)">
-                Aakhri khayal
-              </p>
-              <p style="margin:.6rem 0 0;color:#F7EEE8;opacity:.82;font-size:1.05rem;line-height:1.5;text-shadow:0 1px 3px rgba(28,10,20,.9),0 2px 16px rgba(28,10,20,.6)">
-                Din tumse shuru, tum par khatam.
-              </p>
-            </li>
-          </ol>
+        <div data-thread-stage="" class="absolute left-0 right-0" style="z-index:4;top:50%;padding:0 3.4vw;opacity:0">
+          <div data-thread="" style="position:relative;max-width:min(30rem,86vw);margin:0 auto;will-change:transform">
+            <p data-msg="" data-from="her" style="margin:0 0 .72rem;padding:.6rem 1.05rem;width:fit-content;max-width:82%;border-radius:17px;font-size:clamp(.95rem,1.1vw,1.06rem);line-height:1.45;opacity:0;text-shadow:0 1px 2px rgba(28,10,20,.5);margin-right:auto;background:rgba(247,238,232,.14);border:1px solid rgba(247,238,232,.2);color:#F7EEE8;border-bottom-left-radius:5px">Sunooooo</p>
+            <p data-msg="" data-from="her" style="margin:0 0 .72rem;padding:.6rem 1.05rem;width:fit-content;max-width:82%;border-radius:17px;font-size:clamp(.95rem,1.1vw,1.06rem);line-height:1.45;opacity:0;text-shadow:0 1px 2px rgba(28,10,20,.5);margin-right:auto;background:rgba(247,238,232,.14);border:1px solid rgba(247,238,232,.2);color:#F7EEE8;border-bottom-left-radius:5px">My future hubby</p>
+            <p data-msg="" data-from="me" style="margin:0 0 .72rem;padding:.6rem 1.05rem;width:fit-content;max-width:82%;border-radius:17px;font-size:clamp(.95rem,1.1vw,1.06rem);line-height:1.45;opacity:0;text-shadow:0 1px 2px rgba(28,10,20,.5);margin-left:auto;background:rgba(192,67,92,.86);border:1px solid rgba(224,121,143,.45);color:#F7EEE8;border-bottom-right-radius:5px">Good girl</p>
+            <p data-msg="" data-from="me" style="margin:0 0 .72rem;padding:.6rem 1.05rem;width:fit-content;max-width:82%;border-radius:17px;font-size:clamp(.95rem,1.1vw,1.06rem);line-height:1.45;opacity:0;text-shadow:0 1px 2px rgba(28,10,20,.5);margin-left:auto;background:rgba(192,67,92,.86);border:1px solid rgba(224,121,143,.45);color:#F7EEE8;border-bottom-right-radius:5px">Apne partner ki</p>
+            <p data-msg="" data-from="her" style="margin:.2rem 0 .9rem;padding:0;width:fit-content;font-size:clamp(2.1rem,3.4vw,2.7rem);line-height:1;opacity:0">😊</p>
+            <p data-msg="" data-from="her" style="margin:0 0 .72rem;padding:.6rem 1.05rem;width:fit-content;max-width:82%;border-radius:17px;font-size:clamp(.95rem,1.1vw,1.06rem);line-height:1.45;opacity:0;text-shadow:0 1px 2px rgba(28,10,20,.5);margin-right:auto;background:rgba(247,238,232,.14);border:1px solid rgba(247,238,232,.2);color:#F7EEE8;border-bottom-left-radius:5px"><span style="display:flex;gap:.55rem;align-items:center;min-width:12.4rem;margin:-.15rem -.55rem .5rem;padding:.4rem .5rem;border-radius:9px;background:rgba(28,10,20,.36);border-left:3px solid #E0798F;overflow:hidden"><span style="flex:1;min-width:0"><span style="display:block;font-size:.82em;font-weight:600;line-height:1.35;color:#E0798F">Rafay</span><span style="display:block;font-size:.8em;line-height:1.35;opacity:.66;white-space:nowrap"><svg viewBox="0 0 21 14" aria-hidden="true" style="display:inline-block;width:1.05em;height:.7em;margin-right:.34em;vertical-align:-.08em;fill:currentColor"><path d="M2 0h9a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2Zm12 5.4 5.4-3.3A1 1 0 0 1 21 3v8a1 1 0 0 1-1.6.85L14 8.6Z"/></svg>Video</span></span><img src="assets/laiba/vid/reply.jpg" alt="Rafay, us video ka frame jis par ye jawab aaya" loading="lazy" style="flex:none;width:2.7em;height:2.7em;border-radius:6px;object-fit:cover"></span>Mashallah ✨ Cutooooooo 🤗</p>
+            <p data-msg="" data-from="me" style="margin:0 0 .72rem;padding:.6rem 1.05rem;width:fit-content;max-width:82%;border-radius:17px;font-size:clamp(.95rem,1.1vw,1.06rem);line-height:1.45;opacity:0;text-shadow:0 1px 2px rgba(28,10,20,.5);margin-left:auto;background:rgba(192,67,92,.86);border:1px solid rgba(224,121,143,.45);color:#F7EEE8;border-bottom-right-radius:5px">Love u 😘</p>
+            <p data-msg="" data-from="her" style="position:relative;margin:0 0 1.15rem;padding:.6rem 1.05rem;width:fit-content;max-width:82%;border-radius:17px;font-size:clamp(.95rem,1.1vw,1.06rem);line-height:1.45;opacity:0;text-shadow:0 1px 2px rgba(28,10,20,.5);margin-right:auto;background:rgba(247,238,232,.14);border:1px solid rgba(247,238,232,.2);color:#F7EEE8;border-bottom-left-radius:5px">Love you too 💕<span aria-label="dil ka reaction" style="position:absolute;left:.85rem;bottom:-.72rem;padding:.12rem .34rem;border-radius:999px;background:rgba(46,16,32,.9);border:1px solid rgba(247,238,232,.16);font-size:.72rem;line-height:1">❤️</span></p>
+            <p data-msg="" data-from="me" style="margin:0 0 .72rem;padding:.6rem 1.05rem;width:fit-content;max-width:82%;border-radius:17px;font-size:clamp(.95rem,1.1vw,1.06rem);line-height:1.45;opacity:0;text-shadow:0 1px 2px rgba(28,10,20,.5);margin-left:auto;background:rgba(192,67,92,.86);border:1px solid rgba(224,121,143,.45);color:#F7EEE8;border-bottom-right-radius:5px">always I am be yours ❤️🥹</p>
+          </div>
         </div>
       </div>
     </section>
@@ -247,7 +163,7 @@
     <!-- ══ 3 · THE WINDOW — a statement, then an aperture that takes it ══ -->
     <section data-windowsec="" data-bg="#F7E9E2" class="relative" style="color:#3D2430;background:#F7E9E2">
       <div data-window-stage="" class="relative" style="z-index:1;height:100vh;height:100svh">
-        <div data-statement="" class="fixed inset-0 flex flex-col items-center justify-center text-center pointer-events-none" style="z-index:4;padding:0 3.4vw;opacity:0">
+        <div data-statement="" class="fixed inset-0 flex flex-col items-center justify-center text-center pointer-events-none" style="z-index:1;padding:0 3.4vw;opacity:0">
           <h2 data-statement-lines="" lang="ur" dir="rtl" style="margin:0;font-family:'Noto Nastaliq Urdu',serif;font-weight:500;letter-spacing:normal;font-stretch:normal;line-height:2.05;font-size:clamp(1.1rem,.75rem + 1.55vw,2.1rem);max-width:42ch">
             <span lang="ur" dir="rtl" class="block">سنا ہے لوگ اسے آنکھ بھر کے دیکھتے ہیں</span>
             <em style="font-style:normal;color:#C0435C">
@@ -256,23 +172,22 @@
             <span lang="ur" dir="rtl" class="block" style="margin-top:1.1rem;font-size:.5em;opacity:.6">احمد فراز</span>
           </h2>
           <p data-statement-sub="" style="margin:2.1rem 0 0;max-width:37rem;color:#3D2430;opacity:.8;font-size:clamp(1.08rem,1.35vw,1.25rem);line-height:1.55">
-            Gyarah videos. Har ek mein bas tum.
+            Das videos. Har ek mein bas tum.
           </p>
         </div>
 
         <figure data-portal="" class="absolute" style="z-index:2;top:var(--pshift,0px);bottom:calc(-1 * var(--pshift, 0px));left:0;right:0;margin:auto;width:min(84vw,1260px);height:min(62vh,700px);clip-path:inset(34% 30% round 2px)">
           <div data-glass="" class="fixed inset-0" style="z-index:0;visibility:hidden">
-            <video data-scene="" class="absolute inset-0 object-cover" style="width:100vw;height:100vh;opacity:1;filter:saturate(.82) contrast(1.04) brightness(.97)" muted="" loop="" playsinline="" preload="metadata" src="assets/laiba/vid/w1.mp4" poster="assets/laiba/vid/w1.jpg" data-name="Jab tum hansti ho" data-coord="aur mera din theek ho jata hai" data-read=""></video>
-            <video data-scene="" class="absolute inset-0 object-cover" style="width:100vw;height:100vh;opacity:0;filter:saturate(.82) contrast(1.04) brightness(.97)" muted="" loop="" playsinline="" preload="metadata" src="assets/laiba/vid/w2.mp4" poster="assets/laiba/vid/w2.jpg" data-name="Seedhi nazar" data-coord="camera nahi, mujhe dekh rahi ho" data-read=""></video>
-            <video data-scene="" class="absolute inset-0 object-cover" style="width:100vw;height:100vh;opacity:0;filter:saturate(.82) contrast(1.04) brightness(.97)" muted="" loop="" playsinline="" preload="metadata" src="assets/laiba/vid/w4.mp4" poster="assets/laiba/vid/w4.jpg" data-name="Khul ke hansi" data-coord="jo rukti hi nahi" data-read=""></video>
-            <video data-scene="" class="absolute inset-0 object-cover" style="width:100vw;height:100vh;opacity:0;filter:saturate(.82) contrast(1.04) brightness(.97)" muted="" loop="" playsinline="" preload="metadata" src="assets/laiba/vid/w6.mp4" poster="assets/laiba/vid/w6.jpg" data-name="Chup baithi ho" data-coord="phir bhi sab keh diya" data-read=""></video>
-            <video data-scene="" class="absolute inset-0 object-cover" style="width:100vw;height:100vh;opacity:0;filter:saturate(.82) contrast(1.04) brightness(.97)" muted="" loop="" playsinline="" preload="metadata" src="assets/laiba/vid/w5.mp4" poster="assets/laiba/vid/w5.jpg" data-name="Safed aasteen" data-coord="neeli deewar, tumhara chehra" data-read=""></video>
-            <video data-scene="" class="absolute inset-0 object-cover" style="width:100vw;height:100vh;opacity:0;filter:saturate(.82) contrast(1.04) brightness(.97)" muted="" loop="" playsinline="" preload="metadata" src="assets/laiba/vid/w11.mp4" poster="assets/laiba/vid/w11.jpg" data-name="Haath mein phool" data-coord="phool bhi tumse haar gaya" data-read=""></video>
-            <video data-scene="" class="absolute inset-0 object-cover" style="width:100vw;height:100vh;opacity:0;filter:saturate(.82) contrast(1.04) brightness(.97)" muted="" loop="" playsinline="" preload="metadata" src="assets/laiba/vid/w9.mp4" poster="assets/laiba/vid/w9.jpg" data-name="Gulabi deewar" data-coord="aankhein khulti, band hoti" data-read=""></video>
-            <video data-scene="" class="absolute inset-0 object-cover" style="width:100vw;height:100vh;opacity:0;filter:saturate(.82) contrast(1.04) brightness(.97)" muted="" loop="" playsinline="" preload="metadata" src="assets/laiba/vid/w7.mp4" poster="assets/laiba/vid/w7.jpg" data-name="Baal khule hue" data-coord="aur main dekhta reh gaya" data-read=""></video>
-            <video data-scene="" class="absolute inset-0 object-cover" style="width:100vw;height:100vh;opacity:0;filter:saturate(.82) contrast(1.04) brightness(.97)" muted="" loop="" playsinline="" preload="metadata" src="assets/laiba/vid/w10.mp4" poster="assets/laiba/vid/w10.jpg" data-name="Sirf chehra" data-coord="isse zyada kuch nahi chahiye" data-read=""></video>
-            <video data-scene="" class="absolute inset-0 object-cover" style="width:100vw;height:100vh;opacity:0;filter:saturate(.82) contrast(1.04) brightness(.97)" muted="" loop="" playsinline="" preload="metadata" src="assets/laiba/vid/w8.mp4" poster="assets/laiba/vid/w8.jpg" data-name="Sab se lambi" data-coord="poori dekhta hoon, har baar" data-read=""></video>
-            <video data-scene="" class="absolute inset-0 object-cover" style="width:100vw;height:100vh;opacity:0;filter:saturate(.82) contrast(1.04) brightness(.97)" muted="" loop="" playsinline="" preload="metadata" src="assets/laiba/vid/w3.mp4" poster="assets/laiba/vid/w3.jpg" data-name="Jab tum chup ho" data-coord="tab bhi baat ho jati hai" data-read=""></video>
+            <video data-scene="" class="absolute inset-0 object-cover" style="width:100vw;height:100vh;opacity:1;filter:saturate(.82) contrast(1.04) brightness(.97)" muted="" loop="" playsinline="" preload="metadata" src="assets/laiba/vid/w2.mp4" poster="assets/laiba/vid/w2.jpg" data-name="meri jan" data-coord="" data-read=""></video>
+            <video data-scene="" class="absolute inset-0 object-cover" style="width:100vw;height:100vh;opacity:0;filter:saturate(.82) contrast(1.04) brightness(.97)" muted="" loop="" playsinline="" preload="metadata" src="assets/laiba/vid/w4.mp4" poster="assets/laiba/vid/w4.jpg" data-name="meri zindagi" data-coord="" data-read=""></video>
+            <video data-scene="" class="absolute inset-0 object-cover" style="width:100vw;height:100vh;opacity:0;filter:saturate(.82) contrast(1.04) brightness(.97)" muted="" loop="" playsinline="" preload="metadata" src="assets/laiba/vid/w6.mp4" poster="assets/laiba/vid/w6.jpg" data-name="mera dil" data-coord="" data-read=""></video>
+            <video data-scene="" class="absolute inset-0 object-cover" style="width:100vw;height:100vh;opacity:0;filter:saturate(.82) contrast(1.04) brightness(.97)" muted="" loop="" playsinline="" preload="metadata" src="assets/laiba/vid/w5.mp4" poster="assets/laiba/vid/w5.jpg" data-name="meri queen" data-coord="" data-read=""></video>
+            <video data-scene="" class="absolute inset-0 object-cover" style="width:100vw;height:100vh;opacity:0;filter:saturate(.82) contrast(1.04) brightness(.97)" muted="" loop="" playsinline="" preload="metadata" src="assets/laiba/vid/w11.mp4" poster="assets/laiba/vid/w11.jpg" data-name="meri raani" data-coord="" data-read=""></video>
+            <video data-scene="" class="absolute inset-0 object-cover" style="width:100vw;height:100vh;opacity:0;filter:saturate(.82) contrast(1.04) brightness(.97)" muted="" loop="" playsinline="" preload="metadata" src="assets/laiba/vid/w9.mp4" poster="assets/laiba/vid/w9.jpg" data-name="mera sukoon" data-coord="" data-read=""></video>
+            <video data-scene="" class="absolute inset-0 object-cover" style="width:100vw;height:100vh;opacity:0;filter:saturate(.82) contrast(1.04) brightness(.97)" muted="" loop="" playsinline="" preload="metadata" src="assets/laiba/vid/w7.mp4" poster="assets/laiba/vid/w7.jpg" data-name="mera bacha" data-coord="" data-read=""></video>
+            <video data-scene="" class="absolute inset-0 object-cover" style="width:100vw;height:100vh;opacity:0;filter:saturate(.82) contrast(1.04) brightness(.97)" muted="" loop="" playsinline="" preload="metadata" src="assets/laiba/vid/w10.mp4" poster="assets/laiba/vid/w10.jpg" data-name="meri princess" data-coord="" data-read=""></video>
+            <video data-scene="" class="absolute inset-0 object-cover" style="width:100vw;height:100vh;opacity:0;filter:saturate(.82) contrast(1.04) brightness(.97)" muted="" loop="" playsinline="" preload="metadata" src="assets/laiba/vid/w8.mp4" poster="assets/laiba/vid/w8.jpg" data-name="meri haseena" data-coord="" data-read=""></video>
+            <video data-scene="" class="absolute inset-0 object-cover" style="width:100vw;height:100vh;opacity:0;filter:saturate(.82) contrast(1.04) brightness(.97)" muted="" loop="" playsinline="" preload="metadata" src="assets/laiba/vid/w3.mp4" poster="assets/laiba/vid/w3.jpg" data-name="meri darling" data-coord="" data-read=""></video>
           </div>
           <div data-lip="" class="absolute inset-0 pointer-events-none" style="z-index:3;border-radius:10px;box-shadow:inset 0 0 0 1px rgba(247,238,232,.26),inset 0 0 14px 3px rgba(28,10,20,.6),inset 0 0 36px 8px rgba(28,10,20,.42),inset 0 0 74px 20px rgba(28,10,20,.2)"></div>
         </figure>
@@ -285,10 +200,7 @@
           </button>
           <div class="text-center" style="min-width:min(30rem,62vw)">
             <p data-shore-name="" style="margin:.5rem 0 .45rem;font-weight:600;font-stretch:105%;font-size:clamp(1.15rem,1rem + .6vw,1.6rem);line-height:1.1">
-              Jab tum hansti ho
-            </p>
-            <p class="text-xs uppercase" style="margin:0;font-family:'Archivo',sans-serif;font-weight:500;letter-spacing:.08em;color:rgba(61,36,48,.58)">
-              <span data-shore-coord="">aur mera din theek ho jata hai</span>
+              meri jan
             </p>
           </div>
           <button type="button" data-shore-next="" aria-label="Agla kinara" class="grid place-items-center rounded-full flex-none w-11 h-11 md:w-14 md:h-14 hover:border-[#9B2F4A]" style="border:1px solid rgba(61,36,48,.26);background:rgba(247,233,226,.6);color:#3D2430;cursor:none;transition:background-color .5s cubic-bezier(.16,1,.3,1),border-color .5s cubic-bezier(.16,1,.3,1),transform .35s cubic-bezier(.16,1,.3,1)">
@@ -312,7 +224,7 @@
             </div>
             <figcaption data-shore-stamp="" class="absolute bottom-[13vh] md:bottom-[16vh]" style="left:2.4vw;right:2.4vw;z-index:2;color:#F7EEE8">
               <span class="block" style="font-weight:600;font-stretch:105%;font-size:clamp(1.1rem,1.7vw,1.55rem);line-height:1.14;letter-spacing:-.01em;text-shadow:0 1px 3px rgba(28,10,20,.9),0 3px 20px rgba(28,10,20,.6)">
-                Chhat par, khuli hawa
+                meri dil ki dharkan
               </span>
             </figcaption>
           </figure>
@@ -324,7 +236,7 @@
             </div>
             <figcaption data-shore-stamp="" class="absolute bottom-[13vh] md:bottom-[16vh]" style="left:2.4vw;right:2.4vw;z-index:2;color:#F7EEE8">
               <span class="block" style="font-weight:600;font-stretch:105%;font-size:clamp(1.1rem,1.7vw,1.55rem);line-height:1.14;letter-spacing:-.01em;text-shadow:0 1px 3px rgba(28,10,20,.9),0 3px 20px rgba(28,10,20,.6)">
-                Phoolon ki deewar
+                meri Shona
               </span>
             </figcaption>
           </figure>
@@ -336,7 +248,7 @@
             </div>
             <figcaption data-shore-stamp="" class="absolute bottom-[13vh] md:bottom-[16vh]" style="left:2.4vw;right:2.4vw;z-index:2;color:#F7EEE8">
               <span class="block" style="font-weight:600;font-stretch:105%;font-size:clamp(1.1rem,1.7vw,1.55rem);line-height:1.14;letter-spacing:-.01em;text-shadow:0 1px 3px rgba(28,10,20,.9),0 3px 20px rgba(28,10,20,.6)">
-                Firozi mein tum
+                my heart
               </span>
             </figcaption>
           </figure>
@@ -348,7 +260,7 @@
             </div>
             <figcaption data-shore-stamp="" class="absolute bottom-[13vh] md:bottom-[16vh]" style="left:2.4vw;right:2.4vw;z-index:2;color:#F7EEE8">
               <span class="block" style="font-weight:600;font-stretch:105%;font-size:clamp(1.1rem,1.7vw,1.55rem);line-height:1.14;letter-spacing:-.01em;text-shadow:0 1px 3px rgba(28,10,20,.9),0 3px 20px rgba(28,10,20,.6)">
-                Gulabi deewar
+                meri Janu
               </span>
             </figcaption>
           </figure>
@@ -360,7 +272,7 @@
             </div>
             <figcaption data-shore-stamp="" class="absolute bottom-[13vh] md:bottom-[16vh]" style="left:2.4vw;right:2.4vw;z-index:2;color:#F7EEE8">
               <span class="block" style="font-weight:600;font-stretch:105%;font-size:clamp(1.1rem,1.7vw,1.55rem);line-height:1.14;letter-spacing:-.01em;text-shadow:0 1px 3px rgba(28,10,20,.9),0 3px 20px rgba(28,10,20,.6)">
-                Sabz deewar
+                meri duniya
               </span>
             </figcaption>
           </figure>
@@ -372,7 +284,7 @@
             </div>
             <figcaption data-shore-stamp="" class="absolute bottom-[13vh] md:bottom-[16vh]" style="left:2.4vw;right:2.4vw;z-index:2;color:#F7EEE8">
               <span class="block" style="font-weight:600;font-stretch:105%;font-size:clamp(1.1rem,1.7vw,1.55rem);line-height:1.14;letter-spacing:-.01em;text-shadow:0 1px 3px rgba(28,10,20,.9),0 3px 20px rgba(28,10,20,.6)">
-                Aankhein band kiye
+                mera chain
               </span>
             </figcaption>
           </figure>
@@ -384,7 +296,7 @@
             </div>
             <figcaption data-shore-stamp="" class="absolute bottom-[13vh] md:bottom-[16vh]" style="left:2.4vw;right:2.4vw;z-index:2;color:#F7EEE8">
               <span class="block" style="font-weight:600;font-stretch:105%;font-size:clamp(1.1rem,1.7vw,1.55rem);line-height:1.14;letter-spacing:-.01em;text-shadow:0 1px 3px rgba(28,10,20,.9),0 3px 20px rgba(28,10,20,.6)">
-                Dhoop mein tum
+                meri rooh
               </span>
             </figcaption>
           </figure>
@@ -396,7 +308,7 @@
             </div>
             <figcaption data-shore-stamp="" class="absolute bottom-[13vh] md:bottom-[16vh]" style="left:2.4vw;right:2.4vw;z-index:2;color:#F7EEE8">
               <span class="block" style="font-weight:600;font-stretch:105%;font-size:clamp(1.1rem,1.7vw,1.55rem);line-height:1.14;letter-spacing:-.01em;text-shadow:0 1px 3px rgba(28,10,20,.9),0 3px 20px rgba(28,10,20,.6)">
-                Neeli deewar
+                mera noor
               </span>
             </figcaption>
           </figure>
@@ -408,7 +320,7 @@
             </div>
             <figcaption data-shore-stamp="" class="absolute bottom-[13vh] md:bottom-[16vh]" style="left:2.4vw;right:2.4vw;z-index:2;color:#F7EEE8">
               <span class="block" style="font-weight:600;font-stretch:105%;font-size:clamp(1.1rem,1.7vw,1.55rem);line-height:1.14;letter-spacing:-.01em;text-shadow:0 1px 3px rgba(28,10,20,.9),0 3px 20px rgba(28,10,20,.6)">
-                Bas baithi hui
+                meri malika
               </span>
             </figcaption>
           </figure>
@@ -420,7 +332,7 @@
             </div>
             <figcaption data-shore-stamp="" class="absolute bottom-[13vh] md:bottom-[16vh]" style="left:2.4vw;right:2.4vw;z-index:2;color:#F7EEE8">
               <span class="block" style="font-weight:600;font-stretch:105%;font-size:clamp(1.1rem,1.7vw,1.55rem);line-height:1.14;letter-spacing:-.01em;text-shadow:0 1px 3px rgba(28,10,20,.9),0 3px 20px rgba(28,10,20,.6)">
-                Safed chadar
+                meri hansi
               </span>
             </figcaption>
           </figure>
@@ -432,7 +344,7 @@
             </div>
             <figcaption data-shore-stamp="" class="absolute bottom-[13vh] md:bottom-[16vh]" style="left:2.4vw;right:2.4vw;z-index:2;color:#F7EEE8">
               <span class="block" style="font-weight:600;font-stretch:105%;font-size:clamp(1.1rem,1.7vw,1.55rem);line-height:1.14;letter-spacing:-.01em;text-shadow:0 1px 3px rgba(28,10,20,.9),0 3px 20px rgba(28,10,20,.6)">
-                Bilkul paas se
+                mera pyaar
               </span>
             </figcaption>
           </figure>
@@ -463,25 +375,28 @@
           <i data-drift-bar="" class="block h-full" style="background:#C0435C;transform:scaleX(0);transform-origin:left center"></i>
         </div>
 
-        <!-- ══ 5 · THE CLOSE — a circle opens onto paper ══ -->
-        <footer id="book" data-close="" class="absolute inset-0 grid place-items-center text-center" style="z-index:10;background:#F7E9E2;color:#3D2430;padding:12vh 3.4vw 10vh;clip-path:circle(0% at 50% 50%);will-change:clip-path">
-          <div style="max-width:46rem">
-            <h2 data-close-el="" lang="ur" dir="rtl" style="margin:0 auto;font-family:'Noto Nastaliq Urdu',serif;font-weight:500;letter-spacing:normal;font-stretch:normal;line-height:2.05;font-size:clamp(1.7rem,1rem + 3vw,3.9rem);max-width:20ch;opacity:0">
-<span lang="ur" dir="rtl" class="block">لائبہ،</span>
-              <em style="font-style:normal;color:#C0435C">
-                <span lang="ur" dir="rtl" class="block">کیا تم میری ہو جاؤ گی؟</span>
-              </em>
-            </h2>
-            <p data-close-el="" style="margin:2.4rem auto 0;max-width:34rem;font-size:clamp(1.05rem,1.3vw,1.2rem);line-height:1.6;color:#3D2430;opacity:0">
-              Bara waada nahi kar raha. Bas itna — har subah tum, har
-              raat tum. Baaki sab saath seekh lenge.
-            </p>
-            <a data-close-el="" data-magnetic="" href="/" data-haan="" class="inline-flex items-center justify-center" style="margin-top:1.6rem;min-height:56px;padding:1rem 2.6rem;background:#C0435C;color:#F7EEE8;border-radius:999px;font-weight:600;font-stretch:102%;font-size:clamp(1.18rem,1.4vw,1.3rem);letter-spacing:.01em;text-decoration:none;opacity:0;will-change:transform;transition:background .4s cubic-bezier(.16,1,.3,1)">
-              Haan
-            </a>
-            <p data-close-el="" data-haan-note="" style="margin:1.4rem 0 0;font-size:.9rem;color:#3D2430;opacity:0">
-              ya bas WhatsApp par likh do — main wahin hoon.
-            </p>
+        <!-- ══ 5 · THE LAST SCREEN — a circle opens onto the two of you ══ -->
+        <footer id="book" data-close="" class="absolute inset-0 grid place-items-center text-center" style="z-index:10;background:#1C0A14;color:#F7EEE8;padding:10vh 3.4vw 8vh;clip-path:circle(0% at 50% 50%);will-change:clip-path;overflow:hidden">
+          <!-- the film is square and it is the two of you side by side, so it is
+               never cropped: it sits whole, and a blurred copy of it fills the
+               ground behind so the screen is never bare -->
+          <img data-close-fill="" src="assets/laiba/vid/close.jpg" alt="" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:blur(38px) saturate(.7) brightness(.5);transform:scale(1.18)">
+          <div class="absolute inset-0 pointer-events-none" style="mix-blend-mode:soft-light;background:linear-gradient(160deg,rgba(46,16,32,.62),rgba(192,67,92,.34) 78%)"></div>
+          <div class="absolute inset-0 pointer-events-none" style="background:radial-gradient(ellipse 88% 70% at 50% 42%,rgba(28,10,20,.32) 0%,rgba(28,10,20,.6) 54%,rgba(28,10,20,.92) 100%)"></div>
+          <div data-close-grain="" class="absolute inset-0 pointer-events-none" style="opacity:.06;mix-blend-mode:overlay"></div>
+          <div data-close-hearts="" class="absolute inset-0 pointer-events-none" style="overflow:hidden"></div>
+
+          <div class="relative flex flex-col items-center" style="z-index:2;max-width:46rem;gap:clamp(1.4rem,3.6vh,2.4rem)">
+            <div data-close-el="" style="position:relative;width:clamp(12rem,min(74vw,40vh),26rem);aspect-ratio:1;border-radius:14px;overflow:hidden;opacity:0;box-shadow:0 0 0 1px rgba(255,240,232,.32),0 0 0 4px rgba(169,102,79,.85),0 0 0 5px rgba(52,20,14,.65),0 26px 60px rgba(28,10,20,.7)">
+              <video data-close-film="" class="absolute inset-0" style="width:100%;height:100%;object-fit:cover;filter:saturate(.9) contrast(1.02)" src="assets/laiba/vid/close.mp4" poster="assets/laiba/vid/close.jpg" autoplay="" muted="" loop="" playsinline="" preload="auto"></video>
+              <div class="absolute inset-0 pointer-events-none" style="box-shadow:inset 0 0 26px rgba(28,10,20,.45)"></div>
+            </div>
+            <div>
+              <h2 data-close-el="" style="margin:0 auto;font-family:'Great Vibes',cursive;font-weight:400;line-height:1.16;font-size:clamp(2.6rem,1.1rem + 7.4vw,5.8rem);color:#FBEDE8;opacity:0;text-shadow:0 2px 20px rgba(28,10,20,.85),0 0 60px rgba(224,121,143,.45),0 0 120px rgba(192,67,92,.3)">
+                Rafay ki Zindagi
+              </h2>
+              <div data-close-el="" class="flex items-center justify-center" style="margin-top:clamp(1.1rem,2.8vh,1.9rem);opacity:0"><img src="assets/laiba/logo.png" alt="Rafay aur Laiba" style="width:clamp(5rem,min(19vw,12vh),8rem);height:auto;filter:drop-shadow(0 12px 26px rgba(28,10,20,.8)) drop-shadow(0 0 30px rgba(224,121,143,.4))"></div>
+            </div>
           </div>
         </footer>
       </div>
@@ -495,7 +410,7 @@
       const ASSETS = 'assets/laiba/';
       gsap.registerPlugin(ScrollTrigger, SplitText);
 
-      const EASE = 'expo.out', REVEAL = 1.2, CROWD_START = 340, CROWD_END = 1;
+      const EASE = 'expo.out', REVEAL = 1.2;
       const staticMode = new URLSearchParams(location.search).has('static');
       const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches || staticMode;
       const prefersStill = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -505,6 +420,7 @@
       /* grain, painted in JS so no stylesheet is needed */
       const GRAIN = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E";
       q('[data-grain]').style.backgroundImage = 'url("' + GRAIN + '")';
+      qa('[data-metal-grain], [data-boot-grain], [data-close-grain]').forEach(el => el.style.backgroundImage = 'url("' + GRAIN + '")');
 
       /* ── Lenis ↔ ScrollTrigger: one shared scroll position ── */
       let lenis;
@@ -567,19 +483,136 @@
       }
 
       /* ── loader: the machine empties the beach ── */
+      /* ── the boot screen: a locket she has to open herself ──────────────
+         It arrives on its chain and waits, shut, catching the light. Nothing
+         moves on until she touches it — and if she doesn't, it opens on its
+         own after a few seconds so nobody is ever stuck at a closed door. */
       function initLoader() {
         const loader = q('[data-loader]');
         if (!loader) { if (lenis) lenis.start(); playHero(); return; }
-        const mark = q('[data-loader-mark]'), wrap = q('[data-loader-barwrap]'),
-              bar = q('[data-loader-bar]'), line = q('[data-loader-line]'), count = q('[data-count]');
-        const n = { v: CROWD_START };
-        const tl = gsap.timeline({
-          onComplete() { if (lenis) lenis.start(); playHero(); ScrollTrigger.refresh(); }
+        const mark = q('[data-loader-mark]'), line = q('[data-loader-line]');
+        const holder = q('[data-locket-wrap]'), chain = q('[data-locket-chain]'),
+              tilt = q('[data-locket-tilt]'), btn = q('[data-locket-btn]'),
+              hint = q('[data-boot-hint]'), glow = q('[data-boot-glow]'),
+              pulse = q('[data-locket-pulse]'), ripple = q('[data-boot-ripple]'),
+              lights = qa('[data-shine] > i'), faces = qa('[data-leaf] img'),
+              leaves = qa('[data-leaf]'), lids = qa('[data-lid]');
+        const fine = matchMedia('(pointer: fine)').matches;
+        const loose = [];                       /* everything to stop at the end */
+        let opened = false, waiting = 0;
+
+        function done() {
+          loose.forEach(t => t && t.kill());
+          if (lenis) lenis.start(); playHero(); ScrollTrigger.refresh();
+        }
+        if (!holder || leaves.length !== 2) {   /* nothing to open — just go */
+          gsap.timeline({ onComplete: done })
+            .to([mark, line].filter(Boolean), { opacity: 1, duration: .8, stagger: .1, ease: EASE })
+            .to(loader, { opacity: 0, duration: 1, ease: EASE, onComplete() { loader.style.display = 'none'; } }, '+=0.3');
+          return;
+        }
+
+        gsap.set(lids, { rotateY: 0 });
+        gsap.set(mark, { y: 18 });
+        if (hint && fine) hint.textContent = 'click karke kholo';
+
+        /* ── it arrives ── */
+        gsap.timeline()
+          .to(holder, { opacity: 1, duration: .5, ease: EASE }, 0)
+          .fromTo(chain, { scaleY: 0 }, { scaleY: 1, duration: .75, ease: EASE }, 0)
+          .fromTo(holder, { y: -38, scale: .82 }, { y: 0, scale: 1, duration: 1.1, ease: 'back.out(1.6)' }, .1)
+          .to(glow, { opacity: 1, duration: 1.4, ease: EASE }, .2)
+          .to(hint, { opacity: 1, duration: .8, ease: EASE }, 1.2);
+
+        if (!reduced) {
+          /* it hangs and turns a little, the way a thing on a chain does */
+          loose.push(gsap.to(holder, { rotation: 2.4, duration: 2.6, repeat: -1, yoyo: true,
+                                       ease: 'sine.inOut', transformOrigin: '50% -18%' }));
+          /* a light crosses the shut covers every few seconds */
+          if (lights.length) loose.push(gsap.fromTo(lights, { xPercent: 0 },
+            { xPercent: 340, duration: 1.5, ease: 'power2.inOut', repeat: -1, repeatDelay: 1.9, delay: 1.6 }));
+          /* and a ring breathes out of it, asking to be pressed */
+          if (pulse) loose.push(gsap.fromTo(pulse, { opacity: .5, scale: .96 },
+            { opacity: 0, scale: 1.45, duration: 1.9, ease: 'power2.out', repeat: -1, repeatDelay: .5, delay: 1.4 }));
+          /* on a mouse it leans towards her */
+          if (fine && tilt) {
+            const rx = gsap.quickTo(tilt, 'rotationX', { duration: .7, ease: 'power3' });
+            const ry = gsap.quickTo(tilt, 'rotationY', { duration: .7, ease: 'power3' });
+            loader.addEventListener('pointermove', e => {
+              if (opened) return;
+              const r = holder.getBoundingClientRect();
+              rx(gsap.utils.clamp(-11, 11, -(e.clientY - (r.top + r.height / 2)) / 20));
+              ry(gsap.utils.clamp(-15, 15, (e.clientX - (r.left + r.width / 2)) / 20));
+            });
+          }
+        }
+
+        /* ── she opens it ── */
+        function open(x, y) {
+          if (opened) return;
+          opened = true;
+          clearTimeout(waiting);
+          if (btn) btn.disabled = true;
+          loose.forEach(t => t && t.kill());
+          loose.length = 0;
+          if (tilt) gsap.to(tilt, { rotationX: 0, rotationY: 0, duration: .7, ease: EASE });
+
+          if (ripple && x != null && !reduced) {
+            gsap.set(ripple, { left: x, top: y, scale: 1, opacity: .9 });
+            gsap.to(ripple, { scale: 34, opacity: 0, duration: 1.4, ease: 'power2.out' });
+          }
+
+          const tl = gsap.timeline({ onComplete() { loose.forEach(t => t && t.kill()); done(); } });
+          tl.to([hint, pulse], { opacity: 0, duration: .4, ease: EASE }, 0)
+            .to(leaves[0], { xPercent: -54, duration: 1.3, ease: EASE }, .12)
+            .to(leaves[1], { xPercent: 54, duration: 1.3, ease: EASE }, .12)
+            .to(lids[0], { rotateY: -122, duration: 1.35, ease: EASE }, .2)
+            .to(lids[1], { rotateY: 122, duration: 1.35, ease: EASE }, .2)
+            .to(glow, { opacity: 1.6, duration: .9, ease: EASE }, .2)
+            .to(glow, { opacity: 1, duration: 1.4, ease: EASE }, 1.1);
+
+          /* hearts open out of it, nearest first */
+          if (!prefersStill) {
+            const burst = heartLayer(101, 18);
+            burst.layer.style.zIndex = '10005';
+            loader.appendChild(burst.layer);
+            /* the seeded stream drops them low, which is right for a scene
+               change but not for a bloom — spread them around the locket */
+            burst.forEach((h, i) => { h.style.top = (13 + (i * 53) % 74) + '%'; });
+            const r = holder.getBoundingClientRect();
+            const cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+            const placed = burst.map(h => {
+              const b = h.getBoundingClientRect();
+              return { h, dx: b.left + b.width / 2 - cx, dy: b.top + b.height / 2 - cy };
+            }).sort((a, b) => Math.hypot(a.dx, a.dy) - Math.hypot(b.dx, b.dy));
+            placed.forEach((p, i) => {
+              const t = .45 + i * .045;
+              tl.fromTo(p.h, { opacity: 0, scale: .2, x: -p.dx * .82, y: -p.dy * .82 },
+                             { opacity: +p.h.dataset.lit, scale: 1, x: 0, y: 0, duration: 1.5, ease: 'power3.out' }, t)
+                .to(p.h, { opacity: 0, scale: .86, y: -innerHeight * .09, duration: 1.2, ease: 'power2.in' }, t + 1.5);
+            });
+          }
+
+          /* her name, then the rest, then the page */
+          tl.to(mark, { opacity: 1, y: 0, duration: 1, ease: EASE }, 1.35)
+            .to(line, { opacity: 1, duration: .8, ease: EASE }, 1.85)
+            .to({}, { duration: 1.5 }, 2.05)   /* a moment to look at it */
+            .to(loader, { opacity: 0, duration: 1.2, ease: EASE, onComplete() { loader.style.display = 'none'; } }, '+=0.3');
+
+          /* while it is open, the two of you breathe */
+          if (!reduced && faces.length) loose.push(gsap.to(faces, { scale: 1.035, duration: 2.4, repeat: -1,
+                                                                    yoyo: true, ease: 'sine.inOut', delay: 1.4 }));
+        }
+
+        const press = e => { const t = e.changedTouches && e.changedTouches[0];
+                             open(t ? t.clientX : e.clientX, t ? t.clientY : e.clientY); };
+        loader.addEventListener('pointerup', press);
+        if (btn) btn.addEventListener('keydown', e => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); const r = btn.getBoundingClientRect();
+            open(r.left + r.width / 2, r.top + r.height / 2); }
         });
-        tl.to([mark, wrap, line], { opacity: 1, duration: .9, ease: EASE, stagger: .12 })
-          .to(n, { v: CROWD_END, duration: reduced ? .4 : 2.4, ease: 'expo.inOut', onUpdate() { count.textContent = Math.round(n.v); } }, '<0.2')
-          .to(bar, { scaleX: 0, duration: reduced ? .4 : 2.4, ease: 'expo.inOut' }, '<')
-          .to(loader, { opacity: 0, duration: 1.1, ease: EASE, onComplete() { loader.style.display = 'none'; } }, '+=0.35');
+        /* she may never touch it, and the page still has to arrive */
+        waiting = setTimeout(() => open(null, null), reduced ? 1200 : 7000);
       }
 
       /* ── scroll-scrubbed frame sequences, with a still fallback ── */
@@ -642,25 +675,21 @@
         const stage = q('[data-opening-stage]');
         if (!stage) return;
         const seq = sequence(q('[data-opening-canvas]'), q('[data-opening-fallback]'), 'opening', 193, .6, 13.14);
-        const beats = qa('[data-beat]'), cells = qa('[data-cell]'), prox = { p: 0 };
+        const prox = { p: 0 };
         const tl = gsap.timeline({
-          scrollTrigger: { trigger: stage, start: 'top top', end: '+=4200', pin: true, scrub: 1, anticipatePin: 1,
+          scrollTrigger: { trigger: stage, start: 'top top', end: '+=700', pin: true, scrub: 1, anticipatePin: 1,
             onToggle: self => self.isActive ? seq.play() : seq.stop() }
         });
-        tl.to(prox, { p: 1, ease: 'none', duration: 10 }, 0);   /* holds the film's slot in the timeline; the film runs on its own clock */
+        tl.to(prox, { p: 1, ease: 'none', duration: 5.4 }, 0);   /* holds the film's slot in the timeline; the film runs on its own clock */
         tl.to('[data-scroll-hint]', { opacity: 0, duration: .4 }, 0)
           .to('[data-title]', { opacity: 0, y: -60, duration: 1 }, .5)
           .to('[data-openinggrade]', { opacity: 1, duration: 1 }, '<')
-          .to('[data-absences]', { opacity: 1, duration: .6 }, '<0.3')
-          .to({}, { duration: .74 }, '<');   /* was the four-cell stagger: .5 + 3x.08 */
-        beats.forEach((b, i) => {
-          tl.to(b, { opacity: 1, duration: .5 }, '>')
-            .to(b, { opacity: 0, duration: .5 }, i === beats.length - 1 ? '+=1.4' : '+=0.9');
-        });
-        tl.to('[data-absences]', { opacity: 0, duration: .6 }, '>-0.3')
-          .to('[data-passage]', { opacity: 1, duration: .8 }, '<')
-          .to('[data-passage-rule]', { scaleX: 1, duration: 1 }, '<0.2')
-          .to('[data-passage]', { opacity: 0, duration: .8 }, '+=1.8');
+          .to('[data-passage]', { opacity: 1, duration: .8 }, '<0.5')
+          .to('[data-passage-rule]', { scaleX: 1, duration: 1 }, '<0.2');
+        /* Ghalib used to fade out before the pin ended, leaving a stretch of
+           bare film between him and the dissolve that follows. He stays up
+           now and rides off with the scene, and the veil takes him — the same
+           handoff the messages get. */
       }
 
       /* ── 2 · before the boats ── */
@@ -668,47 +697,70 @@
         const stage = q('[data-night-stage]');
         if (!stage) return;
         const seq = sequence(q('[data-night-canvas]'), q('[data-night-fallback]'), 'tide', 193, .6, 12.76);
-        const caps = qa('[data-cap]'), num = q('[data-count-n]'), time = q('[data-count-time]'), prox = { p: 0 };
+        const msgs = qa('[data-msg]'), thread = q('[data-thread]'), prox = { p: 0 };
+        /* the newest message rides the centre line; the thread slides up to put
+           it there, so the ones before it stay on screen and stack away above */
+        const centre = m => -(m.offsetTop + m.offsetHeight / 2);
+        const GAP = .95, FIRST = 5.6, last = FIRST + GAP * (msgs.length - 1) + .5;
         const tl = gsap.timeline({
-          scrollTrigger: { trigger: stage, start: 'top top', end: '+=4600', pin: true, scrub: 1, anticipatePin: 1,
+          scrollTrigger: { trigger: stage, start: 'top top', end: '+=3300', pin: true, scrub: 1, anticipatePin: 1,
+            invalidateOnRefresh: true,
             onToggle: self => self.isActive ? seq.play() : seq.stop() }
         });
-        tl.to(prox, { p: 1, ease: 'none', duration: 12 }, 0);   /* holds the film's slot in the timeline; the film runs on its own clock */
+        tl.to(prox, { p: 1, ease: 'none', duration: last + 1.6 }, 0);   /* holds the film's slot in the timeline; the film runs on its own clock */
         tl.to('[data-night-canvas]', { opacity: 1, duration: .8 }, 0)
           .to('[data-count-ground]', { opacity: 1, duration: .8 }, '<')
-          .to('[data-count-group]', { opacity: 1, duration: .6 }, '<0.2')
-          .to('[data-tide]', { height: '46%', ease: 'none', duration: 10 }, 0);
-        caps.forEach((cap, i) => {
-          const target = Number(cap.dataset.crowd) || 0;
-          const from = i ? (Number(caps[i - 1].dataset.crowd) || 0) : 0;
-          const o = { v: from };
-          const stamp = cap.dataset.time;
-          tl.call(() => { if (time) time.textContent = stamp; }, null, '>')
-            .to(cap, { opacity: 1, duration: .45 }, '<')
-            .to(o, { v: target, duration: .9, ease: 'none', onUpdate() { if (num) num.textContent = Math.round(o.v); } }, '<')
-            .to(cap, { opacity: 0, duration: .45 }, i === caps.length - 1 ? '+=1.2' : '+=0.9');
+          .to('[data-thread-stage]', { opacity: 1, duration: .6 }, '<0.2')
+          .to('[data-night-head]', { opacity: 0, duration: .5 }, FIRST + .2);   /* the line hands the screen to the thread */
+        gsap.set(msgs, { y: 18 });
+        gsap.set(thread, { y: () => centre(msgs[0]) });
+        msgs.forEach((m, i) => {
+          const at = FIRST + GAP * i;
+          tl.to(m, { opacity: 1, y: 0, duration: .5, ease: EASE }, at)
+            .to(thread, { y: () => centre(m), duration: .5, ease: EASE }, at);
+          /* three replies later it has climbed out of the conversation */
+          if (i + 3 < msgs.length) tl.to(m, { opacity: 0, duration: .5 }, FIRST + GAP * (i + 3));
         });
-        tl.to('[data-count-group]', { opacity: 0, duration: .6 }, '>-0.2')
-          .to('[data-night-wash]', { opacity: 1, duration: 1 }, '<');
+        tl.to('[data-thread-stage]', { opacity: 0, duration: .6 }, last + .6)
+          .to('[data-night-wash]', { opacity: .84, duration: 1 }, last + .6);
       }
 
       /* ── 3 · the window ── */
       function initWindow() {
         const stage = q('[data-window-stage]'), portal = q('[data-portal]'), glass = q('[data-glass]');
         if (!stage || !portal) return;
-        const tl = gsap.timeline({
+        /* the shut aperture, sized for the screen: the desktop slot is a
+           letterbox 40% x 32% of the frame, which on a phone collapses to a
+           thumbnail — narrow screens keep a readable window instead */
+        const shut = () => innerWidth < 700 ? 'inset(26% 16% round 2px)' : 'inset(34% 30% round 2px)';
+        portal.style.clipPath = shut();
+        addEventListener('resize', () => { if (!ScrollTrigger.isInViewport(stage)) portal.style.clipPath = shut(); });
+
+        /* the couplet and the shut aperture ride in with the section. Without
+           this the washed-out end of the film scrolls off against an empty
+           ground and the screen holds one flat colour for a whole viewport. */
+        gsap.fromTo('[data-statement]', { opacity: 0 }, {
+          opacity: 1, ease: 'none',
           scrollTrigger: {
-            trigger: stage, start: 'top top', end: '+=3800', pin: true, scrub: 1, anticipatePin: 1,
+            trigger: stage, start: 'top bottom+=70%', end: 'top 40%', scrub: true,
             onEnter: () => { if (glass) glass.style.visibility = 'visible'; },
             onEnterBack: () => { if (glass) glass.style.visibility = 'visible'; },
             onLeaveBack: () => { if (glass) glass.style.visibility = 'hidden'; }
           }
         });
-        tl.to('[data-statement]', { opacity: 1, duration: .8 }, 0)
-          .to('[data-statement]', { opacity: 0, duration: .8 }, 2)
-          .fromTo(portal, { clipPath: 'inset(34% 30% round 2px)' }, { clipPath: 'inset(0% 0% round 0px)', duration: 2, ease: 'none' }, 2)
-          .to('[data-shores]', { opacity: 1, duration: .8 }, '>-0.4')
-          .to({}, { duration: 1.6 });
+
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: stage, start: 'top top', end: '+=1800', pin: true, scrub: 1, anticipatePin: 1,
+            invalidateOnRefresh: true
+          }
+        });
+        /* the aperture opens from the first scroll of the pin — the original
+           held it shut for two of its five seconds, which reads as a stall */
+        tl.fromTo(portal, { clipPath: () => shut() }, { clipPath: 'inset(0% 0% round 0px)', duration: 2, ease: 'none' }, 0)
+          .to('[data-statement]', { opacity: 0, duration: .8 }, .5)
+          .to('[data-shores]', { opacity: 1, duration: .8 }, 1.6)
+          .to({}, { duration: 1.2 });
       }
 
       /* ── the four shores ── */
@@ -737,6 +789,87 @@
       }
 
       /* ── 4 · the drift, and 5 · the close ── */
+
+      /* ══ scene changes ══════════════════════════════════════════════════
+         A section handing over to the next used to read as the old one
+         sliding away. Each boundary now dissolves instead: a veil in the
+         incoming section's own colour closes over the seam, hearts gather
+         on it, and both go as the new scene settles. Nothing here touches
+         the pins or the timelines they drive — it sits above them. */
+      const HEART_D = 'M12 21.35 10.55 20.03C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z';
+      const HEART_INK = ['#E0798F', '#C0435C', '#F0A9B8'];
+      const heartLayers = [];
+
+      /* one seeded stream per boundary, so the hearts differ between scenes
+         and yet fall the same way on every visit */
+      function stream(seed) {
+        let s = seed >>> 0;
+        return (lo, hi) => { s = (s * 1103515245 + 12345) % 2147483648; return lo + (s / 2147483648) * (hi - lo); };
+      }
+
+      function heartLayer(seed, count) {
+        const layer = document.createElement('div');
+        layer.className = 'fixed inset-0 pointer-events-none';
+        layer.style.cssText = 'z-index:9060;overflow:hidden';
+        const r = stream(seed), hearts = [];
+        for (let i = 0; i < count; i++) {
+          const size = r(11, 38);
+          const h = document.createElement('span');
+          h.style.cssText = 'position:absolute;display:block;opacity:0;will-change:transform,opacity;' +
+            /* one band each, jittered inside it, so they scatter across the
+               whole frame instead of clumping wherever the stream lands */
+            'left:' + (4 + ((i + r(.16, .84)) / count) * 90).toFixed(2) + '%;top:' + r(48, 96).toFixed(2) + '%;' +
+            'width:' + size.toFixed(1) + 'px;height:' + size.toFixed(1) + 'px;' +
+            'color:' + HEART_INK[i % HEART_INK.length] + ';filter:blur(' + r(0, 1.5).toFixed(2) + 'px)';
+          h.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true" style="width:100%;height:100%;display:block;fill:currentColor"><path d="' + HEART_D + '"/></svg>';
+          h.dataset.rise = r(15, 30).toFixed(1);
+          h.dataset.sway = r(-6, 6).toFixed(1);
+          h.dataset.turn = r(-16, 16).toFixed(1);
+          h.dataset.lit = r(.26, .5).toFixed(2);
+          layer.appendChild(h); hearts.push(h);
+        }
+        document.body.appendChild(layer);
+        hearts.layer = layer;
+        return hearts;
+      }
+
+      /* hearts gather, drift, and let go — laid onto a timeline at `at` */
+      function heartsOnto(tl, hearts, at, k) {
+        k = k || 1;
+        hearts.forEach((h, i) => {
+          const t = at + i * .07 * k;
+          tl.fromTo(h, { opacity: 0, scale: .5, y: 0, x: 0, rotation: 0 },
+                       { opacity: +h.dataset.lit, scale: 1, duration: 1 * k, ease: 'power2.out' }, t)
+            .to(h, { y: -innerHeight * (+h.dataset.rise / 100), x: (+h.dataset.sway) + 'vw',
+                     rotation: +h.dataset.turn, ease: 'none', duration: 3.4 * k }, t)
+            .to(h, { opacity: 0, scale: .84, duration: 1.2 * k, ease: 'power2.in' }, t + 2.2 * k);
+        });
+      }
+
+      function initTransitions() {
+        if (prefersStill) return;
+        /* the close is a circle wipe already — it only wants the hearts, and
+           they ride its own timeline, so layer 3 is built here and used there */
+        [[7, 12], [23, 14], [41, 13], [67, 16]].forEach(([seed, n]) => heartLayers.push(heartLayer(seed, n)));
+
+        /* outgoing stage, its last viewport of scroll: exactly the seam */
+        [{ on: 'header#top',        tint: '#1C0A14', peak: 1 },
+         { on: '[data-night]',      tint: '#F7E9E2', peak: 1 },
+         { on: '[data-windowsec]',  tint: '#F0DCD6', peak: 1 }].forEach((b, i) => {
+          const veil = document.createElement('div');
+          veil.className = 'fixed inset-0 pointer-events-none';
+          veil.style.cssText = 'z-index:9050;opacity:0;background:' + b.tint;
+          document.body.insertBefore(veil, heartLayers[i][0].parentNode);
+          const tl = gsap.timeline({
+            scrollTrigger: { trigger: b.on, start: 'bottom bottom', end: 'bottom top', scrub: .6, invalidateOnRefresh: true }
+          });
+          tl.to(veil, { opacity: b.peak, duration: 1.1, ease: 'power2.inOut' }, 0)
+            .to(veil, { opacity: b.peak, duration: 1.1 }, 1.1)
+            .to(veil, { opacity: 0, duration: 1.6, ease: 'power2.inOut' }, 2.2);
+          heartsOnto(tl, heartLayers[i], .35);
+        });
+      }
+
       function initDrift() {
         const stage = q('[data-drift-stage]'), track = q('[data-drift-track]');
         if (!stage || !track) return;
@@ -755,8 +888,40 @@
           .to('[data-drift-line]', { opacity: 1, duration: .9 }, '>-1.2')
           .to('[data-drift-coda]', { opacity: 1, duration: .9 }, '>-0.5')
           .to({}, { duration: .5 }, '<')   /* was the drift label fade */
-          .to('[data-close]', { clipPath: 'circle(78% at 50% 50%)', duration: 1.8, ease: 'none' }, '>')
+          .addLabel('close', '>')
+          .to('[data-close]', { clipPath: 'circle(78% at 50% 50%)', duration: 1.8, ease: 'none' }, 'close')
           .to('[data-close-el]', { opacity: 1, duration: .8, stagger: .1 }, '>-0.8');
+        if (heartLayers[3]) heartsOnto(tl, heartLayers[3], tl.labels.close - .5, .35);
+
+        /* and on the last screen they keep going, since she may sit on it */
+        const film = q('[data-close-film]');
+        if (film) {
+          const roll = () => { const r = film.play(); if (r && r.catch) r.catch(() => {}); };
+          roll();
+          ScrollTrigger.create({ trigger: stage, start: 'top top', end: 'max', onToggle: roll, onUpdate: self => {
+            if (self.progress > .82 && film.paused) roll();
+          } });
+        }
+
+        const bloom = q('[data-close-hearts]');
+        if (bloom && !prefersStill) {
+          const rise = stream(211);
+          for (let i = 0; i < 15; i++) {
+            const size = rise(12, 40);
+            const h = document.createElement('span');
+            h.style.cssText = 'position:absolute;display:block;opacity:0;will-change:transform,opacity;' +
+              'left:' + (4 + ((i + rise(.16, .84)) / 15) * 90).toFixed(2) + '%;bottom:-14%;' +
+              'width:' + size.toFixed(1) + 'px;height:' + size.toFixed(1) + 'px;' +
+              'color:' + HEART_INK[i % HEART_INK.length] + ';filter:blur(' + rise(0, 1.4).toFixed(2) + 'px)';
+            h.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true" style="width:100%;height:100%;display:block;fill:currentColor"><path d="' + HEART_D + '"/></svg>';
+            bloom.appendChild(h);
+            gsap.to(h, { y: () => -innerHeight * 1.25, x: rise(-7, 7) + 'vw', rotation: rise(-18, 18),
+                         duration: rise(11, 19), ease: 'none', repeat: -1, delay: rise(0, 9) });
+            gsap.to(h, { opacity: rise(.3, .62), duration: 2.4, ease: 'power2.out',
+                         repeat: -1, repeatDelay: 0, yoyo: true, delay: rise(0, 9),
+                         yoyoEase: 'power2.in' });
+          }
+        }
         if (seq) {
           const prox = { p: 0 };
           tl.to(prox, { p: 1, ease: 'none', duration: 6 }, 0);   /* holds the film's slot in the timeline */
@@ -794,6 +959,7 @@
       initNight();
       initWindow();
       initShores();
+      initTransitions();
       initDrift();
       initChrome();
       initSawaalLinks();
