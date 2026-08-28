@@ -30,28 +30,37 @@
     </div>
 
     <!-- ══ LOADER — the machine empties the beach ══ -->
-    <div data-loader="" class="fixed inset-0 grid place-items-center" style="z-index:10000;background:#1C0A14;color:#F7EEE8">
+    <div data-loader="" class="fixed inset-0 grid place-items-center" style="z-index:10000;background:#1C0A14;color:#F7EEE8;overflow:hidden">
+      <div data-boot-glow="" class="absolute inset-0 pointer-events-none" style="opacity:0;background:radial-gradient(ellipse 48% 34% at 50% 42%,rgba(192,67,92,.3),rgba(192,67,92,.11) 46%,transparent 72%)"></div>
+      <i data-boot-ripple="" aria-hidden="true" style="position:fixed;left:50%;top:50%;width:18px;height:18px;margin:-9px 0 0 -9px;border-radius:50%;border:1.5px solid rgba(224,121,143,.85);opacity:0;pointer-events:none;z-index:10006"></i>
       <div data-loader-stack="" class="flex flex-col items-center" style="gap:clamp(1.6rem,3.4vh,2.6rem);margin-bottom:4vh">
         <div data-locket-wrap="" class="relative flex flex-col items-center" style="opacity:0">
           <i data-locket-chain="" aria-hidden="true" style="display:block;width:1px;height:clamp(2.4rem,7vh,4.4rem);background:linear-gradient(to bottom,transparent,#C78B79);transform:scaleY(0);transform-origin:top center"></i>
           <i aria-hidden="true" style="display:block;width:.62rem;height:.62rem;margin-bottom:-.2rem;border:1.5px solid #C78B79;border-radius:50%"></i>
+          <button data-locket-btn="" type="button" aria-label="Locket kholo" style="position:relative;display:block;padding:0;border:0;background:none;cursor:none;-webkit-tap-highlight-color:transparent">
+          <i data-locket-pulse="" aria-hidden="true" style="position:absolute;left:50%;top:50%;width:clamp(5.2rem,20vw,7.4rem);height:clamp(5.2rem,20vw,7.4rem);margin-top:calc(clamp(5.2rem,20vw,7.4rem) / -2);margin-left:calc(clamp(5.2rem,20vw,7.4rem) / -2);border-radius:50%;border:1px solid rgba(224,121,143,.5);opacity:0;pointer-events:none"></i>
           <div data-locket="" class="relative" style="width:calc(clamp(5.2rem,20vw,7.4rem) * 2.3);height:clamp(5.2rem,20vw,7.4rem);perspective:900px">
+          <div data-locket-tilt="" class="absolute inset-0" style="transform-style:preserve-3d">
           <div data-leaf="" data-side="l" style="position:absolute;left:50%;top:50%;width:clamp(5.2rem,20vw,7.4rem);height:clamp(5.2rem,20vw,7.4rem);margin-top:calc(clamp(5.2rem,20vw,7.4rem) / -2);margin-left:calc(clamp(5.2rem,20vw,7.4rem) / -2);transform-style:preserve-3d">
             <img src="assets/laiba/locket-l.jpg" alt="Laiba" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 30%;border-radius:50%;box-shadow:0 0 0 2px #C78B79,0 0 0 3px rgba(90,42,34,.55),0 10px 30px rgba(28,10,20,.55),inset 0 0 22px rgba(28,10,20,.28)">
             <div data-lid="" style="position:absolute;inset:0;border-radius:50%;transform-origin:0% 50%;background:linear-gradient(142deg,#F7DACF 0%,#DFA294 26%,#B06B57 58%,#8E5343 74%,#EFC4B4 100%);box-shadow:0 0 0 2px #C78B79,0 0 0 3px rgba(90,42,34,.55),0 10px 30px rgba(28,10,20,.55),inset 0 2px 6px rgba(255,236,228,.55),inset 0 -6px 14px rgba(90,42,34,.4);display:grid;place-items:center">
               <svg viewBox="0 0 24 24" aria-hidden="true" style="width:38%;height:38%;fill:rgba(107,52,42,.34);filter:drop-shadow(0 1px 0 rgba(255,232,222,.5))"><path d="M12 21.35 10.55 20.03C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+              <i data-shine="" aria-hidden="true" style="position:absolute;inset:0;border-radius:50%;overflow:hidden;pointer-events:none"><i style="position:absolute;top:-45%;left:-70%;width:52%;height:190%;transform:rotate(19deg);background:linear-gradient(90deg,transparent,rgba(255,242,236,.6),transparent)"></i></i>
             </div>
           </div>
           <div data-leaf="" data-side="r" style="position:absolute;left:50%;top:50%;width:clamp(5.2rem,20vw,7.4rem);height:clamp(5.2rem,20vw,7.4rem);margin-top:calc(clamp(5.2rem,20vw,7.4rem) / -2);margin-left:calc(clamp(5.2rem,20vw,7.4rem) / -2);transform-style:preserve-3d">
             <img src="assets/laiba/locket-r.jpg" alt="Rafay" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 26%;border-radius:50%;box-shadow:0 0 0 2px #C78B79,0 0 0 3px rgba(90,42,34,.55),0 10px 30px rgba(28,10,20,.55),inset 0 0 22px rgba(28,10,20,.28)">
             <div data-lid="" style="position:absolute;inset:0;border-radius:50%;transform-origin:100% 50%;background:linear-gradient(142deg,#F7DACF 0%,#DFA294 26%,#B06B57 58%,#8E5343 74%,#EFC4B4 100%);box-shadow:0 0 0 2px #C78B79,0 0 0 3px rgba(90,42,34,.55),0 10px 30px rgba(28,10,20,.55),inset 0 2px 6px rgba(255,236,228,.55),inset 0 -6px 14px rgba(90,42,34,.4);display:grid;place-items:center">
               <svg viewBox="0 0 24 24" aria-hidden="true" style="width:38%;height:38%;fill:rgba(107,52,42,.34);filter:drop-shadow(0 1px 0 rgba(255,232,222,.5))"><path d="M12 21.35 10.55 20.03C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+              <i data-shine="" aria-hidden="true" style="position:absolute;inset:0;border-radius:50%;overflow:hidden;pointer-events:none"><i style="position:absolute;top:-45%;left:-70%;width:52%;height:190%;transform:rotate(19deg);background:linear-gradient(90deg,transparent,rgba(255,242,236,.6),transparent)"></i></i>
             </div>
           </div>
           </div>
+          </div>
+          </button>
         </div>
-        <p data-loader-mark="" style="font-weight:500;font-stretch:105%;font-size:clamp(1.5rem,3.6vw,2.9rem);text-transform:uppercase;letter-spacing:0.16em;text-indent:0.16em;white-space:nowrap;opacity:0;margin:0">
-          Laiba
+        <p data-loader-mark="" lang="ur" dir="rtl" style="font-family:'Noto Nastaliq Urdu',serif;font-weight:500;letter-spacing:normal;font-stretch:normal;line-height:1.9;font-size:clamp(2rem,1rem + 3.6vw,3.6rem);white-space:nowrap;opacity:0;margin:0;text-shadow:0 2px 26px rgba(192,67,92,.4)">
+          لائبہ
         </p>
         <div data-loader-barwrap="" style="width:min(340px,46vw);height:1px;background:rgba(247,238,232,.14);opacity:0">
           <i data-loader-bar="" class="block h-full" style="background:rgba(247,238,232,.5);transform-origin:center;transform:scaleX(1)"></i>
@@ -62,6 +71,9 @@
           </span>
         </p>
       </div>
+      <p data-boot-hint="" class="absolute text-xs uppercase" style="bottom:12vh;left:0;right:0;text-align:center;font-family:'Archivo',sans-serif;font-weight:500;letter-spacing:.24em;color:rgba(247,238,232,.5);opacity:0;margin:0">
+        chhoo ke kholo
+      </p>
     </div>
 
     <!-- ══ NAV ══ -->
@@ -472,38 +484,138 @@
       }
 
       /* ── loader: the machine empties the beach ── */
+      /* ── the boot screen: a locket she has to open herself ──────────────
+         It arrives on its chain and waits, shut, catching the light. Nothing
+         moves on until she touches it — and if she doesn't, it opens on its
+         own after a few seconds so nobody is ever stuck at a closed door. */
       function initLoader() {
         const loader = q('[data-loader]');
         if (!loader) { if (lenis) lenis.start(); playHero(); return; }
         const mark = q('[data-loader-mark]'), wrap = q('[data-loader-barwrap]'),
               bar = q('[data-loader-bar]'), line = q('[data-loader-line]');
         const holder = q('[data-locket-wrap]'), chain = q('[data-locket-chain]'),
+              tilt = q('[data-locket-tilt]'), btn = q('[data-locket-btn]'),
+              hint = q('[data-boot-hint]'), glow = q('[data-boot-glow]'),
+              pulse = q('[data-locket-pulse]'), ripple = q('[data-boot-ripple]'),
+              lights = qa('[data-shine] > i'), faces = qa('[data-leaf] img'),
               leaves = qa('[data-leaf]'), lids = qa('[data-lid]');
-        let sway;
-        const tl = gsap.timeline({
-          onComplete() {
-            if (sway) sway.kill();
-            if (lenis) lenis.start(); playHero(); ScrollTrigger.refresh();
-          }
-        });
-        /* the locket drops on its chain, then opens: each cover swings back on
-           its own outer edge while the two frames part, so the one disc you
-           first see turns out to have been holding both of you */
-        if (holder && leaves.length === 2) {
-          gsap.set(lids, { rotateY: 0 });
-          tl.to(holder, { opacity: 1, duration: .5, ease: EASE }, 0)
-            .fromTo(chain, { scaleY: 0 }, { scaleY: 1, duration: .7, ease: EASE }, 0)
-            .fromTo(holder, { y: -34, scale: .84 }, { y: 0, scale: 1, duration: 1, ease: 'back.out(1.5)' }, .1)
-            .to(leaves[0], { xPercent: -54, duration: 1.25, ease: EASE }, 1.35)
-            .to(leaves[1], { xPercent: 54, duration: 1.25, ease: EASE }, 1.35)
-            .to(lids[0], { rotateY: -122, duration: 1.3, ease: EASE }, 1.42)
-            .to(lids[1], { rotateY: 122, duration: 1.3, ease: EASE }, 1.42);
-          if (!reduced) sway = gsap.to(holder, { rotation: 2.4, duration: 2.6, repeat: -1, yoyo: true,
-                                                 ease: 'sine.inOut', transformOrigin: '50% -18%' });
+        const fine = matchMedia('(pointer: fine)').matches;
+        const loose = [];                       /* everything to stop at the end */
+        let opened = false, waiting = 0;
+
+        function done() {
+          loose.forEach(t => t && t.kill());
+          if (lenis) lenis.start(); playHero(); ScrollTrigger.refresh();
         }
-        tl.to([mark, wrap, line], { opacity: 1, duration: .8, ease: EASE, stagger: .1 }, holder ? 2 : 0)
-          .to(bar, { scaleX: 0, duration: reduced ? .4 : 1.3, ease: 'expo.inOut' }, '<0.2')
-          .to(loader, { opacity: 0, duration: 1.1, ease: EASE, onComplete() { loader.style.display = 'none'; } }, '+=0.2');
+        if (!holder || leaves.length !== 2) {   /* nothing to open — just go */
+          gsap.timeline({ onComplete: done })
+            .to([mark, wrap, line], { opacity: 1, duration: .8, stagger: .1, ease: EASE })
+            .to(loader, { opacity: 0, duration: 1, ease: EASE, onComplete() { loader.style.display = 'none'; } }, '+=0.3');
+          return;
+        }
+
+        gsap.set(lids, { rotateY: 0 });
+        gsap.set(mark, { y: 18 });
+        if (hint && fine) hint.textContent = 'click karke kholo';
+
+        /* ── it arrives ── */
+        gsap.timeline()
+          .to(holder, { opacity: 1, duration: .5, ease: EASE }, 0)
+          .fromTo(chain, { scaleY: 0 }, { scaleY: 1, duration: .75, ease: EASE }, 0)
+          .fromTo(holder, { y: -38, scale: .82 }, { y: 0, scale: 1, duration: 1.1, ease: 'back.out(1.6)' }, .1)
+          .to(glow, { opacity: 1, duration: 1.4, ease: EASE }, .2)
+          .to(hint, { opacity: 1, duration: .8, ease: EASE }, 1.2);
+
+        if (!reduced) {
+          /* it hangs and turns a little, the way a thing on a chain does */
+          loose.push(gsap.to(holder, { rotation: 2.4, duration: 2.6, repeat: -1, yoyo: true,
+                                       ease: 'sine.inOut', transformOrigin: '50% -18%' }));
+          /* a light crosses the shut covers every few seconds */
+          if (lights.length) loose.push(gsap.fromTo(lights, { xPercent: 0 },
+            { xPercent: 340, duration: 1.5, ease: 'power2.inOut', repeat: -1, repeatDelay: 1.9, delay: 1.6 }));
+          /* and a ring breathes out of it, asking to be pressed */
+          if (pulse) loose.push(gsap.fromTo(pulse, { opacity: .5, scale: .96 },
+            { opacity: 0, scale: 1.45, duration: 1.9, ease: 'power2.out', repeat: -1, repeatDelay: .5, delay: 1.4 }));
+          /* on a mouse it leans towards her */
+          if (fine && tilt) {
+            const rx = gsap.quickTo(tilt, 'rotationX', { duration: .7, ease: 'power3' });
+            const ry = gsap.quickTo(tilt, 'rotationY', { duration: .7, ease: 'power3' });
+            loader.addEventListener('pointermove', e => {
+              if (opened) return;
+              const r = holder.getBoundingClientRect();
+              rx(gsap.utils.clamp(-11, 11, -(e.clientY - (r.top + r.height / 2)) / 20));
+              ry(gsap.utils.clamp(-15, 15, (e.clientX - (r.left + r.width / 2)) / 20));
+            });
+          }
+        }
+
+        /* ── she opens it ── */
+        function open(x, y) {
+          if (opened) return;
+          opened = true;
+          clearTimeout(waiting);
+          if (btn) btn.disabled = true;
+          loose.forEach(t => t && t.kill());
+          loose.length = 0;
+          if (tilt) gsap.to(tilt, { rotationX: 0, rotationY: 0, duration: .7, ease: EASE });
+
+          if (ripple && x != null && !reduced) {
+            gsap.set(ripple, { left: x, top: y, scale: 1, opacity: .9 });
+            gsap.to(ripple, { scale: 34, opacity: 0, duration: 1.4, ease: 'power2.out' });
+          }
+
+          const tl = gsap.timeline({ onComplete() { loose.forEach(t => t && t.kill()); done(); } });
+          tl.to([hint, pulse], { opacity: 0, duration: .4, ease: EASE }, 0)
+            .to(leaves[0], { xPercent: -54, duration: 1.3, ease: EASE }, .12)
+            .to(leaves[1], { xPercent: 54, duration: 1.3, ease: EASE }, .12)
+            .to(lids[0], { rotateY: -122, duration: 1.35, ease: EASE }, .2)
+            .to(lids[1], { rotateY: 122, duration: 1.35, ease: EASE }, .2)
+            .to(glow, { opacity: 1.6, duration: .9, ease: EASE }, .2)
+            .to(glow, { opacity: 1, duration: 1.4, ease: EASE }, 1.1);
+
+          /* hearts open out of it, nearest first */
+          if (!prefersStill) {
+            const burst = heartLayer(101, 18);
+            burst.layer.style.zIndex = '10005';
+            loader.appendChild(burst.layer);
+            /* the seeded stream drops them low, which is right for a scene
+               change but not for a bloom — spread them around the locket */
+            burst.forEach((h, i) => { h.style.top = (13 + (i * 53) % 74) + '%'; });
+            const r = holder.getBoundingClientRect();
+            const cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+            const placed = burst.map(h => {
+              const b = h.getBoundingClientRect();
+              return { h, dx: b.left + b.width / 2 - cx, dy: b.top + b.height / 2 - cy };
+            }).sort((a, b) => Math.hypot(a.dx, a.dy) - Math.hypot(b.dx, b.dy));
+            placed.forEach((p, i) => {
+              const t = .45 + i * .045;
+              tl.fromTo(p.h, { opacity: 0, scale: .2, x: -p.dx * .82, y: -p.dy * .82 },
+                             { opacity: +p.h.dataset.lit, scale: 1, x: 0, y: 0, duration: 1.5, ease: 'power3.out' }, t)
+                .to(p.h, { opacity: 0, scale: .86, y: -innerHeight * .09, duration: 1.2, ease: 'power2.in' }, t + 1.5);
+            });
+          }
+
+          /* her name, then the rest, then the page */
+          tl.to(mark, { opacity: 1, y: 0, duration: 1, ease: EASE }, 1.35)
+            .to(line, { opacity: 1, duration: .8, ease: EASE }, 1.85)
+            .to(wrap, { opacity: 1, duration: .6, ease: EASE }, 2.05)
+            .to(bar, { scaleX: 0, duration: reduced ? .4 : 1.4, ease: 'expo.inOut' }, 2.15)
+            .to(loader, { opacity: 0, duration: 1.2, ease: EASE, onComplete() { loader.style.display = 'none'; } }, '+=0.45');
+
+          /* while it is open, the two of you breathe */
+          if (!reduced && faces.length) loose.push(gsap.to(faces, { scale: 1.035, duration: 2.4, repeat: -1,
+                                                                    yoyo: true, ease: 'sine.inOut', delay: 1.4 }));
+        }
+
+        const press = e => { const t = e.changedTouches && e.changedTouches[0];
+                             open(t ? t.clientX : e.clientX, t ? t.clientY : e.clientY); };
+        loader.addEventListener('pointerup', press);
+        if (btn) btn.addEventListener('keydown', e => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); const r = btn.getBoundingClientRect();
+            open(r.left + r.width / 2, r.top + r.height / 2); }
+        });
+        /* she may never touch it, and the page still has to arrive */
+        waiting = setTimeout(() => open(null, null), reduced ? 1200 : 7000);
       }
 
       /* ── scroll-scrubbed frame sequences, with a still fallback ── */
@@ -717,6 +829,7 @@
           layer.appendChild(h); hearts.push(h);
         }
         document.body.appendChild(layer);
+        hearts.layer = layer;
         return hearts;
       }
 
