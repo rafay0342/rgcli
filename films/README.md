@@ -9,6 +9,7 @@ beat (135 bpm, one scene every three bars).
 | `laiba-real-1080p.mp4` | the same film with the original photographs | 1080×1920 |
 | `laiba-mixed-1080p.mp4` | the two alternating — photograph, painting, photograph | 1080×1920 |
 | `laiba-shortfilm-1080p.mp4` | **the short film** — a story in four acts, not a slideshow | 1080×1920 |
+| `laiba-directors-cut-1080p.mp4` | **the director's cut** — title card, act cards, rain and stars, a beat-cut montage, the payoff shots | 1080×1920 |
 
 All three open on the locket, which swings open on its chain to show her face,, carry a couplet from Momin and one from Faraz, run
 eleven portraits each with its own name, and close on `Rafay ki Zindagi`.
