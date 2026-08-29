@@ -43,6 +43,7 @@ const KNOWN_COMMANDS = [
   "exec",
   "proto",
   "mcp",
+  "ppt",
 ];
 
 const program = new Command();
@@ -186,6 +187,21 @@ program
       "[PROTOTYPE MODE: Generate a complete, production-ready MVP for this] " +
       descWords.join(" ");
     await askAgent(prompt);
+    process.exit(0);
+  });
+
+// ── ppt ────────────────────────────────────────────────────────────────
+program
+  .command("ppt")
+  .description("Generate a presentation deck (PPTX) via SlideForge")
+  .argument("<brief...>", "What the deck is about")
+  .option("--slides <n>", "Slide count (4-30)", "12")
+  .option("--brand <name>", "Brand pack: sphf | neutral", "neutral")
+  .option("--lang <code>", "Deck language: en | ur", "en")
+  .option("--out <path>", "Output file", "deck.pptx")
+  .action(async (briefWords, options) => {
+    const { runPpt } = await import("../src/ppt.js");
+    await runPpt(briefWords.join(" "), options);
     process.exit(0);
   });
 
